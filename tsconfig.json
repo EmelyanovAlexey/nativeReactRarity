@@ -1,0 +1,19 @@
+{
+  "extends": "expo/tsconfig.base",
+  "compilerOptions": {
+    "strict": true,
+    "module": "NodeNext",                // ✅ Современно и совместимо
+    "moduleResolution": "nodenext",      // ✅ Обрабатывает exports и типы
+    "skipLibCheck": true,                // ✅ Не трогает .d.ts ошибок в либах
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./*"]
+    }
+  },
+  "include": [
+    "**/*.ts",
+    "**/*.tsx",
+    ".expo/types/**/*.ts",
+    "expo-env.d.ts"
+  ]
+}
