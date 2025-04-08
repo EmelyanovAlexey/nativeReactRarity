@@ -1,45 +1,14 @@
-import { View, TextInput, StyleSheet, Text, Alert } from "react-native";
-import { useState } from "react";
-import { useUnit } from "effector-react";
-import { loginFx } from "../models/auth";
-
+import { View, StyleSheet, Text, Image } from "react-native";
 import Button from "@/components/Button";
 import Logo from "@/assets/images/logo.svg";
 
 export default function LoginScreen({ navigation }: any) {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const login = useUnit(loginFx);
-
-  const handleLogin = async () => {
-    try {
-      await login({ email, password });
-      navigation.navigate("Home");
-    } catch (err: any) {
-      Alert.alert("Ошибка", err.message);
-    }
-  };
-
   return (
     <View style={styles.container}>
       <Logo width={200} height={120} style={styles.reactLogo} />
       <Text style={styles.description}>
-        Чтобы войти, введите свой адрес электронной почты и пароль
+        Начните с создания учетной записи или входа в существующую
       </Text>
-
-      <TextInput
-        placeholder="Email"
-        style={styles.input}
-        value={email}
-        onChangeText={setEmail}
-      />
-      <TextInput
-        placeholder="Пароль"
-        secureTextEntry
-        style={styles.input}
-        value={password}
-        onChangeText={setPassword}
-      />
 
       <Button
         title="Зарегистрироваться"
@@ -52,7 +21,6 @@ export default function LoginScreen({ navigation }: any) {
         filled={false}
         style={styles.button}
         onPress={() => navigation.navigate("login")}
-        disabled
       />
     </View>
   );
@@ -77,12 +45,6 @@ const styles = StyleSheet.create({
     marginBottom: 24,
     lineHeight: 20,
     letterSpacing: 0,
-  },
-  input: {
-    borderWidth: 1,
-    marginBottom: 12,
-    padding: 10,
-    borderRadius: 8,
   },
   button: {
     width: "100%",
