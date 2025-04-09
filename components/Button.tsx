@@ -5,17 +5,18 @@ import {
   StyleSheet,
   ViewStyle,
   TextStyle,
-  Image,
+  View,
 } from "react-native";
+import { Colors } from "../shared/constStyle";
 
 type AppButtonProps = {
   title: string;
-  onPress: () => void;
-  icon?: any; // require("./path/to/icon.png")
   disabled?: boolean;
   filled?: boolean;
   style?: ViewStyle;
   textStyle?: TextStyle;
+  leftContent?: React.ReactNode;
+  onPress: () => void;
 };
 
 const Button: React.FC<AppButtonProps> = ({
@@ -23,7 +24,7 @@ const Button: React.FC<AppButtonProps> = ({
   onPress,
   filled = true,
   disabled = false,
-  icon,
+  leftContent,
   style,
   textStyle,
 }) => {
@@ -38,17 +39,19 @@ const Button: React.FC<AppButtonProps> = ({
       onPress={onPress}
       disabled={disabled}
     >
-      {icon && <Image source={icon} style={styles.icon} />}
-      <Text
-        style={[
-          styles.text,
-          filled ? styles.filledText : styles.outlinedText,
-          disabled && styles.disabledText,
-          textStyle,
-        ]}
-      >
-        {title}
-      </Text>
+      <View style={styles.contentWrapper}>
+        {leftContent && <View>{leftContent}</View>}
+        <Text
+          style={[
+            styles.text,
+            filled ? styles.filledText : styles.outlinedText,
+            disabled && styles.disabledText,
+            textStyle,
+          ]}
+        >
+          {title}
+        </Text>
+      </View>
     </TouchableOpacity>
   );
 };
@@ -61,22 +64,27 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     marginBottom: 12,
     alignItems: "center",
-    display: "flex",
+  },
+  contentWrapper: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    gap: 10,
   },
   filled: {
-    backgroundColor: "#247B7B",
-    borderColor: "#247B7B",
+    backgroundColor: Colors.Primary,
+    borderColor: Colors.Primary,
   },
   outlined: {
-    backgroundColor: "#F4F4F4",
-    borderColor: "#F4F4F4",
+    backgroundColor: Colors.Secondary,
+    borderColor: Colors.Secondary,
   },
   disabledButton: {
-    backgroundColor: "#F4F4F4",
-    borderColor: "#F4F4F4",
+    backgroundColor: Colors.Secondary,
+    borderColor: Colors.Secondary,
   },
   disabledText: {
-    color: "#989B9E",
+    color: Colors.GrayColor,
   },
   icon: {
     width: 20,
@@ -91,10 +99,10 @@ const styles = StyleSheet.create({
     fontWeight: 700,
   },
   filledText: {
-    color: "#fff",
+    color: Colors.WhiteColor,
   },
   outlinedText: {
-    color: "#000",
+    color: Colors.BlackColor,
   },
 });
 

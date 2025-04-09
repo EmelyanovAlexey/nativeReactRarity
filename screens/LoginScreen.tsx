@@ -1,10 +1,13 @@
-import { View, TextInput, StyleSheet, Text, Alert } from "react-native";
+import { View, StyleSheet, Text, Alert } from "react-native";
 import { useState } from "react";
 import { useUnit } from "effector-react";
 import { loginFx } from "../models/auth";
+import { Colors } from "../shared/constStyle";
 
 import Button from "@/components/Button";
+import Input from "@/components/Input";
 import Logo from "@/assets/images/logo.svg";
+import Google from "@/components/Icons/Google";
 
 export default function LoginScreen({ navigation }: any) {
   const [email, setEmail] = useState("");
@@ -27,29 +30,36 @@ export default function LoginScreen({ navigation }: any) {
         Чтобы войти, введите свой адрес электронной почты и пароль
       </Text>
 
-      <TextInput
-        placeholder="Email"
-        style={styles.input}
-        value={email}
-        onChangeText={setEmail}
-      />
-      <TextInput
-        placeholder="Пароль"
-        secureTextEntry
-        style={styles.input}
-        value={password}
-        onChangeText={setPassword}
-      />
+      <View style={styles.input}>
+        <Input
+          placeholder="Введите свой адрес электронной почты"
+          value={email}
+          onChangeText={setEmail}
+        />
+      </View>
+
+      <View style={styles.input}>
+        <Input
+          placeholder="Придумайте пароль"
+          value={email}
+          onChangeText={setEmail}
+          isPassword
+          isError
+        />
+      </View>
+
+      <Text style={styles.textSeparation}>ИЛИ</Text>
 
       <Button
-        title="Зарегистрироваться"
-        filled={true}
+        title="Регистрация через Google"
+        filled={false}
         style={styles.button}
+        leftContent={<Google />}
         onPress={() => navigation.navigate("register")}
       />
       <Button
         title="Войти"
-        filled={false}
+        filled={true}
         style={styles.button}
         onPress={() => navigation.navigate("login")}
         disabled
@@ -64,7 +74,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     padding: 24,
-    backgroundColor: "#FFF",
+    backgroundColor: Colors.BgcColor,
   },
   reactLogo: {
     justifyContent: "center",
@@ -79,12 +89,17 @@ const styles = StyleSheet.create({
     letterSpacing: 0,
   },
   input: {
-    borderWidth: 1,
     marginBottom: 12,
-    padding: 10,
-    borderRadius: 8,
+    width: "100%",
   },
   button: {
     width: "100%",
+  },
+  textSeparation: {
+    fontSize: 18,
+    color: Colors.GrayColor,
+    fontWeight: 600,
+    marginBottom: 24,
+    marginTop: 12,
   },
 });

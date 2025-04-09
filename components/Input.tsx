@@ -1,101 +1,65 @@
-import React from "react";
+import React, { useState } from "react";
 import {
-  TouchableOpacity,
-  Text,
-  StyleSheet,
+  View,
   ViewStyle,
-  TextStyle,
-  Image,
+  Pressable,
+  StyleSheet,
+  TextInput,
+  TextInputProps,
 } from "react-native";
+import { Colors } from "../shared/constStyle";
+import EyeClosed from "@/components/Icons/EyeClosed";
+import EyeOpen from "@/components/Icons/EyeOpen";
 
-type AppButtonProps = {
-  title: string;
-  onPress: () => void;
-  icon?: any; // require("./path/to/icon.png")
-  disabled?: boolean;
-  filled?: boolean;
+type AppInputProps = {
+  isError?: boolean;
+  isPassword?: boolean;
   style?: ViewStyle;
-  textStyle?: TextStyle;
 };
 
-const Button: React.FC<AppButtonProps> = ({
-  title,
-  onPress,
-  filled = true,
-  disabled = false,
-  icon,
-  style,
-  textStyle,
-}) => {
+export function Input(props: TextInputProps & AppInputProps) {
+  const [isPasswordVisible, setIsPasswordVisible] = useState<boolean>(false);
+
   return (
-    <TouchableOpacity
-      style={[
-        styles.button,
-        filled ? styles.filled : styles.outlined,
-        disabled && styles.disabledButton,
-        style,
-      ]}
-      onPress={onPress}
-      disabled={disabled}
-    >
-      {icon && <Image source={icon} style={styles.icon} />}
-      <Text
-        style={[
-          styles.text,
-          filled ? styles.filledText : styles.outlinedText,
-          disabled && styles.disabledText,
-          textStyle,
-        ]}
-      >
-        {title}
-      </Text>
-    </TouchableOpacity>
+    <View>
+      <TextInput
+        style={[styles.input, styles.error, props.style]}
+        secureTextEntry={props.isPassword && !isPasswordVisible}
+        placeholderTextColor={Colors.GrayColor}
+        {...props}
+      />
+      {props.isPassword && (
+        <Pressable
+          onPress={() => setIsPasswordVisible((state) => !state)}
+          style={styles.eyeIcon}
+        >
+          {isPasswordVisible ? <EyeOpen /> : <EyeClosed />}
+        </Pressable>
+      )}
+    </View>
   );
-};
+}
 
 const styles = StyleSheet.create({
-  button: {
-    paddingVertical: 14,
-    paddingHorizontal: 28,
-    borderRadius: 16,
+  input: {
+    height: 58,
+    backgroundColor: Colors.Secondary,
+    borderColor: Colors.Secondary,
     borderWidth: 1,
-    marginBottom: 12,
-    alignItems: "center",
-    display: "flex",
+    borderRadius: 16,
+    fontSize: 16,
+    fontWeight: 500,
+    paddingHorizontal: 10,
   },
-  filled: {
-    backgroundColor: "#247B7B",
-    borderColor: "#247B7B",
+  error: {
+    borderColor: Colors.RedColor,
   },
-  outlined: {
-    backgroundColor: "#F4F4F4",
-    borderColor: "#F4F4F4",
-  },
-  disabledButton: {
-    backgroundColor: "#F4F4F4",
-    borderColor: "#F4F4F4",
-  },
-  disabledText: {
-    color: "#989B9E",
-  },
-  icon: {
-    width: 20,
-    height: 20,
-    marginRight: 8,
-  },
-  text: {
-    fontSize: 18,
-    lineHeight: 20,
-    letterSpacing: 0,
-    // fontFamily: Inter;
-    fontWeight: 700,
-  },
-  filledText: {
-    color: "#fff",
-  },
-  outlinedText: {
-    color: "#000",
+  eyeIcon: {
+    position: "absolute",
+    right: 5,
+    paddingVertical: 18,
+    paddingHorizontal: 20,
   },
 });
 
-export default Button;
+export default Input;

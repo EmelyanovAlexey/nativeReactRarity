@@ -1,6 +1,7 @@
 import { View, StyleSheet, Text, Image } from "react-native";
 import Button from "@/components/Button";
 import Logo from "@/assets/images/logo.svg";
+import { Colors } from "../shared/constStyle";
 
 export default function LoginScreen({ navigation }: any) {
   return (
@@ -32,7 +33,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     padding: 24,
-    backgroundColor: "#FFF",
+    backgroundColor: Colors.BgcColor,
   },
   reactLogo: {
     justifyContent: "center",

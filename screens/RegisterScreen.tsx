@@ -1,10 +1,13 @@
-import { View, TextInput, StyleSheet, Text, Alert } from "react-native";
+import { View, StyleSheet, Text, Alert } from "react-native";
 import { useState } from "react";
 import { useUnit } from "effector-react";
 import { registerFx } from "../models/auth";
+import { Colors } from "../shared/constStyle";
 
 import Button from "@/components/Button";
+import Input from "@/components/Input";
 import Logo from "@/assets/images/logo.svg";
+import Google from "@/components/Icons/Google";
 
 export default function RegisterScreen({ navigation }: any) {
   const [email, setEmail] = useState("");
@@ -28,41 +31,47 @@ export default function RegisterScreen({ navigation }: any) {
         создайте пароль
       </Text>
 
-      <TextInput
-        placeholder="Введите свой адрес электронной почты"
-        style={styles.input}
-        value={email}
-        onChangeText={setEmail}
-      />
-      <TextInput
-        placeholder="Придумайте пароль"
-        secureTextEntry
-        style={styles.input}
-        value={password}
-        onChangeText={setPassword}
-      />
-      <TextInput
-        placeholder="Подтвердите пароль"
-        secureTextEntry
-        style={styles.input}
-        value={password}
-        onChangeText={setPassword}
-      />
+      <View style={styles.input}>
+        <Input
+          placeholder="Введите свой адрес электронной почты"
+          value={email}
+          onChangeText={setEmail}
+        />
+      </View>
+
+      <View style={styles.input}>
+        <Input
+          placeholder="Придумайте пароль"
+          value={email}
+          onChangeText={setEmail}
+          isPassword
+        />
+      </View>
+
+      <View style={styles.input}>
+        <Input
+          placeholder="Подтвердите пароль"
+          value={email}
+          onChangeText={setEmail}
+          isPassword
+        />
+      </View>
 
       <Text style={styles.textSeparation}>ИЛИ</Text>
 
       <Button
         title="Регистрация через Google"
-        filled={true}
+        filled={false}
         style={styles.button}
-        icon={require("@/assets/images/google.svg")}
+        leftContent={<Google />}
         onPress={() => navigation.navigate("register")}
       />
       <Button
         title="Зарегистрироваться"
-        filled={false}
+        filled={true}
         style={styles.button}
         onPress={() => navigation.navigate("login")}
+        disabled
       />
     </View>
   );
@@ -74,7 +83,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     padding: 24,
-    backgroundColor: "#FFF",
+    backgroundColor: Colors.BgcColor,
   },
   reactLogo: {
     justifyContent: "center",
@@ -89,17 +98,15 @@ const styles = StyleSheet.create({
     letterSpacing: 0,
   },
   input: {
-    borderWidth: 1,
     marginBottom: 12,
-    padding: 10,
-    borderRadius: 8,
+    width: "100%",
   },
   button: {
     width: "100%",
   },
   textSeparation: {
     fontSize: 18,
-    color: "#989B9E",
+    color: Colors.GrayColor,
     fontWeight: 600,
     marginBottom: 24,
     marginTop: 12,
