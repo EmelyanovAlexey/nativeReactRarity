@@ -1,5 +1,6 @@
 import React from "react";
-import { View, StyleSheet, TouchableOpacity } from "react-native";
+import { useNavigation } from "@react-navigation/native";
+import { View, StyleSheet, TouchableOpacity, Text } from "react-native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import FirstScreen from "../screens/FirstScreen";
@@ -11,6 +12,29 @@ import { Colors } from "@/shared/constStyle";
 const Stack = createNativeStackNavigator();
 
 const Navigation = () => {
+  const navigation = useNavigation();
+
+  const arrow = {
+    title: "",
+    headerShown: true,
+    headerLeft: ({ onPress }: { onPress?: () => void }) => (
+      <TouchableOpacity onPress={onPress} style={{ paddingHorizontal: 10 }}>
+        <View style={styles.arrow}>
+          <Arrow />
+        </View>
+      </TouchableOpacity>
+    ),
+
+    headerRight: () => (
+      <TouchableOpacity
+        onPress={() => navigation.navigate("Help")}
+        style={{ marginRight: 16 }}
+      >
+        <Text style={styles.help}>Помощь</Text>
+      </TouchableOpacity>
+    ),
+  };
+
   return (
     <Stack.Navigator
       initialRouteName="first"
@@ -30,41 +54,11 @@ const Navigation = () => {
         component={FirstScreen}
         options={{ title: "", headerShown: false }}
       />
-      <Stack.Screen
-        name="login"
-        component={LoginScreen}
-        options={{
-          title: "",
-          headerShown: true,
-          headerLeft: ({ onPress }) => (
-            <TouchableOpacity
-              onPress={onPress}
-              style={{ paddingHorizontal: 10 }}
-            >
-              <View style={styles.arrow}>
-                <Arrow />
-              </View>
-            </TouchableOpacity>
-          ),
-        }}
-      />
+      <Stack.Screen name="login" component={LoginScreen} options={arrow} />
       <Stack.Screen
         name="register"
         component={RegisterScreen}
-        options={{
-          title: "",
-          headerShown: true,
-          headerLeft: ({ onPress }) => (
-            <TouchableOpacity
-              onPress={onPress}
-              style={{ paddingHorizontal: 10 }}
-            >
-              <View style={styles.arrow}>
-                <Arrow />
-              </View>
-            </TouchableOpacity>
-          ),
-        }}
+        options={arrow}
       />
     </Stack.Navigator>
   );
@@ -80,6 +74,11 @@ const styles = StyleSheet.create({
     height: 32,
     borderRadius: "50%",
     backgroundColor: Colors.GrayColor2,
+  },
+  help: {
+    color: Colors.Primary,
+    fontSize: 14,
+    fontWeight: 600,
   },
 });
 
