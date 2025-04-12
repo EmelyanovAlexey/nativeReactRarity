@@ -15,15 +15,14 @@ import Link from "@/components/Link";
 import Arrow from "@/components/Icons/Arrow";
 import { Colors } from "@/shared/constStyle";
 import { RootStackParamList } from "./types";
+import { Route, RouteType } from "./constants";
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 const Navigation = () => {
   const { t } = useTranslation();
 
-  const arrow = (
-    navigation: NativeStackNavigationProp<RootStackParamList>
-  ) => ({
+  const arrow = {
     title: "",
     headerShown: true,
     headerLeft: ({ onPress }: { onPress?: () => void }) => (
@@ -33,12 +32,34 @@ const Navigation = () => {
         </View>
       </TouchableOpacity>
     ),
+  };
+
+  const arrowHelp = (
+    navigation: NativeStackNavigationProp<RootStackParamList>
+  ) => ({
+    ...arrow,
     headerRight: () => (
       <Link to="help" style={{ marginRight: 16 }} textStyle={{ fontSize: 14 }}>
         {t("help")}
       </Link>
     ),
   });
+
+  const hideHeader = { title: "", headerShown: false };
+
+  function getContentHeader(
+    navigation: NativeStackNavigationProp<RootStackParamList>,
+    type: RouteType
+  ) {
+    if (type === RouteType.hideHeader) {
+      return hideHeader;
+    }
+    if (type === RouteType.showArrowHelp) {
+      return arrowHelp(navigation);
+    }
+
+    return arrow;
+  }
 
   return (
     <Stack.Navigator
@@ -54,38 +75,17 @@ const Navigation = () => {
         },
       }}
     >
-      <Stack.Screen
-        name="first"
-        component={FirstScreen}
-        options={{ title: "", headerShown: false }}
-      />
-      <Stack.Screen
-        name="login"
-        component={LoginScreen}
-        options={({
-          navigation,
-        }: {
-          navigation: NativeStackNavigationProp<RootStackParamList>;
-        }) => arrow(navigation)}
-      />
-      <Stack.Screen
-        name="register"
-        component={RegisterScreen}
-        options={({
-          navigation,
-        }: {
-          navigation: NativeStackNavigationProp<RootStackParamList>;
-        }) => arrow(navigation)}
-      />
-      <Stack.Screen
-        name="help"
-        component={HelpScreen}
-        options={({
-          navigation,
-        }: {
-          navigation: NativeStackNavigationProp<RootStackParamList>;
-        }) => arrow(navigation)}
-      />
+      {Route.map((RouteItem) => (
+        <Stack.Screen
+          name={RouteItem.name}
+          component={RouteItem.component}
+          options={({
+            navigation,
+          }: {
+            navigation: NativeStackNavigationProp<RootStackParamList>;
+          }) => getContentHeader(navigation, RouteItem.type)}
+        />
+      ))}
     </Stack.Navigator>
   );
 };

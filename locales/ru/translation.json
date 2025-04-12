@@ -8,11 +8,11 @@
     "registerGoogle":"Регистрация через Google",
     "register": "Зарегистрироваться",
     "password": "Пароль",
-    "enterPasswordRepeat": "Подтвердите пароль",
     "passwordNotCorrect": "Неверный пароль",
     "forgotPassword": "Забыли пароль?",
     "help": "Помощь",
 
     "enterEmail": "Введите свой адрес электронной почты",
-    "enterPassword": "Придумайте пароль"
+    "enterPassword": "Придумайте пароль",
+    "enterPasswordRepeat": "Подтвердите пароль"
 }
