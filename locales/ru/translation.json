@@ -20,5 +20,9 @@
     "invalidPassword": "Неверный пароль",
     "shortPassword": "Короткий пароль",
     "passwordsDontMatch": "Неверные пароли",
-    "invalidEmail": "Неверная почта"
+    "invalidEmail": "Неверная почта",
+
+    "popular": "Популярное",
+    "search": "Поиск",
+    "profile": "Профиль"
 }

@@ -3,7 +3,7 @@ import { useUnit } from "effector-react";
 import { loginFx } from "../../models/auth";
 import { useTranslation } from "react-i18next";
 
-export default function useLoginScreen({ navigation }: any) {
+export default function useHomeScreen({ navigation }: any) {
   const { t } = useTranslation();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -21,7 +21,7 @@ export default function useLoginScreen({ navigation }: any) {
     //   Alert.alert("Ошибка", err.message);
     // }
     if (validateInputs()) {
-      navigation.navigate("main");
+      navigation.navigate("home");
     }
   };
 

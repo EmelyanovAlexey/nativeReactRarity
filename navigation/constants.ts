@@ -1,9 +1,17 @@
-import FirstScreen from "../screens/FirstScreen";
-import LoginScreen from "../screens/LoginScreen/LoginScreen";
-import RegisterScreen from "../screens/RegisterScreen/RegisterScreen";
-import FinishRegisterScreen from "../screens/FinishRegisterScreen/FinishRegisterScreen";
-import HelpScreen from "../screens/HelpScreen";
-import HomeScreen from "../screens/HomeScreen";
+import FirstScreen from "@/screens/FirstScreen";
+import LoginScreen from "@/screens/LoginScreen";
+import RegisterScreen from "@/screens/RegisterScreen";
+import FinishRegisterScreen from "@/screens/FinishRegisterScreen";
+import HelpScreen from "@/screens/HelpScreen";
+import HomeScreen from "@/screens/HomeScreen";
+import SearchScreen from "@/screens/SearchScreen";
+import ProfileScreen from "@/screens/ProfileScreen";
+
+import Stars from "@/components/Icons/Starts";
+import Search from "@/components/Icons/Search";
+import User from "@/components/Icons/User";
+
+import BottomTabs from "@/components/BottomTabs";
 
 export enum RouteType {
   showArrow,
@@ -41,5 +49,41 @@ export const Route = [
     name: "home",
     component: HomeScreen,
     type: RouteType.hideHeader,
+  },
+  {
+    name: "search",
+    component: SearchScreen,
+    type: RouteType.hideHeader,
+  },
+  {
+    name: "profile",
+    component: ProfileScreen,
+    type: RouteType.hideHeader,
+  },
+  {
+    name: "main",
+    component: BottomTabs,
+    type: RouteType.hideHeader,
+  },
+];
+
+export const RouteBottomMenu = [
+  {
+    name: "home",
+    component: HomeScreen,
+    type: RouteType.hideHeader,
+    icon: Stars,
+  },
+  {
+    name: "search",
+    component: SearchScreen,
+    type: RouteType.hideHeader,
+    icon: Search,
+  },
+  {
+    name: "profile",
+    component: ProfileScreen,
+    type: RouteType.hideHeader,
+    icon: User,
   },
 ];

@@ -1,10 +1,11 @@
 import { View, StyleSheet, Text, Image } from "react-native";
-import { Colors } from "../shared/constStyle";
+import { Colors } from "@/shared/constStyle";
+import useSearchScreen from "./useSearchScreen";
 
-export default function HomeScreen() {
+export default function SearchScreen() {
   return (
     <View style={styles.container}>
-      <Text style={styles.description}>HOME</Text>
+      <Text style={styles.description}>SearchScreen</Text>
     </View>
   );
 }

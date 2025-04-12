@@ -6,11 +6,6 @@ import {
   NativeStackNavigationProp,
 } from "@react-navigation/native-stack";
 
-import FirstScreen from "../screens/FirstScreen";
-import LoginScreen from "../screens/LoginScreen/LoginScreen";
-import RegisterScreen from "../screens/RegisterScreen/RegisterScreen";
-import HelpScreen from "../screens/HelpScreen";
-
 import Link from "@/components/Link";
 import Arrow from "@/components/Icons/Arrow";
 import { Colors } from "@/shared/constStyle";
@@ -63,7 +58,7 @@ const Navigation = () => {
 
   return (
     <Stack.Navigator
-      initialRouteName="finishRegister"
+      initialRouteName="main"
       screenOptions={{
         headerBackTitleVisible: false, // убрать текст рядом со стрелкой
         headerTintColor: Colors.WhiteColor, // цвет стрелки
