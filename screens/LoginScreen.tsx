@@ -3,13 +3,17 @@ import { useState } from "react";
 import { useUnit } from "effector-react";
 import { loginFx } from "../models/auth";
 import { Colors } from "../shared/constStyle";
+import { useTranslation } from "react-i18next";
 
 import Button from "@/components/Button";
 import Input from "@/components/Input";
+import Link from "@/components/Link";
+
 import Logo from "@/assets/images/logo.svg";
 import Google from "@/components/Icons/Google";
 
 export default function LoginScreen({ navigation }: any) {
+  const { t } = useTranslation();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const login = useUnit(loginFx);
@@ -26,13 +30,11 @@ export default function LoginScreen({ navigation }: any) {
   return (
     <View style={styles.container}>
       <Logo width={200} height={120} style={styles.reactLogo} />
-      <Text style={styles.description}>
-        Чтобы войти, введите свой адрес электронной почты и пароль
-      </Text>
+      <Text style={styles.description}>{t("loginText")}</Text>
 
       <View style={styles.input}>
         <Input
-          placeholder="Введите свой адрес электронной почты"
+          placeholder={t("enterEmail")}
           value={email}
           onChangeText={setEmail}
         />
@@ -40,25 +42,29 @@ export default function LoginScreen({ navigation }: any) {
 
       <View style={styles.input}>
         <Input
-          placeholder="Придумайте пароль"
-          value={email}
-          onChangeText={setEmail}
+          placeholder={t("enterPassword")}
+          value={password}
+          onChangeText={setPassword}
           isPassword
-          isError
         />
       </View>
+      <View style={styles.error}>
+        <Text style={styles.textError}>{t("passwordNotCorrect")}</Text>
+        <Link to="help">{t("forgotPassword")}</Link>
+        {/* TODO */}
+      </View>
 
-      <Text style={styles.textSeparation}>ИЛИ</Text>
+      <Text style={styles.textSeparation}>{t("or")}</Text>
 
       <Button
-        title="Регистрация через Google"
+        title={t("registerGoogle")}
         filled={false}
         style={styles.button}
         leftContent={<Google />}
         onPress={() => navigation.navigate("register")}
       />
       <Button
-        title="Войти"
+        title={t("login")}
         filled={true}
         style={styles.button}
         onPress={() => navigation.navigate("login")}
@@ -101,5 +107,17 @@ const styles = StyleSheet.create({
     fontWeight: 600,
     marginBottom: 24,
     marginTop: 12,
+  },
+  error: {
+    width: "100%",
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
+  },
+  textError: {
+    color: Colors.RedColor,
+    fontSize: 16,
+    fontWeight: 600,
+    marginBottom: 12,
   },
 });

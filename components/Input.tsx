@@ -23,7 +23,7 @@ export function Input(props: TextInputProps & AppInputProps) {
   return (
     <View>
       <TextInput
-        style={[styles.input, styles.error, props.style]}
+        style={[styles.input, props.isError && styles.error, props.style]}
         secureTextEntry={props.isPassword && !isPasswordVisible}
         placeholderTextColor={Colors.GrayColor}
         {...props}

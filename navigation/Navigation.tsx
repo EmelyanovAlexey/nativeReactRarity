@@ -1,20 +1,29 @@
 import React from "react";
-import { useNavigation } from "@react-navigation/native";
-import { View, StyleSheet, TouchableOpacity, Text } from "react-native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { useTranslation } from "react-i18next";
+import { View, StyleSheet, TouchableOpacity } from "react-native";
+import {
+  createNativeStackNavigator,
+  NativeStackNavigationProp,
+} from "@react-navigation/native-stack";
 
 import FirstScreen from "../screens/FirstScreen";
 import LoginScreen from "../screens/LoginScreen";
 import RegisterScreen from "../screens/RegisterScreen";
+import HelpScreen from "../screens/HelpScreen";
+
+import Link from "@/components/Link";
 import Arrow from "@/components/Icons/Arrow";
 import { Colors } from "@/shared/constStyle";
+import { RootStackParamList } from "./types";
 
-const Stack = createNativeStackNavigator();
+const Stack = createNativeStackNavigator<RootStackParamList>();
 
 const Navigation = () => {
-  const navigation = useNavigation();
+  const { t } = useTranslation();
 
-  const arrow = {
+  const arrow = (
+    navigation: NativeStackNavigationProp<RootStackParamList>
+  ) => ({
     title: "",
     headerShown: true,
     headerLeft: ({ onPress }: { onPress?: () => void }) => (
@@ -24,16 +33,12 @@ const Navigation = () => {
         </View>
       </TouchableOpacity>
     ),
-
     headerRight: () => (
-      <TouchableOpacity
-        onPress={() => navigation.navigate("Help")}
-        style={{ marginRight: 16 }}
-      >
-        <Text style={styles.help}>Помощь</Text>
-      </TouchableOpacity>
+      <Link to="help" style={{ marginRight: 16 }} textStyle={{ fontSize: 14 }}>
+        {t("help")}
+      </Link>
     ),
-  };
+  });
 
   return (
     <Stack.Navigator
@@ -54,11 +59,32 @@ const Navigation = () => {
         component={FirstScreen}
         options={{ title: "", headerShown: false }}
       />
-      <Stack.Screen name="login" component={LoginScreen} options={arrow} />
+      <Stack.Screen
+        name="login"
+        component={LoginScreen}
+        options={({
+          navigation,
+        }: {
+          navigation: NativeStackNavigationProp<RootStackParamList>;
+        }) => arrow(navigation)}
+      />
       <Stack.Screen
         name="register"
         component={RegisterScreen}
-        options={arrow}
+        options={({
+          navigation,
+        }: {
+          navigation: NativeStackNavigationProp<RootStackParamList>;
+        }) => arrow(navigation)}
+      />
+      <Stack.Screen
+        name="help"
+        component={HelpScreen}
+        options={({
+          navigation,
+        }: {
+          navigation: NativeStackNavigationProp<RootStackParamList>;
+        }) => arrow(navigation)}
       />
     </Stack.Navigator>
   );
@@ -76,9 +102,8 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.GrayColor2,
   },
   help: {
-    color: Colors.Primary,
+    marginRight: 16,
     fontSize: 14,
-    fontWeight: 600,
   },
 });
 

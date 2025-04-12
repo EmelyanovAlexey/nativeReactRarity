@@ -3,15 +3,19 @@ import { useState } from "react";
 import { useUnit } from "effector-react";
 import { registerFx } from "../models/auth";
 import { Colors } from "../shared/constStyle";
+import { useTranslation } from "react-i18next";
 
 import Button from "@/components/Button";
 import Input from "@/components/Input";
+
 import Logo from "@/assets/images/logo.svg";
 import Google from "@/components/Icons/Google";
 
 export default function RegisterScreen({ navigation }: any) {
+  const { t } = useTranslation();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [repeatPassword, setRepeatPassword] = useState("");
   const register = useUnit(registerFx);
 
   const handleRegister = async () => {
@@ -26,14 +30,11 @@ export default function RegisterScreen({ navigation }: any) {
   return (
     <View style={styles.container}>
       <Logo width={200} height={120} style={styles.reactLogo} />
-      <Text style={styles.description}>
-        Чтобы зарегистрироваться, введите свой адрес электронной почты и
-        создайте пароль
-      </Text>
+      <Text style={styles.description}>{t("registerText")}</Text>
 
       <View style={styles.input}>
         <Input
-          placeholder="Введите свой адрес электронной почты"
+          placeholder={t("enterEmail")}
           value={email}
           onChangeText={setEmail}
         />
@@ -41,33 +42,37 @@ export default function RegisterScreen({ navigation }: any) {
 
       <View style={styles.input}>
         <Input
-          placeholder="Придумайте пароль"
-          value={email}
-          onChangeText={setEmail}
+          placeholder={t("enterPassword")}
+          value={password}
+          onChangeText={setPassword}
           isPassword
         />
       </View>
 
       <View style={styles.input}>
         <Input
-          placeholder="Подтвердите пароль"
-          value={email}
-          onChangeText={setEmail}
+          placeholder={t("enterPasswordRepeat")}
+          value={repeatPassword}
+          onChangeText={setRepeatPassword}
           isPassword
         />
       </View>
 
-      <Text style={styles.textSeparation}>ИЛИ</Text>
+      <View style={styles.error}>
+        <Text style={styles.textError}>{t("passwordNotCorrect")}</Text>
+      </View>
+
+      <Text style={styles.textSeparation}>{t("or")}</Text>
 
       <Button
-        title="Регистрация через Google"
+        title={t("registerGoogle")}
         filled={false}
         style={styles.button}
         leftContent={<Google />}
         onPress={() => navigation.navigate("register")}
       />
       <Button
-        title="Зарегистрироваться"
+        title={t("register")}
         filled={true}
         style={styles.button}
         onPress={() => navigation.navigate("login")}
@@ -110,5 +115,17 @@ const styles = StyleSheet.create({
     fontWeight: 600,
     marginBottom: 24,
     marginTop: 12,
+  },
+  error: {
+    width: "100%",
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
+  },
+  textError: {
+    color: Colors.RedColor,
+    fontSize: 16,
+    fontWeight: 600,
+    marginBottom: 12,
   },
 });
