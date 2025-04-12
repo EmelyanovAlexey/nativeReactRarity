@@ -1,42 +1,42 @@
 import { View, StyleSheet, Text, Alert } from "react-native";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useUnit } from "effector-react";
-import { loginFx } from "../models/auth";
-import { Colors } from "../shared/constStyle";
+import { registerFx } from "../../models/auth";
+import { Colors } from "../../shared/constStyle";
 import { useTranslation } from "react-i18next";
+import useRegisterScreen from "./useRegisterScreen";
 
 import Button from "@/components/Button";
 import Input from "@/components/Input";
-import Link from "@/components/Link";
 
 import Logo from "@/assets/images/logo.svg";
 import Google from "@/components/Icons/Google";
 
-export default function LoginScreen({ navigation }: any) {
+export default function RegisterScreen({ navigation }: any) {
   const { t } = useTranslation();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const login = useUnit(loginFx);
-
-  const handleLogin = async () => {
-    try {
-      await login({ email, password });
-      navigation.navigate("Home");
-    } catch (err: any) {
-      Alert.alert("Ошибка", err.message);
-    }
-  };
+  const {
+    email,
+    password,
+    repeatPassword,
+    error,
+    isDisabledRegister,
+    setEmail,
+    setPassword,
+    setRepeatPassword,
+    handleRegister,
+  } = useRegisterScreen({ navigation });
 
   return (
     <View style={styles.container}>
       <Logo width={200} height={120} style={styles.reactLogo} />
-      <Text style={styles.description}>{t("loginText")}</Text>
+      <Text style={styles.description}>{t("registerText")}</Text>
 
       <View style={styles.input}>
         <Input
           placeholder={t("enterEmail")}
           value={email}
           onChangeText={setEmail}
+          isError={error === t("invalidEmail")}
         />
       </View>
 
@@ -46,13 +46,25 @@ export default function LoginScreen({ navigation }: any) {
           value={password}
           onChangeText={setPassword}
           isPassword
+          isError={error === t("shortPassword")}
         />
       </View>
-      <View style={styles.error}>
-        <Text style={styles.textError}>{t("passwordNotCorrect")}</Text>
-        <Link to="help">{t("forgotPassword")}</Link>
-        {/* TODO */}
+
+      <View style={styles.input}>
+        <Input
+          placeholder={t("enterPasswordRepeat")}
+          value={repeatPassword}
+          onChangeText={setRepeatPassword}
+          isPassword
+          isError={error === t("passwordsDontMatch")}
+        />
       </View>
+
+      {error && (
+        <View style={styles.error}>
+          <Text style={styles.textError}>{error}</Text>
+        </View>
+      )}
 
       <Text style={styles.textSeparation}>{t("or")}</Text>
 
@@ -61,14 +73,14 @@ export default function LoginScreen({ navigation }: any) {
         filled={false}
         style={styles.button}
         leftContent={<Google />}
-        onPress={() => navigation.navigate("register")}
+        onPress={() => {}}
       />
       <Button
-        title={t("login")}
+        title={t("register")}
         filled={true}
         style={styles.button}
-        onPress={() => navigation.navigate("login")}
-        disabled
+        onPress={handleRegister}
+        disabled={!isDisabledRegister}
       />
     </View>
   );

@@ -1,42 +1,44 @@
 import { View, StyleSheet, Text, Alert } from "react-native";
 import { useState } from "react";
 import { useUnit } from "effector-react";
-import { registerFx } from "../models/auth";
-import { Colors } from "../shared/constStyle";
+import { loginFx } from "../../models/auth";
+import { Colors } from "../../shared/constStyle";
 import { useTranslation } from "react-i18next";
 
 import Button from "@/components/Button";
 import Input from "@/components/Input";
+import Link from "@/components/Link";
 
 import Logo from "@/assets/images/logo.svg";
 import Google from "@/components/Icons/Google";
 
-export default function RegisterScreen({ navigation }: any) {
-  const { t } = useTranslation();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [repeatPassword, setRepeatPassword] = useState("");
-  const register = useUnit(registerFx);
+import useLoginScreen from "./useLoginScreen";
 
-  const handleRegister = async () => {
-    try {
-      await register({ email, password });
-      navigation.navigate("Home");
-    } catch (err: any) {
-      Alert.alert("Ошибка", err.message);
-    }
-  };
+export default function LoginScreen({ navigation }: any) {
+  const { t } = useTranslation();
+  const {
+    email,
+    password,
+    isDisabledLogin,
+    error,
+    setEmail,
+    setPassword,
+    handleLogin,
+  } = useLoginScreen({
+    navigation,
+  });
 
   return (
     <View style={styles.container}>
       <Logo width={200} height={120} style={styles.reactLogo} />
-      <Text style={styles.description}>{t("registerText")}</Text>
+      <Text style={styles.description}>{t("loginText")}</Text>
 
       <View style={styles.input}>
         <Input
           placeholder={t("enterEmail")}
           value={email}
           onChangeText={setEmail}
+          isError={error === t("invalidEmail")}
         />
       </View>
 
@@ -46,21 +48,16 @@ export default function RegisterScreen({ navigation }: any) {
           value={password}
           onChangeText={setPassword}
           isPassword
+          isError={error === t("invalidPassword")}
         />
       </View>
 
-      <View style={styles.input}>
-        <Input
-          placeholder={t("enterPasswordRepeat")}
-          value={repeatPassword}
-          onChangeText={setRepeatPassword}
-          isPassword
-        />
-      </View>
-
-      <View style={styles.error}>
-        <Text style={styles.textError}>{t("passwordNotCorrect")}</Text>
-      </View>
+      {error && (
+        <View style={styles.error}>
+          <Text style={styles.textError}>{t("invalidPassword")}</Text>
+          <Link to="help">{t("forgotPassword")}</Link>
+        </View>
+      )}
 
       <Text style={styles.textSeparation}>{t("or")}</Text>
 
@@ -69,14 +66,14 @@ export default function RegisterScreen({ navigation }: any) {
         filled={false}
         style={styles.button}
         leftContent={<Google />}
-        onPress={() => navigation.navigate("register")}
+        onPress={() => {}}
       />
       <Button
-        title={t("register")}
+        title={t("login")}
         filled={true}
         style={styles.button}
-        onPress={() => navigation.navigate("login")}
-        disabled
+        onPress={handleLogin}
+        disabled={!isDisabledLogin}
       />
     </View>
   );

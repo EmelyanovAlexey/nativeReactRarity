@@ -1,7 +1,7 @@
 import FirstScreen from "../screens/FirstScreen";
-import LoginScreen from "../screens/LoginScreen";
-import RegisterScreen from "../screens/RegisterScreen";
-import FinishRegisterScreen from "../screens/FinishRegisterScreen";
+import LoginScreen from "../screens/LoginScreen/LoginScreen";
+import RegisterScreen from "../screens/RegisterScreen/RegisterScreen";
+import FinishRegisterScreen from "../screens/FinishRegisterScreen/FinishRegisterScreen";
 import HelpScreen from "../screens/HelpScreen";
 import HomeScreen from "../screens/HomeScreen";
 

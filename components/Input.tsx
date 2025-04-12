@@ -19,13 +19,22 @@ type AppInputProps = {
 
 export function Input(props: TextInputProps & AppInputProps) {
   const [isPasswordVisible, setIsPasswordVisible] = useState<boolean>(false);
+  const [isFocused, setIsFocused] = useState(false);
 
   return (
     <View>
       <TextInput
-        style={[styles.input, props.isError && styles.error, props.style]}
+        style={[
+          styles.input,
+          isFocused && styles.focused,
+          props.isError && styles.error,
+          props.style,
+        ]}
+        underlineColorAndroid="transparent"
         secureTextEntry={props.isPassword && !isPasswordVisible}
         placeholderTextColor={Colors.GrayColor}
+        onFocus={() => setIsFocused(true)}
+        onBlur={() => setIsFocused(false)}
         {...props}
       />
       {props.isPassword && (
@@ -50,6 +59,9 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: 500,
     paddingHorizontal: 10,
+  },
+  focused: {
+    borderColor: Colors.Primary,
   },
   error: {
     borderColor: Colors.RedColor,

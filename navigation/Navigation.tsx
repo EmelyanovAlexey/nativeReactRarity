@@ -7,8 +7,8 @@ import {
 } from "@react-navigation/native-stack";
 
 import FirstScreen from "../screens/FirstScreen";
-import LoginScreen from "../screens/LoginScreen";
-import RegisterScreen from "../screens/RegisterScreen";
+import LoginScreen from "../screens/LoginScreen/LoginScreen";
+import RegisterScreen from "../screens/RegisterScreen/RegisterScreen";
 import HelpScreen from "../screens/HelpScreen";
 
 import Link from "@/components/Link";
@@ -63,7 +63,7 @@ const Navigation = () => {
 
   return (
     <Stack.Navigator
-      initialRouteName="first"
+      initialRouteName="finishRegister"
       screenOptions={{
         headerBackTitleVisible: false, // убрать текст рядом со стрелкой
         headerTintColor: Colors.WhiteColor, // цвет стрелки

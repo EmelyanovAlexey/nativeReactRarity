@@ -16,14 +16,25 @@ type LinkProps = {
   children: React.ReactNode; // текст ссылки или любой контент
   style?: ViewStyle;
   textStyle?: TextStyle;
+  disabled?: boolean;
 };
 
-const Link: React.FC<LinkProps> = ({ to, children, style, textStyle }) => {
+const Link: React.FC<LinkProps> = ({
+  to,
+  children,
+  disabled,
+  style,
+  textStyle,
+}) => {
   const navigation =
     useNavigation<NativeStackNavigationProp<RootStackParamList>>();
 
   return (
-    <TouchableOpacity style={style} onPress={() => navigation.navigate(to)}>
+    <TouchableOpacity
+      style={[style, disabled && styles.disabledButton]}
+      onPress={() => navigation.navigate(to)}
+      disabled={disabled}
+    >
       <Text style={[styles.text, textStyle]}>{children}</Text>
     </TouchableOpacity>
   );
@@ -34,6 +45,9 @@ const styles = StyleSheet.create({
     color: Colors.Primary,
     fontSize: 16,
     fontWeight: 600,
+  },
+  disabledButton: {
+    opacity: 0.5,
   },
 });
 
