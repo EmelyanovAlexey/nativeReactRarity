@@ -41,7 +41,7 @@ export default function ProfileScreen() {
 
       <View style={styles.btns}>
         <Button
-          title={"Подписка оплачена"}
+          title={t("subscriptionPaid")}
           filled={false}
           style={styles.subscription}
           textStyle={styles.subscriptionText}
@@ -49,7 +49,7 @@ export default function ProfileScreen() {
           onPress={() => {}}
         />
         <Button
-          title={"История поисков"}
+          title={t("history")}
           filled={false}
           style={styles.btn}
           textStyle={styles.btnText}
@@ -57,7 +57,7 @@ export default function ProfileScreen() {
           onPress={() => {}}
         />
         <Button
-          title={"Избранное"}
+          title={t("favourites")}
           filled={false}
           style={styles.btn}
           textStyle={styles.btnText}
@@ -67,7 +67,7 @@ export default function ProfileScreen() {
           onPress={() => {}}
         />
         <Button
-          title={"Обучающие материалы"}
+          title={t("trainingMaterials")}
           filled={false}
           style={styles.btn}
           textStyle={styles.btnText}
@@ -75,7 +75,7 @@ export default function ProfileScreen() {
           onPress={() => {}}
         />
         <Button
-          title={"Условия использования"}
+          title={t("termsOfUse")}
           filled={false}
           style={styles.btn}
           textStyle={styles.btnText}
@@ -83,7 +83,7 @@ export default function ProfileScreen() {
           onPress={() => {}}
         />
         <Button
-          title={"Политика конфиденциальности"}
+          title={t("privacyPolicy")}
           filled={false}
           style={styles.btn}
           textStyle={styles.btnText}
@@ -91,7 +91,7 @@ export default function ProfileScreen() {
           onPress={() => {}}
         />
         <Button
-          title={"Сменить язык"}
+          title={t("changeLanguage")}
           filled={false}
           style={styles.btn}
           textStyle={styles.btnText}
@@ -99,7 +99,7 @@ export default function ProfileScreen() {
           onPress={() => {}}
         />
         <Button
-          title={"Сменить пароль"}
+          title={t("changePassword")}
           filled={false}
           style={styles.btn}
           textStyle={styles.btnText}
@@ -107,7 +107,7 @@ export default function ProfileScreen() {
           onPress={() => {}}
         />
         <Button
-          title={"Выйти"}
+          title={t("exit")}
           filled={false}
           style={styles.btn}
           textStyle={styles.btnText}
@@ -115,7 +115,7 @@ export default function ProfileScreen() {
           onPress={() => {}}
         />
         <Button
-          title={"Удалить аккаунт"}
+          title={t("deleteAccount")}
           filled={false}
           style={styles.btn}
           textStyle={styles.deleteText}

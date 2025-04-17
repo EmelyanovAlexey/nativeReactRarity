@@ -29,5 +29,17 @@
     "country": "Страна",
     "area": "Область",
     "city": "Город",
-    "manufacturer": "Производитель"
+    "manufacturer": "Производитель",
+
+    "subscriptionPaid": "Подписка оплачена",
+    "paySubscription": "Оплатите подписку",
+    "history": "История поисков",
+    "favourites": "Избранное",
+    "trainingMaterials": "Обучающие материалы",
+    "termsOfUse": "Условия использования",
+    "privacyPolicy": "Политика конфиденциальности",
+    "changeLanguage": "Сменить язык",
+    "changePassword": "Сменить пароль",
+    "exit": "Выйти",
+    "deleteAccount": "Удалить аккаунт"
 }
