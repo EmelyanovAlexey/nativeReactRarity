@@ -59,6 +59,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: 500,
     paddingHorizontal: 10,
+    fontFamily: "Inter_400Regular",
   },
   focused: {
     borderColor: Colors.Primary,

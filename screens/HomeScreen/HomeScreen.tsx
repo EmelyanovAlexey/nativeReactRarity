@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { View, StyleSheet, Text, FlatList, Dimensions } from "react-native";
+// import i18n from "i18next"; // менять язык
 
 import { Colors } from "@/shared/constStyle";
 import useHomeScreen from "./useHomeScreen";
@@ -10,6 +11,7 @@ import PopularCard from "@/components/PopularCard";
 export default function HomeScreen() {
   const [selectedItem, setSelectedItem] = useState(null);
   const [modalVisible, setModalVisible] = useState(false);
+  // i18n.changeLanguage("ru"); // или 'en' // менять язык
 
   const handlePress = (item: any) => {
     setSelectedItem(item);
@@ -44,11 +46,86 @@ export default function HomeScreen() {
         "Центральный мотив включает в себя сложный цветочный узор, выполненный вручную с использованием ярких цветов, которые сохранили свою яркость на протяжении многих лет. Вокруг основного дизайна расположены детализированные бордюрные узоры, типичные для стиля",
       country: "Германия",
       area: "Рейнская провинция",
-      city: "Берлин",
+      city: "Германия",
       manufacturer: "Julius Lange Porzellanfabrik",
     },
     {
       id: "3",
+      image:
+        "https://i.pinimg.com/originals/f1/4f/d9/f14fd9f2408fc8e6135b921e551baaac.jpg",
+      title: "Jäger, Thomas & Co.",
+      dateTo: "10.12.1834",
+      dateFrom: "02.02.1921",
+      isStar: false,
+      description:
+        "Центральный мотив включает в себя сложный цветочный узор, выполненный вручную с использованием ярких цветов, которые сохранили свою яркость на протяжении многих лет. Вокруг основного дизайна расположены детализированные бордюрные узоры, типичные для стиля",
+      country: "Германия",
+      area: "Рейнская провинция",
+      city: "Россия",
+      manufacturer: "Julius Lange Porzellanfabrik",
+    },
+    {
+      id: "4",
+      image:
+        "https://i.pinimg.com/originals/f1/4f/d9/f14fd9f2408fc8e6135b921e551baaac.jpg",
+      title: "Jäger, Thomas & Co.",
+      dateTo: "10.12.1834",
+      dateFrom: "02.02.1921",
+      isStar: false,
+      description:
+        "Центральный мотив включает в себя сложный цветочный узор, выполненный вручную с использованием ярких цветов, которые сохранили свою яркость на протяжении многих лет. Вокруг основного дизайна расположены детализированные бордюрные узоры, типичные для стиля",
+      country: "Германия",
+      area: "Рейнская провинция",
+      city: "Берлин",
+      manufacturer: "Julius Lange Porzellanfabrik",
+    },
+    {
+      id: "5",
+      image:
+        "https://i.pinimg.com/originals/f1/4f/d9/f14fd9f2408fc8e6135b921e551baaac.jpg",
+      title: "Jäger, Thomas & Co.",
+      dateTo: "10.12.1834",
+      dateFrom: "02.02.1921",
+      isStar: false,
+      description:
+        "Центральный мотив включает в себя сложный цветочный узор, выполненный вручную с использованием ярких цветов, которые сохранили свою яркость на протяжении многих лет. Вокруг основного дизайна расположены детализированные бордюрные узоры, типичные для стиля",
+      country: "Германия",
+      area: "Рейнская провинция",
+      city: "Берлин",
+      manufacturer: "Julius Lange Porzellanfabrik",
+    },
+    {
+      id: "6",
+      image:
+        "https://i.pinimg.com/originals/f1/4f/d9/f14fd9f2408fc8e6135b921e551baaac.jpg",
+      title: "Jäger, Thomas & Co.",
+      dateTo: "10.12.1834",
+      dateFrom: "02.02.1921",
+      isStar: false,
+      description:
+        "Центральный мотив включает в себя сложный цветочный узор, выполненный вручную с использованием ярких цветов, которые сохранили свою яркость на протяжении многих лет. Вокруг основного дизайна расположены детализированные бордюрные узоры, типичные для стиля",
+      country: "Германия",
+      area: "Рейнская провинция",
+      city: "Берлин",
+      manufacturer: "Julius Lange Porzellanfabrik",
+    },
+    {
+      id: "7",
+      image:
+        "https://i.pinimg.com/originals/f1/4f/d9/f14fd9f2408fc8e6135b921e551baaac.jpg",
+      title: "Jäger, Thomas & Co.",
+      dateTo: "10.12.1834",
+      dateFrom: "02.02.1921",
+      isStar: false,
+      description:
+        "Центральный мотив включает в себя сложный цветочный узор, выполненный вручную с использованием ярких цветов, которые сохранили свою яркость на протяжении многих лет. Вокруг основного дизайна расположены детализированные бордюрные узоры, типичные для стиля",
+      country: "Германия",
+      area: "Рейнская провинция",
+      city: "Берлин",
+      manufacturer: "Julius Lange Porzellanfabrik",
+    },
+    {
+      id: "8",
       image:
         "https://i.pinimg.com/originals/f1/4f/d9/f14fd9f2408fc8e6135b921e551baaac.jpg",
       title: "Jäger, Thomas & Co.",
@@ -103,9 +180,9 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
   },
   header: {
-    fontSize: 24,
+    fontSize: 20,
     fontWeight: "bold",
-    marginBottom: 16,
+    marginBottom: 24,
   },
   list: {
     gap: 8,

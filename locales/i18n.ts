@@ -1,42 +1,68 @@
 import i18n, { ModuleType } from "i18next";
 import { initReactI18next } from "react-i18next";
-import * as RNLocalize from "react-native-localize";
+// import * as RNLocalize from "react-native-localize";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import translationEN from "@/locales/en/translation.json";
 import translationRU from "@/locales/ru/translation.json";
 
+import * as Localization from "expo-localization";
+
 const LANGUAGE_KEY = "user-language";
 
 const language = "en";
+
+// const languageDetector = {
+//   type: "languageDetector" as ModuleType,
+//   async: true,
+//   detect: async (callback: (lang: string) => void) => {
+//     try {
+//       // Получаем сохраненный язык
+//       const storedLanguage = await AsyncStorage.getItem(LANGUAGE_KEY);
+//       if (storedLanguage) {
+//         // Если язык был сохранен, используем его
+//         callback(storedLanguage);
+//         return;
+//       }
+
+//       // Получаем лучший доступный язык из устройства
+//       const bestLanguage = RNLocalize.findBestAvailableLanguage(["en", "ru"]);
+//       // console.log(bestLanguage?.languageTag); // например: "ru"
+
+//       // Если лучший язык найден, возвращаем его. В противном случае возвращаем русский.
+//       callback(bestLanguage?.languageTag ?? language);
+//     } catch (e) {
+//       console.warn("Language detection error", e);
+//       callback(language); // по умолчанию русский
+//     }
+//   },
+//   init: () => {},
+//   cacheUserLanguage: (language: string) => {
+//     // Сохраняем выбранный язык
+//     AsyncStorage.setItem(LANGUAGE_KEY, language).catch(() => {});
+//   },
+// };
 
 const languageDetector = {
   type: "languageDetector" as ModuleType,
   async: true,
   detect: async (callback: (lang: string) => void) => {
     try {
-      // Получаем сохраненный язык
       const storedLanguage = await AsyncStorage.getItem(LANGUAGE_KEY);
       if (storedLanguage) {
-        // Если язык был сохранен, используем его
         callback(storedLanguage);
         return;
       }
 
-      // Получаем лучший доступный язык из устройства
-      const bestLanguage = RNLocalize.findBestAvailableLanguage(["en", "ru"]);
-      // console.log(bestLanguage?.languageTag); // например: "ru"
-
-      // Если лучший язык найден, возвращаем его. В противном случае возвращаем русский.
-      callback(bestLanguage?.languageTag ?? language);
+      const bestLanguage = Localization.locale.split("-")[0]; // например, "ru" из "ru-RU"
+      callback(bestLanguage || language);
     } catch (e) {
       console.warn("Language detection error", e);
-      callback(language); // по умолчанию русский
+      callback(language);
     }
   },
   init: () => {},
   cacheUserLanguage: (language: string) => {
-    // Сохраняем выбранный язык
     AsyncStorage.setItem(LANGUAGE_KEY, language).catch(() => {});
   },
 };

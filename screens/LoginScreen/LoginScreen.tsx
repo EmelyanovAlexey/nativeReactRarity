@@ -98,6 +98,7 @@ const styles = StyleSheet.create({
     marginBottom: 24,
     lineHeight: 20,
     letterSpacing: 0,
+    fontFamily: "Inter_400Regular",
   },
   input: {
     marginBottom: 12,
@@ -112,17 +113,20 @@ const styles = StyleSheet.create({
     fontWeight: 600,
     marginBottom: 24,
     marginTop: 12,
+    fontFamily: "Inter_400Regular",
   },
   error: {
     width: "100%",
     display: "flex",
     flexDirection: "row",
     justifyContent: "space-between",
+    fontFamily: "Inter_400Regular",
   },
   textError: {
     color: Colors.RedColor,
     fontSize: 16,
     fontWeight: 600,
     marginBottom: 12,
+    fontFamily: "Inter_400Regular",
   },
 });

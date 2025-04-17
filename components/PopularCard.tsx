@@ -67,12 +67,12 @@ const styles = StyleSheet.create({
     width: "100%",
     height: 185,
     borderRadius: 16,
+    marginBottom: 5,
   },
   starIcon: {
     position: "absolute",
     top: 8,
     right: 5,
-    // backgroundColor: Colors.BlackColor,
     borderRadius: 16,
     padding: 4,
   },
@@ -82,12 +82,14 @@ const styles = StyleSheet.create({
     marginTop: 5,
     lineHeight: 18,
     textAlign: "left",
+    fontFamily: "Inter_400Regular",
   },
   description: {
     fontSize: 14,
     fontWeight: 500,
     color: Colors.GrayColor,
     textAlign: "left",
+    fontFamily: "Inter_400Regular",
   },
 });
 

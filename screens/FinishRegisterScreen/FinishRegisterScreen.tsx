@@ -35,10 +35,12 @@ const styles = StyleSheet.create({
     marginBottom: 24,
     lineHeight: 20,
     letterSpacing: 0,
+    fontFamily: "Inter_400Regular",
   },
   time: {
     fontSize: 14,
     fontWeight: 600,
     color: Colors.Primary,
+    fontFamily: "Inter_400Regular",
   },
 });

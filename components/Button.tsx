@@ -95,14 +95,16 @@ const styles = StyleSheet.create({
     fontSize: 18,
     lineHeight: 20,
     letterSpacing: 0,
-    // fontFamily: Inter;
+    fontFamily: "Inter_400Regular",
     fontWeight: 700,
   },
   filledText: {
     color: Colors.WhiteColor,
+    fontFamily: "Inter_400Regular",
   },
   outlinedText: {
     color: Colors.BlackColor,
+    fontFamily: "Inter_400Regular",
   },
 });
 

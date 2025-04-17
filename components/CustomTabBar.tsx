@@ -68,7 +68,6 @@ const styles = StyleSheet.create({
     borderTopColor: Colors.GrayColor2,
   },
   button: {
-    // width: "30%",
     display: "flex",
     alignItems: "center",
   },
@@ -77,6 +76,7 @@ const styles = StyleSheet.create({
     fontWeight: 500,
     fontSize: 14,
     lineHeight: 14,
+    fontFamily: "Inter_400Regular",
   },
   textActive: {
     color: Colors.Primary,

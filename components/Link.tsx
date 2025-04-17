@@ -45,6 +45,7 @@ const styles = StyleSheet.create({
     color: Colors.Primary,
     fontSize: 16,
     fontWeight: 600,
+    fontFamily: "Inter_400Regular",
   },
   disabledButton: {
     opacity: 0.5,
