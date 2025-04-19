@@ -44,16 +44,17 @@ const Navigation = () => {
 
   function getContentHeader(
     navigation: NativeStackNavigationProp<RootStackParamList>,
-    type: RouteType
+    type: RouteType,
+    title: string = ""
   ) {
     if (type === RouteType.hideHeader) {
-      return hideHeader;
+      return { ...hideHeader, title: title };
     }
     if (type === RouteType.showArrowHelp) {
-      return arrowHelp(navigation);
+      return { ...arrowHelp(navigation), title: title };
     }
 
-    return arrow;
+    return { ...arrow, title: title };
   }
 
   return (
@@ -61,7 +62,6 @@ const Navigation = () => {
       initialRouteName="main"
       screenOptions={{
         headerBackTitleVisible: false, // убрать текст рядом со стрелкой
-        headerTintColor: Colors.WhiteColor, // цвет стрелки
         headerStyle: {
           backgroundColor: Colors.WhiteColor, // фон хедера
         },
@@ -78,7 +78,7 @@ const Navigation = () => {
             navigation,
           }: {
             navigation: NativeStackNavigationProp<RootStackParamList>;
-          }) => getContentHeader(navigation, RouteItem.type)}
+          }) => getContentHeader(navigation, RouteItem.type, RouteItem.title)}
         />
       ))}
     </Stack.Navigator>

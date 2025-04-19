@@ -1,4 +1,5 @@
 import { View, StyleSheet, Text, ScrollView } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 import { useTranslation } from "react-i18next";
 import { Colors } from "@/shared/constStyle";
 
@@ -18,6 +19,7 @@ import useProfileScreen from "./useProfileScreen";
 
 export default function ProfileScreen() {
   const { t } = useTranslation();
+  const navigation = useNavigation();
 
   return (
     <ScrollView
@@ -104,7 +106,7 @@ export default function ProfileScreen() {
           style={styles.btn}
           textStyle={styles.btnText}
           leftContent={<Close />}
-          onPress={() => {}}
+          onPress={() => navigation.navigate("changePassword")}
         />
         <Button
           title={t("exit")}

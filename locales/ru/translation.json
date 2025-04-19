@@ -4,6 +4,10 @@
     "loginText": "Чтобы войти, введите свой адрес электронной почты и пароль",
     "registerText": "Чтобы зарегистрироваться, введите свой адрес электронной почты и создайте пароль",
     "finishRegisterText": "Чтобы завершить регистрацию, нажмите на ссылку в электронном письме, которое мы отправили на указанный вами адрес",
+    "changePasswordEnterOldPasswordText": "Чтобы обеспечить безопасность вашей учетной записи и изменить пароль, введите ваш текущий пароль",
+    "changePasswordEnterNewPasswordText": "Создайте новый пароль для входа в вашу учетную запись",
+    "changePasswordEnterSuccessPasswordTitle": "Пароль обновлён!",
+    "changePasswordEnterSuccessPasswordText": "Ваш пароль был успешно изменён! Используйте новый пароль для входа",
 
     "login": "Войти",
     "registerGoogle":"Регистрация через Google",
@@ -12,10 +16,16 @@
     "forgotPassword": "Забыли пароль?",
     "notSendOnEmail": "Не получили письмо?",
     "help": "Помощь",
+    "next": "Продолжить",
+    "btnChangePassword": "Изменить пароль",
+    "backProfile": "Вернуться в профиль",
 
     "enterEmail": "Введите свой адрес электронной почты",
-    "enterPassword": "Придумайте пароль",
+    "comeUpPassword": "Придумайте пароль",
     "enterPasswordRepeat": "Подтвердите пароль",
+    "enterPassword": "Введите пароль",
+    "enterNewPassword": "Введите новый пароль",
+    "enterNewRepeatPassword": "Повторите новый пароль",
 
     "invalidPassword": "Неверный пароль",
     "shortPassword": "Короткий пароль",

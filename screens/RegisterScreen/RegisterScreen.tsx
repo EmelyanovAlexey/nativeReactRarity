@@ -42,7 +42,7 @@ export default function RegisterScreen({ navigation }: any) {
 
       <View style={styles.input}>
         <Input
-          placeholder={t("enterPassword")}
+          placeholder={t("comeUpPassword")}
           value={password}
           onChangeText={setPassword}
           isPassword

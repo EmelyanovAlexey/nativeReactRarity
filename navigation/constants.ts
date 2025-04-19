@@ -6,10 +6,7 @@ import HelpScreen from "@/screens/HelpScreen";
 import HomeScreen from "@/screens/HomeScreen";
 import SearchScreen from "@/screens/SearchScreen";
 import ProfileScreen from "@/screens/ProfileScreen";
-
-import Stars from "@/components/Icons/Starts";
-import Search from "@/components/Icons/Search";
-import User from "@/components/Icons/User";
+import ChangePasswordScreen from "@/screens/ChangePasswordScreen";
 
 import BottomTabs from "@/components/BottomTabs";
 
@@ -65,25 +62,10 @@ export const Route = [
     component: BottomTabs,
     type: RouteType.hideHeader,
   },
-];
-
-export const RouteBottomMenu = [
   {
-    name: "home",
-    component: HomeScreen,
-    type: RouteType.hideHeader,
-    icon: Stars,
-  },
-  {
-    name: "search",
-    component: SearchScreen,
-    type: RouteType.hideHeader,
-    icon: Search,
-  },
-  {
-    name: "profile",
-    component: ProfileScreen,
-    type: RouteType.hideHeader,
-    icon: User,
+    name: "changePassword",
+    title: "Смена пароля",
+    component: ChangePasswordScreen,
+    type: RouteType.showArrow,
   },
 ];
