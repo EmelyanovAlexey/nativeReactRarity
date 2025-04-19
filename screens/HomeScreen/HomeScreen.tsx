@@ -1,5 +1,4 @@
 import { View, StyleSheet, Text, FlatList } from "react-native";
-// import i18n from "i18next"; // менять язык
 
 import { CardType } from "@/models/home/types";
 import useHomeScreen from "./useHomeScreen";
@@ -10,7 +9,6 @@ import PopularCard from "@/components/PopularCard";
 export default function HomeScreen() {
   const { cards, selectedItem, modalVisible, setModalVisible, handlePress } =
     useHomeScreen();
-  // i18n.changeLanguage("ru"); // или 'en' // менять язык
 
   const renderItem = ({ item, index }: { item: CardType; index: number }) => (
     <PopularCard

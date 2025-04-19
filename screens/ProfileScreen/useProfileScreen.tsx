@@ -1,6 +1,4 @@
 import { useState } from "react";
-import { useUnit } from "effector-react";
-import { loginFx } from "../../models/auth";
 import { useNavigation } from "@react-navigation/native";
 
 export default function useProfileScreen() {

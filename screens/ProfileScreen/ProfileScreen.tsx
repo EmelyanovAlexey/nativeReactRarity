@@ -102,7 +102,7 @@ export default function ProfileScreen() {
           style={styles.btn}
           textStyle={styles.btnText}
           leftContent={<Language />}
-          onPress={() => {}}
+          onPress={() => navigation.navigate("changeLanguage")}
         />
         <Button
           title={t("changePassword")}

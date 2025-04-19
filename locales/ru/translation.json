@@ -9,6 +9,8 @@
     "changePasswordEnterSuccessPasswordTitle": "Пароль обновлён!",
     "changePasswordEnterSuccessPasswordText": "Ваш пароль был успешно изменён! Используйте новый пароль для входа",
     "exitText": "Вы действительно хотите выйти из аккаунта?",
+    "deleteText": "Вы действительно хотите удалить аккаунт?",
+    "changeLanguageText": "Кликните, что бы изменить язык в приложении",
 
 
     "login": "Войти",
@@ -52,6 +54,7 @@
     "privacyPolicy": "Политика конфиденциальности",
     "changeLanguage": "Сменить язык",
     "changePassword": "Сменить пароль",
+    "changePasswordTitle": "Смена пароля",
     "exit": "Выйти",
     "deleteAccount": "Удалить аккаунт",
     "cancel": "Отмена"

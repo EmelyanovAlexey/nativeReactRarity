@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useUnit } from "effector-react";
 import { useNavigation } from "@react-navigation/native";
-import { registerFx } from "../../models/auth";
 import { useTranslation } from "react-i18next";
 
 export default function useChangePasswordScreen() {
@@ -12,8 +11,6 @@ export default function useChangePasswordScreen() {
   const [step, setStep] = useState<number>(0);
   const navigation = useNavigation();
   const isDisabledConfirmPassword = password !== "";
-
-  const register = useUnit(registerFx);
 
   // Отправка запроса потверждения паролья
   const handleConfirmPassword = async () => {

@@ -1,7 +1,4 @@
-import { View, StyleSheet, Text, Alert } from "react-native";
-import { useEffect, useState } from "react";
-import { useUnit } from "effector-react";
-import { registerFx } from "../../models/auth";
+import { View, StyleSheet, Text } from "react-native";
 import { Colors } from "../../shared/constStyle";
 import { useTranslation } from "react-i18next";
 import useChangePasswordScreen from "./useChangePasswordScreen";

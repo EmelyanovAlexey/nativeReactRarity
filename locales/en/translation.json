@@ -3,5 +3,7 @@
     "login": "Login",
     "register": "Register",
     "password": "Пароль",
-    "forgotPassword": "Забыли пароль?"
+    "forgotPassword": "Забыли пароль?",
+    "changeLanguage": "Change the language",
+    "changeLanguageText": "Click to change the language in the app"
 }

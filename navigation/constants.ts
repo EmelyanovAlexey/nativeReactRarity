@@ -7,6 +7,7 @@ import HomeScreen from "@/screens/HomeScreen";
 import SearchScreen from "@/screens/SearchScreen";
 import ProfileScreen from "@/screens/ProfileScreen";
 import ChangePasswordScreen from "@/screens/ChangePasswordScreen";
+import ChangeLanguageScreen from "@/screens/ChangeLanguageScreen";
 
 import BottomTabs from "@/container/BottomTabs";
 
@@ -64,8 +65,14 @@ export const Route = [
   },
   {
     name: "changePassword",
-    title: "Смена пароля",
+    title: "changePasswordTitle",
     component: ChangePasswordScreen,
+    type: RouteType.showArrow,
+  },
+  {
+    name: "changeLanguage",
+    title: "changeLanguage",
+    component: ChangeLanguageScreen,
     type: RouteType.showArrow,
   },
 ];

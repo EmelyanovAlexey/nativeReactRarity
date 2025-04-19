@@ -48,13 +48,13 @@ const Navigation = () => {
     title: string = ""
   ) {
     if (type === RouteType.hideHeader) {
-      return { ...hideHeader, title: title };
+      return { ...hideHeader, title: t(title) };
     }
     if (type === RouteType.showArrowHelp) {
-      return { ...arrowHelp(navigation), title: title };
+      return { ...arrowHelp(navigation), title: t(title) };
     }
 
-    return { ...arrow, title: title };
+    return { ...arrow, title: t(title) };
   }
 
   return (

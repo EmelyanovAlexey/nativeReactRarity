@@ -36,7 +36,7 @@ const ModalDeleteUser = ({
     >
       <View style={styles.modalContent}>
         <View style={styles.modalHeaderIndicator} />
-        <Text style={styles.modalTitle}>{t("exitText")}</Text>
+        <Text style={styles.modalTitle}>{t("deleteText")}</Text>
 
         <Button
           title={t("exit")}
