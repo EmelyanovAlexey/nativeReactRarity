@@ -64,6 +64,12 @@ const Navigation = () => {
         headerBackTitleVisible: false, // убрать текст рядом со стрелкой
         headerStyle: {
           backgroundColor: Colors.WhiteColor, // фон хедера
+          elevation: 0, // Android
+          shadowOpacity: 0, // iOS
+          borderBottomWidth: 0, // Web
+        },
+        headerLeftContainerStyle: {
+          paddingLeft: 8,
         },
         headerTitleStyle: {
           fontWeight: "bold", // стиль заголовка

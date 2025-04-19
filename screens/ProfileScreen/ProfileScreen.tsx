@@ -70,7 +70,7 @@ export default function ProfileScreen() {
           leftContent={
             <Start fill={Colors.Transparent} width={22} height={20} />
           }
-          onPress={() => {}}
+          onPress={() => navigation.navigate("favourites")}
         />
         <Button
           title={t("trainingMaterials")}
