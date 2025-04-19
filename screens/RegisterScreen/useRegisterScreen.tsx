@@ -1,6 +1,5 @@
-import { useEffect, useState } from "react";
-import { useUnit } from "effector-react";
-import { registerFx } from "../../models/auth";
+import { useState } from "react";
+import { registerFx } from "../../models/auth/effects/effects";
 import { useTranslation } from "react-i18next";
 
 export default function useRegisterScreen({ navigation }: any) {
@@ -13,16 +12,12 @@ export default function useRegisterScreen({ navigation }: any) {
   const isDisabledRegister =
     email !== "" && password !== "" && repeatPassword !== "";
 
-  const register = useUnit(registerFx);
-
-  const handleRegister = async () => {
-    // try {
-    //   await register({ email, password });
-    //   navigation.navigate("Home");
-    // } catch (err: any) {
-    //   Alert.alert("Ошибка", err.message);
-    // }
+  const handleRegister = () => {
     if (validateInputs()) {
+      registerFx({
+        email: email,
+        password: password,
+      });
       navigation.navigate("finishRegister");
     }
   };
