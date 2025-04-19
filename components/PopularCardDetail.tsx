@@ -13,6 +13,7 @@ import {
 } from "react-native";
 import Modal from "react-native-modal";
 import { Colors } from "@/shared/constStyle";
+import { CardType } from "@/models/home/types";
 import Start from "@/components/Icons/Start";
 import ShareIcon from "@/components/Icons/Share";
 
@@ -20,19 +21,7 @@ import { useTranslation } from "react-i18next";
 
 type Props = {
   modalVisible: boolean;
-  data: {
-    id: string;
-    title: string;
-    description: string;
-    image: string;
-    dateTo: string;
-    dateFrom: string;
-    isStar: boolean;
-    country: string;
-    area: string;
-    city: string;
-    manufacturer: string;
-  };
+  data: CardType;
   style?: ViewStyle;
   setModalVisible: (param: boolean) => void;
 };

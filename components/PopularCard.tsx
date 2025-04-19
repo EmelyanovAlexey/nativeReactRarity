@@ -10,20 +10,13 @@ import {
 } from "react-native";
 import Start from "@/components/Icons/Start";
 import { Colors } from "@/shared/constStyle";
+import { CardType } from "@/models/home/types";
 
 const width = Dimensions.get("window").width;
 
 type Props = {
   style?: ViewStyle;
-  item: {
-    id: string;
-    title: string;
-    description: string;
-    image: string;
-    dateTo: string;
-    dateFrom: string;
-    isStar: boolean;
-  };
+  item: CardType;
   onPress: () => void;
 };
 
