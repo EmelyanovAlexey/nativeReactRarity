@@ -1,14 +1,17 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { View, TouchableOpacity, StyleSheet, Text } from "react-native";
+
 import Stars from "@/components/Icons/Starts";
 import Search from "@/components/Icons/Search";
 import User from "@/components/Icons/User";
+
 import { Colors } from "@/shared/constStyle";
-import { useTranslation } from "react-i18next";
+import { ActiveTab } from "@/models/main/types";
 
 type Props = {
-  activeTab: string;
-  setActiveTab: (tab: "home" | "search" | "profile") => void;
+  activeTab: ActiveTab;
+  setActiveTab: (tab: ActiveTab) => void;
 };
 
 const CustomTabBar = ({ activeTab, setActiveTab }: Props) => {
@@ -18,38 +21,55 @@ const CustomTabBar = ({ activeTab, setActiveTab }: Props) => {
     <View style={styles.container}>
       <TouchableOpacity
         style={styles.button}
-        onPress={() => setActiveTab("home")}
+        onPress={() => setActiveTab(ActiveTab.home)}
       >
         <Stars
-          stroke={activeTab === "home" ? Colors.Primary : Colors.BlackColor}
+          stroke={
+            activeTab === ActiveTab.home ? Colors.Primary : Colors.BlackColor
+          }
         />
 
-        <Text style={[styles.text, activeTab === "home" && styles.textActive]}>
+        <Text
+          style={[
+            styles.text,
+            activeTab === ActiveTab.home && styles.textActive,
+          ]}
+        >
           {t("popular")}
         </Text>
       </TouchableOpacity>
       <TouchableOpacity
         style={styles.button}
-        onPress={() => setActiveTab("search")}
+        onPress={() => setActiveTab(ActiveTab.search)}
       >
         <Search
-          stroke={activeTab === "search" ? Colors.Primary : Colors.BlackColor}
+          stroke={
+            activeTab === ActiveTab.search ? Colors.Primary : Colors.BlackColor
+          }
         />
         <Text
-          style={[styles.text, activeTab === "search" && styles.textActive]}
+          style={[
+            styles.text,
+            activeTab === ActiveTab.search && styles.textActive,
+          ]}
         >
           {t("search")}
         </Text>
       </TouchableOpacity>
       <TouchableOpacity
         style={styles.button}
-        onPress={() => setActiveTab("profile")}
+        onPress={() => setActiveTab(ActiveTab.profile)}
       >
         <User
-          stroke={activeTab === "profile" ? Colors.Primary : Colors.BlackColor}
+          stroke={
+            activeTab === ActiveTab.profile ? Colors.Primary : Colors.BlackColor
+          }
         />
         <Text
-          style={[styles.text, activeTab === "profile" && styles.textActive]}
+          style={[
+            styles.text,
+            activeTab === ActiveTab.profile && styles.textActive,
+          ]}
         >
           {t("profile")}
         </Text>

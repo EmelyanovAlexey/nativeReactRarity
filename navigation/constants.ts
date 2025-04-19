@@ -8,7 +8,7 @@ import SearchScreen from "@/screens/SearchScreen";
 import ProfileScreen from "@/screens/ProfileScreen";
 import ChangePasswordScreen from "@/screens/ChangePasswordScreen";
 
-import BottomTabs from "@/components/BottomTabs";
+import BottomTabs from "@/container/BottomTabs";
 
 export enum RouteType {
   showArrow,
