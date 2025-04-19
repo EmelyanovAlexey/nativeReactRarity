@@ -72,6 +72,7 @@ const Navigation = () => {
     >
       {Route.map((RouteItem) => (
         <Stack.Screen
+          key={RouteItem.name}
           name={RouteItem.name}
           component={RouteItem.component}
           options={({

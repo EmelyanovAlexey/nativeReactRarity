@@ -14,12 +14,16 @@ import Language from "@/components/Icons/Language";
 import Close from "@/components/Icons/Close";
 import Delete from "@/components/Icons/Delete";
 import Exit from "@/components/Icons/Exit";
+import ModalExitUser from "@/components/ModalExitUser";
+import ModalDeleteUser from "@/components/ModalDeleteUser";
 
 import useProfileScreen from "./useProfileScreen";
 
 export default function ProfileScreen() {
   const { t } = useTranslation();
   const navigation = useNavigation();
+  const { showExit, showDelete, setShowExit, setShowDelete } =
+    useProfileScreen();
 
   return (
     <ScrollView
@@ -114,7 +118,7 @@ export default function ProfileScreen() {
           style={styles.btn}
           textStyle={styles.btnText}
           leftContent={<Exit />}
-          onPress={() => {}}
+          onPress={() => setShowExit(true)}
         />
         <Button
           title={t("deleteAccount")}
@@ -122,9 +126,19 @@ export default function ProfileScreen() {
           style={styles.btn}
           textStyle={styles.deleteText}
           leftContent={<Delete />}
-          onPress={() => {}}
+          onPress={() => setShowDelete(true)}
         />
       </View>
+
+      <ModalExitUser
+        modalVisible={showExit}
+        setModalVisible={(param) => setShowExit(param)}
+      />
+      <ModalDeleteUser
+        modalVisible={showDelete}
+        setModalVisible={(param) => setShowDelete(param)}
+        handleDelete={() => {}}
+      />
     </ScrollView>
   );
 }

@@ -143,6 +143,7 @@ export default function HomeScreen() {
 
   const renderItem = ({ item, index }: any) => (
     <PopularCard
+      key={item.id}
       style={{ marginRight: index % 2 === 0 ? 8 : 0, marginBottom: 8 }}
       item={item}
       onPress={() => handlePress(item)}

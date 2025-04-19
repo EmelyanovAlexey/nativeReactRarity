@@ -72,7 +72,7 @@ const PopularCardDetail = ({
       onSwipeComplete={() => setModalVisible(false)}
       swipeDirection="down"
       onBackdropPress={() => setModalVisible(false)}
-      style={styles.modal}
+      style={[styles.modal, style]}
       propagateSwipe
       scrollTo={(p) => scrollViewRef.current?.scrollTo(p)}
       scrollOffset={scrollOffset}

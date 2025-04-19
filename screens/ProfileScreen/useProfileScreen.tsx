@@ -1,14 +1,25 @@
 import { useState } from "react";
 import { useUnit } from "effector-react";
 import { loginFx } from "../../models/auth";
-import { useTranslation } from "react-i18next";
+import { useNavigation } from "@react-navigation/native";
 
-export default function useProfileScreen({ navigation }: any) {
-  const { t } = useTranslation();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+export default function useProfileScreen() {
+  const [showExit, setShowExit] = useState<boolean>(false);
+  const [showDelete, setShowDelete] = useState<boolean>(false);
+  const navigation = useNavigation();
+
+  // Удаление акаунта
+  const handleDelete = () => {
+    // TODO
+    navigation.navigate("first");
+    setShowDelete(false);
+  };
 
   return {
-    email,
+    showExit,
+    showDelete,
+    setShowExit,
+    setShowDelete,
+    handleDelete,
   };
 }

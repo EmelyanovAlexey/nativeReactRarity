@@ -8,6 +8,8 @@
     "changePasswordEnterNewPasswordText": "Создайте новый пароль для входа в вашу учетную запись",
     "changePasswordEnterSuccessPasswordTitle": "Пароль обновлён!",
     "changePasswordEnterSuccessPasswordText": "Ваш пароль был успешно изменён! Используйте новый пароль для входа",
+    "exitText": "Вы действительно хотите выйти из аккаунта?",
+
 
     "login": "Войти",
     "registerGoogle":"Регистрация через Google",
@@ -51,5 +53,6 @@
     "changeLanguage": "Сменить язык",
     "changePassword": "Сменить пароль",
     "exit": "Выйти",
-    "deleteAccount": "Удалить аккаунт"
+    "deleteAccount": "Удалить аккаунт",
+    "cancel": "Отмена"
 }

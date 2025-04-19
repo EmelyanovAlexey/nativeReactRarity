@@ -47,7 +47,7 @@ export default function useChangePasswordScreen() {
     setStep(2);
     setPassword("");
     setPasswordRepeat("");
-    navigation.navigate("main");
+    navigation.goBack();
   };
 
   const validateInputs = () => {
