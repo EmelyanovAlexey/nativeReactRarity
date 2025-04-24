@@ -28,7 +28,7 @@ export default function ProfileScreen() {
   return (
     <ScrollView
       contentContainerStyle={styles.container}
-      showsVerticalScrollIndicator={false}
+      showsVerticalScrollIndicator={true}
     >
       <View style={styles.userBlock}>
         <View style={styles.photo}>
@@ -146,7 +146,7 @@ export default function ProfileScreen() {
 const styles = StyleSheet.create({
   container: {
     width: "100%",
-    flex: 1,
+    flexGrow: 1,
     justifyContent: "center",
     alignItems: "center",
     padding: 24,

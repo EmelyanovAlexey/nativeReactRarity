@@ -1,11 +1,14 @@
-import i18n from "i18next";
+import { useTranslation } from "react-i18next";
+import { useState } from "react";
 
 export default function useChangeLanguageScreen() {
-  const language = i18n.language;
+  const { i18n } = useTranslation();
+  const [language, setLanguage] = useState(i18n.language);
 
-  // Вернуться обратно
   const handleSetLanguage = (lang: string) => {
-    i18n.changeLanguage(lang);
+    i18n.changeLanguage(lang).then(() => {
+      setLanguage(lang);
+    });
   };
 
   return {

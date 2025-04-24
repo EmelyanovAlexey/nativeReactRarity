@@ -1,7 +1,7 @@
 import { View, StyleSheet, Text, Image } from "react-native";
 import { Colors } from "../shared/constStyle";
 
-export default function LoginScreen() {
+export default function HelpScreen() {
   return (
     <View style={styles.container}>
       <Text style={styles.description}>HELP</Text>

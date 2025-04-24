@@ -57,7 +57,7 @@ export default function RegisterScreen({ navigation }: any) {
         />
       </View>
 
-      {error && (
+      {error !== "" && (
         <View style={styles.error}>
           <Text style={styles.textError}>{error}</Text>
         </View>

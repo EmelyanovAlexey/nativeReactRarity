@@ -29,6 +29,7 @@ export default function HomeScreen() {
         numColumns={2}
         contentContainerStyle={styles.list}
         columnWrapperStyle={{ justifyContent: "space-between" }}
+        showsVerticalScrollIndicator={false}
       />
 
       {selectedItem !== null && (

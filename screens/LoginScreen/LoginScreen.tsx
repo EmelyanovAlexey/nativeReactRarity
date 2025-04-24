@@ -1,7 +1,4 @@
-import { View, StyleSheet, Text, Alert } from "react-native";
-import { useState } from "react";
-import { useUnit } from "effector-react";
-import { loginFx } from "../../models/auth";
+import { View, StyleSheet, Text } from "react-native";
 import { Colors } from "../../shared/constStyle";
 import { useTranslation } from "react-i18next";
 
@@ -14,7 +11,7 @@ import Google from "@/components/Icons/Google";
 
 import useLoginScreen from "./useLoginScreen";
 
-export default function LoginScreen({ navigation }: any) {
+export default function LoginScreen() {
   const { t } = useTranslation();
   const {
     email,
@@ -24,9 +21,7 @@ export default function LoginScreen({ navigation }: any) {
     setEmail,
     setPassword,
     handleLogin,
-  } = useLoginScreen({
-    navigation,
-  });
+  } = useLoginScreen();
 
   return (
     <View style={styles.container}>
@@ -52,7 +47,7 @@ export default function LoginScreen({ navigation }: any) {
         />
       </View>
 
-      {error && (
+      {error !== "" && (
         <View style={styles.error}>
           <Text style={styles.textError}>{t("invalidPassword")}</Text>
           <Link to="help">{t("forgotPassword")}</Link>

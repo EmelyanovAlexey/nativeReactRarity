@@ -35,7 +35,11 @@ const Link: React.FC<LinkProps> = ({
       onPress={() => navigation.navigate(to)}
       disabled={disabled}
     >
-      <Text style={[styles.text, textStyle]}>{children}</Text>
+      {typeof children === "string" || typeof children === "number" ? (
+        <Text style={[styles.text, textStyle]}>{children}</Text>
+      ) : (
+        children
+      )}
     </TouchableOpacity>
   );
 };

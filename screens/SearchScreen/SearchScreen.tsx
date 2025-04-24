@@ -2,10 +2,12 @@ import { View, StyleSheet, Text, Image } from "react-native";
 import { Colors } from "@/shared/constStyle";
 import useSearchScreen from "./useSearchScreen";
 
+import SearchFilter from "@/container/SearchFilter";
+
 export default function SearchScreen() {
   return (
     <View style={styles.container}>
-      <Text style={styles.description}>SearchScreen</Text>
+      <SearchFilter />
     </View>
   );
 }
@@ -13,9 +15,9 @@ export default function SearchScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    padding: 24,
+    justifyContent: "flex-start",
+    alignItems: "flex-start",
+    paddingTop: 24,
     backgroundColor: Colors.BgcColor,
   },
   description: {

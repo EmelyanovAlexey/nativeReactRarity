@@ -59,7 +59,7 @@ const Navigation = () => {
 
   return (
     <Stack.Navigator
-      initialRouteName="main"
+      initialRouteName="first"
       screenOptions={{
         headerBackTitleVisible: false, // убрать текст рядом со стрелкой
         headerStyle: {

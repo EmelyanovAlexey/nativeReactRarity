@@ -1,14 +1,12 @@
 import { View, StyleSheet, Text } from "react-native";
 import { useTranslation } from "react-i18next";
-import i18n from "i18next"; // менять язык
 
 import Button from "@/components/Button";
 
 import Logo from "@/assets/images/logo.svg";
 import { Colors } from "../shared/constStyle";
 
-export default function LoginScreen({ navigation }: any) {
-  i18n.changeLanguage("ru"); // или 'en' // менять язык
+export default function FirstScreen({ navigation }: any) {
   const { t } = useTranslation();
 
   return (

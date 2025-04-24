@@ -20,12 +20,3 @@ i — iOS (только на macOS с Xcode)
 
  Дизайн
  https://www.figma.com/design/PdYz0ZCJpcYcTOec7OwRvM/porcelain?node-id=0-1&p=f&t=MN3wCBQ1EZpcG2zW-0
-
-
-
-//   "splash": {
-  //     "image": "./assets/splash.png",     // картинка на экране загрузки
-  //     "resizeMode": "contain",            // или "cover"
-  //     "backgroundColor": "#ffffff"        // цвет фона
-  //   }
-  // }

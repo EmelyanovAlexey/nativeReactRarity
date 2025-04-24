@@ -1,13 +1,17 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useUnit } from "effector-react";
 import { loginFx } from "../../models/auth";
 import { useTranslation } from "react-i18next";
+import { useNavigation } from "@react-navigation/native";
 
-export default function useLoginScreen({ navigation }: any) {
+export default function useLoginScreen() {
   const { t } = useTranslation();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("1@mai.ru");
+  const [password, setPassword] = useState("111111");
   const [error, setError] = useState("");
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const navigation = useNavigation();
+
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   const isDisabledLogin = email !== "" && password !== "";
 
@@ -21,22 +25,28 @@ export default function useLoginScreen({ navigation }: any) {
     //   Alert.alert("Ошибка", err.message);
     // }
     if (validateInputs()) {
-      navigation.navigate("main");
+      setIsAuthenticated(true);
     }
   };
 
   const validateInputs = () => {
     if (!emailRegex.test(email)) {
-      setError(t("invalidEmail"));
+      setError(() => t("invalidEmail"));
       return false;
     } else if (password.length < 1) {
-      setError(t("shortPassword"));
+      setError(() => t("shortPassword"));
       return false;
     } else {
       setError("");
       return true;
     }
   };
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigation.navigate("main");
+    }
+  }, [isAuthenticated, navigation]);
 
   return {
     email,
