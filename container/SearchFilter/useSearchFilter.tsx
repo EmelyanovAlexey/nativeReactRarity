@@ -1,21 +1,51 @@
 import { useUnit } from "effector-react";
 
+import { TypeFilter, FilterRoot, FilterOption } from "@/models/search/types";
 import { $searchModel } from "@/models/search";
-import { 
-  setIsShowModalEvent, 
+import {
+  setIsShowModalEvent,
   setSearchTextEvent,
-  setIsShowModalFilterEvent } from "@/models/search/events/events";
+  setIsShowModalFilterEvent,
+  setSelectOptionEvent,
+} from "@/models/search/events/events";
 
 export default function useBottomTabs() {
-  const { isShowModal, searchText } = useUnit($searchModel);
+  const {
+    searchText,
+    selectedCountries,
+    selectedRegions,
+    selectedCities,
+    selectedManufacturers,
+  } = useUnit($searchModel);
+  const listFilter = [
+    {
+      id: TypeFilter.country,
+      select: selectedCountries,
+    },
+    {
+      id: TypeFilter.area,
+      select: selectedRegions,
+    },
+    {
+      id: TypeFilter.city,
+      select: selectedCities,
+    },
+    {
+      id: TypeFilter.manufacturer,
+      select: selectedManufacturers,
+    },
+  ];
+
+  const selectedFilter = listFilter.filter(
+    (filterItem) => filterItem.select !== null
+  );
 
   const handleSearchFilter = () => {
     setIsShowModalEvent(true);
-    console.log("11111");
   };
 
-  const handleDelete = () => {
-    setSearchTextEvent("");
+  const handleDelete = (type: TypeFilter) => {
+    setSelectOptionEvent({ type, option: null });
   };
 
   const handleOpenFilter = () => {
@@ -24,11 +54,11 @@ export default function useBottomTabs() {
 
   const handleDeleteFilter = () => {
     setSearchTextEvent("");
-    console.log("+++++++++++++");
   };
 
   return {
     textFilter: searchText,
+    selectedFilter,
     handleSearchFilter,
     handleDelete,
     handleOpenFilter,

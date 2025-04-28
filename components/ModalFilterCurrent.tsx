@@ -13,22 +13,32 @@ import Modal from "react-native-modal";
 import { Colors } from "@/shared/constStyle";
 import Input from "@/components/Input";
 
+import { FilterOption } from "@/models/search/types";
+
 import { useTranslation } from "react-i18next";
 
 type Props = {
+  style?: ViewStyle;
   modalVisible: boolean;
   searchText: string;
-  style?: ViewStyle;
+  options: FilterOption[];
+  title: string;
+  select: FilterOption | null;
   setModalVisible: (param: boolean) => void;
   onChangeSearchText: (param: string) => void;
+  onSelect: (param: FilterOption) => void;
 };
 
-const ModalSearch = ({
+const ModalFilterCurrent = ({
   style,
   modalVisible = false,
   searchText,
+  options = [],
+  title = "",
+  select,
   setModalVisible,
   onChangeSearchText,
+  onSelect,
 }: Props) => {
   const { t } = useTranslation();
   const scrollViewRef = useRef<ScrollView>(null);
@@ -41,27 +51,6 @@ const ModalSearch = ({
   const handleScroll = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
     setScrollOffset(event.nativeEvent.contentOffset.y);
   };
-
-  const variables = [
-    {
-      label: "Близкие варианты",
-      values: [
-        "Гербовидный",
-        "Геройский",
-        "Герцогский",
-        "Герметичный",
-        "Гермлингтонская Ветвь",
-      ],
-    },
-    {
-      label: "Производители",
-      values: ["Производитель 1", "Производитель 2"],
-    },
-    {
-      label: "Страны",
-      values: ["Страна 1", "Страна 2"],
-    },
-  ];
 
   return (
     <Modal
@@ -78,7 +67,7 @@ const ModalSearch = ({
       <View style={styles.modalContent}>
         <View style={styles.modalHeaderIndicator} />
 
-        <Text style={styles.modalTitle}>{t("titleSearch")}</Text>
+        <Text style={styles.modalTitle}>{t(title)}</Text>
 
         <View style={styles.input}>
           <Input
@@ -95,24 +84,25 @@ const ModalSearch = ({
           scrollEventThrottle={16}
           showsVerticalScrollIndicator={false}
         >
-          <View style={styles.blocks}>
-            {variables.map((variable) => (
-              <View style={styles.block} key={variable.label}>
-                <Text style={styles.label}>{variable.label}</Text>
-                <View style={styles.blockList}>
-                  {variable.values.map((valueItem) => (
-                    <TouchableOpacity
-                      onPress={() => {
-                        onChangeSearchText(valueItem);
-                        searchOnBlock();
-                      }}
-                      key={valueItem}
-                    >
-                      <Text style={styles.valueText}>{valueItem}</Text>
-                    </TouchableOpacity>
-                  ))}
-                </View>
-              </View>
+          <View style={styles.list}>
+            {options.map((option) => (
+              <TouchableOpacity
+                onPress={() => {
+                  onSelect(option);
+                  searchOnBlock();
+                }}
+                style={styles.option}
+                key={option.id}
+              >
+                <Text
+                  style={[
+                    styles.optionText,
+                    select?.id === option.id && styles.optionTextSelect,
+                  ]}
+                >
+                  {option.name}
+                </Text>
+              </TouchableOpacity>
             ))}
           </View>
         </ScrollView>
@@ -149,46 +139,31 @@ const styles = StyleSheet.create({
     fontFamily: "Inter_400Regular",
   },
   input: {
-    marginBottom: 24,
-  },
-  blocks: {
-    width: "100%",
-    flexDirection: "row",
-    justifyContent: "flex-start",
-    alignItems: "center",
-    flexWrap: "wrap",
-    gap: 16,
-  },
-  block: {
-    width: "100%",
-    flexDirection: "row",
-    justifyContent: "flex-start",
-    alignItems: "center",
-    flexWrap: "wrap",
-  },
-  label: {
-    fontWeight: 600,
-    fontSize: 18,
-    lineHeight: 18,
     marginBottom: 16,
-    fontFamily: "Inter_400Regular",
   },
-  blockList: {
+  list: {
     width: "100%",
     flexDirection: "row",
     justifyContent: "flex-start",
     alignItems: "center",
     flexWrap: "wrap",
-    gap: 16,
-    marginBottom: 16,
-    paddingHorizontal: 16,
   },
-  valueText: {
+  option: {
+    width: "100%",
+    paddingVertical: 10,
+    marginBottom: 5,
+  },
+  optionText: {
+    width: "100%",
     fontWeight: 500,
     fontSize: 16,
     lineHeight: 16,
     fontFamily: "Inter_400Regular",
+    color: Colors.BlackColor2,
+  },
+  optionTextSelect: {
+    color: Colors.Primary,
   },
 });
 
-export default ModalSearch;
+export default ModalFilterCurrent;

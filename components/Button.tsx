@@ -10,7 +10,7 @@ import {
 import { Colors } from "../shared/constStyle";
 
 type AppButtonProps = {
-  title: string;
+  title?: string;
   disabled?: boolean;
   filled?: boolean;
   style?: ViewStyle;
@@ -41,16 +41,18 @@ const Button: React.FC<AppButtonProps> = ({
     >
       <View style={styles.contentWrapper}>
         {leftContent && <View>{leftContent}</View>}
-        <Text
-          style={[
-            styles.text,
-            filled ? styles.filledText : styles.outlinedText,
-            disabled && styles.disabledText,
-            textStyle,
-          ]}
-        >
-          {title}
-        </Text>
+        {title && (
+          <Text
+            style={[
+              styles.text,
+              filled ? styles.filledText : styles.outlinedText,
+              disabled && styles.disabledText,
+              textStyle,
+            ]}
+          >
+            {title}
+          </Text>
+        )}
       </View>
     </TouchableOpacity>
   );

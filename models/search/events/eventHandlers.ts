@@ -1,4 +1,4 @@
-import {SearchModel } from "../types";
+import { SearchModel, TypeFilter, FilterOption } from "../types";
 
 export function setIsShowModalEventHandler(
   state: SearchModel,
@@ -19,4 +19,27 @@ export function setSearchTextEventHandler(
   text: string
 ): SearchModel {
   return { ...state, searchText: text };
+}
+
+export function setSelectOptionEventHandler(
+  state: SearchModel,
+  param: {
+    type: TypeFilter;
+    option: FilterOption | null;
+  }
+): SearchModel {
+  if (param.type === TypeFilter.country) {
+    return { ...state, selectedCountries: param.option };
+  }
+  if (param.type === TypeFilter.area) {
+    return { ...state, selectedRegions: param.option };
+  }
+  if (param.type === TypeFilter.city) {
+    return { ...state, selectedCities: param.option };
+  }
+  if (param.type === TypeFilter.manufacturer) {
+    return { ...state, selectedManufacturers: param.option };
+  }
+
+  return { ...state };
 }

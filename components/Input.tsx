@@ -33,10 +33,11 @@ export function Input(props: TextInputProps & AppInputProps) {
 
   return (
     <View>
-      {props.isSearch && <View style={styles.search}>
-      <Search width="22" height="22" stroke={Colors.GrayColor} />
-      </View>
-    }
+      {props.isSearch && (
+        <View style={styles.search}>
+          <Search width="22" height="22" stroke={Colors.GrayColor} />
+        </View>
+      )}
 
       <TextInput
         style={[
@@ -51,8 +52,8 @@ export function Input(props: TextInputProps & AppInputProps) {
         placeholderTextColor={Colors.GrayColor}
         onFocus={() => setIsFocused(true)}
         onBlur={() => setIsFocused(false)}
+        value={props.value}
         {...props}
-        value={searchValue}
       />
       {props.isPassword && (
         <Pressable
@@ -64,7 +65,10 @@ export function Input(props: TextInputProps & AppInputProps) {
       )}
 
       {props.value !== "" && props.isSearch && (
-        <TouchableOpacity style={[styles.delete]} onPress={handleClearInput}>
+        <TouchableOpacity
+          style={[styles.delete]}
+          onPress={() => handleClearInput()}
+        >
           <Cross />
         </TouchableOpacity>
       )}
@@ -108,7 +112,7 @@ const styles = StyleSheet.create({
     position: "absolute",
     right: 20,
     paddingVertical: 22,
-  }
+  },
 });
 
 export default Input;

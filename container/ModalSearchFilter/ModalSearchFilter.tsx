@@ -1,29 +1,52 @@
 import React from "react";
 import { View, Text, StyleSheet, ScrollView } from "react-native";
 
-import ModalSearchFilter from '@/components/ModalSearchFilter'
+import ModalSearchFilter from "@/components/ModalSearchFilter";
+import ModalFilterCurrent from "@/components/ModalFilterCurrent";
 
 import useModalSearchFilter from "./useModalSearchFilter";
 import { Colors } from "@/shared/constStyle";
+
+import { TypeFilter } from "@/models/search/types";
 
 export default function ModalSearchFilterContainer() {
   const {
     modalVisibleSearch,
     textFilter,
+    typeCurFilter,
+    listFilterRoot,
     setModalVisibleSearch,
     onChangeSearchText,
+    onSelectOption,
+    onSelectFilterRoot,
   } = useModalSearchFilter();
 
-  return  <ModalSearchFilter 
-            modalVisible={modalVisibleSearch} 
-            searchText={textFilter} 
-            onChangeSearchText={onChangeSearchText} 
-            setModalVisible={setModalVisibleSearch} />
-}
+  return (
+    <>
+      {modalVisibleSearch && (
+        <ModalSearchFilter
+          list={listFilterRoot}
+          setModalVisible={setModalVisibleSearch}
+          onSelectFilter={onSelectFilterRoot}
+        />
+      )}
 
-const styles = StyleSheet.create({
-  container: {
-    width: "100%",
-    paddingHorizontal: 24,
-  },
-});
+      {listFilterRoot.map((item) => {
+        if (typeCurFilter !== item.id) return null;
+
+        return (
+          <ModalFilterCurrent
+            title={item.name}
+            modalVisible={typeCurFilter === item.id}
+            searchText={textFilter}
+            options={item?.options || []}
+            select={item.select}
+            setModalVisible={() => onSelectFilterRoot(TypeFilter.empty)}
+            onChangeSearchText={(param) => onChangeSearchText(param)}
+            onSelect={(param) => onSelectOption(item.id, param)}
+          />
+        );
+      })}
+    </>
+  );
+}

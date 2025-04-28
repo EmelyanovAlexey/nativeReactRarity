@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, ScrollView } from "react-native";
 
 import SearchBlock from "@/components/SearchBlock";
 import Chips from "@/components/Chips";
+import StartFilter from "@/components/StartFilter";
 
 import useSearchFilter from "./useSearchFilter";
 import { Colors } from "@/shared/constStyle";
@@ -10,6 +11,7 @@ import { Colors } from "@/shared/constStyle";
 export default function SearchFilter() {
   const {
     textFilter,
+    selectedFilter,
     handleSearchFilter,
     handleDelete,
     handleOpenFilter,
@@ -27,23 +29,30 @@ export default function SearchFilter() {
         />
       </View>
 
-      <View style={styles.scroll}>
-        <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-          <Chips
-            text="Германия"
-            onPress={() => handleDelete()}
-            style={styles.selectItem}
-          />
-          <Chips text="Германия" onPress={() => {}} style={styles.selectItem} />
-          <Chips text="Германия" onPress={() => {}} style={styles.selectItem} />
-          <Chips text="Германия" onPress={() => {}} style={styles.selectItem} />
-          <Chips text="Германия" onPress={() => {}} style={styles.selectItem} />
-        </ScrollView>
-      </View>
+      {selectedFilter.length > 0 && (
+        <View style={styles.scroll}>
+          <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+            {selectedFilter.map((filter) => (
+              <Chips
+                key={filter.id}
+                text={filter.select?.name || ""}
+                onPress={() => handleDelete(filter.id)}
+                style={styles.selectItem}
+              />
+            ))}
+          </ScrollView>
+        </View>
+      )}
 
       <View style={styles.container}>
         <Text style={styles.description}>Результат поиска</Text>
       </View>
+
+      {textFilter === "" && selectedFilter.length === 0 && (
+        <View style={styles.startFilter}>
+          <StartFilter />
+        </View>
+      )}
     </>
   );
 }
@@ -69,5 +78,12 @@ const styles = StyleSheet.create({
   },
   selectItem: {
     marginRight: 16,
+  },
+  startFilter: {
+    width: "100%",
+    position: "absolute",
+    height: "90%",
+    top: "24%",
+    overflow: "hidden",
   },
 });

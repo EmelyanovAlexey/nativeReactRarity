@@ -1,3 +1,6 @@
+
+
+
 1 Установи Expo
 npm install -g expo-cli
 

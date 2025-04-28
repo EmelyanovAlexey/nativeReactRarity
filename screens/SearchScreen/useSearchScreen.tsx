@@ -3,12 +3,13 @@ import { useUnit } from "effector-react";
 import { loginFx } from "../../models/auth";
 import { useTranslation } from "react-i18next";
 
-export default function useSearchScreen({ navigation }: any) {
+export default function useSearchScreen() {
   const { t } = useTranslation();
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+
+  const handleStartScan = () => {};
 
   return {
-    email,
+    handleStartScan,
   };
 }
