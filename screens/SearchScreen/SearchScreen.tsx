@@ -1,13 +1,17 @@
-import { View, StyleSheet, Text, Image } from "react-native";
+import { View, StyleSheet } from "react-native";
 import { Colors } from "@/shared/constStyle";
 import useSearchScreen from "./useSearchScreen";
 
-import SearchFilter from "@/container/SearchFilter";
+import SearchFilterСontainer from "@/container/SearchFilter";
+import ModalSearchСontainer from '@/container/ModalSearch'
+import ModalSearchFilterContainer from '@/container/ModalSearchFilter'
 
 export default function SearchScreen() {
   return (
     <View style={styles.container}>
-      <SearchFilter />
+      <SearchFilterСontainer />
+      <ModalSearchСontainer />
+      <ModalSearchFilterContainer />
     </View>
   );
 }

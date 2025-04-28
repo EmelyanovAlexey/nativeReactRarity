@@ -1,33 +1,34 @@
 import { useUnit } from "effector-react";
 
-import { $mainModel } from "@/models/main";
+import { $searchModel } from "@/models/search";
+import { 
+  setIsShowModalEvent, 
+  setSearchTextEvent,
+  setIsShowModalFilterEvent } from "@/models/search/events/events";
 
 export default function useBottomTabs() {
-  const { activeTab } = useUnit($mainModel);
-  const textFilter = "";
+  const { isShowModal, searchText } = useUnit($searchModel);
 
   const handleSearchFilter = () => {
-    // setActiveTabEvent(tab);
+    setIsShowModalEvent(true);
     console.log("11111");
   };
 
   const handleDelete = () => {
-    // setActiveTabEvent(tab);
-    console.log("==========");
+    setSearchTextEvent("");
   };
 
   const handleOpenFilter = () => {
-    // setActiveTabEvent(tab);
-    console.log("+++++++++++++");
+    setIsShowModalFilterEvent(true);
   };
 
   const handleDeleteFilter = () => {
-    // setActiveTabEvent(tab);
+    setSearchTextEvent("");
     console.log("+++++++++++++");
   };
 
   return {
-    textFilter,
+    textFilter: searchText,
     handleSearchFilter,
     handleDelete,
     handleOpenFilter,
