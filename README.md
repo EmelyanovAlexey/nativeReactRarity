@@ -1,28 +1,51 @@
-
-
-
+НАЧАЛО РАБОТЫ
 1 Установи Expo
 npm install -g expo-cli
 
-2 старт
-npx expo start
-w — веб-версия
-a — Android (если есть эмулятор или подключённый телефон)
-i — iOS (только на macOS с Xcode)
+2 Установить зависимости
+npm install
 
+3 старт Проекта
+<что бы на телефоне смотреть установаить expo go и быть в одной сети. проблема что моки не работаю так>
+
+npx expo start -c
+    -   w — веб-версия
+    -   a — Android (если есть эмулятор или подключённый телефон)
+    -   i — iOS (только на macOS с Xcode)
+
+
+4 работа с мок сервером, если требуется.
+    -   shared/constants USE_MOCK = true
+    -   shared/getUrl там указать адреса
+    -   далее запуск в отдельном терминале
+
+        ```
+        json-server --watch mock/db.json --port 3001  
+        node mock/server.js
+        ```
+
+
+
+Дизайн
+https://www.figma.com/design/PdYz0ZCJpcYcTOec7OwRvM/porcelain?node-id=0-1&p=f&t=MN3wCBQ1EZpcG2zW-0
+
+
+Архитектура
 /src
  ├── /app          — точки входа и инициализация
  ├── /screens      — экраны (Login, Register, Home и т.д.)
- ├── /entities     — Effector-модели: userStore, authStore
- ├── /features     — логика регистрации/авторизации
+ ├── /model        — Effector-модели: userStore, authStore
  ├── /shared       — UI-компоненты и утилиты
- └── /services     — HTTP-клиент и API-функции
-
- npx expo start -c
-
- json-server --watch mock/db.json --port 3001  
- node mock/server.js
+ └── /mock         — HTTP-клиент и API-функции
 
 
- Дизайн
- https://www.figma.com/design/PdYz0ZCJpcYcTOec7OwRvM/porcelain?node-id=0-1&p=f&t=MN3wCBQ1EZpcG2zW-0
+
+
+
+сделал, реализовал мок сервер и подключил
+
+
+1 как должен работать экран завершения регистрации, получил письмо и нет.
+2 для авторизщации гугл и яндекс, там нужно создвать какой то клиент id.
+3 как должны работать фильтра, какие у них связки, в свагере просто пока нет прараметров
+4 напишешь как работьа с реальными данными, а то я пока по свагеру представляю ответ, и не знаю какой токен будешь возвращать

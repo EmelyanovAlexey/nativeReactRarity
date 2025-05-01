@@ -18,6 +18,15 @@ export const loginAPI = async (params: LoginFXParam) => {
 };
 
 export const registerAPI = async (params: RegisterFXParam) => {
-  const response = await axios.post(getUrl("plain/register"), params);
-  return response.data;
+  try {
+    const response = await axios.post(getUrl("plain/register"), params);
+    return response.data;
+  } catch (error: any) {
+    if (error.response && error.response.status === 400) {
+      console.error("Ошибка авторизации:", error.response.data.error);
+      throw error.response.data.error;
+    }
+    console.error("Неожиданная ошибка:", error);
+    throw error;
+  }
 };

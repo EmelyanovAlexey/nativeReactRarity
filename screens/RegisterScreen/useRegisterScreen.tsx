@@ -1,13 +1,19 @@
-import { useState } from "react";
-import { registerFx } from "../../models/auth/effects/effects";
+import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
+
+import { setErrorEvent } from "@/models/auth/events/events";
+import { registerFx } from "@/models/auth/effects/effects";
+import { $userModel } from "@/models/auth";
+import { useUnit } from "effector-react";
 
 export default function useRegisterScreen({ navigation }: any) {
   const { t } = useTranslation();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [repeatPassword, setRepeatPassword] = useState("");
-  const [error, setError] = useState("");
+
+  const { error } = useUnit($userModel);
+  const [email, setEmail] = useState("1@mail.ru");
+  const [password, setPassword] = useState("111111");
+  const [repeatPassword, setRepeatPassword] = useState("111111");
+
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   const isDisabledRegister =
     email !== "" && password !== "" && repeatPassword !== "";
@@ -17,31 +23,38 @@ export default function useRegisterScreen({ navigation }: any) {
       registerFx({
         email: email,
         password: password,
+      }).then(() => {
+        navigation.navigate("finishRegister");
       });
-      navigation.navigate("finishRegister");
     }
   };
 
   const validateInputs = () => {
     if (!emailRegex.test(email)) {
-      setError(t("invalidEmail"));
+      setErrorEvent("invalidEmail");
       return false;
     } else if (password.length < 6) {
-      setError(t("shortPassword"));
+      setErrorEvent("shortPassword");
       return false;
     } else if (password !== repeatPassword) {
-      setError(t("passwordsDontMatch"));
+      setErrorEvent("passwordsDontMatch");
       return false;
     } else {
-      setError("");
+      setErrorEvent("");
       return true;
     }
   };
 
+  useEffect(() => {
+    return () => {
+      setErrorEvent("");
+    };
+  }, []);
+
   return {
     email,
     password,
-    error,
+    error: t(error),
     repeatPassword,
     isDisabledRegister,
     setEmail,

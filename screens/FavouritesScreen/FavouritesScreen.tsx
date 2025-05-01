@@ -10,10 +10,10 @@ export default function FavouritesScreen() {
   const { cards, selectedItem, modalVisible, setModalVisible, handlePress } =
     useFavouritesScreen();
 
-  const renderItem = ({ item, index }: { item: CardType; index: number }) => (
+  const renderItem = ({ item }: { item: CardType }) => (
     <FavouritesCard
       key={item.id}
-      style={{ marginRight: index % 2 === 0 ? 8 : 0, marginBottom: 8 }}
+      style={{ marginBottom: 8 }}
       item={item}
       onPress={() => handlePress(item)}
     />

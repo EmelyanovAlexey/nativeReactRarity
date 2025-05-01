@@ -6,6 +6,7 @@ import {
   Image,
   StyleSheet,
   ViewStyle,
+  Dimensions,
 } from "react-native";
 import Start from "@/components/Icons/Start";
 import { Colors } from "@/shared/constStyle";
@@ -43,6 +44,9 @@ const FavouritesCard = ({ style, item, onPress }: Props) => {
   );
 };
 
+const screenWidth = Dimensions.get("window").width;
+const calculatedWidth = screenWidth - 64 - 70;
+
 const styles = StyleSheet.create({
   card: {
     flex: 1,
@@ -66,9 +70,9 @@ const styles = StyleSheet.create({
     padding: 4,
   },
   info: {
-    width: "68%",
-    minWidth: "68%",
-    marginRight: "3%",
+    width: calculatedWidth,
+    minWidth: calculatedWidth,
+    marginRight: 3,
   },
   title: {
     fontWeight: 600,

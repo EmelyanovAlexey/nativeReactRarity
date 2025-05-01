@@ -44,6 +44,10 @@ export default function useLoginScreen() {
     if (isAuthenticated) {
       navigation.navigate("main");
     }
+
+    return () => {
+      setErrorEvent("");
+    };
   }, [isAuthenticated, navigation]);
 
   return {

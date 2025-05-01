@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
   header: {
     fontSize: 20,
     fontWeight: "bold",
-    marginBottom: 24,
+    marginBottom: 16,
   },
   list: {
     gap: 8,

@@ -39,8 +39,32 @@ app.post("/google/login", (req, res) => {
   verify().catch(console.error);
 });
 
+// Регистрация
+app.post("/plain/register", (req, res) => {
+  const { email, password } = req.body;
+  const user = users.find((u) => u.email === email && u.password === password);
+  if (!user) {
+    res.status(200).json({ message: "Успешный регистрация", user });
+  } else {
+    res.status(400).json({ error: "Пользователь уже есть с такими данными" });
+  }
+});
+
 // Поиск регионов по подстроке
-app.get("/plain/regions", (req, res) => {
+app.get("/countries", (req, res) => {
+  const { name } = req.query;
+  if (name) {
+    const filtered = countries.filter((region) =>
+      region.name.toLowerCase().includes(name.toLowerCase())
+    );
+    res.json(filtered);
+  } else {
+    res.json(countries);
+  }
+});
+
+// Поиск регионов по подстроке
+app.get("/regions", (req, res) => {
   const { name } = req.query;
   if (name) {
     const filtered = regions.filter((region) =>
@@ -49,6 +73,32 @@ app.get("/plain/regions", (req, res) => {
     res.json(filtered);
   } else {
     res.json(regions);
+  }
+});
+
+// Поиск регионов по подстроке
+app.get("/cities", (req, res) => {
+  const { name } = req.query;
+  if (name) {
+    const filtered = cities.filter((region) =>
+      region.name.toLowerCase().includes(name.toLowerCase())
+    );
+    res.json(filtered);
+  } else {
+    res.json(cities);
+  }
+});
+
+// Поиск регионов по подстроке
+app.get("/manufacturers", (req, res) => {
+  const { name } = req.query;
+  if (name) {
+    const filtered = manufacturers.filter((region) =>
+      region.name.toLowerCase().includes(name.toLowerCase())
+    );
+    res.json(filtered);
+  } else {
+    res.json(manufacturers);
   }
 });
 

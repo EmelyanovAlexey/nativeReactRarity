@@ -22,13 +22,23 @@ export const $userModel = createStore<UserModel>(USER_MODEL_DEFAULT)
 sample({
   clock: loginFx.failData,
   fn: (message: any) => {
-    console.log(message);
-
     if (message) {
       return String(message);
     }
 
     return "errorAuth";
+  },
+  target: setErrorEvent,
+});
+
+sample({
+  clock: registerFx.failData,
+  fn: (message: any) => {
+    if (message) {
+      return String(message);
+    }
+
+    return "errorRegister";
   },
   target: setErrorEvent,
 });
