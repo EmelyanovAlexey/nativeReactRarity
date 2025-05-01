@@ -12,8 +12,6 @@ import Start from "@/components/Icons/Start";
 import { Colors } from "@/shared/constStyle";
 import { CardType } from "@/models/home/types";
 
-const width = Dimensions.get("window").width;
-
 type Props = {
   style?: ViewStyle;
   item: CardType;

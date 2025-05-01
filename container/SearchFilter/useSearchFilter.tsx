@@ -16,7 +16,10 @@ export default function useBottomTabs() {
     selectedRegions,
     selectedCities,
     selectedManufacturers,
+    count,
   } = useUnit($searchModel);
+  const isLoading = true;
+
   const listFilter = [
     {
       id: TypeFilter.country,
@@ -59,6 +62,8 @@ export default function useBottomTabs() {
   return {
     textFilter: searchText,
     selectedFilter,
+    isLoading,
+    count,
     handleSearchFilter,
     handleDelete,
     handleOpenFilter,

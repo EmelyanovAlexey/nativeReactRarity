@@ -26,6 +26,7 @@ export default function useModalSearchFilter() {
   const [typeCurFilter, setTypeCurFilter] = useState<TypeFilter>(
     TypeFilter.empty
   );
+  const isLoading = false;
   const listFilterRoot: FilterRoot[] = [
     {
       id: TypeFilter.country,
@@ -75,6 +76,7 @@ export default function useModalSearchFilter() {
     textFilter: filterText,
     typeCurFilter,
     listFilterRoot,
+    isLoading,
     setModalVisibleSearch,
     onChangeSearchText,
     onSelectFilterRoot,

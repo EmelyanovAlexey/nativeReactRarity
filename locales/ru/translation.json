@@ -12,6 +12,8 @@
     "deleteText": "Вы действительно хотите удалить аккаунт?",
     "changeLanguageText": "Кликните, что бы изменить язык в приложении",
     "titleSearch": "Поиск",
+    "titleFilter": "Фильтры",
+    "titleSearchPhoto": "Поиск по изображению",
 
     "login": "Войти",
     "registerGoogle":"Регистрация через Google",
@@ -23,6 +25,8 @@
     "next": "Продолжить",
     "btnChangePassword": "Изменить пароль",
     "backProfile": "Вернуться в профиль",
+    "takePicture": "Сфотографировать",
+    "downloadFromGallery": "Загрузить из галереи",
 
     "enterEmail": "Введите свой адрес электронной почты",
     "comeUpPassword": "Придумайте пароль",
@@ -57,5 +61,10 @@
     "changePasswordTitle": "Смена пароля",
     "exit": "Выйти",
     "deleteAccount": "Удалить аккаунт",
-    "cancel": "Отмена"
+    "cancel": "Отмена",
+
+    "resultSearch": "Результат поиска",
+    "loadingSearch": "Ищем похожие объекты",
+
+    "errorAuth": "Ошибка авторизации"
 }

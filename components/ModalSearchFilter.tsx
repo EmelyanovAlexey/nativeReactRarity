@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useRef } from "react";
 import {
   View,
   Text,
@@ -6,10 +6,7 @@ import {
   ViewStyle,
   TouchableOpacity,
   ScrollView,
-  NativeScrollEvent,
-  NativeSyntheticEvent,
 } from "react-native";
-import Modal from "react-native-modal";
 import { Colors } from "@/shared/constStyle";
 import Сhevron from "@/components/Icons/Сhevron";
 import Arrow from "@/components/Icons/Arrow";
@@ -44,7 +41,7 @@ const ModalSearchFilter = ({
             </View>
           </TouchableOpacity>
 
-          <Text style={styles.modalTitle}>Фильтры</Text>
+          <Text style={styles.modalTitle}>{t("titleFilter")}</Text>
         </View>
 
         <ScrollView

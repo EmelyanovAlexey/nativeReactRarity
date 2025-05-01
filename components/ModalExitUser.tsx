@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
   modalTitle: {
     fontWeight: 600,
     fontSize: 20,
-    marginBottom: 12,
+    marginBottom: 16,
     fontFamily: "Inter_400Regular",
   },
 });

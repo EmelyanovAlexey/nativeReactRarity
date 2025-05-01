@@ -28,6 +28,7 @@ export interface SearchModel {
   isShowModal: boolean;
   isShowModalFilter: boolean;
   searchText: string;
+  count: number | null;
 
   countries: FilterOption[];
   selectedCountries: FilterOption | null;

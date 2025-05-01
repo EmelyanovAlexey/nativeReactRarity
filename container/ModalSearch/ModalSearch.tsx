@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Text, StyleSheet, ScrollView } from "react-native";
 
-import ModalSearch from '@/components/ModalSearch'
+import ModalSearch from "@/components/ModalSearch";
 
 import useModalSearch from "./useModalSearch";
 import { Colors } from "@/shared/constStyle";
@@ -14,16 +14,12 @@ export default function ModalSearchContaner() {
     onChangeSearchText,
   } = useModalSearch();
 
-  return  <ModalSearch 
-            modalVisible={modalVisibleSearch} 
-            searchText={textFilter} 
-            onChangeSearchText={onChangeSearchText} 
-            setModalVisible={setModalVisibleSearch} />
+  return (
+    <ModalSearch
+      modalVisible={modalVisibleSearch}
+      searchText={textFilter}
+      onChangeSearchText={onChangeSearchText}
+      setModalVisible={setModalVisibleSearch}
+    />
+  );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    width: "100%",
-    paddingHorizontal: 24,
-  },
-});

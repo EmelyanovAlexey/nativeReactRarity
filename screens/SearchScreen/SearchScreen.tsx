@@ -1,15 +1,30 @@
-import { View, StyleSheet } from "react-native";
-import { Colors } from "@/shared/constStyle";
-import useSearchScreen from "./useSearchScreen";
+import { View, Text, StyleSheet } from "react-native";
+import { useTranslation } from "react-i18next";
 
 import Photo from "@/components/Icons/Photo";
 import Button from "@/components/Button";
 import SearchFilterContainer from "@/container/SearchFilter";
 import ModalSearchContainer from "@/container/ModalSearch";
 import ModalSearchFilterContainer from "@/container/ModalSearchFilter";
+import Spinner from "@/components/Spinner";
+import ModalMenuSearchPhoto from "@/components/ModalMenuSearchPhoto";
+// import ModalCamera from "@/components/ModalCamera";
+
+import useSearchScreen from "./useSearchScreen";
+import { Colors } from "@/shared/constStyle";
 
 export default function SearchScreen() {
-  const { handleStartScan } = useSearchScreen();
+  const { t } = useTranslation();
+  const {
+    isLoading,
+    showPhotoMenu,
+    showPhotoCamera,
+    handleStartScan,
+    handleSetStartCamera,
+    handleLoadScan,
+    handleOpenMenuScan,
+    handleCloseMenuScan,
+  } = useSearchScreen();
 
   return (
     <View style={styles.container}>
@@ -17,11 +32,33 @@ export default function SearchScreen() {
       <ModalSearchContainer />
       <ModalSearchFilterContainer />
 
+      {isLoading && (
+        <View style={styles.loading}>
+          <Spinner />
+          <Text style={styles.loadingText}>{t("loadingSearch")}</Text>
+        </View>
+      )}
+
+      <ModalMenuSearchPhoto
+        modalVisible={showPhotoMenu}
+        setModalVisible={() => handleCloseMenuScan}
+        handleStartPhoto={() => handleSetStartCamera(true)}
+        handleLoadPhoto={handleLoadScan}
+      />
+
+      {/* {showPhotoCamera && (
+        <ModalCamera
+          setModalVisible={() => handleSetStartCamera(false)}
+          onCapture={() => {}}
+          onPickFromGallery={() => {}}
+        />
+      )} */}
+
       <Button
         filled={true}
         style={styles.button}
         leftContent={<Photo />}
-        onPress={handleStartScan}
+        onPress={handleOpenMenuScan}
       />
     </View>
   );
@@ -45,6 +82,21 @@ const styles = StyleSheet.create({
     marginBottom: 24,
     lineHeight: 20,
     letterSpacing: 0,
+  },
+  loading: {
+    width: "100%",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    marginTop: 250,
+  },
+  loadingText: {
+    fontWeight: 500,
+    fontSize: 16,
+    lineHeight: 16,
+    fontFamily: "Inter_400Regular",
+    color: Colors.GrayColor,
+    marginTop: 8,
   },
   button: {
     position: "fixed",

@@ -1,43 +1,41 @@
 import { useEffect, useState } from "react";
 import { useUnit } from "effector-react";
-import { loginFx } from "../../models/auth";
 import { useTranslation } from "react-i18next";
 import { useNavigation } from "@react-navigation/native";
 
+import { setErrorEvent } from "@/models/auth/events/events";
+import { loginFx } from "@/models/auth/effects/effects";
+import { $userModel } from "@/models/auth";
+
 export default function useLoginScreen() {
   const { t } = useTranslation();
-  const [email, setEmail] = useState("1@mai.ru");
+
+  const { error } = useUnit($userModel);
+  const [email, setEmail] = useState("1@mail.ru");
   const [password, setPassword] = useState("111111");
-  const [error, setError] = useState("");
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const navigation = useNavigation();
 
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   const isDisabledLogin = email !== "" && password !== "";
 
-  const login = useUnit(loginFx);
-
   const handleLogin = async () => {
-    // try {
-    //   await register({ email, password });
-    //   navigation.navigate("Home");
-    // } catch (err: any) {
-    //   Alert.alert("Ошибка", err.message);
-    // }
     if (validateInputs()) {
-      setIsAuthenticated(true);
+      loginFx({ email, password }).then(() => {
+        setIsAuthenticated(true);
+      });
     }
   };
 
   const validateInputs = () => {
     if (!emailRegex.test(email)) {
-      setError(() => t("invalidEmail"));
+      setErrorEvent("invalidEmail");
       return false;
     } else if (password.length < 1) {
-      setError(() => t("shortPassword"));
+      setErrorEvent("shortPassword");
       return false;
     } else {
-      setError("");
+      setErrorEvent("");
       return true;
     }
   };
@@ -51,7 +49,7 @@ export default function useLoginScreen() {
   return {
     email,
     password,
-    error,
+    error: t(error),
     isDisabledLogin,
     setEmail,
     setPassword,

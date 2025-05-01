@@ -10,14 +10,16 @@ type Props = {
   modalVisible: boolean;
   style?: ViewStyle;
   setModalVisible: (param: boolean) => void;
-  handleDelete: () => void;
+  handleStartPhoto: () => void;
+  handleLoadPhoto: () => void;
 };
 
-const ModalDeleteUser = ({
+const ModalMenuSearchPhoto = ({
   style,
   modalVisible = false,
   setModalVisible,
-  handleDelete = () => {},
+  handleStartPhoto = () => {},
+  handleLoadPhoto = () => {},
 }: Props) => {
   const { t } = useTranslation();
 
@@ -36,15 +38,18 @@ const ModalDeleteUser = ({
     >
       <View style={styles.modalContent}>
         <View style={styles.modalHeaderIndicator} />
-        <Text style={styles.modalTitle}>{t("deleteText")}</Text>
+        <Text style={styles.modalTitle}>{t("titleSearchPhoto")}</Text>
 
         <Button
-          title={t("exit")}
+          title={t("takePicture")}
           filled={true}
-          style={styles.btn}
-          onPress={handleDelete}
+          onPress={handleStartPhoto}
         />
-        <Button title={t("cancel")} filled={false} onPress={handleClose} />
+        <Button
+          title={t("downloadFromGallery")}
+          filled={false}
+          onPress={handleLoadPhoto}
+        />
       </View>
     </Modal>
   );
@@ -60,7 +65,7 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 24,
     borderTopRightRadius: 24,
     padding: 20,
-    height: 230,
+    height: 200,
   },
   modalHeaderIndicator: {
     width: 40,
@@ -76,10 +81,6 @@ const styles = StyleSheet.create({
     marginBottom: 16,
     fontFamily: "Inter_400Regular",
   },
-  btn: {
-    backgroundColor: Colors.RedColor,
-    borderColor: Colors.RedColor,
-  },
 });
 
-export default ModalDeleteUser;
+export default ModalMenuSearchPhoto;

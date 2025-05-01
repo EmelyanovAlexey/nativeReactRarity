@@ -20,6 +20,9 @@ i — iOS (только на macOS с Xcode)
 
  npx expo start -c
 
+ json-server --watch mock/db.json --port 3001  
+ node mock/server.js
+
 
  Дизайн
  https://www.figma.com/design/PdYz0ZCJpcYcTOec7OwRvM/porcelain?node-id=0-1&p=f&t=MN3wCBQ1EZpcG2zW-0

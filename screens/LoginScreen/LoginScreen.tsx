@@ -49,7 +49,8 @@ export default function LoginScreen() {
 
       {error !== "" && (
         <View style={styles.error}>
-          <Text style={styles.textError}>{t("invalidPassword")}</Text>
+          {/* "invalidPassword" */}
+          <Text style={styles.textError}>{t(error)}</Text>
           <Link to="help">{t("forgotPassword")}</Link>
         </View>
       )}

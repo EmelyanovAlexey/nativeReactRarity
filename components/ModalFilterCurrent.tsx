@@ -24,6 +24,7 @@ type Props = {
   options: FilterOption[];
   title: string;
   select: FilterOption | null;
+  isLoading: boolean;
   setModalVisible: (param: boolean) => void;
   onChangeSearchText: (param: string) => void;
   onSelect: (param: FilterOption) => void;
@@ -36,6 +37,7 @@ const ModalFilterCurrent = ({
   options = [],
   title = "",
   select,
+  isLoading,
   setModalVisible,
   onChangeSearchText,
   onSelect,
@@ -75,6 +77,7 @@ const ModalFilterCurrent = ({
             value={searchText}
             onChangeText={(param) => onChangeSearchText(param)}
             isSearch
+            isLoading={isLoading}
           />
         </View>
 

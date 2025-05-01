@@ -1,5 +1,6 @@
 import React from "react";
 import { View, Text, StyleSheet, ScrollView } from "react-native";
+import { useTranslation } from "react-i18next";
 
 import SearchBlock from "@/components/SearchBlock";
 import Chips from "@/components/Chips";
@@ -9,9 +10,12 @@ import useSearchFilter from "./useSearchFilter";
 import { Colors } from "@/shared/constStyle";
 
 export default function SearchFilter() {
+  const { t } = useTranslation();
   const {
     textFilter,
     selectedFilter,
+    isLoading,
+    count,
     handleSearchFilter,
     handleDelete,
     handleOpenFilter,
@@ -45,10 +49,12 @@ export default function SearchFilter() {
       )}
 
       <View style={styles.container}>
-        <Text style={styles.description}>Результат поиска</Text>
+        <Text style={styles.description}>
+          {t("resultSearch")} {count && `: ${count} шт.`}
+        </Text>
       </View>
 
-      {textFilter === "" && selectedFilter.length === 0 && (
+      {textFilter === "" && selectedFilter.length === 0 && !isLoading && (
         <View style={styles.startFilter}>
           <StartFilter />
         </View>

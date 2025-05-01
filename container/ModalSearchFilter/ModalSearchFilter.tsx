@@ -15,6 +15,7 @@ export default function ModalSearchFilterContainer() {
     textFilter,
     typeCurFilter,
     listFilterRoot,
+    isLoading,
     setModalVisibleSearch,
     onChangeSearchText,
     onSelectOption,
@@ -41,6 +42,7 @@ export default function ModalSearchFilterContainer() {
             searchText={textFilter}
             options={item?.options || []}
             select={item.select}
+            isLoading={isLoading}
             setModalVisible={() => onSelectFilterRoot(TypeFilter.empty)}
             onChangeSearchText={(param) => onChangeSearchText(param)}
             onSelect={(param) => onSelectOption(item.id, param)}

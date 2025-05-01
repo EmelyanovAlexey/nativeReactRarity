@@ -13,12 +13,14 @@ import EyeClosed from "@/components/Icons/EyeClosed";
 import EyeOpen from "@/components/Icons/EyeOpen";
 import Search from "@/components/Icons/Search";
 import Cross from "@/components/Icons/Cross";
+import Spinner from "@/components/Spinner";
 
 type AppInputProps = {
   isError?: boolean;
   isPassword?: boolean;
   style?: ViewStyle;
   isSearch?: boolean;
+  isLoading?: boolean;
 };
 
 export function Input(props: TextInputProps & AppInputProps) {
@@ -72,6 +74,12 @@ export function Input(props: TextInputProps & AppInputProps) {
           <Cross />
         </TouchableOpacity>
       )}
+
+      {props.isLoading && (
+        <View style={[styles.loading]}>
+          <Spinner size={30} />
+        </View>
+      )}
     </View>
   );
 }
@@ -112,6 +120,12 @@ const styles = StyleSheet.create({
     position: "absolute",
     right: 20,
     paddingVertical: 22,
+  },
+  loading: {
+    backgroundColor: Colors.Secondary,
+    position: "absolute",
+    right: 12,
+    top: 12,
   },
 });
 

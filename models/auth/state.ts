@@ -1,32 +1,34 @@
-import { createEvent, createEffect, createStore } from "effector";
+import { createStore, sample } from "effector";
 
-import { registerFx } from "./effects/effects";
-import { registerFxDoneHandler } from "./effects/effectHandlers";
-import { resetUserEvent } from "./events/events";
+import { registerFx, loginFx } from "./effects/effects";
+import {
+  registerFxDoneHandler,
+  loginFxDoneHandler,
+} from "./effects/effectHandlers";
+import { resetUserEvent, setErrorEvent } from "./events/events";
+import { setErrorEventHandler } from "./events/eventHandlers";
 
 import { USER_MODEL_DEFAULT } from "./constants";
 import { UserModel } from "./types";
 
-export const loginFx = createEffect(
-  async ({ email, password }: { email: string; password: string }) => {
-    // Пока заглушка — можно подключить API позже
-    if (email === "test@example.com" && password === "123456") {
-      return "mocked-jwt-token";
-    }
-    throw new Error("Неверный логин или пароль");
-  }
-);
-
-export const logout = createEvent();
-
-export const $token = createStore<string | null>(null)
-  .on(loginFx.doneData, (_, token) => token)
-
-  .reset(logout);
-
 export const $userModel = createStore<UserModel>(USER_MODEL_DEFAULT)
+  .on(setErrorEvent, setErrorEventHandler)
+
+  .on(loginFx.doneData, loginFxDoneHandler)
   .on(registerFx.doneData, registerFxDoneHandler)
   .reset(resetUserEvent);
 //   .reset(resetModelsOnLogoutEvent);
 
-export const $isAuth = $token.map(Boolean);
+sample({
+  clock: loginFx.failData,
+  fn: (message: any) => {
+    console.log(message);
+
+    if (message) {
+      return String(message);
+    }
+
+    return "errorAuth";
+  },
+  target: setErrorEvent,
+});
