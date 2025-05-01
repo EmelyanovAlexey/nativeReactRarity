@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useUnit } from "effector-react";
 
 import {
@@ -32,7 +32,25 @@ export default function useModalSearchFilter() {
   const [typeCurFilter, setTypeCurFilter] = useState<TypeFilter>(
     TypeFilter.empty
   );
-  const isLoading = false;
+  const [debouncedText, setDebouncedText] = useState<string>("");
+
+  const [
+    isCountriesLoading,
+    isRegionsLoading,
+    isCitiesLoading,
+    isManufacturersLoading,
+  ] = useUnit([
+    countriesFx.pending,
+    regionsFx.pending,
+    citiesFx.pending,
+    manufacturersFx.pending,
+  ]);
+
+  const isLoading =
+    isCountriesLoading ||
+    isRegionsLoading ||
+    isCitiesLoading ||
+    isManufacturersLoading;
   const listFilterRoot: FilterRoot[] = [
     {
       id: TypeFilter.country,
@@ -60,6 +78,23 @@ export default function useModalSearchFilter() {
     },
   ];
 
+  function getData(param: TypeFilter, text: string) {
+    switch (param) {
+      case TypeFilter.country:
+        countriesFx(text);
+        return;
+      case TypeFilter.area:
+        regionsFx(text);
+        return;
+      case TypeFilter.city:
+        citiesFx(text);
+        return;
+      case TypeFilter.manufacturer:
+        manufacturersFx(text);
+        return;
+    }
+  }
+
   const setModalVisibleSearch = (param: boolean) => {
     setIsShowModalFilterEvent(param);
   };
@@ -70,27 +105,29 @@ export default function useModalSearchFilter() {
 
   const onSelectFilterRoot = (param: TypeFilter) => {
     setTypeCurFilter(param);
-
-    switch (param) {
-      case TypeFilter.country:
-        countriesFx("");
-        return;
-      case TypeFilter.area:
-        regionsFx("");
-        return;
-      case TypeFilter.city:
-        citiesFx("");
-        return;
-      case TypeFilter.manufacturer:
-        manufacturersFx("");
-        return;
-    }
+    getData(param, "");
   };
 
   const onSelectOption = (type: TypeFilter, option: FilterOption) => {
     setSelectOptionEvent({ type, option });
     setTypeCurFilter(TypeFilter.empty);
   };
+
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      setDebouncedText(filterText);
+    }, 1000);
+
+    return () => {
+      clearTimeout(handler);
+    };
+  }, [filterText]);
+
+  useEffect(() => {
+    if (typeCurFilter !== TypeFilter.empty) {
+      getData(typeCurFilter, debouncedText);
+    }
+  }, [debouncedText, typeCurFilter]);
 
   return {
     modalVisibleSearch: isShowModalFilter,

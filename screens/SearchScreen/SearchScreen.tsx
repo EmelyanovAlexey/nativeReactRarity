@@ -30,7 +30,16 @@ export default function SearchScreen() {
     <View style={styles.container}>
       <SearchFilterContainer />
       <ModalSearchContainer />
+
       <ModalSearchFilterContainer />
+
+      {/* {showPhotoCamera && (
+        <ModalCamera
+          setModalVisible={() => handleSetStartCamera(false)}
+          onCapture={() => {}}
+          onPickFromGallery={() => {}}
+        />
+      )} */}
 
       {isLoading && (
         <View style={styles.loading}>
@@ -45,15 +54,6 @@ export default function SearchScreen() {
         handleStartPhoto={() => handleSetStartCamera(true)}
         handleLoadPhoto={handleLoadScan}
       />
-
-      {/* {showPhotoCamera && (
-        <ModalCamera
-          setModalVisible={() => handleSetStartCamera(false)}
-          onCapture={() => {}}
-          onPickFromGallery={() => {}}
-        />
-      )} */}
-
       <Button
         filled={true}
         style={styles.button}
@@ -67,6 +67,7 @@ export default function SearchScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    width: "100%",
     justifyContent: "flex-start",
     alignItems: "flex-start",
     paddingTop: 24,
@@ -86,6 +87,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     marginTop: 250,
+    zIndex: 1,
   },
   loadingText: {
     fontWeight: 500,

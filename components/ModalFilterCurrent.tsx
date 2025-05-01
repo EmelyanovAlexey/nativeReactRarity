@@ -78,6 +78,7 @@ const ModalFilterCurrent = ({
             onChangeText={(param) => onChangeSearchText(param)}
             isSearch
             isLoading={isLoading}
+            deleteText={() => onChangeSearchText("")}
           />
         </View>
 

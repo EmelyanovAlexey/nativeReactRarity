@@ -73,7 +73,7 @@ const ModalSearch = ({
       propagateSwipe
       scrollTo={(p) => scrollViewRef.current?.scrollTo(p)}
       scrollOffset={scrollOffset}
-      scrollOffsetMax={500} // можно подогнать по контенту
+      scrollOffsetMax={500}
     >
       <View style={styles.modalContent}>
         <View style={styles.modalHeaderIndicator} />
@@ -86,6 +86,7 @@ const ModalSearch = ({
             value={searchText}
             onChangeText={(param) => onChangeSearchText(param)}
             isSearch
+            deleteText={() => onChangeSearchText("")}
           />
         </View>
 
@@ -126,6 +127,7 @@ const styles = StyleSheet.create({
     justifyContent: "flex-end",
     margin: 0,
     width: "100%",
+    zIndex: 100,
   },
   modalContent: {
     backgroundColor: "#fff",

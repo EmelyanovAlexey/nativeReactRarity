@@ -83,6 +83,7 @@ const styles = StyleSheet.create({
     margin: 0,
     width: "100%",
     height: "100%",
+    zIndex: 100,
   },
   modalContent: {
     backgroundColor: Colors.WhiteColor,

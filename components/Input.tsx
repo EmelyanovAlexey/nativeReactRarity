@@ -21,17 +21,12 @@ type AppInputProps = {
   style?: ViewStyle;
   isSearch?: boolean;
   isLoading?: boolean;
+  deleteText?: () => void;
 };
 
 export function Input(props: TextInputProps & AppInputProps) {
   const [isPasswordVisible, setIsPasswordVisible] = useState<boolean>(false);
   const [isFocused, setIsFocused] = useState(false);
-  const [searchValue, setSearchValue] = useState(props.value); // Состояние для текста в инпуте
-
-  // Функция для очистки инпута
-  const handleClearInput = () => {
-    setSearchValue("");
-  };
 
   return (
     <View>
@@ -66,11 +61,8 @@ export function Input(props: TextInputProps & AppInputProps) {
         </Pressable>
       )}
 
-      {props.value !== "" && props.isSearch && (
-        <TouchableOpacity
-          style={[styles.delete]}
-          onPress={() => handleClearInput()}
-        >
+      {props.value !== "" && props.isSearch && props.deleteText && (
+        <TouchableOpacity style={[styles.delete]} onPress={props.deleteText}>
           <Cross />
         </TouchableOpacity>
       )}
