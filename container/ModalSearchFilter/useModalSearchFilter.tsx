@@ -1,5 +1,12 @@
+import { useState } from "react";
 import { useUnit } from "effector-react";
 
+import {
+  countriesFx,
+  regionsFx,
+  citiesFx,
+  manufacturersFx,
+} from "@/models/search/effects/effects";
 import { TypeFilter, FilterRoot, FilterOption } from "@/models/search/types";
 import { $searchModel } from "@/models/search";
 import {
@@ -8,7 +15,6 @@ import {
   setSearchTextEvent,
   setSelectOptionEvent,
 } from "@/models/search/events/events";
-import { useState } from "react";
 
 export default function useModalSearchFilter() {
   const {
@@ -64,6 +70,21 @@ export default function useModalSearchFilter() {
 
   const onSelectFilterRoot = (param: TypeFilter) => {
     setTypeCurFilter(param);
+
+    switch (param) {
+      case TypeFilter.country:
+        countriesFx("");
+        return;
+      case TypeFilter.area:
+        regionsFx("");
+        return;
+      case TypeFilter.city:
+        citiesFx("");
+        return;
+      case TypeFilter.manufacturer:
+        manufacturersFx("");
+        return;
+    }
   };
 
   const onSelectOption = (type: TypeFilter, option: FilterOption) => {

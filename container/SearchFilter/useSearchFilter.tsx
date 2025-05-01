@@ -1,6 +1,6 @@
 import { useUnit } from "effector-react";
 
-import { TypeFilter, FilterRoot, FilterOption } from "@/models/search/types";
+import { TypeFilter } from "@/models/search/types";
 import { $searchModel } from "@/models/search";
 import {
   setIsShowModalEvent,

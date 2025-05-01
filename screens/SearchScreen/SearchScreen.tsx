@@ -66,14 +66,11 @@ export default function SearchScreen() {
 
 const styles = StyleSheet.create({
   container: {
-    position: "relative",
     flex: 1,
     justifyContent: "flex-start",
     alignItems: "flex-start",
     paddingTop: 24,
     backgroundColor: Colors.BgcColor,
-    width: "100%",
-    height: "100%",
   },
   description: {
     textAlign: "center",
@@ -99,10 +96,10 @@ const styles = StyleSheet.create({
     marginTop: 8,
   },
   button: {
-    position: "fixed",
+    position: "absolute",
     paddingVertical: 14,
     paddingHorizontal: 13,
     right: 16,
-    bottom: 70,
+    bottom: 5,
   },
 });
