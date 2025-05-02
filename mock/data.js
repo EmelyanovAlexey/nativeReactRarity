@@ -77,4 +77,16 @@ const manufacturers = [
   },
 ];
 
-module.exports = { users, countries, regions, cities, manufacturers };
+const cards = [
+  {
+    id: 0,
+    name: "Jäger, Thomas & Co.",
+    description:
+      "Центральный мотив включает в себя сложный цветочный узор, выполненный вручную с использованием ярких цветов, которые сохранили свою яркость на протяжении многих лет. Вокруг основного дизайна расположены детализированные бордюрные узоры, типичные для стиля",
+    production_years: "string",
+    photo_links:
+      "https://i.pinimg.com/originals/5d/e2/42/5de24294bad21ec99931f4c362354f22.jpg",
+  },
+];
+
+module.exports = { users, countries, regions, cities, manufacturers, cards };

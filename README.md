@@ -3,7 +3,9 @@
 npm install -g expo-cli
 
 2 Установить зависимости
-npm install
+npm install 
+или
+npm install --legacy-peer-deps 
 
 3 старт Проекта
 <что бы на телефоне смотреть установаить expo go и быть в одной сети. проблема что моки не работаю так>
@@ -20,7 +22,6 @@ npx expo start -c
     -   далее запуск в отдельном терминале
 
         ```
-        json-server --watch mock/db.json --port 3001  
         node mock/server.js
         ```
 
