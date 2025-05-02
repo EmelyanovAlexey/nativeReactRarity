@@ -1,11 +1,22 @@
+# Нативное react приложение
+> Дипломная работа - Разработка программного мобильного обеспечения для поиска чего-то на подобии самоката по макету [Ссылка на макет](https://www.figma.com/design/PdYz0ZCJpcYcTOec7OwRvM/porcelain?node-id=0-1&p=f&t=MN3wCBQ1EZpcG2zW-0)
+
+---
+
+### Начало работы
+ - Нужно уставноить node
+ - Установи Expo 
+ > npm install -g expo-cli
+
+
 НАЧАЛО РАБОТЫ
 1 Установи Expo
-npm install -g expo-cli
+    npm install -g expo-cli
 
 2 Установить зависимости
-npm install 
+    npm install 
 или
-npm install --legacy-peer-deps 
+    npm install --legacy-peer-deps 
 
 3 старт Проекта
 <что бы на телефоне смотреть установаить expo go и быть в одной сети. проблема что моки не работаю так>
@@ -21,9 +32,8 @@ npx expo start -c
     -   shared/getUrl там указать адреса
     -   далее запуск в отдельном терминале
 
-        ```
         node mock/server.js
-        ```
+
 
 
 
