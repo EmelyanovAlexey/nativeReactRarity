@@ -6,33 +6,31 @@
 ### Начало работы
  - Нужно уставноить node
  - Установи Expo 
-    npm install -g expo-cli
 
+    > npm install -g expo-cli
 
-НАЧАЛО РАБОТЫ
-1 Установи Expo
-    npm install -g expo-cli
+ - Установить зависимости
 
-2 Установить зависимости
-    npm install 
-или
-    npm install --legacy-peer-deps 
+    > npm install 
 
-3 старт Проекта
-<что бы на телефоне смотреть установаить expo go и быть в одной сети. проблема что моки не работаю так>
+    или
 
-npx expo start -c
+    > npm install --legacy-peer-deps 
+
+ - Cтарт gроекта 
+    <что бы на телефоне смотреть установаить expo go и быть в одной сети. проблема что моки не работаю так>
+
+    > npx expo start -c
     -   w — веб-версия
     -   a — Android (если есть эмулятор или подключённый телефон)
     -   i — iOS (только на macOS с Xcode)
 
-
-4 работа с мок сервером, если требуется.
+ - Работа с мок сервером, если требуется.
     -   shared/constants USE_MOCK = true
     -   shared/getUrl там указать адреса
     -   далее запуск в отдельном терминале
 
-        node mock/server.js
+    > node mock/server.js
 
 
 
@@ -43,7 +41,9 @@ https://www.figma.com/design/PdYz0ZCJpcYcTOec7OwRvM/porcelain?node-id=0-1&p=f&t=
 
 Архитектура
 /src
+
  ├── /app          — точки входа и инициализация
+ 
  ├── /screens      — экраны (Login, Register, Home и т.д.)
  ├── /model        — Effector-модели: userStore, authStore
  ├── /shared       — UI-компоненты и утилиты
