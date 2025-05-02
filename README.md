@@ -1,10 +1,13 @@
 # Нативное react приложение
 > Разработка программного мобильного обеспечения для поиска чего-то на подобии самоката по макету [Ссылка на макет](https://www.figma.com/design/PdYz0ZCJpcYcTOec7OwRvM/porcelain?node-id=0-1&p=f&t=MN3wCBQ1EZpcG2zW-0)
 
+Дизайн
+https://www.figma.com/design/PdYz0ZCJpcYcTOec7OwRvM/porcelain?node-id=0-1&p=f&t=MN3wCBQ1EZpcG2zW-0
+
 ---
 
 ### Начало работы
- - Нужно уставноить node
+ - Нужно установить node
  - Установи Expo 
 
     > npm install -g expo-cli
@@ -18,7 +21,7 @@
     > npm install --legacy-peer-deps 
 
  - Cтарт gроекта 
-    <что бы на телефоне смотреть установаить expo go и быть в одной сети. проблема что моки не работаю так>
+    <что бы на телефоне смотреть установить expo go и быть в одной сети. проблема что моки не работаю так>
 
     > npx expo start -c
     -   w — веб-версия
@@ -32,12 +35,7 @@
 
     > node mock/server.js
 
-
-
-
-Дизайн
-https://www.figma.com/design/PdYz0ZCJpcYcTOec7OwRvM/porcelain?node-id=0-1&p=f&t=MN3wCBQ1EZpcG2zW-0
-
+---
 
 Архитектура
 /src
@@ -45,8 +43,11 @@ https://www.figma.com/design/PdYz0ZCJpcYcTOec7OwRvM/porcelain?node-id=0-1&p=f&t=
  ├── /app          — точки входа и инициализация
 
  ├── /screens      — экраны (Login, Register, Home и т.д.)
+
  ├── /model        — Effector-модели: userStore, authStore
+
  ├── /shared       — UI-компоненты и утилиты
+
  └── /mock         — HTTP-клиент и API-функции
 
 
