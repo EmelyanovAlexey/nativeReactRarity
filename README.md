@@ -6,7 +6,7 @@
 ### Начало работы
  - Нужно уставноить node
  - Установи Expo 
- > npm install -g expo-cli
+    npm install -g expo-cli
 
 
 НАЧАЛО РАБОТЫ
