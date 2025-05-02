@@ -14,7 +14,7 @@ export default function SearchFilter() {
   const {
     textFilter,
     selectedFilter,
-    isLoading,
+    isShowStart,
     count,
     handleSearchFilter,
     handleDelete,
@@ -54,7 +54,7 @@ export default function SearchFilter() {
         </Text>
       </View>
 
-      {textFilter === "" && selectedFilter.length === 0 && !isLoading && (
+      {isShowStart && (
         <View style={styles.startFilter}>
           <StartFilter />
         </View>
@@ -91,5 +91,6 @@ const styles = StyleSheet.create({
     height: "90%",
     top: "24%",
     overflow: "hidden",
+    zIndex: 2,
   },
 });

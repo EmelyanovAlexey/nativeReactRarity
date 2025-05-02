@@ -18,6 +18,7 @@ export default function useBottomTabs() {
     selectedCities,
     selectedManufacturers,
     count,
+    cards,
   } = useUnit($searchModel);
   const isLoading = useUnit(getCardsFx.pending);
 
@@ -44,6 +45,12 @@ export default function useBottomTabs() {
     (filterItem) => filterItem.select !== null
   );
 
+  const isShowStart =
+    searchText === "" &&
+    selectedFilter.length === 0 &&
+    cards.length == 0 &&
+    !isLoading;
+
   const handleSearchFilter = () => {
     setIsShowModalEvent(true);
   };
@@ -65,6 +72,7 @@ export default function useBottomTabs() {
     selectedFilter,
     isLoading,
     count,
+    isShowStart,
     handleSearchFilter,
     handleDelete,
     handleOpenFilter,
