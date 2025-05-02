@@ -1,5 +1,5 @@
 # Нативное react приложение
-> Дипломная работа - Разработка программного мобильного обеспечения для поиска чего-то на подобии самоката по макету [Ссылка на макет](https://www.figma.com/design/PdYz0ZCJpcYcTOec7OwRvM/porcelain?node-id=0-1&p=f&t=MN3wCBQ1EZpcG2zW-0)
+> Разработка программного мобильного обеспечения для поиска чего-то на подобии самоката по макету [Ссылка на макет](https://www.figma.com/design/PdYz0ZCJpcYcTOec7OwRvM/porcelain?node-id=0-1&p=f&t=MN3wCBQ1EZpcG2zW-0)
 
 ---
 
@@ -43,7 +43,7 @@ https://www.figma.com/design/PdYz0ZCJpcYcTOec7OwRvM/porcelain?node-id=0-1&p=f&t=
 /src
 
  ├── /app          — точки входа и инициализация
- 
+
  ├── /screens      — экраны (Login, Register, Home и т.д.)
  ├── /model        — Effector-модели: userStore, authStore
  ├── /shared       — UI-компоненты и утилиты
