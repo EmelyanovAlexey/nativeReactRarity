@@ -18,6 +18,7 @@ export default function HomeScreen() {
     modalVisible,
     handleCloseDetail,
     handlePress,
+    handleSetFavorite,
   } = useHomeScreen();
 
   const renderItem = ({ item, index }: { item: CardType; index: number }) => (
@@ -54,6 +55,7 @@ export default function HomeScreen() {
           isLoading={cardDetailLoading}
           modalVisible={modalVisible}
           setModalVisible={handleCloseDetail}
+          setIsFavorite={handleSetFavorite}
         />
       )}
     </View>

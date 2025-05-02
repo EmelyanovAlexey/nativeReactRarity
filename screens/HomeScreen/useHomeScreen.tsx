@@ -1,11 +1,11 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useUnit } from "effector-react";
 
 import {
   getCardsFx,
   getCardsDetailFx,
   setFavouriteFx,
-} from "@/models/search/effects/effects";
+} from "@/models/home/effects/effects";
 
 import { CardType } from "@/models/home/types";
 import { $popularModel } from "@/models/home";
@@ -18,6 +18,7 @@ export default function useHomeScreen() {
   const cardDetailLoading = useUnit(getCardsDetailFx.pending);
 
   const handlePress = (item: CardType) => {
+    getCardsDetailFx(item.id);
     setSelectedItem(item);
     setModalVisible(true);
   };
@@ -25,6 +26,14 @@ export default function useHomeScreen() {
   const handleCloseDetail = () => {
     setModalVisible(false);
   };
+
+  const handleSetFavorite = (id: number) => {
+    setFavouriteFx(id);
+  };
+
+  useEffect(() => {
+    getCardsFx({});
+  }, []);
 
   return {
     cards,
@@ -35,5 +44,6 @@ export default function useHomeScreen() {
     modalVisible,
     handleCloseDetail,
     handlePress,
+    handleSetFavorite,
   };
 }

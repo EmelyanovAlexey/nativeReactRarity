@@ -16,10 +16,12 @@ import {
 import { resetPopularEvent, clearDetailCardEvent } from "./events/events";
 import { clearDetailCardEventHandler } from "./events/eventHandlers";
 
-import { POPULAR_MODEL_DEFAULT } from "./constants";
-import { PopularModel } from "./types";
+import { FAVOURITES_MODEL_DEFAULT } from "./constants";
+import { FavouritesModel } from "./types";
 
-export const $popularModel = createStore<PopularModel>(POPULAR_MODEL_DEFAULT)
+export const $favouritesModel = createStore<FavouritesModel>(
+  FAVOURITES_MODEL_DEFAULT
+)
   .on(clearDetailCardEvent, clearDetailCardEventHandler)
 
   .on(getCardsFx.doneData, getCardsFxDoneHandler)

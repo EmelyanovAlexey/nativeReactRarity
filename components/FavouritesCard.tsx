@@ -16,9 +16,18 @@ type Props = {
   style?: ViewStyle;
   item: CardType;
   onPress: () => void;
+  setIsFavorite: (id: number) => void;
 };
 
-const FavouritesCard = ({ style, item, onPress }: Props) => {
+const FavouritesCard = ({ style, item, onPress, setIsFavorite }: Props) => {
+  const toggleFavorite = () => {
+    if (item === null) {
+      return;
+    }
+
+    setIsFavorite(item.id);
+  };
+
   return (
     <TouchableOpacity style={[styles.card, style]} onPress={onPress}>
       <View style={styles.imageContainer}>
@@ -34,18 +43,18 @@ const FavouritesCard = ({ style, item, onPress }: Props) => {
         </Text>
       </View>
 
-      <View style={styles.starIcon}>
+      <TouchableOpacity style={styles.starIcon} onPress={toggleFavorite}>
         <Start
           stroke={item.is_favourite ? Colors.GrayColor : Colors.Primary}
           fill={item.is_favourite ? Colors.Primary : Colors.Transparent}
         />
-      </View>
+      </TouchableOpacity>
     </TouchableOpacity>
   );
 };
 
 const screenWidth = Dimensions.get("window").width;
-const calculatedWidth = screenWidth - 64 - 70;
+const calculatedWidth = screenWidth - 64 - 80 - 6;
 
 const styles = StyleSheet.create({
   card: {
@@ -71,7 +80,6 @@ const styles = StyleSheet.create({
   },
   info: {
     width: calculatedWidth,
-    minWidth: calculatedWidth,
     marginRight: 3,
   },
   title: {

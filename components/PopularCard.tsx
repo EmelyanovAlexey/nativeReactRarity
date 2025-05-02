@@ -5,7 +5,6 @@ import {
   TouchableOpacity,
   Image,
   StyleSheet,
-  Dimensions,
   ViewStyle,
 } from "react-native";
 import Start from "@/components/Icons/Start";

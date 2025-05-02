@@ -118,7 +118,6 @@ app.get("/items", (req, res) => {
 // Получить карточку по ID
 app.get("/items/:item_id", (req, res) => {
   const itemId = req.params.item_id;
-  console.log("itemId", itemId);
 
   const item = itemsDetail.find((item) => item.id === Number(itemId));
 
@@ -129,7 +128,20 @@ app.get("/items/:item_id", (req, res) => {
   res.json(item);
 });
 
-// Получить список всех карточек
+// Смена активности звезды
+app.put("/items/:item_id/markfav", (req, res) => {
+  const itemId = req.params.item_id;
+
+  const item = items.find((item) => item.id === Number(itemId));
+
+  if (!item) {
+    return res.status(404).json({ message: "Item not found" });
+  }
+
+  res.json(item);
+});
+
+// Получить список всех карточек избранного
 app.get("/items/favourites", (req, res) => {
   const itemFavourite = items.filter((item) => item.is_favourite);
   res.json(itemFavourite);

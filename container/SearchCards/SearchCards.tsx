@@ -23,6 +23,7 @@ export default function SearchFilter() {
     modalVisible,
     handleCloseDetail,
     handlePress,
+    handleSetFavorite,
   } = useSearchCards();
 
   const renderItem = ({ item }: { item: CardType }) => (
@@ -31,6 +32,7 @@ export default function SearchFilter() {
       style={{ marginBottom: 8 }}
       item={item}
       onPress={() => handlePress(item)}
+      setIsFavorite={handleSetFavorite}
     />
   );
 
@@ -58,6 +60,7 @@ export default function SearchFilter() {
           isLoading={cardDetailLoading}
           modalVisible={modalVisible}
           setModalVisible={handleCloseDetail}
+          setIsFavorite={handleSetFavorite}
         />
       )}
     </View>
@@ -65,13 +68,14 @@ export default function SearchFilter() {
 }
 
 const screenWidth = Dimensions.get("window").width;
-const calculatedWidth = screenWidth - 32 - 16;
+const calculatedWidth = screenWidth - 45;
 
 const styles = StyleSheet.create({
   container: {
-    // width: calculatedWidth,
-    marginLeft: 16,
-    marginTop: 8,
+    flex: 1,
+    paddingHorizontal: 20,
+    paddingTop: 8,
+    backgroundColor: "#fff",
   },
   header: {
     fontSize: 20,
@@ -80,6 +84,7 @@ const styles = StyleSheet.create({
   },
   list: {
     gap: 8,
+    width: calculatedWidth,
   },
   loading: {
     width: "100%",

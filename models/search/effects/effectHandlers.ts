@@ -42,3 +42,23 @@ export function getCardsDetailFxDoneHandler(
 ): SearchModel {
   return { ...state, cardDetail: data };
 }
+
+export function setFavouriteFxDoneHandler(
+  state: SearchModel,
+  data: CardType
+): SearchModel {
+  return {
+    ...state,
+    cards: state.cards.map((card) => {
+      if (card.id === data.id) {
+        return { ...card, is_favourite: !card.is_favourite };
+      }
+
+      return card;
+    }),
+    cardDetail:
+      state.cardDetail !== null
+        ? { ...state.cardDetail, is_favourite: !state.cardDetail.is_favourite }
+        : null,
+  };
+}

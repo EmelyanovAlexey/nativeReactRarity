@@ -26,6 +26,7 @@ type Props = {
   isLoading: boolean;
   style?: ViewStyle;
   setModalVisible: (param: boolean) => void;
+  setIsFavorite: (id: number) => void;
 };
 
 const PopularCardDetail = ({
@@ -34,6 +35,7 @@ const PopularCardDetail = ({
   data,
   isLoading,
   setModalVisible,
+  setIsFavorite,
 }: Props) => {
   const { t } = useTranslation();
   const scrollViewRef = useRef<ScrollView>(null);
@@ -55,7 +57,11 @@ const PopularCardDetail = ({
   };
 
   const toggleFavorite = () => {
-    // setIsFavorite((prev) => !prev);
+    if (data === null) {
+      return;
+    }
+
+    setIsFavorite(data.id);
   };
 
   const handleScroll = (event: NativeSyntheticEvent<NativeScrollEvent>) => {

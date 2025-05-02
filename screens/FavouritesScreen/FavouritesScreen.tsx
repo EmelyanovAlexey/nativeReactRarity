@@ -3,12 +3,22 @@ import { View, StyleSheet, Text, FlatList } from "react-native";
 import { CardType } from "@/models/home/types";
 import useFavouritesScreen from "./useFavouritesScreen";
 
+import Spinner from "@/components/Spinner";
 import PopularCardDetail from "@/components/PopularCardDetail";
 import FavouritesCard from "@/components/FavouritesCard";
 
 export default function FavouritesScreen() {
-  const { cards, selectedItem, modalVisible, setModalVisible, handlePress } =
-    useFavouritesScreen();
+  const {
+    cards,
+    isLoading,
+    cardDetail,
+    cardDetailLoading,
+    selectedItem,
+    modalVisible,
+    setModalVisible,
+    handlePress,
+    handleSetFavorite,
+  } = useFavouritesScreen();
 
   const renderItem = ({ item }: { item: CardType }) => (
     <FavouritesCard
@@ -16,6 +26,7 @@ export default function FavouritesScreen() {
       style={{ marginBottom: 8 }}
       item={item}
       onPress={() => handlePress(item)}
+      setIsFavorite={handleSetFavorite}
     />
   );
 
@@ -27,13 +38,22 @@ export default function FavouritesScreen() {
         keyExtractor={(item: any) => item.id}
         numColumns={1}
         contentContainerStyle={styles.list}
+        showsVerticalScrollIndicator={false}
       />
+
+      {isLoading && (
+        <View style={styles.loading}>
+          <Spinner />
+        </View>
+      )}
 
       {selectedItem !== null && (
         <PopularCardDetail
-          data={selectedItem}
+          data={cardDetail}
+          isLoading={cardDetailLoading}
           modalVisible={modalVisible}
           setModalVisible={(param: boolean) => setModalVisible(param)}
+          setIsFavorite={handleSetFavorite}
         />
       )}
     </View>
@@ -54,5 +74,13 @@ const styles = StyleSheet.create({
   },
   list: {
     gap: 8,
+  },
+  loading: {
+    width: "100%",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    marginTop: 250,
+    zIndex: 1,
   },
 });

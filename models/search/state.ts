@@ -9,6 +9,7 @@ import {
   manufacturersFxDoneHandler,
   getCardsFxDoneHandler,
   getCardsDetailFxDoneHandler,
+  setFavouriteFxDoneHandler,
 } from "./effects/effectHandlers";
 import {
   countriesFx,
@@ -17,6 +18,7 @@ import {
   manufacturersFx,
   getCardsFx,
   getCardsDetailFx,
+  setFavouriteFx,
 } from "./effects/effects";
 
 import {
@@ -50,6 +52,7 @@ export const $searchModel = createStore<SearchModel>(SEARCH_MODEL_DEFAULT)
   .on(manufacturersFx.doneData, manufacturersFxDoneHandler)
   .on(getCardsFx.doneData, getCardsFxDoneHandler)
   .on(getCardsDetailFx.doneData, getCardsDetailFxDoneHandler)
+  .on(setFavouriteFx.doneData, setFavouriteFxDoneHandler)
 
   .reset(resetSearchEvent);
 //   .reset(resetModelsOnLogoutEvent);

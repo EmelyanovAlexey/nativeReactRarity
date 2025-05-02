@@ -1,23 +1,24 @@
-import { PopularModel, CardType, CardDetailType } from "../types";
+import { FavouritesModel } from "../types";
+import { CardType, CardDetailType } from "@/models/home/types";
 
 export function getCardsFxDoneHandler(
-  state: PopularModel,
+  state: FavouritesModel,
   data: CardType[]
-): PopularModel {
+): FavouritesModel {
   return { ...state, cards: data };
 }
 
 export function getCardsDetailFxDoneHandler(
-  state: PopularModel,
+  state: FavouritesModel,
   data: CardDetailType
-): PopularModel {
+): FavouritesModel {
   return { ...state, cardDetail: data };
 }
 
 export function setFavouriteFxDoneHandler(
-  state: PopularModel,
+  state: FavouritesModel,
   data: CardType
-): PopularModel {
+): FavouritesModel {
   return {
     ...state,
     cards: state.cards.map((card) => {

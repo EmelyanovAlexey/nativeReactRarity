@@ -28,6 +28,10 @@ export default function useBottomTabs() {
     clearDetailCardEvent();
   };
 
+  const handleSetFavorite = (id: number) => {
+    setFavouriteFx(id);
+  };
+
   return {
     cards,
     isLoading,
@@ -37,5 +41,6 @@ export default function useBottomTabs() {
     modalVisible,
     handleCloseDetail,
     handlePress,
+    handleSetFavorite,
   };
 }
