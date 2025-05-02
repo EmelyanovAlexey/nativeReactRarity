@@ -3,7 +3,7 @@ import { createStore, sample } from "effector";
 // import { resetModelsOnLogoutEvent } from "../../applicationState/events";
 
 import {
-  getCardsFx,
+  getCardsFavouritesFx,
   getCardsDetailFx,
   setFavouriteFx,
 } from "./effects/effects";
@@ -13,8 +13,15 @@ import {
   setFavouriteFxDoneHandler,
 } from "./effects/effectHandlers";
 
-import { resetPopularEvent, clearDetailCardEvent } from "./events/events";
-import { clearDetailCardEventHandler } from "./events/eventHandlers";
+import {
+  resetPopularEvent,
+  clearDetailCardEvent,
+  setCardEvent,
+} from "./events/events";
+import {
+  clearDetailCardEventHandler,
+  setCardEventHandler,
+} from "./events/eventHandlers";
 
 import { FAVOURITES_MODEL_DEFAULT } from "./constants";
 import { FavouritesModel } from "./types";
@@ -23,8 +30,9 @@ export const $favouritesModel = createStore<FavouritesModel>(
   FAVOURITES_MODEL_DEFAULT
 )
   .on(clearDetailCardEvent, clearDetailCardEventHandler)
+  .on(setCardEvent, setCardEventHandler)
 
-  .on(getCardsFx.doneData, getCardsFxDoneHandler)
+  .on(getCardsFavouritesFx.doneData, getCardsFxDoneHandler)
   .on(getCardsDetailFx.doneData, getCardsDetailFxDoneHandler)
   .on(setFavouriteFx.doneData, setFavouriteFxDoneHandler)
   .reset(resetPopularEvent);

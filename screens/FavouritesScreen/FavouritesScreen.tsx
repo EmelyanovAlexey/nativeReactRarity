@@ -15,7 +15,7 @@ export default function FavouritesScreen() {
     cardDetailLoading,
     selectedItem,
     modalVisible,
-    setModalVisible,
+    handleCloseDetail,
     handlePress,
     handleSetFavorite,
   } = useFavouritesScreen();
@@ -52,7 +52,7 @@ export default function FavouritesScreen() {
           data={cardDetail}
           isLoading={cardDetailLoading}
           modalVisible={modalVisible}
-          setModalVisible={(param: boolean) => setModalVisible(param)}
+          setModalVisible={handleCloseDetail}
           setIsFavorite={handleSetFavorite}
         />
       )}

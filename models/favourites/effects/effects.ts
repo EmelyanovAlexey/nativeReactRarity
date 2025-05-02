@@ -1,19 +1,16 @@
 import { createEffect } from "effector";
-import {
-  getCardsAPI,
-  getCardsDetailAPI,
-  setFavouriteAPI,
-} from "@/models/home/effects/api";
+import { getCardsDetailAPI, setFavouriteAPI } from "@/models/home/effects/api";
+import { getCardsFavouritesAPI } from "./api";
 
 import { ResponseError } from "@/shared/types";
-import { getCardsFxParam, CardType, CardDetailType } from "@/models/home/types";
+import { CardType, CardDetailType } from "@/models/home/types";
 
-export const getCardsFx = createEffect<
-  getCardsFxParam,
+export const getCardsFavouritesFx = createEffect<
+  void,
   CardType[],
   ResponseError
 >();
-getCardsFx.use(getCardsAPI);
+getCardsFavouritesFx.use(getCardsFavouritesAPI);
 
 export const getCardsDetailFx = createEffect<
   number,

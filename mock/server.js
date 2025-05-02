@@ -115,6 +115,12 @@ app.get("/items", (req, res) => {
   res.json(items);
 });
 
+// Получить список всех карточек избранного
+app.get("/items/favourites", (req, res) => {
+  const itemFavourite = items.filter((item) => item.is_favourite);
+  res.json(itemFavourite);
+});
+
 // Получить карточку по ID
 app.get("/items/:item_id", (req, res) => {
   const itemId = req.params.item_id;
@@ -139,12 +145,6 @@ app.put("/items/:item_id/markfav", (req, res) => {
   }
 
   res.json(item);
-});
-
-// Получить список всех карточек избранного
-app.get("/items/favourites", (req, res) => {
-  const itemFavourite = items.filter((item) => item.is_favourite);
-  res.json(itemFavourite);
 });
 
 app.listen(3001, () => {

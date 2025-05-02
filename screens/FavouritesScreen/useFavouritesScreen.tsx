@@ -2,11 +2,14 @@ import { useEffect, useState } from "react";
 import { useUnit } from "effector-react";
 
 import {
-  getCardsFx,
+  getCardsFavouritesFx,
   getCardsDetailFx,
   setFavouriteFx,
 } from "@/models/favourites/effects/effects";
-
+import {
+  setCardEvent,
+  clearDetailCardEvent,
+} from "@/models/favourites/events/events";
 import { CardType } from "@/models/home/types";
 import { $favouritesModel } from "@/models/favourites";
 
@@ -14,7 +17,7 @@ export default function useFavouritesScreen() {
   const { cards, cardDetail } = useUnit($favouritesModel);
   const [selectedItem, setSelectedItem] = useState<CardType | null>(null);
   const [modalVisible, setModalVisible] = useState<boolean>(false);
-  const isLoading = useUnit(getCardsFx.pending);
+  const isLoading = useUnit(getCardsFavouritesFx.pending);
   const cardDetailLoading = useUnit(getCardsDetailFx.pending);
 
   const handlePress = (item: CardType) => {
@@ -25,10 +28,24 @@ export default function useFavouritesScreen() {
 
   const handleSetFavorite = (id: number) => {
     setFavouriteFx(id);
+
+    if (selectedItem) {
+      if (cardDetail?.is_favourite === false) {
+        setCardEvent(id);
+      }
+    }
+  };
+
+  const handleCloseDetail = () => {
+    if (cardDetail?.is_favourite === false) {
+      setCardEvent(cardDetail.id);
+    }
+    setModalVisible(false);
+    clearDetailCardEvent();
   };
 
   useEffect(() => {
-    getCardsFx({});
+    getCardsFavouritesFx();
   }, []);
 
   return {
@@ -38,7 +55,7 @@ export default function useFavouritesScreen() {
     cardDetailLoading,
     selectedItem,
     modalVisible,
-    setModalVisible,
+    handleCloseDetail,
     handlePress,
     handleSetFavorite,
   };
