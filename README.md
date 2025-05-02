@@ -37,7 +37,7 @@ https://www.figma.com/design/PdYz0ZCJpcYcTOec7OwRvM/porcelain?node-id=0-1&p=f&t=
 
 ---
 
-Архитектура
+### Архитектура
 /src
 
  ├── /app          — точки входа и инициализация
