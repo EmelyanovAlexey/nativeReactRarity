@@ -7,12 +7,12 @@ https://www.figma.com/design/PdYz0ZCJpcYcTOec7OwRvM/porcelain?node-id=0-1&p=f&t=
 ---
 
 ### Начало работы
- - Нужно установить node
- - Установи Expo 
+ - 1 Нужно установить node
+ - 2 Установи Expo 
 
     > npm install -g expo-cli
 
- - Установить зависимости
+ - 3 Установить зависимости
 
     > npm install 
 
@@ -20,7 +20,7 @@ https://www.figma.com/design/PdYz0ZCJpcYcTOec7OwRvM/porcelain?node-id=0-1&p=f&t=
 
     > npm install --legacy-peer-deps 
 
- - Cтарт gроекта 
+ - 4 Cтарт gроекта 
     <что бы на телефоне смотреть установить expo go и быть в одной сети. проблема что моки не работаю так>
 
     > npx expo start -c
@@ -28,7 +28,7 @@ https://www.figma.com/design/PdYz0ZCJpcYcTOec7OwRvM/porcelain?node-id=0-1&p=f&t=
     -   a — Android (если есть эмулятор или подключённый телефон)
     -   i — iOS (только на macOS с Xcode)
 
- - Работа с мок сервером, если требуется.
+ - 5 Работа с мок сервером, если требуется.
     -   shared/constants USE_MOCK = true
     -   shared/getUrl там указать адреса
     -   далее запуск в отдельном терминале
