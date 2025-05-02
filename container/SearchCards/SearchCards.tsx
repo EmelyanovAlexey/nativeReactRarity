@@ -1,29 +1,34 @@
-import { View, StyleSheet, Text, FlatList } from "react-native";
-
-import { CardType } from "@/models/home/types";
+import React from "react";
+import { View, Text, StyleSheet, FlatList, Dimensions } from "react-native";
+import { useTranslation } from "react-i18next";
 
 import Spinner from "@/components/Spinner";
+
+import { Colors } from "@/shared/constStyle";
+import { CardType } from "@/models/home/types";
+
 import PopularCardDetail from "@/components/PopularCardDetail";
-import PopularCard from "@/components/PopularCard";
+import FavouritesCard from "@/components/FavouritesCard";
 
-import useHomeScreen from "./useHomeScreen";
+import useSearchCards from "./useSearchCards";
 
-export default function HomeScreen() {
+export default function SearchFilter() {
+  const { t } = useTranslation();
   const {
     cards,
     isLoading,
-    selectedItem,
     cardDetail,
     cardDetailLoading,
+    selectedItem,
     modalVisible,
     handleCloseDetail,
     handlePress,
-  } = useHomeScreen();
+  } = useSearchCards();
 
-  const renderItem = ({ item, index }: { item: CardType; index: number }) => (
-    <PopularCard
+  const renderItem = ({ item }: { item: CardType }) => (
+    <FavouritesCard
       key={item.id}
-      style={{ marginRight: index % 2 === 0 ? 8 : 0, marginBottom: 8 }}
+      style={{ marginBottom: 8 }}
       item={item}
       onPress={() => handlePress(item)}
     />
@@ -31,20 +36,19 @@ export default function HomeScreen() {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.header}>Популярное</Text>
       <FlatList
         data={cards}
         renderItem={renderItem}
         keyExtractor={(item: any) => item.id}
-        numColumns={2}
+        numColumns={1}
         contentContainerStyle={styles.list}
-        columnWrapperStyle={{ justifyContent: "space-between" }}
         showsVerticalScrollIndicator={false}
       />
 
       {isLoading && (
         <View style={styles.loading}>
           <Spinner />
+          <Text style={styles.loadingText}>{t("loadingSearch")}</Text>
         </View>
       )}
 
@@ -60,17 +64,19 @@ export default function HomeScreen() {
   );
 }
 
+const screenWidth = Dimensions.get("window").width;
+const calculatedWidth = screenWidth - 32 - 16;
+
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    paddingHorizontal: 16,
-    paddingTop: 24,
-    backgroundColor: "#fff",
+    // width: calculatedWidth,
+    marginLeft: 16,
+    marginTop: 8,
   },
   header: {
     fontSize: 20,
     fontWeight: "bold",
-    marginBottom: 16,
+    marginBottom: 24,
   },
   list: {
     gap: 8,
@@ -82,5 +88,13 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     marginTop: 250,
     zIndex: 1,
+  },
+  loadingText: {
+    fontWeight: 500,
+    fontSize: 16,
+    lineHeight: 16,
+    fontFamily: "Inter_400Regular",
+    color: Colors.GrayColor,
+    marginTop: 8,
   },
 });

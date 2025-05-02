@@ -12,3 +12,5 @@ export const setSelectOptionEvent = createEvent<{
   type: TypeFilter;
   option: FilterOption | null;
 }>();
+
+export const clearDetailCardEvent = createEvent<void>();

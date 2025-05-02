@@ -27,17 +27,17 @@ const FavouritesCard = ({ style, item, onPress }: Props) => {
 
       <View style={styles.info}>
         <Text style={styles.title} numberOfLines={2} ellipsizeMode="tail">
-          {item.title}
+          {item.name}
         </Text>
         <Text numberOfLines={1} style={styles.description}>
-          {item.dateFrom} - {item.dateTo}
+          {item.date_from} - {item.date_to}
         </Text>
       </View>
 
       <View style={styles.starIcon}>
         <Start
-          stroke={item.isStar ? Colors.GrayColor : Colors.Primary}
-          fill={item.isStar ? Colors.Primary : Colors.Transparent}
+          stroke={item.is_favourite ? Colors.GrayColor : Colors.Primary}
+          fill={item.is_favourite ? Colors.Primary : Colors.Transparent}
         />
       </View>
     </TouchableOpacity>

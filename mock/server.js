@@ -1,7 +1,15 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
-const { users, countries, regions, cities, manufacturers } = require("./data");
+const {
+  users,
+  countries,
+  regions,
+  cities,
+  manufacturers,
+  items,
+  itemsDetail,
+} = require("./data");
 
 const app = express();
 app.use(cors());
@@ -100,6 +108,31 @@ app.get("/manufacturers", (req, res) => {
   } else {
     res.json(manufacturers);
   }
+});
+
+// Получить список всех карточек
+app.get("/items", (req, res) => {
+  res.json(items);
+});
+
+// Получить карточку по ID
+app.get("/items/:item_id", (req, res) => {
+  const itemId = req.params.item_id;
+  console.log("itemId", itemId);
+
+  const item = itemsDetail.find((item) => item.id === Number(itemId));
+
+  if (!item) {
+    return res.status(404).json({ message: "Item not found" });
+  }
+
+  res.json(item);
+});
+
+// Получить список всех карточек
+app.get("/items/favourites", (req, res) => {
+  const itemFavourite = items.filter((item) => item.is_favourite);
+  res.json(itemFavourite);
 });
 
 app.listen(3001, () => {

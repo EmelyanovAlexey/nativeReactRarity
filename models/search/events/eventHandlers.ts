@@ -43,3 +43,7 @@ export function setSelectOptionEventHandler(
 
   return { ...state };
 }
+
+export function clearDetailCardEventHandler(state: SearchModel): SearchModel {
+  return { ...state, cardDetail: null };
+}

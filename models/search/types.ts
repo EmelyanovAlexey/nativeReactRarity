@@ -1,3 +1,5 @@
+import { CardType, CardDetailType } from "@/models/home/types";
+
 // ТИПЫ
 export type FilterRoot = {
   id: TypeFilter;
@@ -41,4 +43,7 @@ export interface SearchModel {
 
   manufacturers: ManufacturersFilterOption[];
   selectedManufacturers: FilterOption | null;
+
+  cards: CardType[];
+  cardDetail: CardDetailType | null;
 }

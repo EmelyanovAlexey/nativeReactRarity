@@ -8,6 +8,7 @@ import {
   setIsShowModalFilterEvent,
   setSelectOptionEvent,
 } from "@/models/search/events/events";
+import { getCardsFx } from "@/models/search/effects/effects";
 
 export default function useBottomTabs() {
   const {
@@ -18,7 +19,7 @@ export default function useBottomTabs() {
     selectedManufacturers,
     count,
   } = useUnit($searchModel);
-  const isLoading = true;
+  const isLoading = useUnit(getCardsFx.pending);
 
   const listFilter = [
     {

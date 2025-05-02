@@ -4,6 +4,13 @@ import { countriesAPI, regionsAPI, citiesAPI, manufacturersAPI } from "./api";
 import { ResponseError } from "@/shared/types";
 import { FilterOption, ManufacturersFilterOption } from "../types";
 
+import { getCardsFxParam, CardType, CardDetailType } from "@/models/home/types";
+import {
+  getCardsAPI,
+  getCardsDetailAPI,
+  setFavouriteAPI,
+} from "@/models/home/effects/api";
+
 export const countriesFx = createEffect<
   string | undefined,
   FilterOption[],
@@ -31,3 +38,20 @@ export const manufacturersFx = createEffect<
   ResponseError
 >();
 manufacturersFx.use(manufacturersAPI);
+
+export const getCardsFx = createEffect<
+  getCardsFxParam,
+  CardType[],
+  ResponseError
+>();
+getCardsFx.use(getCardsAPI);
+
+export const getCardsDetailFx = createEffect<
+  number,
+  CardDetailType,
+  ResponseError
+>();
+getCardsDetailFx.use(getCardsDetailAPI);
+
+export const setFavouriteFx = createEffect<number, CardType, ResponseError>();
+setFavouriteFx.use(setFavouriteAPI);

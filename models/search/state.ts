@@ -7,12 +7,16 @@ import {
   regionsFxDoneHandler,
   citiesFxDoneHandler,
   manufacturersFxDoneHandler,
+  getCardsFxDoneHandler,
+  getCardsDetailFxDoneHandler,
 } from "./effects/effectHandlers";
 import {
   countriesFx,
   regionsFx,
   citiesFx,
   manufacturersFx,
+  getCardsFx,
+  getCardsDetailFx,
 } from "./effects/effects";
 
 import {
@@ -20,6 +24,7 @@ import {
   setSearchTextEventHandler,
   setIsShowModalFilterEventHandler,
   setSelectOptionEventHandler,
+  clearDetailCardEventHandler,
 } from "./events/eventHandlers";
 import {
   resetSearchEvent,
@@ -27,6 +32,7 @@ import {
   setSearchTextEvent,
   setIsShowModalFilterEvent,
   setSelectOptionEvent,
+  clearDetailCardEvent,
 } from "./events/events";
 import { SEARCH_MODEL_DEFAULT } from "./constants";
 import { SearchModel } from "./types";
@@ -36,11 +42,14 @@ export const $searchModel = createStore<SearchModel>(SEARCH_MODEL_DEFAULT)
   .on(setSearchTextEvent, setSearchTextEventHandler)
   .on(setIsShowModalFilterEvent, setIsShowModalFilterEventHandler)
   .on(setSelectOptionEvent, setSelectOptionEventHandler)
+  .on(clearDetailCardEvent, clearDetailCardEventHandler)
 
   .on(countriesFx.doneData, countriesFxDoneHandler)
   .on(regionsFx.doneData, regionsFxDoneHandler)
   .on(citiesFx.doneData, citiesFxDoneHandler)
   .on(manufacturersFx.doneData, manufacturersFxDoneHandler)
+  .on(getCardsFx.doneData, getCardsFxDoneHandler)
+  .on(getCardsDetailFx.doneData, getCardsDetailFxDoneHandler)
 
   .reset(resetSearchEvent);
 //   .reset(resetModelsOnLogoutEvent);

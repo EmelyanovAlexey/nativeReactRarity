@@ -1,15 +1,28 @@
 import { useUnit } from "effector-react";
 
 import { $searchModel } from "@/models/search";
-import { 
-  setIsShowModalEvent, 
-  setSearchTextEvent } from "@/models/search/events/events";
-import { useState } from "react";
+import { getCardsFx } from "@/models/search/effects/effects";
+import {
+  setIsShowModalEvent,
+  setSearchTextEvent,
+} from "@/models/search/events/events";
 
 export default function useModalSearch() {
-  const { isShowModal, searchText } = useUnit($searchModel);
+  const {
+    isShowModal,
+    searchText,
+    selectedCountries,
+    selectedRegions,
+    selectedCities,
+    selectedManufacturers,
+  } = useUnit($searchModel);
 
   const setModalVisibleSearch = (param: boolean) => {
+    getCardsFx({
+      regionName: selectedCountries?.name,
+      countryName: selectedRegions?.name,
+      manufacturerName: selectedManufacturers?.name,
+    });
     setIsShowModalEvent(param);
   };
 

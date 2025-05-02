@@ -5,7 +5,7 @@ import { CardType } from "@/models/home/types";
 import { $popularModel } from "@/models/home";
 
 export default function useFavouritesScreen() {
-  const { cards } = useUnit($popularModel);
+  const { cards, cardDetail } = useUnit($popularModel);
   const [selectedItem, setSelectedItem] = useState<CardType | null>(null);
   const [modalVisible, setModalVisible] = useState<boolean>(false);
 
@@ -16,6 +16,7 @@ export default function useFavouritesScreen() {
 
   return {
     cards,
+    cardDetail,
     selectedItem,
     modalVisible,
     setModalVisible,

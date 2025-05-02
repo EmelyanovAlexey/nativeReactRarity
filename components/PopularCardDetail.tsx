@@ -13,15 +13,17 @@ import {
 } from "react-native";
 import Modal from "react-native-modal";
 import { Colors } from "@/shared/constStyle";
-import { CardType } from "@/models/home/types";
+import { CardDetailType } from "@/models/home/types";
 import Start from "@/components/Icons/Start";
 import ShareIcon from "@/components/Icons/Share";
+import Spinner from "@/components/Spinner";
 
 import { useTranslation } from "react-i18next";
 
 type Props = {
   modalVisible: boolean;
-  data: CardType;
+  data: CardDetailType | null;
+  isLoading: boolean;
   style?: ViewStyle;
   setModalVisible: (param: boolean) => void;
 };
@@ -30,6 +32,7 @@ const PopularCardDetail = ({
   style,
   modalVisible = false,
   data,
+  isLoading,
   setModalVisible,
 }: Props) => {
   const { t } = useTranslation();
@@ -37,9 +40,13 @@ const PopularCardDetail = ({
   const [scrollOffset, setScrollOffset] = useState(0);
 
   const handleShare = async () => {
+    if (data === null) {
+      return;
+    }
+
     try {
       await Share.share({
-        message: `${data.title}\n${data.description}`,
+        message: `${data.name}\n${data.description}`,
         url: data.image,
       });
     } catch (error) {
@@ -70,59 +77,78 @@ const PopularCardDetail = ({
       <View style={styles.modalContent}>
         <View style={styles.modalHeaderIndicator} />
 
-        <ScrollView
-          ref={scrollViewRef}
-          onScroll={handleScroll}
-          scrollEventThrottle={16}
-          showsVerticalScrollIndicator={false}
-        >
-          <Image source={{ uri: data.image }} style={styles.image} />
-
-          <View style={styles.row}>
-            <Text style={styles.date}>
-              {data?.dateFrom} - {data?.dateTo}
-            </Text>
-            <View style={styles.btns}>
-              <TouchableOpacity onPress={handleShare} style={styles.iconButton}>
-                <ShareIcon />
-              </TouchableOpacity>
-              <TouchableOpacity
-                onPress={toggleFavorite}
-                style={styles.iconButton}
-              >
-                <Start
-                  stroke={data.isStar ? Colors.Primary : Colors.GrayColor}
-                  fill={data.isStar ? Colors.Primary : Colors.Transparent}
-                />
-              </TouchableOpacity>
-            </View>
+        {isLoading ? (
+          <View style={styles.loading}>
+            <Spinner />
           </View>
+        ) : (
+          <ScrollView
+            ref={scrollViewRef}
+            onScroll={handleScroll}
+            scrollEventThrottle={16}
+            showsVerticalScrollIndicator={false}
+          >
+            {data && (
+              <>
+                <Image source={{ uri: data.image }} style={styles.image} />
 
-          <Text style={styles.modalTitle}>{data?.title}</Text>
-          <Text style={styles.modalDescription}>{data?.description}</Text>
+                <View style={styles.row}>
+                  <Text style={styles.date}>
+                    {data?.date_from} - {data?.date_to}
+                  </Text>
+                  <View style={styles.btns}>
+                    <TouchableOpacity
+                      onPress={handleShare}
+                      style={styles.iconButton}
+                    >
+                      <ShareIcon />
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                      onPress={toggleFavorite}
+                      style={styles.iconButton}
+                    >
+                      <Start
+                        stroke={
+                          data.is_favourite ? Colors.Primary : Colors.GrayColor
+                        }
+                        fill={
+                          data.is_favourite
+                            ? Colors.Primary
+                            : Colors.Transparent
+                        }
+                      />
+                    </TouchableOpacity>
+                  </View>
+                </View>
 
-          <View style={styles.blocks}>
-            <View style={styles.block}>
-              <Text style={styles.label}>{t("country")}</Text>
-              <Text style={styles.value}>{data.country}</Text>
-            </View>
+                <Text style={styles.modalTitle}>{data?.name}</Text>
+                <Text style={styles.modalDescription}>{data?.description}</Text>
 
-            <View style={styles.block}>
-              <Text style={styles.label}>{t("area")}</Text>
-              <Text style={styles.value}>{data.area}</Text>
-            </View>
+                <View style={styles.blocks}>
+                  <View style={styles.block}>
+                    <Text style={styles.label}>{t("country")}</Text>
+                    <Text style={styles.value}>{data.country}</Text>
+                  </View>
 
-            <View style={styles.block}>
-              <Text style={styles.label}>{t("city")}</Text>
-              <Text style={styles.value}>{data.city}</Text>
-            </View>
+                  <View style={styles.block}>
+                    <Text style={styles.label}>{t("area")}</Text>
+                    <Text style={styles.value}>{data.region}</Text>
+                  </View>
 
-            <View style={styles.block}>
-              <Text style={styles.label}>{t("manufacturer")}</Text>
-              <Text style={styles.value}>{data.manufacturer}</Text>
-            </View>
-          </View>
-        </ScrollView>
+                  <View style={styles.block}>
+                    <Text style={styles.label}>{t("city")}</Text>
+                    <Text style={styles.value}>{data.city}</Text>
+                  </View>
+
+                  <View style={styles.block}>
+                    <Text style={styles.label}>{t("manufacturer")}</Text>
+                    <Text style={styles.value}>{data.manufacturer}</Text>
+                  </View>
+                </View>
+              </>
+            )}
+          </ScrollView>
+        )}
       </View>
     </Modal>
   );
@@ -147,6 +173,14 @@ const styles = StyleSheet.create({
     backgroundColor: "#ccc",
     alignSelf: "center",
     marginBottom: 16,
+  },
+  loading: {
+    width: "100%",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    marginTop: 250,
+    zIndex: 1,
   },
   image: {
     width: "100%",

@@ -1,4 +1,5 @@
 import { SearchModel, FilterOption, ManufacturersFilterOption } from "../types";
+import { CardType, CardDetailType } from "@/models/home/types";
 
 export function countriesFxDoneHandler(
   state: SearchModel,
@@ -26,4 +27,18 @@ export function manufacturersFxDoneHandler(
   data: ManufacturersFilterOption[]
 ): SearchModel {
   return { ...state, manufacturers: data };
+}
+
+export function getCardsFxDoneHandler(
+  state: SearchModel,
+  data: CardType[]
+): SearchModel {
+  return { ...state, cards: data, count: data.length > 0 ? data.length : null };
+}
+
+export function getCardsDetailFxDoneHandler(
+  state: SearchModel,
+  data: CardDetailType
+): SearchModel {
+  return { ...state, cardDetail: data };
 }

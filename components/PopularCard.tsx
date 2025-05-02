@@ -29,16 +29,16 @@ const PopularCard = ({ style, item, onPress }: Props) => {
         <Image source={{ uri: item.image }} style={styles.image} />
         <View style={styles.starIcon}>
           <Start
-            stroke={item.isStar ? Colors.GrayColor : Colors.Primary}
-            fill={item.isStar ? Colors.Primary : Colors.Transparent}
+            stroke={item.is_favourite ? Colors.GrayColor : Colors.Primary}
+            fill={item.is_favourite ? Colors.Primary : Colors.Transparent}
           />
         </View>
       </View>
       <Text style={styles.title} numberOfLines={1} ellipsizeMode="tail">
-        {item.title}
+        {item.name}
       </Text>
       <Text numberOfLines={1} style={styles.description}>
-        {item.dateFrom} - {item.dateTo}
+        {item.date_from} - {item.date_to}
       </Text>
     </TouchableOpacity>
   );

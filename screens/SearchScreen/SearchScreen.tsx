@@ -3,11 +3,11 @@ import { useTranslation } from "react-i18next";
 
 import Photo from "@/components/Icons/Photo";
 import Button from "@/components/Button";
+import ModalMenuSearchPhoto from "@/components/ModalMenuSearchPhoto";
 import SearchFilterContainer from "@/container/SearchFilter";
 import ModalSearchContainer from "@/container/ModalSearch";
 import ModalSearchFilterContainer from "@/container/ModalSearchFilter";
-import Spinner from "@/components/Spinner";
-import ModalMenuSearchPhoto from "@/components/ModalMenuSearchPhoto";
+import SearchCardsContainer from "@/container/SearchCards";
 // import ModalCamera from "@/components/ModalCamera";
 
 import useSearchScreen from "./useSearchScreen";
@@ -33,6 +33,8 @@ export default function SearchScreen() {
 
       <ModalSearchFilterContainer />
 
+      <SearchCardsContainer />
+
       {/* {showPhotoCamera && (
         <ModalCamera
           setModalVisible={() => handleSetStartCamera(false)}
@@ -40,13 +42,6 @@ export default function SearchScreen() {
           onPickFromGallery={() => {}}
         />
       )} */}
-
-      {isLoading && (
-        <View style={styles.loading}>
-          <Spinner />
-          <Text style={styles.loadingText}>{t("loadingSearch")}</Text>
-        </View>
-      )}
 
       <ModalMenuSearchPhoto
         modalVisible={showPhotoMenu}
@@ -80,22 +75,6 @@ const styles = StyleSheet.create({
     marginBottom: 24,
     lineHeight: 20,
     letterSpacing: 0,
-  },
-  loading: {
-    width: "100%",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    marginTop: 250,
-    zIndex: 1,
-  },
-  loadingText: {
-    fontWeight: 500,
-    fontSize: 16,
-    lineHeight: 16,
-    fontFamily: "Inter_400Regular",
-    color: Colors.GrayColor,
-    marginTop: 8,
   },
   button: {
     position: "absolute",

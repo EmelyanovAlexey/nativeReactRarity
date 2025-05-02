@@ -6,6 +6,7 @@ import {
   regionsFx,
   citiesFx,
   manufacturersFx,
+  getCardsFx,
 } from "@/models/search/effects/effects";
 import { TypeFilter, FilterRoot, FilterOption } from "@/models/search/types";
 import { $searchModel } from "@/models/search";
@@ -96,6 +97,11 @@ export default function useModalSearchFilter() {
   }
 
   const setModalVisibleSearch = (param: boolean) => {
+    getCardsFx({
+      regionName: selectedCountries?.name,
+      countryName: selectedRegions?.name,
+      manufacturerName: selectedManufacturers?.name,
+    });
     setIsShowModalFilterEvent(param);
   };
 
