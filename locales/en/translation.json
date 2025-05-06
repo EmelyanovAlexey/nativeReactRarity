@@ -5,5 +5,9 @@
     "password": "Пароль",
     "forgotPassword": "Забыли пароль?",
     "changeLanguage": "Change the language",
-    "changeLanguageText": "Click to change the language in the app"
+    "changeLanguageText": "Click to change the language in the app",
+
+    "setPermissionCamera": "Grant permission",
+
+    "permissionCamera": "We need your permission to show the camera"
 }

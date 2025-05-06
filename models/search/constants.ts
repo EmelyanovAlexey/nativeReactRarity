@@ -5,29 +5,15 @@ export const SEARCH_MODEL_DEFAULT: SearchModel = {
   isShowModalFilter: false,
   searchText: "",
   count: null,
+  img: null,
 
-  countries: [
-    {
-      id: 1,
-      name: "Германия",
-    },
-  ],
+  countries: [],
   selectedCountries: null,
 
-  regions: [
-    {
-      id: 1,
-      name: "Германия обл",
-    },
-  ],
+  regions: [],
   selectedRegions: null,
 
-  cities: [
-    {
-      id: 1,
-      name: "Новосибирск",
-    },
-  ],
+  cities: [],
   selectedCities: null,
 
   manufacturers: [],

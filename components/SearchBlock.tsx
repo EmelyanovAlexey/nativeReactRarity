@@ -54,16 +54,13 @@ const SearchBlock: React.FC<SearchBlockProps> = ({
         </View>
       </TouchableOpacity>
 
-      {!leftContent && (
-        <TouchableOpacity
-          style={[styles.filter, style]}
-          onPress={onPressFilter}
-        >
-          <View style={styles.filterIcon}>
-            <Filter />
-          </View>
-        </TouchableOpacity>
-      )}
+      {/* {!leftContent && ( */}
+      <TouchableOpacity style={[styles.filter, style]} onPress={onPressFilter}>
+        <View style={styles.filterIcon}>
+          <Filter />
+        </View>
+      </TouchableOpacity>
+      {/* )} */}
     </View>
   );
 };
@@ -75,7 +72,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     gap: 16,
   },
-
   text: {
     width: "70%",
     fontSize: 16,

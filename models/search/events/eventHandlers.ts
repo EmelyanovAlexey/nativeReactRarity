@@ -47,3 +47,10 @@ export function setSelectOptionEventHandler(
 export function clearDetailCardEventHandler(state: SearchModel): SearchModel {
   return { ...state, cardDetail: null };
 }
+
+export function setImgEventHandler(
+  state: SearchModel,
+  image: string | null
+): SearchModel {
+  return { ...state, img: image };
+}

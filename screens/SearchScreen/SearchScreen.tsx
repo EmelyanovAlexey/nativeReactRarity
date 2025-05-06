@@ -4,11 +4,11 @@ import { useTranslation } from "react-i18next";
 import Photo from "@/components/Icons/Photo";
 import Button from "@/components/Button";
 import ModalMenuSearchPhoto from "@/components/ModalMenuSearchPhoto";
+import ModalCamera from "@/container/ModalCamera";
 import SearchFilterContainer from "@/container/SearchFilter";
 import ModalSearchContainer from "@/container/ModalSearch";
 import ModalSearchFilterContainer from "@/container/ModalSearchFilter";
 import SearchCardsContainer from "@/container/SearchCards";
-// import ModalCamera from "@/components/ModalCamera";
 
 import useSearchScreen from "./useSearchScreen";
 import { Colors } from "@/shared/constStyle";
@@ -35,13 +35,9 @@ export default function SearchScreen() {
 
       <SearchCardsContainer />
 
-      {/* {showPhotoCamera && (
-        <ModalCamera
-          setModalVisible={() => handleSetStartCamera(false)}
-          onCapture={() => {}}
-          onPickFromGallery={() => {}}
-        />
-      )} */}
+      {showPhotoCamera && (
+        <ModalCamera setModalVisible={() => handleSetStartCamera(false)} />
+      )}
 
       <ModalMenuSearchPhoto
         modalVisible={showPhotoMenu}
@@ -82,5 +78,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 13,
     right: 16,
     bottom: 5,
+    zIndex: 50,
   },
 });

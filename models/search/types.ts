@@ -31,6 +31,7 @@ export interface SearchModel {
   isShowModalFilter: boolean;
   searchText: string;
   count: number | null;
+  img: string | null;
 
   countries: FilterOption[];
   selectedCountries: FilterOption | null;

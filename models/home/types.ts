@@ -35,4 +35,5 @@ export type getCardsFxParam = {
   regionName?: string;
   countryName?: string;
   manufacturerName?: string;
+  photoUri?: string | null;
 };

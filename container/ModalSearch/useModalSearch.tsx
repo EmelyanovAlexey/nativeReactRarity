@@ -15,6 +15,7 @@ export default function useModalSearch() {
     selectedRegions,
     selectedCities,
     selectedManufacturers,
+    img,
   } = useUnit($searchModel);
 
   const setModalVisibleSearch = (param: boolean) => {
@@ -22,6 +23,7 @@ export default function useModalSearch() {
       regionName: selectedCountries?.name,
       countryName: selectedRegions?.name,
       manufacturerName: selectedManufacturers?.name,
+      photoUri: img,
     });
     setIsShowModalEvent(param);
   };

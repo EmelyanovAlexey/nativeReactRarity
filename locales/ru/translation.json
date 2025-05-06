@@ -27,6 +27,7 @@
     "backProfile": "Вернуться в профиль",
     "takePicture": "Сфотографировать",
     "downloadFromGallery": "Загрузить из галереи",
+    "setPermissionCamera": "Предоставьте разрешение",
 
     "enterEmail": "Введите свой адрес электронной почты",
     "comeUpPassword": "Придумайте пароль",
@@ -66,5 +67,7 @@
     "resultSearch": "Результат поиска",
     "loadingSearch": "Ищем похожие объекты",
 
-    "errorAuth": "Ошибка авторизации"
+    "errorAuth": "Ошибка авторизации",
+    "permissionCamera": "Нам нужно ваше разрешение, чтобы показать камеру",
+    "permissionCameraError": "Не получилось найти камеру"
 }

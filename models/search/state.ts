@@ -27,6 +27,7 @@ import {
   setIsShowModalFilterEventHandler,
   setSelectOptionEventHandler,
   clearDetailCardEventHandler,
+  setImgEventHandler,
 } from "./events/eventHandlers";
 import {
   resetSearchEvent,
@@ -35,6 +36,7 @@ import {
   setIsShowModalFilterEvent,
   setSelectOptionEvent,
   clearDetailCardEvent,
+  setImgEvent,
 } from "./events/events";
 import { SEARCH_MODEL_DEFAULT } from "./constants";
 import { SearchModel } from "./types";
@@ -45,6 +47,7 @@ export const $searchModel = createStore<SearchModel>(SEARCH_MODEL_DEFAULT)
   .on(setIsShowModalFilterEvent, setIsShowModalFilterEventHandler)
   .on(setSelectOptionEvent, setSelectOptionEventHandler)
   .on(clearDetailCardEvent, clearDetailCardEventHandler)
+  .on(setImgEvent, setImgEventHandler)
 
   .on(countriesFx.doneData, countriesFxDoneHandler)
   .on(regionsFx.doneData, regionsFxDoneHandler)

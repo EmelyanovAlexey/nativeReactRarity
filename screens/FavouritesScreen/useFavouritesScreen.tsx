@@ -28,12 +28,7 @@ export default function useFavouritesScreen() {
 
   const handleSetFavorite = (id: number) => {
     setFavouriteFx(id);
-
-    if (selectedItem) {
-      if (cardDetail?.is_favourite === false) {
-        setCardEvent(id);
-      }
-    }
+    setCardEvent(id);
   };
 
   const handleCloseDetail = () => {

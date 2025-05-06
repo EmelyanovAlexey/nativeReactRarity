@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, StyleSheet, ScrollView } from "react-native";
+import { View, Text, StyleSheet, ScrollView, Image } from "react-native";
 import { useTranslation } from "react-i18next";
 
 import SearchBlock from "@/components/SearchBlock";
@@ -15,6 +15,7 @@ export default function SearchFilter() {
     textFilter,
     selectedFilter,
     isShowStart,
+    img,
     count,
     handleSearchFilter,
     handleDelete,
@@ -30,6 +31,11 @@ export default function SearchFilter() {
           onPress={handleSearchFilter}
           onPressDelete={handleDeleteFilter}
           onPressFilter={handleOpenFilter}
+          leftContent={
+            img ? (
+              <Image source={{ uri: img }} style={styles.image} />
+            ) : undefined
+          }
         />
       </View>
 
@@ -92,5 +98,11 @@ const styles = StyleSheet.create({
     top: "24%",
     overflow: "hidden",
     zIndex: 2,
+  },
+  image: {
+    width: 40,
+    height: 40,
+    borderRadius: 8,
+    marginRight: 8,
   },
 });

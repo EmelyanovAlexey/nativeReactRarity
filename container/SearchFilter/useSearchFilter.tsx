@@ -19,6 +19,7 @@ export default function useBottomTabs() {
     selectedManufacturers,
     count,
     cards,
+    img,
   } = useUnit($searchModel);
   const isLoading = useUnit(getCardsFx.pending);
 
@@ -73,6 +74,7 @@ export default function useBottomTabs() {
     isLoading,
     count,
     isShowStart,
+    img,
     handleSearchFilter,
     handleDelete,
     handleOpenFilter,
