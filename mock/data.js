@@ -561,6 +561,30 @@ const itemsDetail = [
   },
 ];
 
+const history = [
+  {
+    id: 0,
+    region_name: "Gießhübel Johann",
+    country_name: "Германия",
+    manufacturer_name: "Гермфельдская Династия",
+    created_at: "2025-05-10T06:45:13.433Z",
+  },
+  {
+    id: 1,
+    region_name: "Gießhübel Johann",
+    country_name: "Германия",
+    manufacturer_name: "Johann Schuldes",
+    city_name: "Мюнхен",
+    text: "Porzellanfabrik Gießhübel Johann Schuldes",
+    created_at: "2025-05-10T16:45:13.433Z",
+  },
+  {
+    id: 3,
+    region_name: "Gießhübel Johann",
+    created_at: "2025-05-01T07:45:13.433Z",
+  },
+];
+
 module.exports = {
   users,
   countries,
@@ -569,4 +593,5 @@ module.exports = {
   manufacturers,
   items,
   itemsDetail,
+  history,
 };

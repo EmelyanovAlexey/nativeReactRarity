@@ -20,11 +20,13 @@ const Chips: React.FC<ChipsProps> = ({ text = "", style, onPress }) => {
     <View style={[styles.root, style]}>
       <Text style={[styles.text]}>{text}</Text>
 
-      <TouchableOpacity style={styles.delete} onPress={onPress}>
-        <View style={styles.filterIcon}>
-          <Cross stroke={Colors.Primary} />
-        </View>
-      </TouchableOpacity>
+      {onPress && (
+        <TouchableOpacity style={styles.delete} onPress={onPress}>
+          <View style={styles.filterIcon}>
+            <Cross stroke={Colors.Primary} />
+          </View>
+        </TouchableOpacity>
+      )}
     </View>
   );
 };
@@ -41,7 +43,6 @@ const styles = StyleSheet.create({
     paddingRight: 8,
     paddingVertical: 4,
   },
-
   text: {
     fontSize: 16,
     lineHeight: 16,
@@ -50,7 +51,6 @@ const styles = StyleSheet.create({
     fontWeight: 500,
     color: Colors.Primary,
   },
-
   delete: {
     padding: 8,
   },

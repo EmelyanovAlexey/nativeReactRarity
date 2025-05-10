@@ -1,4 +1,10 @@
-import { SearchModel, FilterOption, ManufacturersFilterOption } from "../types";
+import {
+  SearchModel,
+  FilterOption,
+  ManufacturersFilterOption,
+  SearchHistoryModel,
+  HistoryType,
+} from "../types";
 import { CardType, CardDetailType } from "@/models/home/types";
 
 export function countriesFxDoneHandler(
@@ -60,5 +66,21 @@ export function setFavouriteFxDoneHandler(
       state.cardDetail !== null
         ? { ...state.cardDetail, is_favourite: !state.cardDetail.is_favourite }
         : null,
+  };
+}
+
+export function getHistoryFilterFxDoneHandler(
+  state: SearchHistoryModel,
+  data: HistoryType[]
+): SearchHistoryModel {
+  const cueDate = new Date();
+  cueDate.setDate(cueDate.getDate() - 7);
+
+  return {
+    ...state,
+    histories: data.filter((history) => new Date(history.created_at) > cueDate),
+    historiesLater: data.filter(
+      (history) => new Date(history.created_at) <= cueDate
+    ),
   };
 }

@@ -9,6 +9,7 @@ const {
   manufacturers,
   items,
   itemsDetail,
+  history,
 } = require("./data");
 
 const app = express();
@@ -145,6 +146,11 @@ app.put("/items/:item_id/markfav", (req, res) => {
   }
 
   res.json(item);
+});
+
+// Получить историю поиска
+app.get("/search_history", (req, res) => {
+  res.json(history);
 });
 
 app.listen(3001, () => {

@@ -1,4 +1,4 @@
-import { SearchModel, TypeFilter, FilterRoot } from "./types";
+import { SearchModel, SearchHistoryModel } from "./types";
 
 export const SEARCH_MODEL_DEFAULT: SearchModel = {
   isShowModal: false,
@@ -21,4 +21,9 @@ export const SEARCH_MODEL_DEFAULT: SearchModel = {
 
   cards: [],
   cardDetail: null,
+};
+
+export const SEARCH_HISTORY_MODEL_DEFAULT: SearchHistoryModel = {
+  histories: [],
+  historiesLater: [],
 };

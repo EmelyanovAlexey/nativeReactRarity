@@ -10,6 +10,7 @@ import {
   getCardsFxDoneHandler,
   getCardsDetailFxDoneHandler,
   setFavouriteFxDoneHandler,
+  getHistoryFilterFxDoneHandler,
 } from "./effects/effectHandlers";
 import {
   countriesFx,
@@ -19,6 +20,7 @@ import {
   getCardsFx,
   getCardsDetailFx,
   setFavouriteFx,
+  getHistoryFilterFx,
 } from "./effects/effects";
 
 import {
@@ -37,9 +39,13 @@ import {
   setSelectOptionEvent,
   clearDetailCardEvent,
   setImgEvent,
+  resetSearchHistoryEvent,
 } from "./events/events";
-import { SEARCH_MODEL_DEFAULT } from "./constants";
-import { SearchModel } from "./types";
+import {
+  SEARCH_MODEL_DEFAULT,
+  SEARCH_HISTORY_MODEL_DEFAULT,
+} from "./constants";
+import { SearchModel, SearchHistoryModel } from "./types";
 
 export const $searchModel = createStore<SearchModel>(SEARCH_MODEL_DEFAULT)
   .on(setIsShowModalEvent, setIsShowModalEventHandler)
@@ -59,3 +65,9 @@ export const $searchModel = createStore<SearchModel>(SEARCH_MODEL_DEFAULT)
 
   .reset(resetSearchEvent);
 //   .reset(resetModelsOnLogoutEvent);
+
+export const $searchHistoryModel = createStore<SearchHistoryModel>(
+  SEARCH_HISTORY_MODEL_DEFAULT
+)
+  .on(getHistoryFilterFx.doneData, getHistoryFilterFxDoneHandler)
+  .reset(resetSearchHistoryEvent);

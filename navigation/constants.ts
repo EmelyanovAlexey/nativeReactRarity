@@ -9,6 +9,7 @@ import ProfileScreen from "@/screens/ProfileScreen";
 import ChangePasswordScreen from "@/screens/ChangePasswordScreen";
 import ChangeLanguageScreen from "@/screens/ChangeLanguageScreen";
 import FavouritesScreen from "@/screens/FavouritesScreen";
+import HistorySearchScreen from "@/screens/HistorySearchScreen";
 
 import BottomTabs from "@/container/BottomTabs";
 
@@ -80,6 +81,12 @@ export const Route = [
     name: "favourites",
     title: "favourites",
     component: FavouritesScreen,
+    type: RouteType.showArrow,
+  },
+  {
+    name: "historySearch",
+    title: "history",
+    component: HistorySearchScreen,
     type: RouteType.showArrow,
   },
 ];

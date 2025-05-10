@@ -21,6 +21,17 @@ export enum TypeFilter {
   manufacturer,
 }
 
+export type HistoryType = {
+  id: number;
+  region_name?: string;
+  country_name?: string;
+  manufacturer_name?: string;
+  city_name?: string;
+  text?: string;
+  photo?: string;
+  created_at: string;
+};
+
 export interface ManufacturersFilterOption extends FilterOption {
   cities: FilterOption[];
 }
@@ -47,4 +58,9 @@ export interface SearchModel {
 
   cards: CardType[];
   cardDetail: CardDetailType | null;
+}
+
+export interface SearchHistoryModel {
+  histories: HistoryType[];
+  historiesLater: HistoryType[];
 }

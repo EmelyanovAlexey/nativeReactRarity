@@ -45,7 +45,8 @@ export default function useSearchScreen() {
     });
 
     if (!result.canceled) {
-      setImgEvent(result.assets[0].uri); // сохраняем URI
+      // console.log(result.assets[0].uri);
+      setImgEvent(result.assets[0].uri);
       setModalVisibleSearch(result.assets[0].uri);
     }
     setShowPhotoMenu(false);

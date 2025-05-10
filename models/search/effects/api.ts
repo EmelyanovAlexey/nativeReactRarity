@@ -45,3 +45,9 @@ export const manufacturersAPI = async (name?: string) => {
   const response = await axios.get(getUrl(url));
   return response.data;
 };
+
+export const historyFilterAPI = async () => {
+  let url = "search_history";
+  const response = await axios.get(getUrl(url));
+  return response.data;
+};

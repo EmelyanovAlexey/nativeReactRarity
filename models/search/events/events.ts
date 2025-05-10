@@ -1,8 +1,9 @@
 import { createEvent } from "effector";
 
-import { SearchModel, TypeFilter, FilterOption } from "../types";
+import { TypeFilter, FilterOption } from "../types";
 
 export const resetSearchEvent = createEvent<void>();
+export const resetSearchHistoryEvent = createEvent<void>();
 
 export const setIsShowModalEvent = createEvent<boolean>();
 export const setIsShowModalFilterEvent = createEvent<boolean>();

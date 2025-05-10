@@ -51,3 +51,4 @@ https://www.figma.com/design/PdYz0ZCJpcYcTOec7OwRvM/porcelain?node-id=0-1&p=f&t=
  └── /mock         — HTTP-клиент и API-функции
 
 
+http://localhost:8000/docs

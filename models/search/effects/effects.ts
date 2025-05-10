@@ -1,8 +1,14 @@
 import { createEffect } from "effector";
-import { countriesAPI, regionsAPI, citiesAPI, manufacturersAPI } from "./api";
+import {
+  countriesAPI,
+  regionsAPI,
+  citiesAPI,
+  manufacturersAPI,
+  historyFilterAPI,
+} from "./api";
 
 import { ResponseError } from "@/shared/types";
-import { FilterOption, ManufacturersFilterOption } from "../types";
+import { FilterOption, ManufacturersFilterOption, HistoryType } from "../types";
 
 import { getCardsFxParam, CardType, CardDetailType } from "@/models/home/types";
 import {
@@ -55,3 +61,10 @@ getCardsDetailFx.use(getCardsDetailAPI);
 
 export const setFavouriteFx = createEffect<number, CardType, ResponseError>();
 setFavouriteFx.use(setFavouriteAPI);
+
+export const getHistoryFilterFx = createEffect<
+  void,
+  HistoryType[],
+  ResponseError
+>();
+getHistoryFilterFx.use(historyFilterAPI);

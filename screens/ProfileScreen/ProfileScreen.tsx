@@ -60,7 +60,7 @@ export default function ProfileScreen() {
           style={styles.btn}
           textStyle={styles.btnText}
           leftContent={<Clock />}
-          onPress={() => {}}
+          onPress={() => navigation.navigate("historySearch")}
         />
         <Button
           title={t("favourites")}

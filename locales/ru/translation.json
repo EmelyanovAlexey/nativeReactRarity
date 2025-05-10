@@ -63,11 +63,14 @@
     "exit": "Выйти",
     "deleteAccount": "Удалить аккаунт",
     "cancel": "Отмена",
+    "recent": "Недавние",
+    "laterOnes": "Более поздние",
 
     "resultSearch": "Результат поиска",
     "loadingSearch": "Ищем похожие объекты",
 
     "errorAuth": "Ошибка авторизации",
     "permissionCamera": "Нам нужно ваше разрешение, чтобы показать камеру",
-    "permissionCameraError": "Не получилось найти камеру"
+    "permissionCameraError": "Не получилось найти камеру",
+    "picture": "Изображение"
 }
