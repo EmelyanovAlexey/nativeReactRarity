@@ -29,21 +29,7 @@ export const getCardsAPI = async (param: getCardsFxParam) => {
     isHasParam = true;
   }
 
-  // if (param.photoUri && param.photoUri !== null) {
-  //   formData.append("photo", {
-  //     uri: param.photoUri,
-  //     name: "photo.jpg",
-  //     type: "image/jpeg",
-  //   } as any);
-  // }
-
   const response = await axios.get(getUrl(url));
-
-  // const response = await axios.post(getUrl("items/search"), formData, {
-  //   headers: {
-  //     "Content-Type": "multipart/form-data",
-  //   },
-  // });
 
   return response.data;
 };

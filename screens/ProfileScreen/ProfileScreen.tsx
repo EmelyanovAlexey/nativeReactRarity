@@ -22,7 +22,7 @@ import useProfileScreen from "./useProfileScreen";
 export default function ProfileScreen() {
   const { t } = useTranslation();
   const navigation = useNavigation();
-  const { showExit, showDelete, setShowExit, setShowDelete } =
+  const { showExit, showDelete, email, setShowExit, setShowDelete } =
     useProfileScreen();
 
   return (
@@ -41,8 +41,8 @@ export default function ProfileScreen() {
           />
         </View>
 
-        <Text style={styles.name}>Иванов Иван</Text>
-        <Text style={styles.email}>ivanovivan@gmail.com</Text>
+        <Text style={styles.name}>Имя</Text>
+        <Text style={styles.email}>{email}</Text>
       </View>
 
       <View style={styles.btns}>

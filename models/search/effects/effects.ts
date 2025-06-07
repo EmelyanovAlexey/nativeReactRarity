@@ -5,12 +5,18 @@ import {
   citiesAPI,
   manufacturersAPI,
   historyFilterAPI,
+  getCardsPhotoAPI,
 } from "./api";
 
 import { ResponseError } from "@/shared/types";
 import { FilterOption, ManufacturersFilterOption, HistoryType } from "../types";
 
-import { getCardsFxParam, CardType, CardDetailType } from "@/models/home/types";
+import {
+  getCardsFxParam,
+  CardType,
+  CardDetailType,
+  getCardsPhotoFxParam,
+} from "@/models/home/types";
 import {
   getCardsAPI,
   getCardsDetailAPI,
@@ -51,6 +57,13 @@ export const getCardsFx = createEffect<
   ResponseError
 >();
 getCardsFx.use(getCardsAPI);
+
+export const getCardsSearchPhotoFx = createEffect<
+  getCardsPhotoFxParam,
+  CardType[],
+  ResponseError
+>();
+getCardsSearchPhotoFx.use(getCardsPhotoAPI);
 
 export const getCardsDetailFx = createEffect<
   number,

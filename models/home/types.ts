@@ -1,17 +1,18 @@
 // ТИПЫ
 export type CardType = {
   id: number;
-  name: string;
+  rp: string;
+  name: string | null;
   description: string;
   image: string;
-  date_from: string;
-  date_to: string;
+  year_from: number | null;
+  year_to: number | null;
   is_favourite: boolean;
 };
 
 export type CardDetailType = {
   id: number;
-  name: string;
+  name: string | null;
   description: string;
   image: string;
   date_from: string;
@@ -36,4 +37,11 @@ export type getCardsFxParam = {
   countryName?: string;
   manufacturerName?: string;
   photoUri?: string | null;
+};
+
+export type getCardsPhotoFxParam = {
+  regionName?: string;
+  countryName?: string;
+  manufacturerName?: string;
+  photoUri: string;
 };

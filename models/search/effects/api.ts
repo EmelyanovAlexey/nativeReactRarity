@@ -1,5 +1,6 @@
 import axios from "axios";
 import { getUrl } from "@/shared/getUrl";
+import { getCardsPhotoFxParam } from "@/models/home/types";
 // import { RegisterFXParam, LoginFXParam } from "../types";
 
 export const countriesAPI = async (name?: string) => {
@@ -49,5 +50,25 @@ export const manufacturersAPI = async (name?: string) => {
 export const historyFilterAPI = async () => {
   let url = "search_history";
   const response = await axios.get(getUrl(url));
+  return response.data;
+};
+
+export const getCardsPhotoAPI = async (param: getCardsPhotoFxParam) => {
+  const formData = new FormData();
+  let url = "items/find_by_image";
+
+  if (param.photoUri && param.photoUri !== null) {
+    formData.append("base64img", param.photoUri);
+  }
+  const response = await axios.post(
+    getUrl(url) + `?base64img=${encodeURIComponent(param.photoUri)}`,
+    null,
+    {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }
+  );
+
   return response.data;
 };

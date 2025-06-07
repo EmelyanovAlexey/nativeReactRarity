@@ -39,7 +39,13 @@ export function getCardsFxDoneHandler(
   state: SearchModel,
   data: CardType[]
 ): SearchModel {
-  return { ...state, cards: data, count: data.length > 0 ? data.length : null };
+  console.log(data);
+  debugger;
+  return {
+    ...state,
+    cards: data,
+    count: data.length > 0 ? data.length : null,
+  };
 }
 
 export function getCardsDetailFxDoneHandler(

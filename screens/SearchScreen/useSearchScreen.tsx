@@ -2,7 +2,7 @@ import { useUnit } from "effector-react";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import * as ImagePicker from "expo-image-picker";
-import { getCardsFx } from "@/models/search/effects/effects";
+import { getCardsSearchPhotoFx } from "@/models/search/effects/effects";
 
 import { setImgEvent } from "../../models/search/events/events";
 import { $searchModel } from "../../models/search";
@@ -21,11 +21,13 @@ export default function useSearchScreen() {
   const isLoading = true;
 
   const setModalVisibleSearch = (img: string) => {
-    getCardsFx({
+    const pureBase64 = img.split(",")[1];
+
+    getCardsSearchPhotoFx({
       regionName: selectedCountries?.name,
       countryName: selectedRegions?.name,
       manufacturerName: selectedManufacturers?.name,
-      photoUri: img,
+      photoUri: pureBase64,
     });
   };
 

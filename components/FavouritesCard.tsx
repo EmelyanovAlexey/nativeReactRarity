@@ -39,7 +39,7 @@ const FavouritesCard = ({ style, item, onPress, setIsFavorite }: Props) => {
           {item.name}
         </Text>
         <Text numberOfLines={1} style={styles.description}>
-          {item.date_from} - {item.date_to}
+          {item.year_from || ""} - {item.year_to || ""}
         </Text>
       </View>
 

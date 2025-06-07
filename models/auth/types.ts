@@ -4,7 +4,7 @@
 export type UserModel = {
   email: string;
   name: string;
-  tocken: string;
+  id_token: string;
   error: string;
 };
 
@@ -25,3 +25,6 @@ export type BaseResponse = {
 };
 
 // РЕЗУЛЬТАТЫ
+export interface loginFxResponse extends BaseResponse {
+  id_token: string;
+}

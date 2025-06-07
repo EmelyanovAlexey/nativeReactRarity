@@ -21,6 +21,7 @@ import {
   getCardsDetailFx,
   setFavouriteFx,
   getHistoryFilterFx,
+  getCardsSearchPhotoFx,
 } from "./effects/effects";
 
 import {
@@ -60,6 +61,7 @@ export const $searchModel = createStore<SearchModel>(SEARCH_MODEL_DEFAULT)
   .on(citiesFx.doneData, citiesFxDoneHandler)
   .on(manufacturersFx.doneData, manufacturersFxDoneHandler)
   .on(getCardsFx.doneData, getCardsFxDoneHandler)
+  .on(getCardsSearchPhotoFx.doneData, getCardsFxDoneHandler)
   .on(getCardsDetailFx.doneData, getCardsDetailFxDoneHandler)
   .on(setFavouriteFx.doneData, setFavouriteFxDoneHandler)
 
