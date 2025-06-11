@@ -50,5 +50,17 @@ https://www.figma.com/design/PdYz0ZCJpcYcTOec7OwRvM/porcelain?node-id=0-1&p=f&t=
 
  └── /mock         — HTTP-клиент и API-функции
 
+---
+
+### Сборка apk файла
+
+ - npm install -g eas-cli
+ - npx expo install
+
+ > авторизация что бы там проводить сборку
+ - eas login
+
+ > там будут в консоле ссылки на веб интерфей ссылки https://expo.dev/
+ - eas build --platform android --profile preview
 
 http://localhost:8000/docs
