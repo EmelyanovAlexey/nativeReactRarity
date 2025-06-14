@@ -4,9 +4,9 @@ import { ActiveTab } from "@/models/main/types";
 import { setActiveTabEvent } from "@/models/main/events/events";
 import { $mainModel } from "@/models/main";
 
-import HomeScreen from "@/screens/HomeScreen";
 import SearchScreen from "@/screens/SearchScreen";
 import ProfileScreen from "@/screens/ProfileScreen";
+import FavouritesScreen from "@/screens/FavouritesScreen";
 
 export default function useBottomTabs() {
   const { activeTab } = useUnit($mainModel);
@@ -18,7 +18,7 @@ export default function useBottomTabs() {
   const renderScreen = () => {
     switch (activeTab) {
       case ActiveTab.home:
-        return <HomeScreen />;
+        return <FavouritesScreen />;
       case ActiveTab.search:
         return <SearchScreen />;
       case ActiveTab.profile:

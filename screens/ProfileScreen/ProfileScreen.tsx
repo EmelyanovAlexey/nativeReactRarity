@@ -63,16 +63,6 @@ export default function ProfileScreen() {
           onPress={() => navigation.navigate("historySearch")}
         />
         <Button
-          title={t("favourites")}
-          filled={false}
-          style={styles.btn}
-          textStyle={styles.btnText}
-          leftContent={
-            <Start fill={Colors.Transparent} width={22} height={20} />
-          }
-          onPress={() => navigation.navigate("favourites")}
-        />
-        <Button
           title={t("trainingMaterials")}
           filled={false}
           style={styles.btn}
