@@ -61,8 +61,8 @@ export const getCardsPhotoAPI = async (param: getCardsPhotoFxParam) => {
     formData.append("base64img", param.photoUri);
   }
   const response = await axios.post(
-    getUrl(url) + `?base64img=${encodeURIComponent(param.photoUri)}`,
-    null,
+    getUrl(url),
+      {'base64': param.photoUri},
     {
       headers: {
         "Content-Type": "application/json",
