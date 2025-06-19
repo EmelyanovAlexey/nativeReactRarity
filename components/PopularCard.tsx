@@ -24,27 +24,36 @@ const PopularCard = ({ style, item, onPress }: Props) => {
       onPress={onPress}
       activeOpacity={0.8}
     >
-      <View style={styles.imageContainer}>
-        <Image source={{ uri: item.image }} style={styles.image} resizeMode='contain' />
-        <View style={styles.starIcon}>
-          <Start
-            stroke={item.is_favourite ? Colors.GrayColor : Colors.Primary}
-            fill={item.is_favourite ? Colors.Primary : Colors.Transparent}
-          />
+      <View style={styles.borderedContainer}>
+        <View style={styles.imageContainer}>
+          <Image source={{ uri: item.image }} style={styles.image} resizeMode='contain' />
+          <View style={styles.starIcon}>
+            <Start
+              stroke={item.is_favourite ? Colors.GrayColor : Colors.Primary}
+              fill={item.is_favourite ? Colors.Primary : Colors.Transparent}
+            />
+          </View>
         </View>
       </View>
-      <Text style={styles.title} numberOfLines={1} ellipsizeMode="tail">
-        {item.name}
-      </Text>
-      <Text style={styles.description} numberOfLines={1} ellipsizeMode="tail">
-        {item.year_from} - {item.year_to}
-      </Text>
+      <View style={styles.textContainer}>
+        <Text style={styles.title} numberOfLines={1} ellipsizeMode="tail">
+          {item.description}
+        </Text>
+        <Text style={styles.year} numberOfLines={1} ellipsizeMode="tail">
+          {item.year_from} - {item.year_to}
+        </Text>
+      </View>
     </TouchableOpacity>
   );
 };
 
 const styles = StyleSheet.create({
   card: {
+    backgroundColor: Colors.WhiteColor,
+    flex: 1,
+    padding: 2,
+  },
+  borderedContainer: {
     aspectRatio: 1,
     backgroundColor: Colors.WhiteColor,
     overflow: "hidden",
@@ -72,20 +81,24 @@ const styles = StyleSheet.create({
     borderRadius: 16,
     padding: 4,
   },
+  textContainer: {
+    padding: 8,
+    flex: 1,
+  },
   title: {
-    fontWeight: 600,
+    fontWeight: 700,
     fontSize: 16,
-    marginTop: 5,
     lineHeight: 18,
     textAlign: "left",
     fontFamily: "Inter_400Regular",
   },
-  description: {
+  year: {
     fontSize: 14,
-    fontWeight: 500,
+    fontWeight: 400,
     color: Colors.GrayColor,
     textAlign: "left",
     fontFamily: "Inter_400Regular",
+    marginTop: 4,
   },
 });
 

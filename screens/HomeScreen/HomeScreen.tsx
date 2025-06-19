@@ -27,9 +27,7 @@ export default function HomeScreen() {
       //     setIsFavorite={() => false}
     <PopularCard
       key={item.id}
-      style={{ marginRight: index % 3 === 0 ? 8 : 0, marginBottom: 8, padding: 12,
-        borderRadius: 8,
-        backgroundColor: "#f9f9f9", }}
+      style={{ marginRight: 8, marginBottom: 8 }}
       item={item}
       onPress={() => handlePress(item)}
     />
@@ -44,8 +42,8 @@ export default function HomeScreen() {
         keyExtractor={(item: any) => item.id}
         ItemSeparatorComponent={() => <View style={{ height: 12 }} />}
         numColumns={3}
-        contentContainerStyle={styles.list}
-        columnWrapperStyle={{ justifyContent: "space-between" }}
+        contentContainerStyle={{ paddingHorizontal: 8, paddingVertical: 8 }}
+        columnWrapperStyle={{ justifyContent: "space-between", gap: 8 }}
         showsVerticalScrollIndicator={false}
       />
 
