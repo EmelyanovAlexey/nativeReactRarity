@@ -25,7 +25,7 @@ const PopularCard = ({ style, item, onPress }: Props) => {
       activeOpacity={0.8}
     >
       <View style={styles.imageContainer}>
-        <Image source={{ uri: item.image }} style={styles.image} />
+        <Image source={{ uri: item.image }} style={styles.image} resizeMode='contain' />
         <View style={styles.starIcon}>
           <Start
             stroke={item.is_favourite ? Colors.GrayColor : Colors.Primary}
@@ -36,8 +36,8 @@ const PopularCard = ({ style, item, onPress }: Props) => {
       <Text style={styles.title} numberOfLines={1} ellipsizeMode="tail">
         {item.name}
       </Text>
-      <Text numberOfLines={1} style={styles.description}>
-        {item.date_from} - {item.date_to}
+      <Text style={styles.description} numberOfLines={1} ellipsizeMode="tail">
+        {item.year_from} - {item.year_to}
       </Text>
     </TouchableOpacity>
   );
@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
   },
   imageContainer: {
     width: "100%",
-    height: "100%",
+    height: "70%",
     backgroundColor: Colors.WhiteColor,
     overflow: "hidden",
     borderRadius: 8,
@@ -63,8 +63,7 @@ const styles = StyleSheet.create({
   image: {
     width: "100%",
     height: "100%",
-    resizeMode: "cover",
-    borderRadius: 8,
+    resizeMode: "contain",
   },
   starIcon: {
     position: "absolute",
