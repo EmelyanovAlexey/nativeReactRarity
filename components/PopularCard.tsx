@@ -18,17 +18,9 @@ type Props = {
 };
 
 const PopularCard = ({ style, item, onPress }: Props) => {
-  const containerWidth = style?.width || '100%';
   return (
     <TouchableOpacity
-      style={[
-        styles.card,
-        {
-          width: containerWidth,
-          aspectRatio: 1,
-        },
-        style,
-      ]}
+      style={[styles.card, style]}
       onPress={onPress}
       activeOpacity={0.8}
     >
@@ -53,9 +45,12 @@ const PopularCard = ({ style, item, onPress }: Props) => {
 
 const styles = StyleSheet.create({
   card: {
+    aspectRatio: 1,
     backgroundColor: Colors.WhiteColor,
     overflow: "hidden",
     borderRadius: 8,
+    borderWidth: 1,
+    borderColor: '#000000',
     elevation: 2,
   },
   imageContainer: {
