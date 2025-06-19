@@ -20,7 +20,7 @@ https://www.figma.com/design/PdYz0ZCJpcYcTOec7OwRvM/porcelain?node-id=0-1&p=f&t=
 
     > npm install --legacy-peer-deps 
 
- - 4 Cтарт gроекта 
+ - 4 Cтарт проекта 
     <что бы на телефоне смотреть установить expo go и быть в одной сети. проблема что моки не работаю так>
 
     > npx expo start -c

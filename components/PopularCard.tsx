@@ -18,9 +18,17 @@ type Props = {
 };
 
 const PopularCard = ({ style, item, onPress }: Props) => {
+  const containerWidth = style?.width || '100%';
   return (
     <TouchableOpacity
-      style={[styles.card, style]}
+      style={[
+        styles.card,
+        {
+          width: containerWidth,
+          aspectRatio: 1,
+        },
+        style,
+      ]}
       onPress={onPress}
       activeOpacity={0.8}
     >
@@ -45,19 +53,23 @@ const PopularCard = ({ style, item, onPress }: Props) => {
 
 const styles = StyleSheet.create({
   card: {
-    flex: 1,
     backgroundColor: Colors.WhiteColor,
     overflow: "hidden",
+    borderRadius: 8,
     elevation: 2,
   },
   imageContainer: {
-    position: "relative",
+    width: "100%",
+    height: "100%",
+    backgroundColor: Colors.WhiteColor,
+    overflow: "hidden",
+    borderRadius: 8,
   },
   image: {
     width: "100%",
-    height: 185,
-    borderRadius: 16,
-    marginBottom: 5,
+    height: "100%",
+    resizeMode: "cover",
+    borderRadius: 8,
   },
   starIcon: {
     position: "absolute",

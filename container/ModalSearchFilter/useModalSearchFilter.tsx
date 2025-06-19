@@ -98,8 +98,8 @@ export default function useModalSearchFilter() {
 
   const setModalVisibleSearch = (param: boolean) => {
     getCardsFx({
-      regionName: selectedCountries?.name,
-      countryName: selectedRegions?.name,
+      regionName: selectedRegions?.name,
+      countryName: selectedCountries?.name,
       manufacturerName: selectedManufacturers?.name,
     });
     setIsShowModalFilterEvent(param);
