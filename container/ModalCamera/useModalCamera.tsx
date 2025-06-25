@@ -27,8 +27,8 @@ export default function useModalCamera(
 
   const setModalVisibleSearch = (img: string) => {
     getCardsFx({
-      regionName: selectedCountries?.name,
-      countryName: selectedRegions?.name,
+      regionName: selectedRegions?.name,
+      countryName: selectedCountries?.name,
       manufacturerName: selectedManufacturers?.name,
       photoUri: img,
     });

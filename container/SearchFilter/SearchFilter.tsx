@@ -8,6 +8,8 @@ import StartFilter from "@/components/StartFilter";
 
 import useSearchFilter from "./useSearchFilter";
 import { Colors } from "@/shared/constStyle";
+import Button from "@/components/Button";
+import Link from "@/components/Link";
 
 export default function SearchFilter() {
   const { t } = useTranslation();
@@ -56,8 +58,13 @@ export default function SearchFilter() {
 
       <View style={styles.container}>
         <Text style={styles.description}>
-          {t("resultSearch")} {count && `: ${count} шт.`}
+          {count && `${t("resultSearch")}: ${count} шт.`}
         </Text>
+          {count &&
+            <Link to="home">
+              {t("showAll")}
+            </Link>
+          }
       </View>
 
       {isShowStart && (

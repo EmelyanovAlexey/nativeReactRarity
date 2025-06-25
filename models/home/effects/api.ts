@@ -8,7 +8,7 @@ export const getCardsAPI = async (param: getCardsFxParam) => {
   let isHasParam = false;
 
   if (param.countryName) {
-    url = `${url}${isHasParam ? "&" : "?"}manufacturer_name=${
+    url = `${url}${isHasParam ? "&" : "?"}country_name=${
       param.countryName
     }`;
     formData.append("country_name", param.countryName);
@@ -16,7 +16,7 @@ export const getCardsAPI = async (param: getCardsFxParam) => {
   }
 
   if (param.manufacturerName) {
-    url = `${url}${isHasParam ? "&" : "?"}country_name=${
+    url = `${url}${isHasParam ? "&" : "?"}manufacturer_name=${
       param.manufacturerName
     }`;
     formData.append("manufacturer_name", param.manufacturerName);

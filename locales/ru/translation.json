@@ -41,8 +41,8 @@
     "passwordsDontMatch": "Неверные пароли",
     "invalidEmail": "Неверная почта",
 
-    "popular": "Популярное",
-    "search": "Поиск",
+    "popular": "Избранное",
+    "search": "Главная",
     "profile": "Профиль",
 
     "country": "Страна",
@@ -66,8 +66,9 @@
     "recent": "Недавние",
     "laterOnes": "Более поздние",
 
-    "resultSearch": "Результат поиска",
+    "resultSearch": "Найдены совпадения",
     "loadingSearch": "Ищем похожие объекты",
+    "showAll": "Посмотреть все",
 
     "errorAuth": "Ошибка авторизации",
     "permissionCamera": "Нам нужно ваше разрешение, чтобы показать камеру",
