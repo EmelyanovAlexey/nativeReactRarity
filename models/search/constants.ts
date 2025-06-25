@@ -21,6 +21,14 @@ export const SEARCH_MODEL_DEFAULT: SearchModel = {
 
   cards: [],
   cardDetail: null,
+
+  selectedSymbol: null,
+
+  paramsFilter: {
+    countries: [],
+    manufacturers:[],
+    symbols: [],
+  }
 };
 
 export const SEARCH_HISTORY_MODEL_DEFAULT: SearchHistoryModel = {

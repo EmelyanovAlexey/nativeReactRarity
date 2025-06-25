@@ -19,6 +19,7 @@ export enum TypeFilter {
   area,
   city,
   manufacturer,
+  symbol
 }
 
 export type HistoryType = {
@@ -34,6 +35,12 @@ export type HistoryType = {
 
 export interface ManufacturersFilterOption extends FilterOption {
   cities: FilterOption[];
+}
+
+export type SearchParamType = {
+  countries: string[],
+  manufacturers:string[],
+  symbols: string[],
 }
 
 // МОДЕЛИ
@@ -58,6 +65,10 @@ export interface SearchModel {
 
   cards: CardType[];
   cardDetail: CardDetailType | null;
+
+  selectedSymbol: FilterOption | null;
+
+  paramsFilter: SearchParamType;
 }
 
 export interface SearchHistoryModel {

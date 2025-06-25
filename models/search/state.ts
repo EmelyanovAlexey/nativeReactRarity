@@ -11,6 +11,7 @@ import {
   getCardsDetailFxDoneHandler,
   setFavouriteFxDoneHandler,
   getHistoryFilterFxDoneHandler,
+  getSearchFilterParamFxDoneHandler,
 } from "./effects/effectHandlers";
 import {
   countriesFx,
@@ -22,6 +23,7 @@ import {
   setFavouriteFx,
   getHistoryFilterFx,
   getCardsSearchPhotoFx,
+  getSearchFilterParamFx,
 } from "./effects/effects";
 
 import {
@@ -64,6 +66,7 @@ export const $searchModel = createStore<SearchModel>(SEARCH_MODEL_DEFAULT)
   .on(getCardsSearchPhotoFx.doneData, getCardsFxDoneHandler)
   .on(getCardsDetailFx.doneData, getCardsDetailFxDoneHandler)
   .on(setFavouriteFx.doneData, setFavouriteFxDoneHandler)
+  .on(getSearchFilterParamFx.doneData, getSearchFilterParamFxDoneHandler)
 
   .reset(resetSearchEvent);
 //   .reset(resetModelsOnLogoutEvent);

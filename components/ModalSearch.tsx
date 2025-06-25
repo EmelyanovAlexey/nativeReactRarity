@@ -12,6 +12,7 @@ import {
 import Modal from "react-native-modal";
 import { Colors } from "@/shared/constStyle";
 import Input from "@/components/Input";
+import { SearchParamType } from "../models/search/types";
 
 import { useTranslation } from "react-i18next";
 
@@ -19,16 +20,22 @@ type Props = {
   modalVisible: boolean;
   searchText: string;
   style?: ViewStyle;
+  paramsFilter: SearchParamType;
+  isLoading: boolean;
   setModalVisible: (param: boolean) => void;
   onChangeSearchText: (param: string) => void;
+  onClickParam: (param: string) => void;
 };
 
 const ModalSearch = ({
   style,
   modalVisible = false,
   searchText,
+  paramsFilter,
+  isLoading,
   setModalVisible,
   onChangeSearchText,
+  onClickParam,
 }: Props) => {
   const { t } = useTranslation();
   const scrollViewRef = useRef<ScrollView>(null);
@@ -45,21 +52,15 @@ const ModalSearch = ({
   const variables = [
     {
       label: "Близкие варианты",
-      values: [
-        "Гербовидный",
-        "Геройский",
-        "Герцогский",
-        "Герметичный",
-        "Гермлингтонская Ветвь",
-      ],
+      values: paramsFilter.symbols || [],
     },
     {
       label: "Производители",
-      values: ["Производитель 1", "Производитель 2"],
+      values: paramsFilter.manufacturers || [],
     },
     {
       label: "Страны",
-      values: ["Страна 1", "Страна 2"],
+      values: paramsFilter.countries || [],
     },
   ];
 
@@ -87,6 +88,7 @@ const ModalSearch = ({
             onChangeText={(param) => onChangeSearchText(param)}
             isSearch
             deleteText={() => onChangeSearchText("")}
+            isLoading={isLoading}
           />
         </View>
 
@@ -104,14 +106,18 @@ const ModalSearch = ({
                   {variable.values.map((valueItem) => (
                     <TouchableOpacity
                       onPress={() => {
-                        onChangeSearchText(valueItem);
                         searchOnBlock();
+                        onClickParam(valueItem);
                       }}
                       key={valueItem}
                     >
                       <Text style={styles.valueText}>{valueItem}</Text>
                     </TouchableOpacity>
                   ))}
+
+                  {variable.values.length === 0 && (
+                    <Text style={styles.valueTextNotFind}>Не найдено</Text>
+                  )}
                 </View>
               </View>
             ))}
@@ -190,6 +196,13 @@ const styles = StyleSheet.create({
     fontSize: 16,
     lineHeight: 16,
     fontFamily: "Inter_400Regular",
+  },
+  valueTextNotFind: {
+    fontWeight: 500,
+    fontSize: 16,
+    lineHeight: 16,
+    fontFamily: "Inter_400Regular",
+    color: Colors.GrayColor,
   },
 });
 

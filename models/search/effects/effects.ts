@@ -6,10 +6,11 @@ import {
   manufacturersAPI,
   historyFilterAPI,
   getCardsPhotoAPI,
+  searchFilterParamFxAPI
 } from "./api";
 
 import { ResponseError } from "@/shared/types";
-import { FilterOption, ManufacturersFilterOption, HistoryType } from "../types";
+import { FilterOption, ManufacturersFilterOption, HistoryType, SearchParamType } from "../types";
 
 import {
   getCardsFxParam,
@@ -81,3 +82,10 @@ export const getHistoryFilterFx = createEffect<
   ResponseError
 >();
 getHistoryFilterFx.use(historyFilterAPI);
+
+export const getSearchFilterParamFx = createEffect<
+  string,
+  SearchParamType,
+  ResponseError
+>();
+getSearchFilterParamFx.use(searchFilterParamFxAPI);

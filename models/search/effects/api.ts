@@ -72,3 +72,9 @@ export const getCardsPhotoAPI = async (param: getCardsPhotoFxParam) => {
 
   return response.data;
 };
+
+export const searchFilterParamFxAPI = async (param: string) => {
+  let url = `items/search?query=${param}`;
+  const response = await axios.get(getUrl(url));
+  return response.data;
+};

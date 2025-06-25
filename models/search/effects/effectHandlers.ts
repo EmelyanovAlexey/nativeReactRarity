@@ -4,6 +4,7 @@ import {
   ManufacturersFilterOption,
   SearchHistoryModel,
   HistoryType,
+  SearchParamType,
 } from "../types";
 import { CardType, CardDetailType } from "@/models/home/types";
 
@@ -39,8 +40,6 @@ export function getCardsFxDoneHandler(
   state: SearchModel,
   data: CardType[]
 ): SearchModel {
-  console.log(data);
-  debugger;
   return {
     ...state,
     cards: data,
@@ -88,5 +87,16 @@ export function getHistoryFilterFxDoneHandler(
     historiesLater: data.filter(
       (history) => new Date(history.created_at) <= cueDate
     ),
+  };
+}
+
+export function getSearchFilterParamFxDoneHandler(
+  state: SearchModel,
+  data: SearchParamType
+): SearchModel {
+
+  return {
+    ...state,
+    paramsFilter: data,
   };
 }

@@ -10,16 +10,22 @@ export default function ModalSearchContaner() {
   const {
     modalVisibleSearch,
     textFilter,
+    paramsFilter,
+    isLoading,
     setModalVisibleSearch,
     onChangeSearchText,
+    onClickParam,
   } = useModalSearch();
 
   return (
     <ModalSearch
       modalVisible={modalVisibleSearch}
       searchText={textFilter}
+      paramsFilter={paramsFilter}
+      isLoading={isLoading}
       onChangeSearchText={onChangeSearchText}
       setModalVisible={setModalVisibleSearch}
+      onClickParam={onClickParam}
     />
   );
 }
