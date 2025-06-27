@@ -17,6 +17,7 @@ export default function useBottomTabs() {
     selectedRegions,
     selectedCities,
     selectedManufacturers,
+    selectedSymbol,
     count,
     cards,
     img,
@@ -24,6 +25,10 @@ export default function useBottomTabs() {
   const isLoading = useUnit(getCardsFx.pending);
 
   const listFilter = [
+    {
+      id: TypeFilter.symbol,
+      select: selectedSymbol,
+    },
     {
       id: TypeFilter.country,
       select: selectedCountries,
@@ -58,6 +63,18 @@ export default function useBottomTabs() {
 
   const handleDelete = (type: TypeFilter) => {
     setSelectOptionEvent({ type, option: null });
+
+    getCardsFx({
+      regionName: type === TypeFilter.area ? undefined : selectedRegions?.name,
+      countryName:
+        type === TypeFilter.country ? undefined : selectedCountries?.name,
+      manufacturerName:
+        type === TypeFilter.manufacturer
+          ? undefined
+          : selectedManufacturers?.name,
+      symbolName: type === TypeFilter.symbol ? undefined : selectedSymbol?.name,
+      photoUri: img,
+    });
   };
 
   const handleOpenFilter = () => {

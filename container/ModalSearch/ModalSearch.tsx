@@ -12,6 +12,7 @@ export default function ModalSearchContaner() {
     textFilter,
     paramsFilter,
     isLoading,
+    selectedParam,
     setModalVisibleSearch,
     onChangeSearchText,
     onClickParam,
@@ -23,6 +24,7 @@ export default function ModalSearchContaner() {
       searchText={textFilter}
       paramsFilter={paramsFilter}
       isLoading={isLoading}
+      selectedParam={selectedParam}
       onChangeSearchText={onChangeSearchText}
       setModalVisible={setModalVisibleSearch}
       onClickParam={onClickParam}

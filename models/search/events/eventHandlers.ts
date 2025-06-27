@@ -29,16 +29,19 @@ export function setSelectOptionEventHandler(
   }
 ): SearchModel {
   if (param.type === TypeFilter.country) {
-    return { ...state, selectedCountries: param.option };
+    return { ...state, selectedCountries: state.selectedCountries?.name === param.option?.name ? null : param.option };
   }
   if (param.type === TypeFilter.area) {
-    return { ...state, selectedRegions: param.option };
+    return { ...state, selectedRegions: state.selectedRegions?.name === param.option?.name ? null : param.option };
   }
   if (param.type === TypeFilter.city) {
-    return { ...state, selectedCities: param.option };
+    return { ...state, selectedCities: state.selectedCities?.name === param.option?.name ? null : param.option };
   }
   if (param.type === TypeFilter.manufacturer) {
-    return { ...state, selectedManufacturers: param.option };
+    return { ...state, selectedManufacturers: state.selectedManufacturers?.name === param.option?.name ? null : param.option };
+  }
+  if (param.type === TypeFilter.symbol) {
+    return { ...state, selectedSymbol: state.selectedSymbol?.name === param.option?.name ? null : param.option };
   }
 
   return { ...state };

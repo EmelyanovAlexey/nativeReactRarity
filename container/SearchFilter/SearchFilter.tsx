@@ -60,6 +60,7 @@ export default function SearchFilter() {
         <Text style={styles.description}>
           {count && `${t("resultSearch")}: ${count} шт.`}
         </Text>
+
         {count && <Link to="home">{t("showAll")}</Link>}
       </View>
 

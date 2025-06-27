@@ -20,11 +20,17 @@ export default function useModalSearch() {
     selectedCountries,
     selectedRegions,
     selectedManufacturers,
+    selectedSymbol,
     img,
     paramsFilter,
   } = useUnit($searchModel);
   const isLoading = useUnit(getSearchFilterParamFx.pending);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const selectedParam = {
+    selectedCountries,
+    selectedManufacturers,
+    selectedSymbol,
+  };
 
   // Следим за изменением текста и ставим таймер
   useEffect(() => {
@@ -50,6 +56,7 @@ export default function useModalSearch() {
       regionName: selectedRegions?.name,
       countryName: selectedCountries?.name,
       manufacturerName: selectedManufacturers?.name,
+      symbolName: selectedSymbol?.name,
       photoUri: img,
     });
     setIsShowModalEvent(param);
@@ -60,18 +67,10 @@ export default function useModalSearch() {
   };
 
   // клик на чипсину в поиске
-  const onClickParam = (value: string) => {
+  const onClickParam = (type: TypeFilter, value: string) => {
     setSelectOptionEvent({
-      type: TypeFilter.symbol,
+      type,
       option: { id: 1, name: value },
-    });
-
-    // TODO тут нада подставить и symbol
-    getCardsFx({
-      regionName: selectedRegions?.name,
-      countryName: selectedCountries?.name,
-      manufacturerName: selectedManufacturers?.name,
-      photoUri: img,
     });
   };
 
@@ -80,6 +79,7 @@ export default function useModalSearch() {
     textFilter: searchText,
     paramsFilter,
     isLoading,
+    selectedParam,
     setModalVisibleSearch,
     onChangeSearchText,
     onClickParam,

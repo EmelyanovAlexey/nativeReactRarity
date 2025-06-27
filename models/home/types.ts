@@ -37,6 +37,7 @@ export type getCardsFxParam = {
   countryName?: string;
   manufacturerName?: string;
   photoUri?: string | null;
+  symbolName?: string;
 };
 
 export type getCardsPhotoFxParam = {

@@ -12,7 +12,11 @@ import {
 import Modal from "react-native-modal";
 import { Colors } from "@/shared/constStyle";
 import Input from "@/components/Input";
-import { SearchParamType } from "../models/search/types";
+import {
+  SearchParamType,
+  FilterOption,
+  TypeFilter,
+} from "../models/search/types";
 
 import { useTranslation } from "react-i18next";
 
@@ -22,9 +26,14 @@ type Props = {
   style?: ViewStyle;
   paramsFilter: SearchParamType;
   isLoading: boolean;
+  selectedParam: {
+    selectedCountries: FilterOption | null;
+    selectedManufacturers: FilterOption | null;
+    selectedSymbol: FilterOption | null;
+  };
   setModalVisible: (param: boolean) => void;
   onChangeSearchText: (param: string) => void;
-  onClickParam: (param: string) => void;
+  onClickParam: (type: TypeFilter, param: string) => void;
 };
 
 const ModalSearch = ({
@@ -33,6 +42,7 @@ const ModalSearch = ({
   searchText,
   paramsFilter,
   isLoading,
+  selectedParam,
   setModalVisible,
   onChangeSearchText,
   onClickParam,
@@ -41,9 +51,10 @@ const ModalSearch = ({
   const scrollViewRef = useRef<ScrollView>(null);
   const [scrollOffset, setScrollOffset] = useState(0);
 
-  const searchOnBlock = () => {
-    setModalVisible(false);
-  };
+  // вдруг нада закрывать модальное окно
+  // const searchOnBlock = () => {
+  //   setModalVisible(false);
+  // };
 
   const handleScroll = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
     setScrollOffset(event.nativeEvent.contentOffset.y);
@@ -52,17 +63,37 @@ const ModalSearch = ({
   const variables = [
     {
       label: "Близкие варианты",
+      type: TypeFilter.symbol,
       values: paramsFilter.symbols || [],
     },
     {
       label: "Производители",
+      type: TypeFilter.manufacturer,
       values: paramsFilter.manufacturers || [],
     },
     {
       label: "Страны",
+      type: TypeFilter.country,
       values: paramsFilter.countries || [],
     },
   ];
+
+  // узнать активный ли фильтр
+  function isParamActive(param: string) {
+    if (param === selectedParam.selectedCountries?.name) {
+      return true;
+    }
+
+    if (param === selectedParam.selectedManufacturers?.name) {
+      return true;
+    }
+
+    if (param === selectedParam.selectedSymbol?.name) {
+      return true;
+    }
+
+    return false;
+  }
 
   return (
     <Modal
@@ -106,12 +137,19 @@ const ModalSearch = ({
                   {variable.values.map((valueItem) => (
                     <TouchableOpacity
                       onPress={() => {
-                        searchOnBlock();
-                        onClickParam(valueItem);
+                        onClickParam(variable.type, valueItem);
                       }}
                       key={valueItem}
+                      // style={}
                     >
-                      <Text style={styles.valueText}>{valueItem}</Text>
+                      <Text
+                        style={[
+                          styles.valueText,
+                          isParamActive(valueItem) && styles.activeParam,
+                        ]}
+                      >
+                        {valueItem}
+                      </Text>
                     </TouchableOpacity>
                   ))}
 
@@ -187,15 +225,25 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
     alignItems: "center",
     flexWrap: "wrap",
-    gap: 16,
-    marginBottom: 16,
-    paddingHorizontal: 16,
+    gap: 8,
+    marginBottom: 8,
+    paddingHorizontal: 8,
+  },
+  activeParam: {
+    backgroundColor: Colors.Primary2,
+    color: Colors.Primary,
   },
   valueText: {
     fontWeight: 500,
     fontSize: 16,
     lineHeight: 16,
     fontFamily: "Inter_400Regular",
+
+    padding: 8,
+    paddingHorizontal: 8,
+    borderRadius: 4,
+    backgroundColor: Colors.GrayColor3,
+    color: Colors.BlackColor,
   },
   valueTextNotFind: {
     fontWeight: 500,
