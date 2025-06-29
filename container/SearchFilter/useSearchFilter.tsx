@@ -8,7 +8,9 @@ import {
   setIsShowModalFilterEvent,
   setSelectOptionEvent,
 } from "@/models/search/events/events";
+import { setActiveTabEvent } from "@/models/main/events/events";
 import { getCardsFx } from "@/models/search/effects/effects";
+import { ActiveTab } from "@/models/main/types";
 
 export default function useBottomTabs() {
   const {
@@ -21,6 +23,7 @@ export default function useBottomTabs() {
     count,
     cards,
     img,
+    isBeenSearch,
   } = useUnit($searchModel);
   const isLoading = useUnit(getCardsFx.pending);
 
@@ -85,6 +88,10 @@ export default function useBottomTabs() {
     setSearchTextEvent("");
   };
 
+  const handleToHome = () => {
+    setActiveTabEvent(ActiveTab.home);
+  };
+
   return {
     textFilter: searchText,
     selectedFilter,
@@ -92,6 +99,8 @@ export default function useBottomTabs() {
     count,
     isShowStart,
     img,
+    isBeenSearch,
+    handleToHome,
     handleSearchFilter,
     handleDelete,
     handleOpenFilter,

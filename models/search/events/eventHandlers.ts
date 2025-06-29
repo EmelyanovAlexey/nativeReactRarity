@@ -57,3 +57,10 @@ export function setImgEventHandler(
 ): SearchModel {
   return { ...state, img: image };
 }
+
+export function setIsBeenSearchEventHandler(
+  state: SearchModel,
+  param: boolean
+): SearchModel {
+  return { ...state, isBeenSearch: param };
+}

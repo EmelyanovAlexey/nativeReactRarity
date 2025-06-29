@@ -21,18 +21,20 @@ const CustomTabBar = ({ activeTab, setActiveTab }: Props) => {
     <View style={styles.container}>
       <TouchableOpacity
         style={styles.button}
-        onPress={() => setActiveTab(ActiveTab.home)}
+        onPress={() => setActiveTab(ActiveTab.favorite)}
       >
         <Stars
           stroke={
-            activeTab === ActiveTab.home ? Colors.Primary : Colors.BlackColor
+            activeTab === ActiveTab.favorite
+              ? Colors.Primary
+              : Colors.BlackColor
           }
         />
 
         <Text
           style={[
             styles.text,
-            activeTab === ActiveTab.home && styles.textActive,
+            activeTab === ActiveTab.favorite && styles.textActive,
           ]}
         >
           {t("popular")}
@@ -44,13 +46,16 @@ const CustomTabBar = ({ activeTab, setActiveTab }: Props) => {
       >
         <Search
           stroke={
-            activeTab === ActiveTab.search ? Colors.Primary : Colors.BlackColor
+            activeTab === ActiveTab.search || activeTab === ActiveTab.home
+              ? Colors.Primary
+              : Colors.BlackColor
           }
         />
         <Text
           style={[
             styles.text,
-            activeTab === ActiveTab.search && styles.textActive,
+            (activeTab === ActiveTab.search || activeTab === ActiveTab.home) &&
+              styles.textActive,
           ]}
         >
           {t("search")}

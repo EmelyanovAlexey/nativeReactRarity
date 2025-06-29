@@ -1,5 +1,6 @@
 // ТИПЫ
 export enum ActiveTab {
+  favorite,
   home,
   search,
   profile,

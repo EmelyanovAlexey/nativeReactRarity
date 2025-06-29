@@ -6,6 +6,7 @@ export const SEARCH_MODEL_DEFAULT: SearchModel = {
   searchText: "",
   count: null,
   img: null,
+  isBeenSearch: false,
 
   countries: [],
   selectedCountries: null,

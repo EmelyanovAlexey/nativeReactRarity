@@ -1,4 +1,10 @@
-import { View, StyleSheet, Text, FlatList } from "react-native";
+import {
+  View,
+  StyleSheet,
+  Text,
+  FlatList,
+  TouchableOpacity,
+} from "react-native";
 
 import { CardType } from "@/models/home/types";
 
@@ -7,7 +13,8 @@ import PopularCardDetail from "@/components/PopularCardDetail";
 import PopularCard from "@/components/PopularCard";
 
 import useHomeScreen from "./useHomeScreen";
-import FavouritesCard from "@/components/FavouritesCard";
+import Arrow from "@/components/Icons/Arrow";
+import { Colors } from "@/shared/constStyle";
 
 export default function HomeScreen() {
   const {
@@ -20,11 +27,10 @@ export default function HomeScreen() {
     handleCloseDetail,
     handlePress,
     handleSetFavorite,
+    handleBack,
   } = useHomeScreen();
 
   const renderItem = ({ item, index }: { item: CardType; index: number }) => (
-      // <FavouritesCard
-      //     setIsFavorite={() => false}
     <PopularCard
       key={item.id}
       style={{ marginRight: 8, marginBottom: 8 }}
@@ -35,7 +41,18 @@ export default function HomeScreen() {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.header}>Все</Text>
+      <View style={styles.header}>
+        <TouchableOpacity
+          onPress={handleBack}
+          style={{ paddingHorizontal: 10 }}
+        >
+          <View style={styles.arrow}>
+            <Arrow />
+          </View>
+        </TouchableOpacity>
+        <Text style={styles.headerText}>Все</Text>
+      </View>
+
       <FlatList
         data={cards}
         renderItem={renderItem}
@@ -74,9 +91,25 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
   },
   header: {
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+    marginBottom: 16,
+  },
+  headerText: {
     fontSize: 20,
     fontWeight: "bold",
-    marginBottom: 16,
+  },
+  arrow: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    padding: 10,
+    width: 34,
+    height: 32,
+    borderRadius: "50%",
+    backgroundColor: Colors.GrayColor2,
+    marginRight: 10,
   },
   list: {
     gap: 8,

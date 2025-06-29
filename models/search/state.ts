@@ -1,4 +1,4 @@
-import { createStore } from "effector";
+import { createStore, sample } from "effector";
 
 // import { resetModelsOnLogoutEvent } from "../../applicationState/events";
 
@@ -33,6 +33,7 @@ import {
   setSelectOptionEventHandler,
   clearDetailCardEventHandler,
   setImgEventHandler,
+  setIsBeenSearchEventHandler,
 } from "./events/eventHandlers";
 import {
   resetSearchEvent,
@@ -43,6 +44,7 @@ import {
   clearDetailCardEvent,
   setImgEvent,
   resetSearchHistoryEvent,
+  setIsBeenSearchEvent,
 } from "./events/events";
 import {
   SEARCH_MODEL_DEFAULT,
@@ -57,6 +59,7 @@ export const $searchModel = createStore<SearchModel>(SEARCH_MODEL_DEFAULT)
   .on(setSelectOptionEvent, setSelectOptionEventHandler)
   .on(clearDetailCardEvent, clearDetailCardEventHandler)
   .on(setImgEvent, setImgEventHandler)
+  .on(setIsBeenSearchEvent, setIsBeenSearchEventHandler)
 
   .on(countriesFx.doneData, countriesFxDoneHandler)
   .on(regionsFx.doneData, regionsFxDoneHandler)
@@ -76,3 +79,10 @@ export const $searchHistoryModel = createStore<SearchHistoryModel>(
 )
   .on(getHistoryFilterFx.doneData, getHistoryFilterFxDoneHandler)
   .reset(resetSearchHistoryEvent);
+
+
+sample({
+	clock: [getCardsSearchPhotoFx.doneData, getCardsFx.doneData],
+	fn: () => true,
+	target: [setIsBeenSearchEvent],
+});

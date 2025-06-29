@@ -96,7 +96,11 @@ const PopularCardDetail = ({
           >
             {data && (
               <>
-                <Image source={{ uri: data.image }} style={styles.image} />
+                <Image
+                  source={{ uri: data.image }}
+                  style={styles.image}
+                  resizeMode="contain"
+                />
 
                 <View style={styles.row}>
                   <Text style={styles.date}>

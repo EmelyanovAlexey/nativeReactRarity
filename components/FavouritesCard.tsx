@@ -31,7 +31,11 @@ const FavouritesCard = ({ style, item, onPress, setIsFavorite }: Props) => {
   return (
     <TouchableOpacity style={[styles.card, style]} onPress={onPress}>
       <View style={styles.imageContainer}>
-        <Image source={{ uri: item.image }} style={styles.image} />
+        <Image
+          source={{ uri: item.image }}
+          style={styles.image}
+          resizeMode="contain"
+        />
       </View>
 
       <View style={styles.info}>

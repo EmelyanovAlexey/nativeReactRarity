@@ -1,5 +1,12 @@
 import React from "react";
-import { View, Text, StyleSheet, ScrollView, Image } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  ScrollView,
+  Image,
+  TouchableOpacity,
+} from "react-native";
 import { useTranslation } from "react-i18next";
 
 import SearchBlock from "@/components/SearchBlock";
@@ -19,10 +26,12 @@ export default function SearchFilter() {
     isShowStart,
     img,
     count,
+    isBeenSearch,
     handleSearchFilter,
     handleDelete,
     handleOpenFilter,
     handleDeleteFilter,
+    handleToHome,
   } = useSearchFilter();
 
   return (
@@ -61,7 +70,9 @@ export default function SearchFilter() {
           {count && `${t("resultSearch")}: ${count} шт.`}
         </Text>
 
-        {count && <Link to="home">{t("showAll")}</Link>}
+        <TouchableOpacity onPress={handleToHome}>
+          <Text style={[styles.buttonText]}>{t("showAll")}</Text>
+        </TouchableOpacity>
       </View>
 
       {isShowStart && (
@@ -108,5 +119,11 @@ const styles = StyleSheet.create({
     height: 40,
     borderRadius: 8,
     marginRight: 8,
+  },
+  buttonText: {
+    color: Colors.Primary,
+    fontSize: 16,
+    fontWeight: 600,
+    fontFamily: "Inter_400Regular",
   },
 });

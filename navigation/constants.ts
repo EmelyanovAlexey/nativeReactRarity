@@ -46,11 +46,6 @@ export const Route = [
     type: RouteType.showArrow,
   },
   {
-    name: "home",
-    component: HomeScreen,
-    type: RouteType.hideHeader,
-  },
-  {
     name: "search",
     component: SearchScreen,
     type: RouteType.hideHeader,

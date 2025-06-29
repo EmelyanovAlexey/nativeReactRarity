@@ -50,6 +50,7 @@ export interface SearchModel {
   searchText: string;
   count: number | null;
   img: string | null;
+  isBeenSearch: boolean;
 
   countries: FilterOption[];
   selectedCountries: FilterOption | null;

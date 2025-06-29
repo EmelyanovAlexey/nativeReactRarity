@@ -7,6 +7,7 @@ import { $mainModel } from "@/models/main";
 import SearchScreen from "@/screens/SearchScreen";
 import ProfileScreen from "@/screens/ProfileScreen";
 import FavouritesScreen from "@/screens/FavouritesScreen";
+import HomeScreen from "@/screens/HomeScreen";
 
 export default function useBottomTabs() {
   const { activeTab } = useUnit($mainModel);
@@ -17,12 +18,14 @@ export default function useBottomTabs() {
 
   const renderScreen = () => {
     switch (activeTab) {
-      case ActiveTab.home:
+      case ActiveTab.favorite:
         return <FavouritesScreen />;
       case ActiveTab.search:
         return <SearchScreen />;
       case ActiveTab.profile:
         return <ProfileScreen />;
+      case ActiveTab.home:
+        return <HomeScreen />;
       default:
         "Ошибка !";
     }

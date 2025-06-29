@@ -6,6 +6,8 @@ import {
   getCardsDetailFx,
   setFavouriteFx,
 } from "@/models/home/effects/effects";
+import { ActiveTab } from "@/models/main/types";
+import { setActiveTabEvent } from "@/models/main/events/events";
 
 import { CardType } from "@/models/home/types";
 import { $popularModel } from "@/models/home";
@@ -31,6 +33,10 @@ export default function useHomeScreen() {
     setFavouriteFx(id);
   };
 
+  const handleBack = () => {
+    setActiveTabEvent(ActiveTab.search);
+  };
+
   useEffect(() => {
     getCardsFx({});
   }, []);
@@ -45,5 +51,6 @@ export default function useHomeScreen() {
     handleCloseDetail,
     handlePress,
     handleSetFavorite,
+    handleBack,
   };
 }
