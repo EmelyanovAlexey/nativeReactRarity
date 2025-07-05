@@ -29,6 +29,8 @@ export type PopularModel = {
   cards: CardType[];
   cardDetail: CardDetailType | null;
   page: number;
+  limit: number;
+  hasMore: boolean;
 };
 
 // ПАРАМЕТРЫ
@@ -38,6 +40,8 @@ export type getCardsFxParam = {
   manufacturerName?: string;
   photoUri?: string | null;
   symbolName?: string;
+  page?: number;
+  offset?: number;
 };
 
 export type getCardsPhotoFxParam = {

@@ -24,10 +24,13 @@ export default function HomeScreen() {
     cardDetail,
     cardDetailLoading,
     modalVisible,
+    flatListKey,
+    flatListRef,
     handleCloseDetail,
     handlePress,
     handleSetFavorite,
     handleBack,
+    handleLoadMore,
   } = useHomeScreen();
 
   const renderItem = ({ item, index }: { item: CardType; index: number }) => (
@@ -54,14 +57,27 @@ export default function HomeScreen() {
       </View>
 
       <FlatList
+        key={flatListKey}
+        ref={flatListRef}
         data={cards}
+        style={{ flexGrow: 1 }}
         renderItem={renderItem}
-        keyExtractor={(item: any) => item.id}
+        keyExtractor={(item: any) => item.id.toString()}
         ItemSeparatorComponent={() => <View style={{ height: 12 }} />}
         numColumns={3}
-        contentContainerStyle={{ paddingHorizontal: 8, paddingVertical: 8 }}
+        contentContainerStyle={{
+          paddingHorizontal: 8,
+          paddingVertical: 8,
+          flexGrow: 1,
+        }}
         columnWrapperStyle={{ justifyContent: "space-between", gap: 8 }}
-        showsVerticalScrollIndicator={false}
+        showsVerticalScrollIndicator={true}
+        onEndReached={handleLoadMore}
+        onEndReachedThreshold={0.7}
+        initialNumToRender={15} // начальное количество элементов
+        maxToRenderPerBatch={20} // сколько рендерить за раз
+        windowSize={10} // окна выше и ниже экрана в памяти
+        removeClippedSubviews={false} // чтобы не удалялись скрытые элементы
       />
 
       {isLoading && (

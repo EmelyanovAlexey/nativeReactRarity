@@ -4,7 +4,20 @@ export function getCardsFxDoneHandler(
   state: PopularModel,
   data: CardType[]
 ): PopularModel {
-  return { ...state, cards: data };
+
+  let allCard = data;
+
+  // debugger
+
+  if (state.page > 1) {
+    allCard = state.cards.concat(data)
+  }
+
+  if (data.length < state.limit) {
+    return { ...state, cards: allCard, hasMore: false };
+  }
+
+  return { ...state, cards: allCard, hasMore: true };
 }
 
 export function getCardsDetailFxDoneHandler(

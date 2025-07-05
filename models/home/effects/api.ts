@@ -29,10 +29,19 @@ export const getCardsAPI = async (param: getCardsFxParam) => {
     isHasParam = true;
   }
 
-    if (param.symbolName) {
+  if (param.symbolName) {
     url = `${url}${isHasParam ? "&" : "?"}symbol_name=${param.symbolName}`;
     formData.append("symbol_name", param.symbolName);
     isHasParam = true;
+  }
+
+  if (param.page) {
+    url = `${url}${isHasParam ? "&" : "?"}page=${param.page}`;
+    isHasParam = true;
+  }
+
+  if (param.offset) {
+    url = `${url}${isHasParam ? "&" : "?"}offset=${param.offset}`;
   }
 
   const response = await axios.get(getUrl(url));
