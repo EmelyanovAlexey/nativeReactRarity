@@ -64,3 +64,7 @@ export function setIsBeenSearchEventHandler(
 ): SearchModel {
   return { ...state, isBeenSearch: param };
 }
+
+export function setPageEventHandler(state: SearchModel, page: number): SearchModel {
+  return { ...state, page };
+}

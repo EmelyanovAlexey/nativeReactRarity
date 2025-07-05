@@ -17,3 +17,4 @@ export const setSelectOptionEvent = createEvent<{
 
 export const clearDetailCardEvent = createEvent<void>();
 export const setIsBeenSearchEvent = createEvent<boolean>();
+export const setPageEvent = createEvent<number>();

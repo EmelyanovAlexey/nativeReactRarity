@@ -7,8 +7,6 @@ export function getCardsFxDoneHandler(
 
   let allCard = data;
 
-  // debugger
-
   if (state.page > 1) {
     allCard = state.cards.concat(data)
   }

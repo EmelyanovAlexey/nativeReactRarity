@@ -71,7 +71,7 @@ export default function HomeScreen() {
           flexGrow: 1,
         }}
         columnWrapperStyle={{ justifyContent: "space-between", gap: 8 }}
-        showsVerticalScrollIndicator={true}
+        showsVerticalScrollIndicator={false}
         onEndReached={handleLoadMore}
         onEndReachedThreshold={0.7}
         initialNumToRender={15} // начальное количество элементов

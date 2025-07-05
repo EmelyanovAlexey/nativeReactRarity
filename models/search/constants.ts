@@ -29,7 +29,11 @@ export const SEARCH_MODEL_DEFAULT: SearchModel = {
     countries: [],
     manufacturers:[],
     symbols: [],
-  }
+  },
+
+  page: 1,
+  limit: 40,
+  hasMore: true,
 };
 
 export const SEARCH_HISTORY_MODEL_DEFAULT: SearchHistoryModel = {

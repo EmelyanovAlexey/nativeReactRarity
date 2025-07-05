@@ -15,6 +15,7 @@ import {
   setIsShowModalFilterEvent,
   setSearchTextEvent,
   setSelectOptionEvent,
+  setPageEvent,
 } from "@/models/search/events/events";
 
 export default function useModalSearchFilter() {
@@ -28,6 +29,7 @@ export default function useModalSearchFilter() {
     selectedCities,
     manufacturers,
     selectedManufacturers,
+    limit,
   } = useUnit($searchModel);
   const [filterText, setFilterText] = useState<string>("");
   const [typeCurFilter, setTypeCurFilter] = useState<TypeFilter>(
@@ -97,10 +99,13 @@ export default function useModalSearchFilter() {
   }
 
   const setModalVisibleSearch = (param: boolean) => {
+    setPageEvent(1);
     getCardsFx({
       regionName: selectedRegions?.name,
       countryName: selectedCountries?.name,
       manufacturerName: selectedManufacturers?.name,
+      page: 1,
+      offset: limit,
     });
     setIsShowModalFilterEvent(param);
   };

@@ -11,6 +11,7 @@ import {
   setIsShowModalEvent,
   setSearchTextEvent,
   setSelectOptionEvent,
+  setPageEvent,
 } from "@/models/search/events/events";
 
 export default function useModalSearch() {
@@ -23,6 +24,7 @@ export default function useModalSearch() {
     selectedSymbol,
     img,
     paramsFilter,
+    limit,
   } = useUnit($searchModel);
   const isLoading = useUnit(getSearchFilterParamFx.pending);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
@@ -52,12 +54,15 @@ export default function useModalSearch() {
   }, [searchText]);
 
   const setModalVisibleSearch = (param: boolean) => {
+    setPageEvent(1);
     getCardsFx({
       regionName: selectedRegions?.name,
       countryName: selectedCountries?.name,
       manufacturerName: selectedManufacturers?.name,
       symbolName: selectedSymbol?.name,
       photoUri: img,
+      page: 1,
+      offset: limit,
     });
     setIsShowModalEvent(param);
   };

@@ -40,11 +40,17 @@ export function getCardsFxDoneHandler(
   state: SearchModel,
   data: CardType[]
 ): SearchModel {
-  return {
-    ...state,
-    cards: data,
-    count: data.length > 0 ? data.length : null,
-  };
+    let allCard = data;
+
+  if (state.page > 1) {
+    allCard = state.cards.concat(data)
+  }
+
+    if (data.length < state.limit) {
+    return { ...state, cards: allCard, hasMore: false, count: data.length > 0 ? data.length : null, };
+  }
+
+  return { ...state, cards: allCard, hasMore: true, count: data.length > 0 ? data.length : null, };
 }
 
 export function getCardsDetailFxDoneHandler(

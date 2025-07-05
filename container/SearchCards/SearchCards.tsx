@@ -15,6 +15,8 @@ import useSearchCards from "./useSearchCards";
 export default function SearchFilter() {
   const { t } = useTranslation();
   const {
+    flatListKey,
+    flatListRef,
     cards,
     isLoading,
     cardDetail,
@@ -24,6 +26,7 @@ export default function SearchFilter() {
     handleCloseDetail,
     handlePress,
     handleSetFavorite,
+    handleLoadMore,
   } = useSearchCards();
 
   const renderItem = ({ item }: { item: CardType }) => (
@@ -39,12 +42,20 @@ export default function SearchFilter() {
   return (
     <View style={styles.container}>
       <FlatList
+        key={flatListKey}
+        ref={flatListRef}
         data={cards}
         renderItem={renderItem}
         keyExtractor={(item: any) => item.id}
         numColumns={1}
         contentContainerStyle={styles.list}
         showsVerticalScrollIndicator={false}
+        onEndReached={handleLoadMore}
+        onEndReachedThreshold={0.7}
+        initialNumToRender={15} // начальное количество элементов
+        maxToRenderPerBatch={20} // сколько рендерить за раз
+        windowSize={10} // окна выше и ниже экрана в памяти
+        removeClippedSubviews={false} // чтобы не удалялись скрытые элементы
       />
 
       {isLoading && (

@@ -70,6 +70,10 @@ export interface SearchModel {
   selectedSymbol: FilterOption | null;
 
   paramsFilter: SearchParamType;
+
+  page: number;
+  limit: number;
+  hasMore: boolean;
 }
 
 export interface SearchHistoryModel {
