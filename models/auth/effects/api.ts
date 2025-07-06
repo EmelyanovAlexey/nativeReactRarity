@@ -33,6 +33,6 @@ export const registerAPI = async (params: RegisterFXParam) => {
 
 export const loginGoogleAPI = async () => {
   window.location.href = getUrl("google/login");
-  // const response = await axios.get(getUrl("google/login"));
-  // return response.data;
+  const response = await axios.get(getUrl("google/login"));
+  return response.data;
 };
