@@ -27,8 +27,8 @@ export default function useSearchScreen() {
     setPageEvent(1);
 
     getCardsSearchPhotoFx({
-      regionName: selectedCountries?.name,
-      countryName: selectedRegions?.name,
+      countryName: selectedCountries?.name,
+      regionName: selectedRegions?.name,
       manufacturerName: selectedManufacturers?.name,
       symbolName: selectedSymbol?.name,
       photoUri: pureBase64,

@@ -105,8 +105,8 @@ export default function useModalSearchFilter() {
     setPageEvent(1);
 
     const paramRequest = {
-      regionName: selectedRegions?.name,
       countryName: selectedCountries?.name,
+      regionName: selectedRegions?.name,
       manufacturerName: selectedManufacturers?.name,
       symbolName: selectedSymbol?.name,
       page: 1,
