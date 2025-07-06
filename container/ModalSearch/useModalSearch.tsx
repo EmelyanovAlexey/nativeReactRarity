@@ -6,6 +6,7 @@ import { TypeFilter } from "@/models/search/types";
 import {
   getCardsFx,
   getSearchFilterParamFx,
+  getCardsSearchPhotoFx,
 } from "@/models/search/effects/effects";
 import {
   setIsShowModalEvent,
@@ -55,15 +56,22 @@ export default function useModalSearch() {
 
   const setModalVisibleSearch = (param: boolean) => {
     setPageEvent(1);
-    getCardsFx({
+    const paramRequest = {
       regionName: selectedRegions?.name,
       countryName: selectedCountries?.name,
       manufacturerName: selectedManufacturers?.name,
       symbolName: selectedSymbol?.name,
-      photoUri: img,
       page: 1,
       offset: limit,
-    });
+    };
+
+    if (img) {
+      getCardsSearchPhotoFx({ ...paramRequest, photoUri: img.split(",")[1] });
+      setIsShowModalEvent(param);
+      return;
+    }
+
+    getCardsFx(paramRequest);
     setIsShowModalEvent(param);
   };
 

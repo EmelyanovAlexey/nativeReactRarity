@@ -7,6 +7,7 @@ import {
   citiesFx,
   manufacturersFx,
   getCardsFx,
+  getCardsSearchPhotoFx,
 } from "@/models/search/effects/effects";
 import { TypeFilter, FilterRoot, FilterOption } from "@/models/search/types";
 import { $searchModel } from "@/models/search";
@@ -30,6 +31,8 @@ export default function useModalSearchFilter() {
     manufacturers,
     selectedManufacturers,
     limit,
+    selectedSymbol,
+    img,
   } = useUnit($searchModel);
   const [filterText, setFilterText] = useState<string>("");
   const [typeCurFilter, setTypeCurFilter] = useState<TypeFilter>(
@@ -100,13 +103,23 @@ export default function useModalSearchFilter() {
 
   const setModalVisibleSearch = (param: boolean) => {
     setPageEvent(1);
-    getCardsFx({
+
+    const paramRequest = {
       regionName: selectedRegions?.name,
       countryName: selectedCountries?.name,
       manufacturerName: selectedManufacturers?.name,
+      symbolName: selectedSymbol?.name,
       page: 1,
       offset: limit,
-    });
+    };
+
+    if (img) {
+      getCardsSearchPhotoFx({ ...paramRequest, photoUri: img.split(",")[1] });
+      setIsShowModalFilterEvent(param);
+      return;
+    }
+
+    getCardsFx(paramRequest);
     setIsShowModalFilterEvent(param);
   };
 

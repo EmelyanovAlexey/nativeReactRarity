@@ -2,10 +2,11 @@ import { useRef, useState } from "react";
 import { useUnit } from "effector-react";
 
 import { $searchModel } from "@/models/search";
-import { getCardsFx } from "@/models/search/effects/effects";
+import { getCardsSearchPhotoFx } from "@/models/search/effects/effects";
 import {
   setIsShowModalEvent,
   setImgEvent,
+  setPageEvent,
 } from "@/models/search/events/events";
 import { CameraView, CameraType, useCameraPermissions } from "expo-camera";
 import * as ImagePicker from "expo-image-picker";
@@ -19,6 +20,8 @@ export default function useModalCamera(
     selectedRegions,
     selectedCities,
     selectedManufacturers,
+    limit,
+    selectedSymbol,
   } = useUnit($searchModel);
   const [facing, setFacing] = useState<CameraType>("back");
   const [flash, setFlash] = useState<"torch" | "off">("off");
@@ -26,11 +29,16 @@ export default function useModalCamera(
   const cameraRef = useRef<CameraView>(null);
 
   const setModalVisibleSearch = (img: string) => {
-    getCardsFx({
-      regionName: selectedRegions?.name,
-      countryName: selectedCountries?.name,
+    setPageEvent(1);
+
+    getCardsSearchPhotoFx({
+      regionName: selectedCountries?.name,
+      countryName: selectedRegions?.name,
       manufacturerName: selectedManufacturers?.name,
-      photoUri: img,
+      symbolName: selectedSymbol?.name,
+      photoUri: img.split(",")[1],
+      page: 1,
+      offset: limit,
     });
   };
 
@@ -42,7 +50,6 @@ export default function useModalCamera(
         setImgEvent(photo?.uri);
         setModalVisible(false);
         setModalVisibleSearch(photo?.uri);
-        // console.log("📸 Фото сделано:", photo?.uri);
       }
     }
   };
@@ -64,7 +71,6 @@ export default function useModalCamera(
     if (!result.canceled) {
       setImgEvent(result.assets[0].uri); // сохраняем URI
       setModalVisibleSearch(result.assets[0].uri);
-      // console.log("📸 Фото из галереи:", result.assets[0].uri);
     }
     setModalVisible(false);
   };

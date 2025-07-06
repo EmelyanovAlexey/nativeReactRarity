@@ -57,12 +57,38 @@ export const getCardsPhotoAPI = async (param: getCardsPhotoFxParam) => {
   const formData = new FormData();
   let url = "items/find_by_image";
 
-  if (param.photoUri && param.photoUri !== null) {
-    formData.append("base64img", param.photoUri);
+  if (param.countryName) {
+    formData.append("country_name", param.countryName);
   }
+
+  if (param.manufacturerName) {
+    formData.append("manufacturer_name", param.manufacturerName);
+  }
+
+  if (param.regionName) {
+    formData.append("region_name", param.regionName);
+  }
+
+  if (param.symbolName) {
+    formData.append("symbol_name", param.symbolName);
+  }
+
+  if (param.page) {
+    formData.append("page", String(param.page));
+  }
+
+  if (param.offset) {
+    formData.append("offset", String(param.offset));
+  }
+
+  if (param.photoUri && param.photoUri !== null) {
+    formData.append("base64", param.photoUri); // base64img
+  }
+
   const response = await axios.post(
     getUrl(url),
-      {'base64': param.photoUri},
+    // {'base64': param.photoUri},
+    formData,
     {
       headers: {
         "Content-Type": "application/json",

@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 import * as ImagePicker from "expo-image-picker";
 import { getCardsSearchPhotoFx } from "@/models/search/effects/effects";
 
-import { setImgEvent } from "../../models/search/events/events";
+import { setImgEvent, setPageEvent } from "../../models/search/events/events";
 import { $searchModel } from "../../models/search";
 
 export default function useSearchScreen() {
@@ -15,6 +15,8 @@ export default function useSearchScreen() {
     selectedRegions,
     selectedCities,
     selectedManufacturers,
+    limit,
+    selectedSymbol,
   } = useUnit($searchModel);
   const [showPhotoMenu, setShowPhotoMenu] = useState<boolean>(false);
   const [showPhotoCamera, setShowPhotoCamera] = useState<boolean>(false);
@@ -22,12 +24,16 @@ export default function useSearchScreen() {
 
   const setModalVisibleSearch = (img: string) => {
     const pureBase64 = img.split(",")[1];
+    setPageEvent(1);
 
     getCardsSearchPhotoFx({
       regionName: selectedCountries?.name,
       countryName: selectedRegions?.name,
       manufacturerName: selectedManufacturers?.name,
+      symbolName: selectedSymbol?.name,
       photoUri: pureBase64,
+      page: 1,
+      offset: limit,
     });
   };
 
@@ -47,7 +53,6 @@ export default function useSearchScreen() {
     });
 
     if (!result.canceled) {
-      // console.log(result.assets[0].uri);
       setImgEvent(result.assets[0].uri);
       setModalVisibleSearch(result.assets[0].uri);
     }

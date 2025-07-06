@@ -49,4 +49,7 @@ export type getCardsPhotoFxParam = {
   countryName?: string;
   manufacturerName?: string;
   photoUri: string;
+  symbolName?: string;
+  page?: number;
+  offset?: number;
 };

@@ -10,7 +10,10 @@ import {
   setPageEvent,
 } from "@/models/search/events/events";
 import { setActiveTabEvent } from "@/models/main/events/events";
-import { getCardsFx } from "@/models/search/effects/effects";
+import {
+  getCardsFx,
+  getCardsSearchPhotoFx,
+} from "@/models/search/effects/effects";
 import { ActiveTab } from "@/models/main/types";
 
 export default function useBottomTabs() {
@@ -69,7 +72,8 @@ export default function useBottomTabs() {
   const handleDelete = (type: TypeFilter) => {
     setSelectOptionEvent({ type, option: null });
     setPageEvent(1);
-    getCardsFx({
+
+    const param = {
       regionName: type === TypeFilter.area ? undefined : selectedRegions?.name,
       countryName:
         type === TypeFilter.country ? undefined : selectedCountries?.name,
@@ -78,10 +82,16 @@ export default function useBottomTabs() {
           ? undefined
           : selectedManufacturers?.name,
       symbolName: type === TypeFilter.symbol ? undefined : selectedSymbol?.name,
-      photoUri: img,
       page: 1,
       offset: limit,
-    });
+    };
+
+    if (img) {
+      getCardsSearchPhotoFx({ ...param, photoUri: img.split(",")[1] });
+      return;
+    }
+
+    getCardsFx(param);
   };
 
   const handleOpenFilter = () => {
