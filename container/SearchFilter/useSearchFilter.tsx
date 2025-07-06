@@ -30,7 +30,8 @@ export default function useBottomTabs() {
     isBeenSearch,
     limit,
   } = useUnit($searchModel);
-  const isLoading = useUnit(getCardsFx.pending);
+  const isLoadingAI = useUnit(getCardsFx.pending);
+  const isLoading = useUnit(getCardsFx.pending) || isLoadingAI;
 
   const listFilter = [
     {

@@ -11,7 +11,6 @@ export const getCardsAPI = async (param: getCardsFxParam) => {
     url = `${url}${isHasParam ? "&" : "?"}country_name=${
       param.countryName
     }`;
-    formData.append("country_name", param.countryName);
     isHasParam = true;
   }
 
@@ -19,19 +18,16 @@ export const getCardsAPI = async (param: getCardsFxParam) => {
     url = `${url}${isHasParam ? "&" : "?"}manufacturer_name=${
       param.manufacturerName
     }`;
-    formData.append("manufacturer_name", param.manufacturerName);
     isHasParam = true;
   }
 
   if (param.regionName) {
     url = `${url}${isHasParam ? "&" : "?"}region_name=${param.regionName}`;
-    formData.append("region_name", param.regionName);
     isHasParam = true;
   }
 
   if (param.symbolName) {
     url = `${url}${isHasParam ? "&" : "?"}symbol_name=${param.symbolName}`;
-    formData.append("symbol_name", param.symbolName);
     isHasParam = true;
   }
 

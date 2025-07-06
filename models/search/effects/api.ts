@@ -56,29 +56,39 @@ export const historyFilterAPI = async () => {
 export const getCardsPhotoAPI = async (param: getCardsPhotoFxParam) => {
   const formData = new FormData();
   let url = "items/find_by_image";
+  let isHasParam = false;
 
   if (param.countryName) {
-    formData.append("country_name", param.countryName);
+    url = `${url}${isHasParam ? "&" : "?"}country_name=${
+      param.countryName
+    }`;
+    isHasParam = true;
   }
 
   if (param.manufacturerName) {
-    formData.append("manufacturer_name", param.manufacturerName);
+    url = `${url}${isHasParam ? "&" : "?"}manufacturer_name=${
+      param.manufacturerName
+    }`;
+    isHasParam = true;
   }
 
   if (param.regionName) {
-    formData.append("region_name", param.regionName);
+    url = `${url}${isHasParam ? "&" : "?"}region_name=${param.regionName}`;
+    isHasParam = true;
   }
 
   if (param.symbolName) {
-    formData.append("symbol_name", param.symbolName);
+    url = `${url}${isHasParam ? "&" : "?"}symbol_name=${param.symbolName}`;
+    isHasParam = true;
   }
 
   if (param.page) {
-    formData.append("page", String(param.page));
+    url = `${url}${isHasParam ? "&" : "?"}page=${param.page}`;
+    isHasParam = true;
   }
 
   if (param.offset) {
-    formData.append("offset", String(param.offset));
+    url = `${url}${isHasParam ? "&" : "?"}offset=${param.offset}`;
   }
 
   if (param.photoUri && param.photoUri !== null) {

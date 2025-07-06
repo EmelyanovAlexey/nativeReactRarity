@@ -102,7 +102,8 @@ const styles = StyleSheet.create({
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    marginTop: 250,
+    marginTop: 50,
+    marginBottom: 50,
     zIndex: 1,
   },
   loadingText: {

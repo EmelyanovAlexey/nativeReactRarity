@@ -7,6 +7,7 @@ import {
   getCardsFx,
   getCardsDetailFx,
   setFavouriteFx,
+  getCardsSearchPhotoFx,
 } from "@/models/search/effects/effects";
 import { TypeFilter } from "@/models/search/types";
 import {
@@ -32,6 +33,7 @@ export default function useBottomTabs() {
   const [selectedItem, setSelectedItem] = useState<CardType | null>(null);
   const [modalVisible, setModalVisible] = useState<boolean>(false);
   const isLoading = useUnit(getCardsFx.pending);
+  const isLoadingAI = useUnit(getCardsSearchPhotoFx.pending);
   const cardDetailLoading = useUnit(getCardsDetailFx.pending);
   const [flatListKey, setFlatListKey] = useState(0);
   const flatListRef = useRef<FlatList>(null);
@@ -62,21 +64,27 @@ export default function useBottomTabs() {
   }, [cards]);
 
   const loadCards = async (pageToLoad = 1) => {
-    await getCardsFx({
+    const param = {
       regionName: !selectedRegions ? undefined : selectedRegions?.name,
       countryName: !selectedCountries ? undefined : selectedCountries?.name,
       manufacturerName: !selectedManufacturers
         ? undefined
         : selectedManufacturers?.name,
       symbolName: !selectedSymbol ? undefined : selectedSymbol?.name,
-      photoUri: img,
       page: pageToLoad,
       offset: limit,
-    });
+    };
+
+    if (img) {
+      getCardsSearchPhotoFx({ ...param, photoUri: img.split(",")[1] });
+      return;
+    }
+
+    await getCardsFx(param);
   };
 
   const handleLoadMore = () => {
-    if (isLoading || !hasMore || cards.length === 0) return;
+    if (isLoading || isLoadingAI || !hasMore || cards.length === 0) return;
 
     const nextPage = page + 1;
     setPageEvent(nextPage);
@@ -85,7 +93,7 @@ export default function useBottomTabs() {
 
   return {
     cards,
-    isLoading,
+    isLoading: isLoading || isLoadingAI,
     cardDetail,
     cardDetailLoading,
     selectedItem,
