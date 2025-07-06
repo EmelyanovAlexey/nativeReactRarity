@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 import { useNavigation } from "@react-navigation/native";
 
 import { setErrorEvent } from "@/models/auth/events/events";
-import { loginFx } from "@/models/auth/effects/effects";
+import { loginFx, loginGoogleFx } from "@/models/auth/effects/effects";
 import { $userModel } from "@/models/auth";
 
 export default function useLoginScreen() {
@@ -40,6 +40,10 @@ export default function useLoginScreen() {
     }
   };
 
+  const handleGoogle = () => {
+    loginGoogleFx();
+  };
+
   useEffect(() => {
     if (isAuthenticated) {
       navigation.navigate("main");
@@ -58,5 +62,6 @@ export default function useLoginScreen() {
     setEmail,
     setPassword,
     handleLogin,
+    handleGoogle,
   };
 }

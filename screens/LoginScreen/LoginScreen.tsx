@@ -21,6 +21,7 @@ export default function LoginScreen() {
     setEmail,
     setPassword,
     handleLogin,
+    handleGoogle,
   } = useLoginScreen();
 
   return (
@@ -49,7 +50,6 @@ export default function LoginScreen() {
 
       {error !== "" && (
         <View style={styles.error}>
-          {/* "invalidPassword" */}
           <Text style={styles.textError}>{t(error)}</Text>
           <Link to="help">{t("forgotPassword")}</Link>
         </View>
@@ -62,7 +62,7 @@ export default function LoginScreen() {
         filled={false}
         style={styles.button}
         leftContent={<Google />}
-        onPress={() => {}}
+        onPress={handleGoogle}
       />
       <Button
         title={t("login")}

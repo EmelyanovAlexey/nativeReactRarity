@@ -30,3 +30,9 @@ export const registerAPI = async (params: RegisterFXParam) => {
     throw error;
   }
 };
+
+export const loginGoogleAPI = async () => {
+  window.location.href = getUrl("google/login");
+  // const response = await axios.get(getUrl("google/login"));
+  // return response.data;
+};
