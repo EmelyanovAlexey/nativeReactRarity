@@ -32,6 +32,7 @@ export default function SearchFilter() {
     handleOpenFilter,
     handleDeleteFilter,
     handleToHome,
+    onPressDeleteImg,
   } = useSearchFilter();
 
   return (
@@ -42,6 +43,7 @@ export default function SearchFilter() {
           onPress={handleSearchFilter}
           onPressDelete={handleDeleteFilter}
           onPressFilter={handleOpenFilter}
+          onPressDeleteImg={onPressDeleteImg}
           leftContent={
             img ? (
               <Image source={{ uri: img }} style={styles.image} />

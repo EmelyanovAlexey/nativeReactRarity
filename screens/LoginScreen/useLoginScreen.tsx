@@ -4,8 +4,14 @@ import { useTranslation } from "react-i18next";
 import { useNavigation } from "@react-navigation/native";
 
 import { setErrorEvent } from "@/models/auth/events/events";
-import { loginFx, loginGoogleFx } from "@/models/auth/effects/effects";
+import { loginFx } from "@/models/auth/effects/effects";
 import { $userModel } from "@/models/auth";
+//
+import * as Google from "expo-auth-session/providers/google";
+import * as WebBrowser from "expo-web-browser";
+
+// чтобы корректно закрывался браузер после логина
+WebBrowser.maybeCompleteAuthSession(); // Обязательно вызвать для корректной работы в Expo
 
 export default function useLoginScreen() {
   const { t } = useTranslation();
@@ -18,6 +24,32 @@ export default function useLoginScreen() {
 
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   const isDisabledLogin = email !== "" && password !== "";
+
+  // -----------------------
+  // Подключаем Google Auth
+  const [request, response, promptAsync] = Google.useAuthRequest({
+    // expoClientId: "<ТВОЙ_EXPO_CLIENT_ID>",
+    androidClientId:
+      "300313252073-66vhmr7567gt5q2gkq6gc9al337bi5dc.apps.googleusercontent.com",
+    iosClientId:
+      "300313252073-rj3vequ0vfcdlchijom7m9ef8gab9het.apps.googleusercontent.com",
+    webClientId:
+      "300313252073-bciuv13oft99m9hph6j5anr5ur07s8tl.apps.googleusercontent.com",
+  });
+
+  const handleGoogle = async () => {
+    promptAsync();
+  };
+
+  useEffect(() => {
+    if (response?.type === "success") {
+      const { authentication } = response;
+      console.log("Access Token:", authentication?.accessToken);
+      setIsAuthenticated(true);
+    }
+  }, [response]);
+
+  // -----------------------
 
   const handleLogin = async () => {
     if (validateInputs()) {
@@ -40,10 +72,6 @@ export default function useLoginScreen() {
     }
   };
 
-  const handleGoogle = () => {
-    loginGoogleFx();
-  };
-
   useEffect(() => {
     if (isAuthenticated) {
       navigation.navigate("main");
@@ -53,6 +81,12 @@ export default function useLoginScreen() {
       setErrorEvent("");
     };
   }, [isAuthenticated, navigation]);
+
+  useEffect(() => {
+    console.log("REDIRECT URI:", request?.redirectUri);
+  }, [request]);
+
+  // console.log(request?.redirectUri);
 
   return {
     email,

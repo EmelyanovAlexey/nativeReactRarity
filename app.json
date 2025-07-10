@@ -2,6 +2,7 @@
   "expo": {
     "name": "FrontEnd",
     "slug": "FrontEnd",
+    "owner": "braker",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/favicon.png",
@@ -9,10 +10,11 @@
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.rarity.FrontEnd"
     },
     "android": {
-      "package": "com.braker.FrontEnd",
+      "package": "com.rarity.FrontEnd",
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
@@ -47,7 +49,6 @@
       "eas": {
         "projectId": "f3b70022-ef20-47f2-9ae8-a6a2d0677552"
       }
-    },
-    "owner": "braker"
+    }
   }
 }

@@ -8,6 +8,7 @@ import {
   setIsShowModalFilterEvent,
   setSelectOptionEvent,
   setPageEvent,
+  setImgEvent,
 } from "@/models/search/events/events";
 import { setActiveTabEvent } from "@/models/main/events/events";
 import {
@@ -107,6 +108,19 @@ export default function useBottomTabs() {
     setActiveTabEvent(ActiveTab.home);
   };
 
+  const onPressDeleteImg = () => {
+    setImgEvent(null);
+    setPageEvent(1);
+    getCardsFx({
+      regionName: selectedRegions?.name,
+      countryName: selectedCountries?.name,
+      manufacturerName: selectedManufacturers?.name,
+      symbolName: selectedSymbol?.name,
+      page: 1,
+      offset: limit,
+    });
+  };
+
   return {
     textFilter: searchText,
     selectedFilter,
@@ -120,5 +134,6 @@ export default function useBottomTabs() {
     handleDelete,
     handleOpenFilter,
     handleDeleteFilter,
+    onPressDeleteImg,
   };
 }

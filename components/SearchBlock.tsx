@@ -18,6 +18,7 @@ type SearchBlockProps = {
   onPress: () => void;
   onPressDelete: () => void;
   onPressFilter: () => void;
+  onPressDeleteImg: () => void;
 };
 
 const SearchBlock: React.FC<SearchBlockProps> = ({
@@ -27,13 +28,22 @@ const SearchBlock: React.FC<SearchBlockProps> = ({
   onPress,
   onPressDelete,
   onPressFilter,
+  onPressDeleteImg,
 }) => {
   return (
     <View style={styles.root}>
       <TouchableOpacity style={[styles.search, style]} onPress={onPress}>
         <View style={styles.contentWrapper}>
           {leftContent ? (
-            <View>{leftContent}</View>
+            <View>
+              {leftContent}
+              <TouchableOpacity
+                style={[styles.deleteImg]}
+                onPress={onPressDeleteImg}
+              >
+                <Cross stroke={Colors.WhiteColor} width="10" height="10" />
+              </TouchableOpacity>
+            </View>
           ) : (
             <Search width="22" height="22" stroke={Colors.GrayColor} />
           )}
@@ -104,6 +114,15 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-between",
     width: "100%",
+  },
+  deleteImg: {
+    position: "absolute",
+    right: 0,
+    top: -5,
+    zIndex: 100,
+    backgroundColor: Colors.Primary,
+    padding: 5,
+    borderRadius: "50%",
   },
 
   delete: {
