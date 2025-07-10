@@ -6,7 +6,6 @@ import { useNavigation } from "@react-navigation/native";
 import { setErrorEvent } from "@/models/auth/events/events";
 import { loginFx } from "@/models/auth/effects/effects";
 import { $userModel } from "@/models/auth";
-//
 import * as Google from "expo-auth-session/providers/google";
 import * as WebBrowser from "expo-web-browser";
 
@@ -28,7 +27,6 @@ export default function useLoginScreen() {
   // -----------------------
   // Подключаем Google Auth
   const [request, response, promptAsync] = Google.useAuthRequest({
-    // expoClientId: "<ТВОЙ_EXPO_CLIENT_ID>",
     androidClientId:
       "300313252073-66vhmr7567gt5q2gkq6gc9al337bi5dc.apps.googleusercontent.com",
     iosClientId:
@@ -81,12 +79,6 @@ export default function useLoginScreen() {
       setErrorEvent("");
     };
   }, [isAuthenticated, navigation]);
-
-  useEffect(() => {
-    console.log("REDIRECT URI:", request?.redirectUri);
-  }, [request]);
-
-  // console.log(request?.redirectUri);
 
   return {
     email,

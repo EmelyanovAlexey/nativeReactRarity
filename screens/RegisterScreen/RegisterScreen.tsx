@@ -21,6 +21,7 @@ export default function RegisterScreen({ navigation }: any) {
     setPassword,
     setRepeatPassword,
     handleRegister,
+    handleGoogle,
   } = useRegisterScreen({ navigation });
 
   return (
@@ -70,7 +71,7 @@ export default function RegisterScreen({ navigation }: any) {
         filled={false}
         style={styles.button}
         leftContent={<Google />}
-        onPress={() => {}}
+        onPress={handleGoogle}
       />
       <Button
         title={t("register")}

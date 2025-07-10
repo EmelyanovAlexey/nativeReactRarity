@@ -58,7 +58,7 @@ export default function LoginScreen() {
       <Text style={styles.textSeparation}>{t("or")}</Text>
 
       <Button
-        title={t("registerGoogle")}
+        title={t("loginGoogle")}
         filled={false}
         style={styles.button}
         leftContent={<Google />}

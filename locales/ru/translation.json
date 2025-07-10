@@ -17,6 +17,7 @@
 
     "login": "Войти",
     "registerGoogle":"Регистрация через Google",
+    "loginGoogle":"Авторизация через Google",
     "register": "Зарегистрироваться",
     "password": "Пароль",
     "forgotPassword": "Забыли пароль?",
