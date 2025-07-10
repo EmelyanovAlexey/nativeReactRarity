@@ -1,3 +1,4 @@
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { UserModel, loginFxResponse, BaseResponse } from "../types";
 
 export function loginFxDoneHandler(
@@ -8,6 +9,8 @@ export function loginFxDoneHandler(
   const decodedPayload = JSON.parse(
     atob(payload.replace(/-/g, "+").replace(/_/g, "/"))
   );
+
+  AsyncStorage.setItem("token", data.id_token);
 
   return {
     ...state,

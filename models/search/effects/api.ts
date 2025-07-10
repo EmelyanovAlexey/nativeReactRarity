@@ -1,7 +1,7 @@
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
 import { getUrl } from "@/shared/getUrl";
 import { getCardsPhotoFxParam } from "@/models/home/types";
-// import { RegisterFXParam, LoginFXParam } from "../types";
 
 export const countriesAPI = async (name?: string) => {
   let url = "countries";
@@ -32,24 +32,41 @@ export const citiesAPI = async (name?: string) => {
     url = `${url}?name=${name}`;
   }
 
-  const response = await axios.get(getUrl(url));
+  const token = await AsyncStorage.getItem("token");
+
+  const response = await axios.get(getUrl(url), {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
   return response.data;
 };
 
 export const manufacturersAPI = async (name?: string) => {
   let url = "manufacturers";
+  const token = await AsyncStorage.getItem("token");
 
   if (name) {
     url = `${url}?name=${name}`;
   }
 
-  const response = await axios.get(getUrl(url));
+  const response = await axios.get(getUrl(url), {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
   return response.data;
 };
 
 export const historyFilterAPI = async () => {
   let url = "search_history";
-  const response = await axios.get(getUrl(url));
+  const token = await AsyncStorage.getItem("token");
+
+  const response = await axios.get(getUrl(url), {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
   return response.data;
 };
 
@@ -59,9 +76,7 @@ export const getCardsPhotoAPI = async (param: getCardsPhotoFxParam) => {
   let isHasParam = false;
 
   if (param.countryName) {
-    url = `${url}${isHasParam ? "&" : "?"}country_name=${
-      param.countryName
-    }`;
+    url = `${url}${isHasParam ? "&" : "?"}country_name=${param.countryName}`;
     isHasParam = true;
   }
 
@@ -95,6 +110,7 @@ export const getCardsPhotoAPI = async (param: getCardsPhotoFxParam) => {
     formData.append("base64", param.photoUri); // base64img
   }
 
+  const token = await AsyncStorage.getItem("token");
   const response = await axios.post(
     getUrl(url),
     // {'base64': param.photoUri},
@@ -102,6 +118,7 @@ export const getCardsPhotoAPI = async (param: getCardsPhotoFxParam) => {
     {
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
       },
     }
   );
@@ -111,6 +128,12 @@ export const getCardsPhotoAPI = async (param: getCardsPhotoFxParam) => {
 
 export const searchFilterParamFxAPI = async (param: string) => {
   let url = `items/search?query=${param}`;
-  const response = await axios.get(getUrl(url));
+  const token = await AsyncStorage.getItem("token");
+
+  const response = await axios.get(getUrl(url), {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
   return response.data;
 };

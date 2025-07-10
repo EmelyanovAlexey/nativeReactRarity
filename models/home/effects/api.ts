@@ -1,3 +1,4 @@
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
 import { getUrl } from "@/shared/getUrl";
 import { getCardsFxParam } from "../types";
@@ -8,9 +9,7 @@ export const getCardsAPI = async (param: getCardsFxParam) => {
   let isHasParam = false;
 
   if (param.countryName) {
-    url = `${url}${isHasParam ? "&" : "?"}country_name=${
-      param.countryName
-    }`;
+    url = `${url}${isHasParam ? "&" : "?"}country_name=${param.countryName}`;
     isHasParam = true;
   }
 
@@ -40,17 +39,35 @@ export const getCardsAPI = async (param: getCardsFxParam) => {
     url = `${url}${isHasParam ? "&" : "?"}offset=${param.offset}`;
   }
 
-  const response = await axios.get(getUrl(url));
+  const token = await AsyncStorage.getItem("token");
+
+  const response = await axios.get(getUrl(url), {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
 
   return response.data;
 };
 
 export const getCardsDetailAPI = async (id: number) => {
-  const response = await axios.get(getUrl(`items/${id}`));
+  const token = await AsyncStorage.getItem("token");
+
+  const response = await axios.get(getUrl(`items/${id}`), {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
   return response.data;
 };
 
 export const setFavouriteAPI = async (id: number) => {
-  const response = await axios.put(getUrl(`items/${id}/markfav`));
+  const token = await AsyncStorage.getItem("token");
+
+  const response = await axios.put(getUrl(`items/${id}/markfav`), {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
   return response.data;
 };

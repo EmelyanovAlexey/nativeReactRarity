@@ -1,10 +1,12 @@
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useEffect, useState } from "react";
 import { useUnit } from "effector-react";
 import { useTranslation } from "react-i18next";
 import { useNavigation } from "@react-navigation/native";
 
-import { setErrorEvent } from "@/models/auth/events/events";
+import { setErrorEvent, setTokenEvent } from "@/models/auth/events/events";
 import { loginFx } from "@/models/auth/effects/effects";
+
 import { $userModel } from "@/models/auth";
 import * as Google from "expo-auth-session/providers/google";
 import * as WebBrowser from "expo-web-browser";
@@ -43,6 +45,8 @@ export default function useLoginScreen() {
     if (response?.type === "success") {
       const { authentication } = response;
       console.log("Access Token:", authentication?.accessToken);
+      setTokenEvent(authentication?.accessToken || "");
+      AsyncStorage.setItem("token", authentication?.accessToken || "");
       setIsAuthenticated(true);
     }
   }, [response]);

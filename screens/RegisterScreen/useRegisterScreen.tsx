@@ -1,7 +1,8 @@
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 
-import { setErrorEvent } from "@/models/auth/events/events";
+import { setErrorEvent, setTokenEvent } from "@/models/auth/events/events";
 import { registerFx } from "@/models/auth/effects/effects";
 import { $userModel } from "@/models/auth";
 import { useUnit } from "effector-react";
@@ -44,6 +45,8 @@ export default function useRegisterScreen({ navigation }: any) {
     if (response?.type === "success") {
       const { authentication } = response;
       console.log("Access Token:", authentication?.accessToken);
+      AsyncStorage.setItem("token", authentication?.accessToken || "");
+      setTokenEvent(authentication?.accessToken || "");
       setIsAuthenticated(true);
     }
   }, [response]);
