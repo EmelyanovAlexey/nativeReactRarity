@@ -7,7 +7,7 @@ import Button from "@/components/Button";
 import Input from "@/components/Input";
 
 import Logo from "@/assets/images/logo.svg";
-import Google from "@/components/Icons/Google";
+import Yandex from "@/components/Icons/Yandex";
 
 export default function RegisterScreen({ navigation }: any) {
   const { t } = useTranslation();
@@ -21,7 +21,7 @@ export default function RegisterScreen({ navigation }: any) {
     setPassword,
     setRepeatPassword,
     handleRegister,
-    handleGoogle,
+    handleYandex,
   } = useRegisterScreen({ navigation });
 
   return (
@@ -67,11 +67,11 @@ export default function RegisterScreen({ navigation }: any) {
       <Text style={styles.textSeparation}>{t("or")}</Text>
 
       <Button
-        title={t("registerGoogle")}
+        title={t("registerYandex")}
         filled={false}
         style={styles.button}
-        leftContent={<Google />}
-        onPress={handleGoogle}
+        leftContent={<Yandex />}
+        onPress={handleYandex}
       />
       <Button
         title={t("register")}

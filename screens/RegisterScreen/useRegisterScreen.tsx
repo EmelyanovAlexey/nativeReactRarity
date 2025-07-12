@@ -2,11 +2,15 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 
-import { setErrorEvent, setTokenEvent } from "@/models/auth/events/events";
+import {
+  setErrorEvent,
+  setTokenEvent,
+  setUserEvent,
+} from "@/models/auth/events/events";
 import { registerFx } from "@/models/auth/effects/effects";
 import { $userModel } from "@/models/auth";
 import { useUnit } from "effector-react";
-import * as Google from "expo-auth-session/providers/google";
+import { useYandexLogin } from "@/hooks/useYandexAuth";
 import * as WebBrowser from "expo-web-browser";
 
 // чтобы корректно закрывался браузер после логина
@@ -26,30 +30,32 @@ export default function useRegisterScreen({ navigation }: any) {
     email !== "" && password !== "" && repeatPassword !== "";
 
   // -----------------------
-  // Подключаем Google Auth
-  const [request, response, promptAsync] = Google.useAuthRequest({
-    // expoClientId: "<ТВОЙ_EXPO_CLIENT_ID>",
-    androidClientId:
-      "300313252073-66vhmr7567gt5q2gkq6gc9al337bi5dc.apps.googleusercontent.com",
-    iosClientId:
-      "300313252073-rj3vequ0vfcdlchijom7m9ef8gab9het.apps.googleusercontent.com",
-    webClientId:
-      "300313252073-bciuv13oft99m9hph6j5anr5ur07s8tl.apps.googleusercontent.com",
+  const { promptAsync } = useYandexLogin(async (token: string) => {
+    try {
+      const res = await fetch("https://login.yandex.ru/info?format=json", {
+        headers: {
+          Authorization: `OAuth ${token}`,
+        },
+      });
+
+      const userInfo = await res.json();
+      // console.log("Yandex info:", userInfo);
+
+      await AsyncStorage.setItem("token", token);
+      setTokenEvent(token);
+      setUserEvent({
+        email: userInfo.emails[0] || "",
+        name: userInfo.real_name || "",
+      });
+      setIsAuthenticated(true);
+    } catch (err) {
+      setErrorEvent("yandexLoginFailed");
+    }
   });
 
-  const handleGoogle = async () => {
-    promptAsync();
+  const handleYandex = async () => {
+    await promptAsync();
   };
-
-  useEffect(() => {
-    if (response?.type === "success") {
-      const { authentication } = response;
-      console.log("Access Token:", authentication?.accessToken);
-      AsyncStorage.setItem("token", authentication?.accessToken || "");
-      setTokenEvent(authentication?.accessToken || "");
-      setIsAuthenticated(true);
-    }
-  }, [response]);
 
   // -----------------------
 
@@ -106,6 +112,6 @@ export default function useRegisterScreen({ navigation }: any) {
     setPassword,
     setRepeatPassword,
     handleRegister,
-    handleGoogle,
+    handleYandex,
   };
 }

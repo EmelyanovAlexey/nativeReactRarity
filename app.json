@@ -3,18 +3,18 @@
     "name": "FrontEnd",
     "slug": "FrontEnd",
     "owner": "braker",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "orientation": "portrait",
     "icon": "./assets/images/favicon.png",
-    "scheme": "myapp",
+    "scheme": "rarityApp",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.rarity.FrontEnd"
+      "bundleIdentifier": "com.rarity.frontEnd"
     },
     "android": {
-      "package": "com.rarity.FrontEnd",
+      "package": "com.rarity.frontEnd",
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"

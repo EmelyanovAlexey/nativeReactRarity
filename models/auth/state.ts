@@ -4,9 +4,18 @@ import { registerFx, loginFx } from "./effects/effects";
 import {
   registerFxDoneHandler,
   loginFxDoneHandler,
+  setUserEventHandler,
 } from "./effects/effectHandlers";
-import { resetUserEvent, setErrorEvent, setTokenEvent } from "./events/events";
-import { setErrorEventHandler, setTokenEventHandler, } from "./events/eventHandlers";
+import {
+  resetUserEvent,
+  setErrorEvent,
+  setTokenEvent,
+  setUserEvent,
+} from "./events/events";
+import {
+  setErrorEventHandler,
+  setTokenEventHandler,
+} from "./events/eventHandlers";
 
 import { USER_MODEL_DEFAULT } from "./constants";
 import { UserModel } from "./types";
@@ -14,6 +23,7 @@ import { UserModel } from "./types";
 export const $userModel = createStore<UserModel>(USER_MODEL_DEFAULT)
   .on(setErrorEvent, setErrorEventHandler)
   .on(setTokenEvent, setTokenEventHandler)
+  .on(setUserEvent, setUserEventHandler)
 
   .on(loginFx.doneData, loginFxDoneHandler)
   .on(registerFx.doneData, registerFxDoneHandler)

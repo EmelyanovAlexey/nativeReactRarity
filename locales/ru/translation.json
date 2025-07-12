@@ -18,6 +18,8 @@
     "login": "Войти",
     "registerGoogle":"Регистрация через Google",
     "loginGoogle":"Авторизация через Google",
+    "registerYandex":"Регистрация через Яндекс",
+    "loginYandex":"Авторизация через Яндекс",
     "register": "Зарегистрироваться",
     "password": "Пароль",
     "forgotPassword": "Забыли пароль?",

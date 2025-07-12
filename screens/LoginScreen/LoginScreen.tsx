@@ -1,3 +1,4 @@
+import * as AuthSession from "expo-auth-session";
 import { View, StyleSheet, Text } from "react-native";
 import { Colors } from "../../shared/constStyle";
 import { useTranslation } from "react-i18next";
@@ -7,7 +8,7 @@ import Input from "@/components/Input";
 import Link from "@/components/Link";
 
 import Logo from "@/assets/images/logo.svg";
-import Google from "@/components/Icons/Google";
+import Yandex from "@/components/Icons/Yandex";
 
 import useLoginScreen from "./useLoginScreen";
 
@@ -21,8 +22,13 @@ export default function LoginScreen() {
     setEmail,
     setPassword,
     handleLogin,
-    handleGoogle,
+    handleYandex,
   } = useLoginScreen();
+
+  // const redirectUri = AuthSession.makeRedirectUri({
+  //   useProxy: true, // <== обязательно!
+  // });
+  // console.log("redirectUri:", redirectUri);
 
   return (
     <View style={styles.container}>
@@ -58,11 +64,11 @@ export default function LoginScreen() {
       <Text style={styles.textSeparation}>{t("or")}</Text>
 
       <Button
-        title={t("loginGoogle")}
+        title={t("loginYandex")}
         filled={false}
         style={styles.button}
-        leftContent={<Google />}
-        onPress={handleGoogle}
+        leftContent={<Yandex />}
+        onPress={handleYandex}
       />
       <Button
         title={t("login")}
