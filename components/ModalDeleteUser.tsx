@@ -39,7 +39,7 @@ const ModalDeleteUser = ({
         <Text style={styles.modalTitle}>{t("deleteText")}</Text>
 
         <Button
-          title={t("exit")}
+          title={t("deleteAccount")}
           filled={true}
           style={styles.btn}
           onPress={handleDelete}

@@ -64,7 +64,7 @@ export const getCardsDetailAPI = async (id: number) => {
 export const setFavouriteAPI = async (id: number) => {
   const token = await AsyncStorage.getItem("token");
 
-  const response = await axios.put(getUrl(`items/${id}/markfav`), {
+  const response = await axios.put(getUrl(`items/${id}/markfav`), null, {
     headers: {
       Authorization: `Bearer ${token}`,
     },
