@@ -22,7 +22,7 @@ import useProfileScreen from "./useProfileScreen";
 export default function ProfileScreen() {
   const { t } = useTranslation();
   const navigation = useNavigation();
-  const { showExit, showDelete, email, setShowExit, setShowDelete } =
+  const { showExit, showDelete, email, name, setShowExit, setShowDelete } =
     useProfileScreen();
 
   return (
@@ -41,7 +41,7 @@ export default function ProfileScreen() {
           />
         </View>
 
-        <Text style={styles.name}>Имя</Text>
+        <Text style={styles.name}>{name}</Text>
         <Text style={styles.email}>{email}</Text>
       </View>
 
@@ -68,7 +68,7 @@ export default function ProfileScreen() {
           style={styles.btn}
           textStyle={styles.btnText}
           leftContent={<Book />}
-          onPress={() => {}}
+          onPress={() => navigation.navigate("learnMaterials")}
         />
         <Button
           title={t("termsOfUse")}
@@ -76,7 +76,7 @@ export default function ProfileScreen() {
           style={styles.btn}
           textStyle={styles.btnText}
           leftContent={<Document />}
-          onPress={() => {}}
+          onPress={() => navigation.navigate("termsOfUse")}
         />
         <Button
           title={t("privacyPolicy")}
@@ -84,7 +84,7 @@ export default function ProfileScreen() {
           style={styles.btn}
           textStyle={styles.btnText}
           leftContent={<Protect />}
-          onPress={() => {}}
+          onPress={() => navigation.navigate("privacyPolicy")}
         />
         <Button
           title={t("changeLanguage")}

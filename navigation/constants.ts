@@ -3,13 +3,15 @@ import LoginScreen from "@/screens/LoginScreen";
 import RegisterScreen from "@/screens/RegisterScreen";
 import FinishRegisterScreen from "@/screens/FinishRegisterScreen";
 import HelpScreen from "@/screens/HelpScreen";
-import HomeScreen from "@/screens/HomeScreen";
+import learnMaterialScreen from "@/screens/LearnMaterialScreen";
 import SearchScreen from "@/screens/SearchScreen";
 import ProfileScreen from "@/screens/ProfileScreen";
 import ChangePasswordScreen from "@/screens/ChangePasswordScreen";
 import ChangeLanguageScreen from "@/screens/ChangeLanguageScreen";
 import FavouritesScreen from "@/screens/FavouritesScreen";
 import HistorySearchScreen from "@/screens/HistorySearchScreen";
+import TermsOfUseScreen from "@/screens/TermsOfUseScreen";
+import PrivacyPolicyScreen from "@/screens/PrivacyPolicyScreen";
 
 import BottomTabs from "@/container/BottomTabs";
 
@@ -82,6 +84,24 @@ export const Route = [
     name: "historySearch",
     title: "history",
     component: HistorySearchScreen,
+    type: RouteType.showArrow,
+  },
+  {
+    name: "learnMaterials",
+    title: "trainingMaterials",
+    component: learnMaterialScreen,
+    type: RouteType.showArrow,
+  },
+  {
+    name: "termsOfUse",
+    title: "termsOfUse",
+    component: TermsOfUseScreen,
+    type: RouteType.showArrow,
+  },
+  {
+    name: "privacyPolicy",
+    title: "privacyPolicy",
+    component: PrivacyPolicyScreen,
     type: RouteType.showArrow,
   },
 ];

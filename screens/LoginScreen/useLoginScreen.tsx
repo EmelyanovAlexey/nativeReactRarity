@@ -41,7 +41,7 @@ export default function useLoginScreen() {
       });
 
       const userInfo = await res.json();
-      // console.log("Yandex info:", userInfo);
+      console.log("Yandex info:", userInfo);
 
       setUserEvent({
         email: userInfo.emails[0] || "",
