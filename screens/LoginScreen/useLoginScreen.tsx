@@ -22,8 +22,8 @@ export default function useLoginScreen() {
   const { t } = useTranslation();
 
   const { error } = useUnit($userModel);
-  const [email, setEmail] = useState("emelyanov_98@mail.ru");
-  const [password, setPassword] = useState("Ae97980525");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const navigation = useNavigation();
 
