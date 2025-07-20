@@ -2,6 +2,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
 import { getUrl } from "@/shared/getUrl";
 import { getCardsPhotoFxParam } from "@/models/home/types";
+import { getParamForCard } from "../utils";
 
 export const countriesAPI = async (name?: string) => {
   let url = "countries";
@@ -72,56 +73,19 @@ export const historyFilterAPI = async () => {
 
 export const getCardsPhotoAPI = async (param: getCardsPhotoFxParam) => {
   const formData = new FormData();
-  let url = "items/find_by_image";
-  let isHasParam = false;
+  let url = getParamForCard("items/find_by_image", param);
 
-  if (param.countryName) {
-    url = `${url}${isHasParam ? "&" : "?"}country_name=${param.countryName}`;
-    isHasParam = true;
-  }
-
-  if (param.manufacturerName) {
-    url = `${url}${isHasParam ? "&" : "?"}manufacturer_name=${
-      param.manufacturerName
-    }`;
-    isHasParam = true;
-  }
-
-  if (param.regionName) {
-    url = `${url}${isHasParam ? "&" : "?"}region_name=${param.regionName}`;
-    isHasParam = true;
-  }
-
-  if (param.symbolName) {
-    url = `${url}${isHasParam ? "&" : "?"}symbol_name=${param.symbolName}`;
-    isHasParam = true;
-  }
-
-  if (param.page) {
-    url = `${url}${isHasParam ? "&" : "?"}page=${param.page}`;
-    isHasParam = true;
-  }
-
-  if (param.offset) {
-    url = `${url}${isHasParam ? "&" : "?"}offset=${param.offset}`;
-  }
-
-  if (param.photoUri && param.photoUri !== null) {
+  if (param.photoUri && param.photoUri !== "" && param.photoUri !== null) {
     formData.append("base64", param.photoUri); // base64img
   }
 
   const token = await AsyncStorage.getItem("token");
-  const response = await axios.post(
-    getUrl(url),
-    // {'base64': param.photoUri},
-    formData,
-    {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-    }
-  );
+  const response = await axios.post(getUrl(url), formData, {
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  });
 
   return response.data;
 };
@@ -135,5 +99,23 @@ export const searchFilterParamFxAPI = async (param: string) => {
       Authorization: `Bearer ${token}`,
     },
   });
+  return response.data;
+};
+
+export const getCardsLengthAPI = async (param: getCardsPhotoFxParam) => {
+  const formData = new FormData();
+  let url = getParamForCard("items/length", param);
+
+  if (param.photoUri && param.photoUri !== "" && param.photoUri !== null) {
+    formData.append("base64", param.photoUri); // base64img
+  }
+
+  const token = await AsyncStorage.getItem("token");
+  const response = await axios.get(getUrl(url), {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
   return response.data;
 };

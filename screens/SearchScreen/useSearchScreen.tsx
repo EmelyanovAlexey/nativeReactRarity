@@ -20,7 +20,6 @@ export default function useSearchScreen() {
   } = useUnit($searchModel);
   const [showPhotoMenu, setShowPhotoMenu] = useState<boolean>(false);
   const [showPhotoCamera, setShowPhotoCamera] = useState<boolean>(false);
-  const isLoading = true;
 
   const setModalVisibleSearch = (img: string) => {
     const pureBase64 = img.split(",")[1];
@@ -81,7 +80,6 @@ export default function useSearchScreen() {
   };
 
   return {
-    isLoading,
     showPhotoMenu,
     showPhotoCamera,
     handleStartScan,

@@ -16,7 +16,6 @@ import { Colors } from "@/shared/constStyle";
 export default function SearchScreen() {
   const { t } = useTranslation();
   const {
-    isLoading,
     showPhotoMenu,
     showPhotoCamera,
     handleStartScan,

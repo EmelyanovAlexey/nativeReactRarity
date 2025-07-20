@@ -40,17 +40,27 @@ export function getCardsFxDoneHandler(
   state: SearchModel,
   data: CardType[]
 ): SearchModel {
-    let allCard = data;
+  let allCard = data;
 
   if (state.page > 1) {
-    allCard = state.cards.concat(data)
+    allCard = state.cards.concat(data);
   }
 
-    if (data.length < state.limit) {
-    return { ...state, cards: allCard, hasMore: false, count: data.length > 0 ? data.length : null, };
+  if (data.length < state.limit) {
+    return {
+      ...state,
+      cards: allCard,
+      hasMore: false,
+      // count: data.length > 0 ? data.length : null,
+    };
   }
 
-  return { ...state, cards: allCard, hasMore: true, count: data.length > 0 ? data.length : null, };
+  return {
+    ...state,
+    cards: allCard,
+    hasMore: true,
+    // count: data.length > 0 ? data.length : null,
+  };
 }
 
 export function getCardsDetailFxDoneHandler(
@@ -100,9 +110,18 @@ export function getSearchFilterParamFxDoneHandler(
   state: SearchModel,
   data: SearchParamType
 ): SearchModel {
-
   return {
     ...state,
     paramsFilter: data,
+  };
+}
+
+export function getCardsLengthFxDoneHandler(
+  state: SearchModel,
+  data: { total: number }
+): SearchModel {
+  return {
+    ...state,
+    count: data.total,
   };
 }

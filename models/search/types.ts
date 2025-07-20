@@ -19,7 +19,7 @@ export enum TypeFilter {
   area,
   city,
   manufacturer,
-  symbol
+  symbol,
 }
 
 export type HistoryType = {
@@ -38,17 +38,17 @@ export interface ManufacturersFilterOption extends FilterOption {
 }
 
 export type SearchParamType = {
-  countries: string[],
-  manufacturers:string[],
-  symbols: string[],
-}
+  countries: string[];
+  manufacturers: string[];
+  symbols: string[];
+};
 
 // МОДЕЛИ
 export interface SearchModel {
   isShowModal: boolean;
   isShowModalFilter: boolean;
   searchText: string;
-  count: number | null;
+  count: number | string | null;
   img: string | null;
   isBeenSearch: boolean;
 

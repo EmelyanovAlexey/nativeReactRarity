@@ -12,6 +12,7 @@ import {
   setFavouriteFxDoneHandler,
   getHistoryFilterFxDoneHandler,
   getSearchFilterParamFxDoneHandler,
+  getCardsLengthFxDoneHandler,
 } from "./effects/effectHandlers";
 import {
   countriesFx,
@@ -24,6 +25,7 @@ import {
   getHistoryFilterFx,
   getCardsSearchPhotoFx,
   getSearchFilterParamFx,
+  getCardsLengthFx,
 } from "./effects/effects";
 
 import {
@@ -34,7 +36,7 @@ import {
   clearDetailCardEventHandler,
   setImgEventHandler,
   setIsBeenSearchEventHandler,
-  setPageEventHandler
+  setPageEventHandler,
 } from "./events/eventHandlers";
 import {
   resetSearchEvent,
@@ -46,7 +48,7 @@ import {
   setImgEvent,
   resetSearchHistoryEvent,
   setIsBeenSearchEvent,
-  setPageEvent
+  setPageEvent,
 } from "./events/events";
 import {
   SEARCH_MODEL_DEFAULT,
@@ -73,6 +75,7 @@ export const $searchModel = createStore<SearchModel>(SEARCH_MODEL_DEFAULT)
   .on(getCardsDetailFx.doneData, getCardsDetailFxDoneHandler)
   .on(setFavouriteFx.doneData, setFavouriteFxDoneHandler)
   .on(getSearchFilterParamFx.doneData, getSearchFilterParamFxDoneHandler)
+  .on(getCardsLengthFx.doneData, getCardsLengthFxDoneHandler)
 
   .reset(resetSearchEvent);
 //   .reset(resetModelsOnLogoutEvent);
@@ -83,9 +86,33 @@ export const $searchHistoryModel = createStore<SearchHistoryModel>(
   .on(getHistoryFilterFx.doneData, getHistoryFilterFxDoneHandler)
   .reset(resetSearchHistoryEvent);
 
+sample({
+  clock: [getCardsSearchPhotoFx.doneData, getCardsFx.doneData],
+  fn: () => true,
+  target: [setIsBeenSearchEvent],
+});
 
 sample({
-	clock: [getCardsSearchPhotoFx.doneData, getCardsFx.doneData],
-	fn: () => true,
-	target: [setIsBeenSearchEvent],
+  source: $searchModel,
+  clock: [getCardsSearchPhotoFx.doneData, getCardsFx.doneData],
+  fn: (searchModel) => {
+    const {
+      selectedCountries,
+      selectedRegions,
+      selectedCities,
+      selectedManufacturers,
+      selectedSymbol,
+      img,
+    } = searchModel;
+
+    return {
+      countryName: selectedCountries?.name ?? undefined,
+      regionName: selectedRegions?.name ?? undefined,
+      // citiesName: selectedCities?.name ?? undefined,
+      manufacturerName: selectedManufacturers?.name ?? undefined,
+      symbolName: selectedSymbol?.name ?? undefined,
+      photoUri: img ?? "",
+    };
+  },
+  target: getCardsLengthFx,
 });

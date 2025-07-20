@@ -34,7 +34,7 @@ export default function LoginScreen() {
     <View style={styles.container}>
       <Logo width={200} height={120} style={styles.reactLogo} />
       <Text style={styles.description}>{t("loginText")}</Text>
-      <Text>{redirectUri}</Text>
+      {/* <Text>{redirectUri}</Text> */}
 
       <View style={styles.input}>
         <Input
