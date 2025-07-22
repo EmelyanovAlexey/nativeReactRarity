@@ -15,13 +15,13 @@ export function loginFxDoneHandler(
   return {
     ...state,
     email: decodedPayload.email,
-    name: "User",
+    name: "",
     id_token: data.id_token,
   };
 }
 
 export function registerFxDoneHandler(state: UserModel, p: any): UserModel {
-  return { ...state, email: "ivanov@gmail.com", name: "User" };
+  return { ...state, email: "ivanov@gmail.com", name: "" };
 }
 
 export function setUserEventHandler(

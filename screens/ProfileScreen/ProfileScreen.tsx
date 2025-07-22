@@ -22,8 +22,15 @@ import useProfileScreen from "./useProfileScreen";
 export default function ProfileScreen() {
   const { t } = useTranslation();
   const navigation = useNavigation();
-  const { showExit, showDelete, email, name, setShowExit, setShowDelete } =
-    useProfileScreen();
+  const {
+    showExit,
+    showDelete,
+    email,
+    name,
+    setShowExit,
+    handleExit,
+    setShowDelete,
+  } = useProfileScreen();
 
   return (
     <ScrollView
@@ -122,7 +129,10 @@ export default function ProfileScreen() {
 
       <ModalExitUser
         modalVisible={showExit}
-        setModalVisible={(param) => setShowExit(param)}
+        setModalVisible={() => {
+          setShowExit(false);
+          handleExit();
+        }}
       />
       <ModalDeleteUser
         modalVisible={showDelete}
