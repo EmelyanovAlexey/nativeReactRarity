@@ -1,24 +1,40 @@
 {
   "expo": {
-    "name": "FrontEnd",
-    "slug": "FrontEnd",
+    "name": "Rarity",
+    "slug": "rarity",
     "owner": "braker",
+    "scheme": "rarity",
     "version": "1.0.1",
     "orientation": "portrait",
     "icon": "./assets/images/favicon.png",
-    "scheme": "rarityApp",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.rarity.frontEnd"
+      "bundleIdentifier": "com.rarity.rarity"
     },
     "android": {
-      "package": "com.rarity.frontEnd",
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.rarity.rarity",
+      "intentFilters": [
+        {
+          "action": "VIEW",
+          "data": [
+            {
+              "scheme": "rarity",
+              "host": "oauth",
+              "pathPrefix": "/"
+            }
+          ],
+          "category": [
+            "BROWSABLE",
+            "DEFAULT"
+          ]
+        }
+      ]
     },
     "web": {
       "bundler": "metro",
@@ -47,7 +63,7 @@
         "origin": false
       },
       "eas": {
-        "projectId": "f3b70022-ef20-47f2-9ae8-a6a2d0677552"
+        "projectId": "e81e7b8f-1a18-4d6b-ac31-41a248ad6456"
       }
     }
   }

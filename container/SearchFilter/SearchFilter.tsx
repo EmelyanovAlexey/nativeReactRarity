@@ -111,10 +111,11 @@ const styles = StyleSheet.create({
   startFilter: {
     width: "100%",
     position: "absolute",
-    height: "90%",
-    top: "24%",
+    height: "80%",
+    top: "20%",
     overflow: "hidden",
     zIndex: 2,
+    borderWidth: 1,
   },
   image: {
     width: 40,

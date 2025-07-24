@@ -25,16 +25,10 @@ export default function LoginScreen() {
     handleYandex,
   } = useLoginScreen();
 
-  const redirectUri = AuthSession.makeRedirectUri({
-    useProxy: true, // <== обязательно!
-  });
-  console.log("redirectUri:", redirectUri);
-
   return (
     <View style={styles.container}>
       <Logo width={200} height={120} style={styles.reactLogo} />
       <Text style={styles.description}>{t("loginText")}</Text>
-      {/* <Text>{redirectUri}</Text> */}
 
       <View style={styles.input}>
         <Input

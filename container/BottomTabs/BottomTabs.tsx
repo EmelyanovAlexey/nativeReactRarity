@@ -9,7 +9,9 @@ export default function BottomTabs() {
   return (
     <View style={styles.container}>
       <View style={styles.content}>{renderScreen()}</View>
-      <CustomTabBar activeTab={activeTab} setActiveTab={handleSetActiveTab} />
+      <View style={styles.btn}>
+        <CustomTabBar activeTab={activeTab} setActiveTab={handleSetActiveTab} />
+      </View>
     </View>
   );
 }
@@ -20,5 +22,9 @@ const styles = StyleSheet.create({
   },
   content: {
     flex: 1,
+    // zIndex: 1,
+  },
+  btn: {
+    // zIndex: 5,
   },
 });

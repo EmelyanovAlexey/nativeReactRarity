@@ -1,5 +1,5 @@
 import { createEffect } from "effector";
-import { registerAPI, loginAPI, loginGoogleAPI } from "./api";
+import { registerAPI, loginAPI, loginGoogleAPI, deleteUserAPI } from "./api";
 
 import {
   RegisterFXParam,
@@ -23,9 +23,8 @@ export const registerFx = createEffect<
 >();
 registerFx.use(registerAPI);
 
-export const loginGoogleFx = createEffect<
-  void,
-  BaseResponse,
-  ResponseError
->();
+export const loginGoogleFx = createEffect<void, BaseResponse, ResponseError>();
 loginGoogleFx.use(loginGoogleAPI);
+
+export const deleteUserFx = createEffect<void, BaseResponse, ResponseError>();
+deleteUserFx.use(deleteUserAPI);

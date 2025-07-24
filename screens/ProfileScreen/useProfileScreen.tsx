@@ -3,6 +3,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useNavigation } from "@react-navigation/native";
 import { useUnit } from "effector-react";
 import { $userModel } from "@/models/auth";
+import { deleteUserFx } from "@/models/auth/effects/effects";
 
 export default function useProfileScreen() {
   const [showExit, setShowExit] = useState<boolean>(false);
@@ -13,6 +14,7 @@ export default function useProfileScreen() {
   // Удаление акаунта
   const handleDelete = () => {
     navigation.navigate("first");
+    deleteUserFx();
     setShowDelete(false);
   };
 

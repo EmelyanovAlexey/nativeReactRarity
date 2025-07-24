@@ -50,6 +50,7 @@ const styles = StyleSheet.create({
     width: "100%",
     height: "90%",
     position: "relative",
+    flex: 1,
   },
   arrowTop: {
     position: "absolute",
@@ -89,7 +90,7 @@ const styles = StyleSheet.create({
   },
   person: {
     position: "absolute",
-    bottom: -20,
+    bottom: -50,
     left: -10,
   },
 });

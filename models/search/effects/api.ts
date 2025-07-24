@@ -104,18 +104,30 @@ export const searchFilterParamFxAPI = async (param: string) => {
 
 export const getCardsLengthAPI = async (param: getCardsPhotoFxParam) => {
   const formData = new FormData();
-  let url = getParamForCard("items/length", param);
+  let isHaveImg = false;
+  const token = await AsyncStorage.getItem("token");
 
   if (param.photoUri && param.photoUri !== "" && param.photoUri !== null) {
     formData.append("base64", param.photoUri); // base64img
+    isHaveImg = true;
   }
 
-  const token = await AsyncStorage.getItem("token");
+  if (isHaveImg) {
+    let url = getParamForCard("find_by_image/length", param);
+    const response = await axios.post(getUrl(url), formData, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return response.data;
+  }
+
+  let url = getParamForCard("items/length", param);
   const response = await axios.get(getUrl(url), {
     headers: {
       Authorization: `Bearer ${token}`,
     },
   });
-
   return response.data;
 };

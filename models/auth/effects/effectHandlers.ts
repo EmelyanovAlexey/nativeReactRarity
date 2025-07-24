@@ -21,7 +21,7 @@ export function loginFxDoneHandler(
 }
 
 export function registerFxDoneHandler(state: UserModel, p: any): UserModel {
-  return { ...state, email: "ivanov@gmail.com", name: "" };
+  return { ...state, email: "", name: "" };
 }
 
 export function setUserEventHandler(

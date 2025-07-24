@@ -36,3 +36,8 @@ export const loginGoogleAPI = async () => {
   const response = await axios.get(getUrl("google/login"));
   return response.data;
 };
+
+export const deleteUserAPI = async () => {
+  const response = await axios.delete(getUrl("common-auth/users/me/"));
+  return response.data;
+};
