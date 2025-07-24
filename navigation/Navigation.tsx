@@ -1,8 +1,9 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { View, StyleSheet, TouchableOpacity } from "react-native";
+import { View, StyleSheet, TouchableOpacity, Text } from "react-native";
 import {
   createNativeStackNavigator,
+  NativeStackNavigationOptions,
   NativeStackNavigationProp,
 } from "@react-navigation/native-stack";
 
@@ -17,62 +18,89 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 const Navigation = () => {
   const { t } = useTranslation();
 
-  const arrow = {
+  // Функция для arrow header с явной передачей navigation
+  const getArrowHeader = (
+    navigation: NativeStackNavigationProp<RootStackParamList>
+  ): NativeStackNavigationOptions => ({
     title: "",
     headerShown: true,
-    headerLeft: ({ onPress }: { onPress?: () => void }) => (
-      <TouchableOpacity onPress={onPress} style={{ paddingHorizontal: 10 }}>
+    headerLeft: () => (
+      <TouchableOpacity
+        onPress={() => navigation.goBack()}
+        style={{ paddingHorizontal: 10 }}
+      >
         <View style={styles.arrow}>
           <Arrow />
         </View>
       </TouchableOpacity>
     ),
-  };
+  });
 
-  const arrowHelp = (
+  // Функция для arrowHelp header
+  const getArrowHelpHeader = (
     navigation: NativeStackNavigationProp<RootStackParamList>
-  ) => ({
-    ...arrow,
+  ): NativeStackNavigationOptions => ({
+    ...getArrowHeader(navigation),
     headerRight: () => (
-      <Link to="help" style={{ marginRight: 16 }} textStyle={{ fontSize: 14 }}>
-        {t("help")}
+      <Link to="help" style={{ marginRight: 16 }}>
+        <Text style={{ fontSize: 14 }}>{t("help")}</Text>
       </Link>
     ),
   });
 
-  const hideHeader = { title: "", headerShown: false };
+  const hideHeader: NativeStackNavigationOptions = {
+    title: "",
+    headerShown: false,
+  };
 
   function getContentHeader(
     navigation: NativeStackNavigationProp<RootStackParamList>,
     type: RouteType,
     title: string = ""
-  ) {
-    if (type === RouteType.hideHeader) {
-      return { ...hideHeader, title: t(title) };
-    }
-    if (type === RouteType.showArrowHelp) {
-      return { ...arrowHelp(navigation), title: t(title) };
-    }
+  ): NativeStackNavigationOptions {
+    const baseOptions = {
+      title: t(title),
+      headerBackTitleVisible: false,
+      headerStyle: {
+        backgroundColor: Colors.WhiteColor,
+        elevation: 0,
+        shadowOpacity: 0,
+        borderBottomWidth: 0,
+      },
+      headerLeftContainerStyle: {
+        paddingLeft: 8,
+      },
+      headerTitleStyle: {
+        fontWeight: "bold",
+      },
+    };
 
-    return { ...arrow, title: t(title) };
+    switch (type) {
+      case RouteType.hideHeader:
+        return { ...hideHeader };
+      case RouteType.showArrowHelp:
+        return { ...baseOptions, ...getArrowHelpHeader(navigation) };
+      default:
+        return { ...baseOptions, ...getArrowHeader(navigation) };
+    }
   }
 
   return (
     <Stack.Navigator
       initialRouteName="first"
       screenOptions={{
-        headerBackTitleVisible: false, // убрать текст рядом со стрелкой
+        headerBackTitleVisible: false,
         headerStyle: {
-          backgroundColor: Colors.WhiteColor, // фон хедера
-          elevation: 0, // Android
-          shadowOpacity: 0, // iOS
-          borderBottomWidth: 0, // Web
+          backgroundColor: Colors.WhiteColor,
+          elevation: 0,
+          shadowOpacity: 0,
+          borderBottomWidth: 0,
         },
         headerLeftContainerStyle: {
           paddingLeft: 8,
         },
         headerTitleStyle: {
-          fontWeight: "bold", // стиль заголовка
+          fontWeight: "bold",
         },
       }}
     >
@@ -81,11 +109,9 @@ const Navigation = () => {
           key={RouteItem.name}
           name={RouteItem.name}
           component={RouteItem.component}
-          options={({
-            navigation,
-          }: {
-            navigation: NativeStackNavigationProp<RootStackParamList>;
-          }) => getContentHeader(navigation, RouteItem.type, RouteItem.title)}
+          options={({ navigation }) =>
+            getContentHeader(navigation, RouteItem.type, RouteItem.title)
+          }
         />
       ))}
     </Stack.Navigator>
@@ -100,12 +126,8 @@ const styles = StyleSheet.create({
     padding: 10,
     width: 34,
     height: 32,
-    borderRadius: "50%",
+    borderRadius: 16,
     backgroundColor: Colors.GrayColor2,
-  },
-  help: {
-    marginRight: 16,
-    fontSize: 14,
   },
 });
 

@@ -115,7 +115,6 @@ const styles = StyleSheet.create({
     top: "20%",
     overflow: "hidden",
     zIndex: 2,
-    borderWidth: 1,
   },
   image: {
     width: 40,
