@@ -7,14 +7,19 @@ import { setUserEvent } from "@/models/auth/events/events";
 import Button from "@/components/Button";
 
 import Logo from "@/assets/images/logo.svg";
+import Link from "@/components/Link";
+import Spinner from "@/components/Spinner";
+
 import { Colors } from "../shared/constStyle";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export default function FirstScreen({ navigation }: any) {
   const { t } = useTranslation();
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const checkToken = async () => {
+      setIsLoading(true);
       const token = await AsyncStorage.getItem("token");
       if (!token) return;
 
@@ -56,7 +61,9 @@ export default function FirstScreen({ navigation }: any) {
       }
     };
 
-    checkToken();
+    checkToken().finally(() => {
+      setIsLoading(false);
+    });
   }, []);
 
   // для проверки, является ли токен JWT
@@ -81,10 +88,23 @@ export default function FirstScreen({ navigation }: any) {
     }
   };
 
+  if (isLoading) {
+    return (
+      <View style={styles.container}>
+        <Logo width={200} height={120} style={styles.reactLogo} />
+        <Spinner />
+      </View>
+    );
+  }
+
   return (
     <View style={styles.container}>
       <Logo width={200} height={120} style={styles.reactLogo} />
       <Text style={styles.description}>{t("startLogin")}</Text>
+
+      <Link to="changeLanguage" style={{ marginBottom: 20, marginTop: 10 }}>
+        <Text style={[styles.link]}>{t("changeLanguage")}</Text>
+      </Link>
 
       <Button
         title={t("register")}
@@ -124,5 +144,11 @@ const styles = StyleSheet.create({
   },
   button: {
     width: "100%",
+  },
+  link: {
+    fontSize: 16,
+    fontWeight: 500,
+    color: Colors.Primary,
+    textDecorationLine: "underline",
   },
 });

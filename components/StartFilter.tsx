@@ -3,8 +3,11 @@ import { Text, StyleSheet, View } from "react-native";
 import Svg, { Path } from "react-native-svg";
 import { Colors } from "../shared/constStyle";
 import PersonFilter from "@/components/Icons/PersonFilter";
+import { useTranslation } from "react-i18next";
 
 const StartFilter: React.FC = () => {
+  const { t } = useTranslation();
+
   return (
     <View style={styles.root}>
       <View style={styles.arrowTop}>
@@ -18,14 +21,9 @@ const StartFilter: React.FC = () => {
         </Svg>
       </View>
 
-      <Text style={styles.textTop}>
-        Ищите по наименованиям, странам, производителям и множеству других
-        фильтров...
-      </Text>
+      <Text style={styles.textTop}>{t("searchDescriptions_1")}</Text>
 
-      <Text style={styles.textBottom}>
-        ...или используйте уникальный поиск по фотографиям
-      </Text>
+      <Text style={styles.textBottom}>{t("searchDescriptions_2")}</Text>
 
       <View style={styles.arrowBottom}>
         <Svg width="102" height="76" viewBox="0 0 102 76" fill="none">
@@ -90,7 +88,7 @@ const styles = StyleSheet.create({
   },
   person: {
     position: "absolute",
-    bottom: -50,
+    bottom: -60,
     left: -10,
   },
 });

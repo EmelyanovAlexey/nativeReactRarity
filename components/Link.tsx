@@ -7,12 +7,11 @@ import {
   TextStyle,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import type { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import type { RootStackParamList } from "@/navigation/types";
 import { Colors } from "@/shared/constStyle";
 
 type LinkProps = {
-  to: keyof RootStackParamList; // название экрана
+  to: string; // название экрана
   children: React.ReactNode; // текст ссылки или любой контент
   style?: ViewStyle;
   textStyle?: TextStyle;
@@ -26,8 +25,7 @@ const Link: React.FC<LinkProps> = ({
   style,
   textStyle,
 }) => {
-  const navigation =
-    useNavigation<NativeStackNavigationProp<RootStackParamList>>();
+  const navigation = useNavigation();
 
   return (
     <TouchableOpacity

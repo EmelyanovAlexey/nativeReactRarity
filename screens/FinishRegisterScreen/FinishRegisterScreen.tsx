@@ -4,6 +4,8 @@ import { useTranslation } from "react-i18next";
 import useFinishRegisterScreen from "./useFinishRegisterScreen";
 
 import Link from "@/components/Link";
+import HeaderPage from "@/components/HeaderPage";
+import { HeaderType } from "@/components/HeaderPage";
 
 export default function FinishRegisterScreen({ navigation }: any) {
   const { t } = useTranslation();
@@ -11,6 +13,7 @@ export default function FinishRegisterScreen({ navigation }: any) {
 
   return (
     <View style={styles.container}>
+      <HeaderPage style={styles.header} type={HeaderType.showArrowHelp} />
       <Text style={styles.description}>{t("finishRegisterText")}</Text>
       <Text style={styles.time}>{time}</Text>
       <Link to="help" textStyle={{ fontSize: 14 }} disabled={!isActive}>
@@ -27,6 +30,11 @@ const styles = StyleSheet.create({
     alignItems: "center",
     padding: 24,
     backgroundColor: Colors.BgcColor,
+  },
+  header: {
+    position: "absolute",
+    top: 10,
+    width: "90%",
   },
   description: {
     textAlign: "center",

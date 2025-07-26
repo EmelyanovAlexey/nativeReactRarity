@@ -2,226 +2,169 @@ import { View, StyleSheet, ScrollView, Text } from "react-native";
 import { Colors } from "../../shared/constStyle";
 import { useTranslation } from "react-i18next";
 
+import HeaderPage from "@/components/HeaderPage";
+
 export default function PrivacyPolicyScreen() {
   const { t } = useTranslation();
 
   return (
     <View style={styles.container}>
+      <HeaderPage style={styles.header} title={t("privacyPolicy")} />
+
       <ScrollView contentContainerStyle={styles.scroll}>
-        <Text style={styles.title}>
-          Политика конфиденциальности сервиса «StampScan»
-        </Text>
-        <Text style={styles.subtitle}>(редакция от «__» ________ 2025 г.)</Text>
+        <Text style={styles.title}>{t("privacyPolicy_1")}</Text>
+        <Text style={styles.subtitle}>{t("privacyPolicy_2")}</Text>
 
-        <Text style={styles.section}>1. Общие положения</Text>
-        <Text style={styles.text}>
-          Настоящая Политика определяет порядок обработки и защиты персональных
-          данных пользователей веб сайта stampscan.ru и мобильных приложений
-          «StampScan» (далее — «Сервис»), принадлежащих ИП Шультайс Татьяна
-          Владимировна (далее — «Компания», «мы»).
-        </Text>
-        <Text style={styles.text}>
-          1.2. Компания обрабатывает персональные данные в соответствии с
-          Федеральным законом РФ № 152 ФЗ «О персональных данных», Регламентом
-          (ЕС) 2016/679 (GDPR) и иной применимой нормативной базой.
-        </Text>
-        <Text style={styles.text}>
-          1.3. Регистрируясь в Сервисе или продолжая его использовать,
-          пользователь (далее — «Вы») подтверждает, что ознакомился с настоящей
-          Политикой и согласен с её условиями.
-        </Text>
+        <Text style={styles.section}>{t("privacyPolicy_3")}</Text>
+        <Text style={styles.text}>{t("privacyPolicy_4")}</Text>
+        <Text style={styles.text}>{t("privacyPolicy_5")}</Text>
+        <Text style={styles.text}>{t("privacyPolicy_6")}</Text>
 
-        <Text style={styles.section}>2. Какие данные мы собираем</Text>
-        <Text style={styles.text}>
-          • Учётные данные: email, идентификатор учётной записи Google или
-          Яндекс, страна.
-        </Text>
-        <Text style={styles.text}>
-          • Фотографии клейм, загруженные Вами для распознавания.
-        </Text>
-        <Text style={styles.text}>
-          • Платёжная информация: токены ЮKassa/Stripe (номер карты не хранится
-          на наших серверах).
-        </Text>
-        <Text style={styles.text}>
-          • Файлы cookie и технические данные (IP адрес, тип устройства, ОС,
-          язык).
-        </Text>
-        <Text style={styles.text}>
-          • Данные использования: время входа, количество распознаваний, выбор
-          фильтров
-        </Text>
+        <Text style={styles.section}>{t("privacyPolicy_7")}</Text>
+        <Text style={styles.text}>{t("privacyPolicy_8")}</Text>
+        <Text style={styles.text}>{t("privacyPolicy_9")}</Text>
+        <Text style={styles.text}>{t("privacyPolicy_10")}</Text>
+        <Text style={styles.text}>{t("privacyPolicy_11")}</Text>
+        <Text style={styles.text}>{t("privacyPolicy_12")}</Text>
 
-        <Text style={styles.section}>3. Цели обработки</Text>
-        <Text style={styles.text}>
-          • Предоставление доступа к каталогу и функции распознавания.
-        </Text>
-        <Text style={styles.text}>
-          • Заведение и сопровождение подписки (биллинг, чеки, уведомления).
-        </Text>
-        <Text style={styles.text}>
-          • Улучшение Сервиса (аналитика Firebase, краш репорты).
-        </Text>
-        <Text style={styles.text}>
-          • Выполнение требований законодательства (бухгалтерия, налоги).
-        </Text>
+        <Text style={styles.section}>{t("privacyPolicy_13")}</Text>
+        <Text style={styles.text}>{t("privacyPolicy_14")}</Text>
+        <Text style={styles.text}>{t("privacyPolicy_15")}</Text>
+        <Text style={styles.text}>{t("privacyPolicy_16")}</Text>
+        <Text style={styles.text}>{t("privacyPolicy_17")}</Text>
 
-        <Text style={styles.section}>4. Правовые основания</Text>
+        <Text style={styles.section}>{t("privacyPolicy_18")}</Text>
         <View style={styles.table}>
           <View style={styles.tableHeader}>
             <Text style={[styles.cell, styles.headerCell, { flex: 1 }]}>
-              Юрисдикция
+              {t("privacyPolicy_19")}
             </Text>
             <Text style={[styles.cell, styles.headerCell, { flex: 1 }]}>
-              Основание
+              {t("privacyPolicy_20")}
             </Text>
           </View>
 
           <View style={styles.tableRow}>
-            <Text style={[styles.cell, { flex: 1 }]}>РФ</Text>
+            <Text style={[styles.cell, { flex: 1 }]}>
+              {t("privacyPolicy_21")}
+            </Text>
             <Text style={[styles.cell, { flex: 2 }]}>
-              ст. 6 ФЗ 152: п.1 (договор) и п.2 (закон)
+              {t("privacyPolicy_22")}
             </Text>
           </View>
 
           <View style={styles.tableRow}>
-            <Text style={[styles.cell, { flex: 1 }]}>ЕС / EEA</Text>
+            <Text style={[styles.cell, { flex: 1 }]}>
+              {t("privacyPolicy_23")}
+            </Text>
             <Text style={[styles.cell, { flex: 2 }]}>
-              Art. 6 GDPR: b) исполнение договора; c) юридическая обязанность;
-              f) легитимный интерес
+              {t("privacyPolicy_24")}
             </Text>
           </View>
         </View>
 
-        <Text style={styles.section}>5. Хранение данных</Text>
-        <Text style={styles.text}>
-          • Учётные данные — пока существует аккаунт + 3 года после закрытия.
-        </Text>
-        <Text style={styles.text}>
-          • Фотографии — 30 дней, затем удаляются или обезличиваются.
-        </Text>
-        <Text style={styles.text}>• Логи — 90 дней, затем агрегируются.</Text>
+        <Text style={styles.section}>{t("privacyPolicy_25")}</Text>
+        <Text style={styles.text}>{t("privacyPolicy_26")}</Text>
+        <Text style={styles.text}>{t("privacyPolicy_27")}</Text>
+        <Text style={styles.text}>{t("privacyPolicy_28")}</Text>
 
-        <Text style={styles.section}>
-          6. Передача и трансграничная передача
-        </Text>
+        <Text style={styles.section}>{t("privacyPolicy_29")}</Text>
         <View style={styles.table}>
           <View style={styles.tableHeader}>
             <Text style={[styles.cell, styles.headerCell, { flex: 1 }]}>
-              Получатель
+              {t("privacyPolicy_30")}
             </Text>
             <Text style={[styles.cell, styles.headerCell, { flex: 1 }]}>
-              Цель
+              {t("privacyPolicy_31")}
             </Text>
             <Text style={[styles.cell, styles.headerCell, { flex: 1 }]}>
-              Основание передачи
+              {t("privacyPolicy_32")}
             </Text>
-          </View>
-
-          <View style={styles.tableRow}>
-            <Text style={[styles.cell, { flex: 1 }]}>ЮKassa (РФ)</Text>
-            <Text style={[styles.cell, { flex: 1 }]}>Оплата в РФ</Text>
-            <Text style={[styles.cell, { flex: 1 }]}>Договор, ст.6 ФЗ 152</Text>
           </View>
 
           <View style={styles.tableRow}>
             <Text style={[styles.cell, { flex: 1 }]}>
-              Stripe, Inc. (США/ЕС)
+              {t("privacyPolicy_33")}
             </Text>
-            <Text style={[styles.cell, { flex: 1 }]}>Оплата вне РФ</Text>
-            <Text style={[styles.cell, { flex: 1 }]}>SCC 2021 + DPA</Text>
+            <Text style={[styles.cell, { flex: 1 }]}>
+              {t("privacyPolicy_34")}
+            </Text>
+            <Text style={[styles.cell, { flex: 1 }]}>
+              {t("privacyPolicy_35")}
+            </Text>
           </View>
 
           <View style={styles.tableRow}>
             <Text style={[styles.cell, { flex: 1 }]}>
-              Google LLC (Firebase)
+              {t("privacyPolicy_36")}
             </Text>
             <Text style={[styles.cell, { flex: 1 }]}>
-              Авторизация, аналитика
+              {t("privacyPolicy_37")}
             </Text>
-            <Text style={[styles.cell, { flex: 1 }]}>SCC 2021, ISO 27001</Text>
+            <Text style={[styles.cell, { flex: 1 }]}>
+              {t("privacyPolicy_38")}
+            </Text>
           </View>
 
           <View style={styles.tableRow}>
-            <Text style={[styles.cell, { flex: 1 }]}>Яндекс ID (РФ)</Text>
-            <Text style={[styles.cell, { flex: 1 }]}>Авторизация</Text>
-            <Text style={[styles.cell, { flex: 1 }]}>Договор</Text>
+            <Text style={[styles.cell, { flex: 1 }]}>
+              {t("privacyPolicy_39")}
+            </Text>
+            <Text style={[styles.cell, { flex: 1 }]}>
+              {t("privacyPolicy_40")}
+            </Text>
+            <Text style={[styles.cell, { flex: 1 }]}>
+              {t("privacyPolicy_41")}
+            </Text>
+          </View>
+
+          <View style={styles.tableRow}>
+            <Text style={[styles.cell, { flex: 1 }]}>
+              {t("privacyPolicy_42")}
+            </Text>
+            <Text style={[styles.cell, { flex: 1 }]}>
+              {t("privacyPolicy_43")}
+            </Text>
+            <Text style={[styles.cell, { flex: 1 }]}>
+              {t("privacyPolicy_44")}
+            </Text>
           </View>
         </View>
 
-        <Text style={styles.section}>
-          7. Обязательность предоставления данных
-        </Text>
-        <Text style={styles.text}>
-          Предоставление email адреса является договорным требованием: без него
-          Сервис не может создать учётную запись. Загрузка фотографий является
-          добровольной; без неё доступна только функция просмотра каталога.
-        </Text>
+        <Text style={styles.section}>{t("privacyPolicy_45")}</Text>
+        <Text style={styles.text}>{t("privacyPolicy_46")}</Text>
 
-        <Text style={styles.section}>8. Автоматизированные решения</Text>
-        <Text style={styles.text}>
-          Распознавание клейма нейронной моделью является справочной функцией и
-          не порождает юридически значимых последствий для пользователя.
-        </Text>
+        <Text style={styles.section}>{t("privacyPolicy_47")}</Text>
+        <Text style={styles.text}>{t("privacyPolicy_48")}</Text>
 
-        <Text style={styles.section}>9. Ваши права</Text>
-        <Text style={styles.text}>
-          Вы вправе запрашивать доступ, исправление или удаление данных;
-          переносимость (Art. 20 GDPR); отзыв согласия; подать жалобу в
-          Роскомнадзор или в надзорный орган ЕС.
-        </Text>
-        <Text style={styles.text}>
-          Запросы направляйте на info@alisaleben.de или почтой (адрес ниже).
-        </Text>
+        <Text style={styles.section}>{t("privacyPolicy_49")}</Text>
+        <Text style={styles.text}>{t("privacyPolicy_50")}</Text>
+        <Text style={styles.text}>{t("privacyPolicy_51")}</Text>
 
-        <Text style={styles.section}>10. Контакты операторов</Text>
-        <Text style={styles.text}>
-          Оператор РФ: ИП Шультайс Татьяна Владимировна
-        </Text>
-        <Text style={styles.text}>
-          127576, г. Москва, ул. Новгородская, д. 14, к. 2
-        </Text>
-        <Text style={styles.text}>Эл. почта: tanja.shultais@yandex.com</Text>
-        <Text style={styles.text}>
-          EU Representative / Data Controller (EU): Einzelunternehmen Alisa
-          Schultais
-        </Text>
-        <Text style={styles.text}>Postfach 1351, 53790 Siegburg, Germany</Text>
-        <Text style={styles.text}>
-          St Nr.: 220/5428/3950 (Finanzamt Siegburg)
-        </Text>
-        <Text style={styles.text}>E mail: info@alisaleben.de</Text>
-        <Text style={styles.text}>
-          Надзорный орган: Landesbeauftragte für Datenschutz und
-          Informationsfreiheit NRW (ldi.nrw.de)
-        </Text>
+        <Text style={styles.section}>{t("privacyPolicy_52")}</Text>
+        <Text style={styles.text}>{t("privacyPolicy_53")}</Text>
+        <Text style={styles.text}>{t("privacyPolicy_54")}</Text>
+        <Text style={styles.text}>{t("privacyPolicy_55")}</Text>
+        <Text style={styles.text}>{t("privacyPolicy_56")}</Text>
+        <Text style={styles.text}>{t("privacyPolicy_57")}</Text>
+        <Text style={styles.text}>{t("privacyPolicy_58")}</Text>
+        <Text style={styles.text}>{t("privacyPolicy_59")}</Text>
+        <Text style={styles.text}>{t("privacyPolicy_60")}</Text>
 
-        <Text style={styles.section}>11. Защита информации</Text>
-        <Text style={styles.text}>• TLS 1.3 для всех соединений;</Text>
-        <Text style={styles.text}>• шифрование «в покое» (AES 256);</Text>
-        <Text style={styles.text}>
-          • двухфакторная аутентификация администраторов;
-        </Text>
-        <Text style={styles.text}>• регулярный аудит безопасности.</Text>
+        <Text style={styles.section}>{t("privacyPolicy_61")}</Text>
+        <Text style={styles.text}>{t("privacyPolicy_62")}</Text>
+        <Text style={styles.text}>{t("privacyPolicy_63")}</Text>
+        <Text style={styles.text}>{t("privacyPolicy_64")}</Text>
+        <Text style={styles.text}>{t("privacyPolicy_65")}</Text>
 
-        <Text style={styles.section}>13. Cookie</Text>
-        <Text style={styles.text}>
-          Используем необходимые cookie (аутентификация) и аналитические cookie
-          Firebase. Отключение может ограничить функциональность.
-        </Text>
+        <Text style={styles.section}>{t("privacyPolicy_66")}</Text>
+        <Text style={styles.text}>{t("privacyPolicy_67")}</Text>
 
-        <Text style={styles.section}>14. Изменения политики</Text>
-        <Text style={styles.text}>
-          Актуальная версия доступна на https://stampscan.ru/privacy.
-          Существенные изменения будут сообщены по email или push уведомлением
-          за 10 дней до вступления в силу.
-        </Text>
+        <Text style={styles.section}>{t("privacyPolicy_68")}</Text>
+        <Text style={styles.text}>{t("privacyPolicy_69")}</Text>
 
         <Text style={styles.subtitle}></Text>
-        <Text style={styles.text}>
-          Используя Сервис, вы подтверждаете согласие с настоящей Политикой
-          конфиденциальности.
-        </Text>
+        <Text style={styles.text}>{t("privacyPolicy_70")}</Text>
       </ScrollView>
     </View>
   );
@@ -232,6 +175,9 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 24,
     backgroundColor: Colors.BgcColor,
+  },
+  header: {
+    marginBottom: 12,
   },
   scroll: {
     paddingBottom: 48,

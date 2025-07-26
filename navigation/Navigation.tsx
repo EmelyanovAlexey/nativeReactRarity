@@ -1,6 +1,12 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { View, StyleSheet, TouchableOpacity, Text } from "react-native";
+import {
+  View,
+  StyleSheet,
+  TouchableOpacity,
+  Text,
+  Platform,
+} from "react-native";
 import {
   createNativeStackNavigator,
   NativeStackNavigationOptions,
@@ -11,107 +17,122 @@ import Link from "@/components/Link";
 import Arrow from "@/components/Icons/Arrow";
 import { Colors } from "@/shared/constStyle";
 import { RootStackParamList } from "./types";
-import { Route, RouteType } from "./constants";
+import { Route, RouteType, IRoute } from "./constants";
+import { useNavigation } from "@react-navigation/native";
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 const Navigation = () => {
   const { t } = useTranslation();
 
-  // Функция для arrow header с явной передачей navigation
-  const getArrowHeader = (
-    navigation: NativeStackNavigationProp<RootStackParamList>
-  ): NativeStackNavigationOptions => ({
-    title: "",
-    headerShown: true,
-    headerLeft: () => (
-      <TouchableOpacity
-        onPress={() => navigation.goBack()}
-        style={{ paddingHorizontal: 10 }}
-      >
-        <View style={styles.arrow}>
-          <Arrow />
-        </View>
-      </TouchableOpacity>
-    ),
-  });
+  // // Универсальная кнопка "назад"
+  // const BackButton = ({
+  //   navigation,
+  // }: {
+  //   navigation: NativeStackNavigationProp<RootStackParamList>;
+  // }) => (
+  //   <TouchableOpacity
+  //     onPress={() => {
+  //       if (navigation.canGoBack()) {
+  //         navigation.goBack();
+  //       } else {
+  //         navigation.navigate("profile");
+  //       }
+  //     }}
+  //     style={{ paddingHorizontal: 10 }}
+  //     testID="back-button"
+  //   >
+  //     <View style={styles.arrow}>
+  //       <Arrow />
+  //     </View>
+  //   </TouchableOpacity>
+  // );
 
-  // Функция для arrowHelp header
-  const getArrowHelpHeader = (
-    navigation: NativeStackNavigationProp<RootStackParamList>
-  ): NativeStackNavigationOptions => ({
-    ...getArrowHeader(navigation),
-    headerRight: () => (
-      <Link to="help" style={{ marginRight: 16 }}>
-        <Text style={{ fontSize: 14 }}>{t("help")}</Text>
-      </Link>
-    ),
-  });
+  // // Замените BackButton на:
+  // const BackButton = () => {
+  //   const navigation =
+  //     useNavigation<NativeStackNavigationProp<RootStackParamList>>();
 
-  const hideHeader: NativeStackNavigationOptions = {
-    title: "",
-    headerShown: false,
+  //   return (
+  //     <TouchableOpacity
+  //       onPress={() => {
+  //         if (navigation.canGoBack()) {
+  //           navigation.goBack();
+  //         } else {
+  //           navigation.navigate("profile");
+  //         }
+  //       }}
+  //       style={{ paddingHorizontal: 10 }}
+  //     >
+  //       <View style={styles.arrow}>
+  //         <Arrow />
+  //       </View>
+  //     </TouchableOpacity>
+  //   );
+  // };
+
+  // Базовые опции для всех экранов
+  const baseScreenOptions: NativeStackNavigationOptions = {
+    headerBackTitleVisible: false,
+    headerStyle: {
+      backgroundColor: Colors.WhiteColor,
+      elevation: 0,
+      shadowOpacity: 0,
+      borderBottomWidth: 0,
+    },
   };
 
-  function getContentHeader(
-    navigation: NativeStackNavigationProp<RootStackParamList>,
+  // Опции для экранов с кнопкой "назад" и help
+  const getScreenOptions = (
     type: RouteType,
     title: string = ""
-  ): NativeStackNavigationOptions {
-    const baseOptions = {
+  ): NativeStackNavigationOptions => {
+    const commonOptions = {
+      ...baseScreenOptions,
       title: t(title),
-      headerBackTitleVisible: false,
-      headerStyle: {
-        backgroundColor: Colors.WhiteColor,
-        elevation: 0,
-        shadowOpacity: 0,
-        borderBottomWidth: 0,
-      },
-      headerLeftContainerStyle: {
-        paddingLeft: 8,
-      },
-      headerTitleStyle: {
-        fontWeight: "bold",
-      },
     };
 
-    switch (type) {
-      case RouteType.hideHeader:
-        return { ...hideHeader };
-      case RouteType.showArrowHelp:
-        return { ...baseOptions, ...getArrowHelpHeader(navigation) };
-      default:
-        return { ...baseOptions, ...getArrowHeader(navigation) };
-    }
-  }
+    return {
+      ...commonOptions,
+      headerShown: false,
+    };
+
+    // switch (type) {
+    //   case RouteType.hideHeader:
+    //     return {
+    //       ...commonOptions,
+    //       headerShown: false,
+    //     };
+
+    //   case RouteType.showArrowHelp:
+    //     return {
+    //       ...commonOptions,
+    //       headerShown: true,
+    //       headerLeft: () => <BackButton />,
+    //       headerRight: () => (
+    //         <Link to="help" style={{ marginRight: 16 }}>
+    //           <Text style={{ fontSize: 14 }}>{t("help")}</Text>
+    //         </Link>
+    //       ),
+    //     };
+
+    //   default:
+    //     return {
+    //       ...commonOptions,
+    //       headerShown: true,
+    //       headerLeft: () => <BackButton />,
+    //     };
+    // }
+  };
 
   return (
-    <Stack.Navigator
-      initialRouteName="first"
-      screenOptions={{
-        headerBackTitleVisible: false,
-        headerStyle: {
-          backgroundColor: Colors.WhiteColor,
-          elevation: 0,
-          shadowOpacity: 0,
-          borderBottomWidth: 0,
-        },
-        headerLeftContainerStyle: {
-          paddingLeft: 8,
-        },
-        headerTitleStyle: {
-          fontWeight: "bold",
-        },
-      }}
-    >
-      {Route.map((RouteItem) => (
+    <Stack.Navigator initialRouteName="first" screenOptions={baseScreenOptions}>
+      {Route.map((RouteItem: IRoute) => (
         <Stack.Screen
           key={RouteItem.name}
           name={RouteItem.name}
           component={RouteItem.component}
-          options={({ navigation }) =>
-            getContentHeader(navigation, RouteItem.type, RouteItem.title)
-          }
+          options={() => getScreenOptions(RouteItem.type, RouteItem.title)}
         />
       ))}
     </Stack.Navigator>
@@ -120,12 +141,11 @@ const Navigation = () => {
 
 const styles = StyleSheet.create({
   arrow: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
+    // justifyContent: "center",
+    // alignItems: "center",
     padding: 10,
-    width: 34,
-    height: 32,
+    // width: 34,
+    // height: 32,
     borderRadius: 16,
     backgroundColor: Colors.GrayColor2,
   },

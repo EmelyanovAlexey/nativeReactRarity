@@ -1,4 +1,4 @@
-import { View, StyleSheet, Text, FlatList } from "react-native";
+import { View, StyleSheet, FlatList } from "react-native";
 
 import { CardType } from "@/models/home/types";
 import useFavouritesScreen from "./useFavouritesScreen";
@@ -6,6 +6,7 @@ import useFavouritesScreen from "./useFavouritesScreen";
 import Spinner from "@/components/Spinner";
 import PopularCardDetail from "@/components/PopularCardDetail";
 import FavouritesCard from "@/components/FavouritesCard";
+import HeaderPage from "@/components/HeaderPage";
 
 export default function FavouritesScreen() {
   const {
@@ -66,11 +67,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     paddingTop: 8,
     backgroundColor: "#fff",
-  },
-  header: {
-    fontSize: 20,
-    fontWeight: "bold",
-    marginBottom: 24,
   },
   list: {
     gap: 8,

@@ -5,7 +5,8 @@ import useRegisterScreen from "./useRegisterScreen";
 
 import Button from "@/components/Button";
 import Input from "@/components/Input";
-
+import HeaderPage from "@/components/HeaderPage";
+import { HeaderType } from "@/components/HeaderPage";
 import Logo from "@/assets/images/logo.svg";
 import Yandex from "@/components/Icons/Yandex";
 
@@ -26,6 +27,7 @@ export default function RegisterScreen({ navigation }: any) {
 
   return (
     <View style={styles.container}>
+      <HeaderPage style={styles.header} type={HeaderType.showArrowHelp} />
       <Logo width={200} height={120} style={styles.reactLogo} />
       <Text style={styles.description}>{t("registerText")}</Text>
 
@@ -91,6 +93,11 @@ const styles = StyleSheet.create({
     alignItems: "center",
     padding: 24,
     backgroundColor: Colors.BgcColor,
+  },
+  header: {
+    position: "absolute",
+    top: 10,
+    width: "90%",
   },
   reactLogo: {
     justifyContent: "center",

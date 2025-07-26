@@ -22,9 +22,6 @@ const styles = StyleSheet.create({
   },
   content: {
     flex: 1,
-    // zIndex: 1,
   },
-  btn: {
-    // zIndex: 5,
-  },
+  btn: {},
 });

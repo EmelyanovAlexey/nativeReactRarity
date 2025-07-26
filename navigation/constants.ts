@@ -14,6 +14,7 @@ import TermsOfUseScreen from "@/screens/TermsOfUseScreen";
 import PrivacyPolicyScreen from "@/screens/PrivacyPolicyScreen";
 
 import BottomTabs from "@/container/BottomTabs";
+import React from "react";
 
 export enum RouteType {
   showArrow,
@@ -21,7 +22,14 @@ export enum RouteType {
   showArrowHelp,
 }
 
-export const Route = [
+export type IRoute = {
+  name: string;
+  title?: string;
+  component: any;
+  type: RouteType;
+};
+
+export const Route: IRoute[] = [
   {
     name: "first",
     component: FirstScreen,
@@ -30,22 +38,22 @@ export const Route = [
   {
     name: "login",
     component: LoginScreen,
-    type: RouteType.showArrowHelp,
+    type: RouteType.hideHeader, // showArrowHelp,
   },
   {
     name: "register",
     component: RegisterScreen,
-    type: RouteType.showArrowHelp,
+    type: RouteType.hideHeader, // showArrowHelp,
   },
   {
     name: "finishRegister",
     component: FinishRegisterScreen,
-    type: RouteType.showArrowHelp,
+    type: RouteType.hideHeader, // showArrowHelp,
   },
   {
     name: "help",
     component: HelpScreen,
-    type: RouteType.showArrow,
+    type: RouteType.hideHeader, // .showArrow,
   },
   {
     name: "search",
@@ -66,42 +74,42 @@ export const Route = [
     name: "changePassword",
     title: "changePasswordTitle",
     component: ChangePasswordScreen,
-    type: RouteType.showArrow,
+    type: RouteType.hideHeader, // .showArrow,
   },
   {
     name: "changeLanguage",
     title: "changeLanguage",
     component: ChangeLanguageScreen,
-    type: RouteType.showArrow,
+    type: RouteType.hideHeader, // .showArrow,
   },
   {
     name: "favourites",
     title: "favourites",
     component: FavouritesScreen,
-    type: RouteType.showArrow,
+    type: RouteType.hideHeader, // .showArrow,
   },
   {
     name: "historySearch",
     title: "history",
     component: HistorySearchScreen,
-    type: RouteType.showArrow,
+    type: RouteType.hideHeader, // .showArrow,
   },
   {
     name: "learnMaterials",
     title: "trainingMaterials",
     component: learnMaterialScreen,
-    type: RouteType.showArrow,
+    type: RouteType.hideHeader, // .showArrow,
   },
   {
     name: "termsOfUse",
     title: "termsOfUse",
     component: TermsOfUseScreen,
-    type: RouteType.showArrow,
+    type: RouteType.hideHeader, // .showArrow,
   },
   {
     name: "privacyPolicy",
     title: "privacyPolicy",
     component: PrivacyPolicyScreen,
-    type: RouteType.showArrow,
+    type: RouteType.hideHeader, // .showArrow,
   },
 ];

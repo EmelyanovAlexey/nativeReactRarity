@@ -11,6 +11,8 @@ import { useTranslation } from "react-i18next";
 import Spinner from "../../components/Spinner";
 
 import useHistorySearchScreen from "./useHistorySearchScreen";
+
+import HeaderPage from "@/components/HeaderPage";
 import { Colors } from "@/shared/constStyle";
 import { HistoryType } from "../../models/search/types";
 
@@ -110,36 +112,44 @@ export default function SearchScreen() {
   }
 
   return (
-    <ScrollView
-      contentContainerStyle={styles.container}
-      showsVerticalScrollIndicator={false}
-    >
-      <View>
-        <Text style={styles.description}>{t("recent")}</Text>
-      </View>
+    <View style={styles.content}>
+      <HeaderPage style={styles.header} title={t("history")} />
 
-      {histories.map((history) => getBlock(history))}
-
-      {historiesLater.length > 0 && (
+      <ScrollView
+        contentContainerStyle={styles.container}
+        showsVerticalScrollIndicator={false}
+      >
         <View>
-          <Text style={styles.description}>{t("laterOnes")}</Text>
+          <Text style={styles.description}>{t("recent")}</Text>
         </View>
-      )}
 
-      {historiesLater.map((history) => getBlock(history))}
+        {histories.map((history) => getBlock(history))}
 
-      {isLoading && (
-        <View style={styles.loading}>
-          <Spinner />
-        </View>
-      )}
-    </ScrollView>
+        {historiesLater.length > 0 && (
+          <View>
+            <Text style={styles.description}>{t("laterOnes")}</Text>
+          </View>
+        )}
+
+        {historiesLater.map((history) => getBlock(history))}
+
+        {isLoading && (
+          <View style={styles.loading}>
+            <Spinner />
+          </View>
+        )}
+      </ScrollView>
+    </View>
   );
 }
 
 const w = Dimensions.get("window").width * 0.8;
 
 const styles = StyleSheet.create({
+  content: {},
+  header: {
+    marginBottom: 12,
+  },
   container: {
     width: "100%",
     flexGrow: 1,

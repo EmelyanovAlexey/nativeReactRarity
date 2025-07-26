@@ -5,6 +5,8 @@ import useChangePasswordScreen from "./useChangePasswordScreen";
 
 import Button from "@/components/Button";
 import Input from "@/components/Input";
+import HeaderPage from "@/components/HeaderPage";
+import { HeaderType } from "@/components/HeaderPage";
 import CheckMarkAround from "@/components/Icons/CheckMarkAround";
 
 export default function ChangePasswordScreen() {
@@ -133,7 +135,13 @@ export default function ChangePasswordScreen() {
     }
   };
 
-  return <View style={styles.container}>{contentPage()}</View>;
+  return (
+    <View style={styles.container}>
+      {" "}
+      <HeaderPage style={styles.header} type={HeaderType.showArrowHelp} />
+      {contentPage()}
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({
@@ -143,6 +151,11 @@ const styles = StyleSheet.create({
     alignItems: "center",
     padding: 24,
     backgroundColor: Colors.BgcColor,
+  },
+  header: {
+    position: "absolute",
+    top: 10,
+    width: "90%",
   },
   icon: {
     marginBottom: 12,

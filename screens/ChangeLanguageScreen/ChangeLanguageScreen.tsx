@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import useChangeLanguageScreen from "./useChangeLanguageScreen";
 
 import Button from "@/components/Button";
+import HeaderPage from "@/components/HeaderPage";
 
 export default function ChangeLanguageScreen() {
   const { t } = useTranslation();
@@ -11,6 +12,8 @@ export default function ChangeLanguageScreen() {
 
   return (
     <View style={styles.container}>
+      <HeaderPage style={styles.header} title={t("changeLanguage")} />
+
       <Text style={styles.description}>{t("changeLanguageText")}</Text>
 
       <Button
@@ -37,6 +40,11 @@ const styles = StyleSheet.create({
     alignItems: "center",
     padding: 24,
     backgroundColor: Colors.BgcColor,
+  },
+  header: {
+    position: "absolute",
+    top: 10,
+    width: "90%",
   },
   description: {
     textAlign: "center",

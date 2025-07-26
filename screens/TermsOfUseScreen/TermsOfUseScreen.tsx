@@ -1,192 +1,103 @@
 import { View, StyleSheet, ScrollView, Text } from "react-native";
 import { Colors } from "../../shared/constStyle";
 import { useTranslation } from "react-i18next";
+import HeaderPage from "@/components/HeaderPage";
 
 export default function TermsOfUseScreen() {
   const { t } = useTranslation();
 
   return (
     <View style={styles.container}>
+      <HeaderPage style={styles.header} title={t("termsOfUse")} />
+
       <ScrollView contentContainerStyle={styles.scroll}>
-        <Text style={styles.title}>
-          Публичная оферта на предоставление доступа к информационно
-          аналитическому сервису «StampScan»
-        </Text>
-        <Text style={styles.subtitle}>(редакция от «__» ________ 2025 г.)</Text>
+        <Text style={styles.title}>{t("termsOfUse_1")}</Text>
+        <Text style={styles.subtitle}>{t("termsOfUse_2")}</Text>
 
-        <Text style={styles.section}>1. Общие положения</Text>
-        <Text style={styles.text}>
-          1.1. Настоящий документ является публичным предложением (офертой) ИП
-          Шультайс Татьяна Владимировна, ИНН 550506462245, ОГРНИП
-          325774600261284 (далее — «Компания»), адресованным любому
-          дееспособному лицу (далее — «Пользователь»).
-        </Text>
-        <Text style={styles.text}>
-          1.2. Полным и безоговорочным акцептом оферты считается регистрация
-          Пользователя на сайте stampscan.ru либо в мобильном приложении
-          «StampScan».
-        </Text>
+        <Text style={styles.section}>{t("termsOfUse_3")}</Text>
+        <Text style={styles.text}>{t("termsOfUse_4")}</Text>
+        <Text style={styles.text}>{t("termsOfUse_5")}</Text>
 
-        <Text style={styles.section}>2. Термины и определения</Text>
-        <Text style={styles.text}>
-          • Сервис — веб сайт и мобильные приложения «StampScan»,
-          предназначенные для поиска и распознавания клейм на фарфоровых
-          изделиях.
-        </Text>
-        <Text style={styles.text}>
-          • Каталог — база данных клейм, доступная бесплатно через веб
-          интерфейс.
-        </Text>
-        <Text style={styles.text}>
-          • Распознавание — запрос к нейронной модели с фотографией клейма для
-          автоматического определения производителя и периода изготовления.
-        </Text>
-        <Text style={styles.text}>
-          • Подписка — платный тариф, предоставляющий расширенный функционал
-          Сервиса.
-        </Text>
+        <Text style={styles.section}>{t("termsOfUse_6")}</Text>
+        <Text style={styles.text}>{t("termsOfUse_7")}</Text>
+        <Text style={styles.text}>{t("termsOfUse_8")}</Text>
+        <Text style={styles.text}>{t("termsOfUse_9")}</Text>
+        <Text style={styles.text}>{t("termsOfUse_10")}</Text>
 
-        <Text style={styles.section}>3. Предмет оферты</Text>
-        <Text style={styles.text}>
-          Компания предоставляет Пользователю доступ к Сервису в объёме,
-          соответствующем выбранному тарифному плану; Пользователь обязуется
-          соблюдать условия оферты и оплачивать услуги согласно разделу 4.
-        </Text>
+        <Text style={styles.section}>{t("termsOfUse_11")}</Text>
+        <Text style={styles.text}>{t("termsOfUse_12")}</Text>
 
-        <Text style={styles.section}>4. Тарифы и порядок расчётов</Text>
+        <Text style={styles.section}>{t("termsOfUse_13")}</Text>
         <View style={styles.table}>
           <View style={styles.tableHeader}>
             <Text style={[styles.cell, styles.headerCell, { flex: 1 }]}>
-              План
+              {t("termsOfUse_14")}
             </Text>
             <Text style={[styles.cell, styles.headerCell, { flex: 1 }]}>
-              Стоимость
+              {t("termsOfUse_15")}
             </Text>
             <Text style={[styles.cell, styles.headerCell, { flex: 2 }]}>
-              Содержимое
+              {t("termsOfUse_16")}
             </Text>
           </View>
 
           <View style={styles.tableRow}>
-            <Text style={[styles.cell, { flex: 1 }]}>Web Catalog — Free</Text>
-            <Text style={[styles.cell, { flex: 1 }]}>0 ₽</Text>
-            <Text style={[styles.cell, { flex: 2 }]}>
-              Неограниченный доступ к каталогу клейм, фильтры, избранное.
-            </Text>
+            <Text style={[styles.cell, { flex: 1 }]}>{t("termsOfUse_17")}</Text>
+            <Text style={[styles.cell, { flex: 1 }]}>{t("termsOfUse_18")}</Text>
+            <Text style={[styles.cell, { flex: 2 }]}>{t("termsOfUse_19")}</Text>
           </View>
 
           <View style={styles.tableRow}>
-            <Text style={[styles.cell, { flex: 1 }]}>Try (моб.)</Text>
-            <Text style={[styles.cell, { flex: 1 }]}>0 ₽</Text>
-            <Text style={[styles.cell, { flex: 2 }]}>
-              2 бесплатных распознавания из камеры/галереи.
-            </Text>
+            <Text style={[styles.cell, { flex: 1 }]}>{t("termsOfUse_20")}</Text>
+            <Text style={[styles.cell, { flex: 1 }]}>{t("termsOfUse_21")}</Text>
+            <Text style={[styles.cell, { flex: 2 }]}>{t("termsOfUse_22")}</Text>
           </View>
 
           <View style={styles.tableRow}>
-            <Text style={[styles.cell, { flex: 1 }]}>Pro M</Text>
-            <Text style={[styles.cell, { flex: 1 }]}>399 ₽ / месяц</Text>
-            <Text style={[styles.cell, { flex: 2 }]}>
-              Неограниченные распознавания, история запросов, офлайн кэш
-              каталога.
-            </Text>
+            <Text style={[styles.cell, { flex: 1 }]}>{t("termsOfUse_23")}</Text>
+            <Text style={[styles.cell, { flex: 1 }]}>{t("termsOfUse_24")}</Text>
+            <Text style={[styles.cell, { flex: 2 }]}>{t("termsOfUse_25")}</Text>
           </View>
 
           <View style={styles.tableRow}>
-            <Text style={[styles.cell, { flex: 1 }]}>Pro Y</Text>
-            <Text style={[styles.cell, { flex: 1 }]}>3 999 ₽ / год</Text>
-            <Text style={[styles.cell, { flex: 2 }]}>
-              То же, что Pro M, экономия двух месяцев.
-            </Text>
+            <Text style={[styles.cell, { flex: 1 }]}>{t("termsOfUse_26")}</Text>
+            <Text style={[styles.cell, { flex: 1 }]}>{t("termsOfUse_27")}</Text>
+            <Text style={[styles.cell, { flex: 2 }]}>{t("termsOfUse_28")}</Text>
           </View>
         </View>
 
-        <Text style={styles.text}>
-          4.1. Промо цена 399 ₽ / 3 999 ₽ действует до 01 июля 2025 г. Компания
-          вправе изменить стоимость, уведомив Пользователя минимум за 30 дней.
-        </Text>
-        <Text style={styles.text}>
-          4.2. Оплата:{"\n"}• Пользователи РФ — ЮKassa (карты, СБП, Mir Pay);
-          {"\n"}• Пользователи за пределами РФ — Stripe (карты, Apple Pay /
-          Google Pay).
-        </Text>
-        <Text style={styles.text}>
-          4.3. После списания средств параметр `pro_expires_at` в профиле
-          Пользователя продлевается на оплаченный период.
-        </Text>
-        <Text style={styles.text}>
-          4.4. Цены указаны в рублях. Компания применяет УСН «Доходы»; НДС не
-          начисляется.
-        </Text>
+        <Text style={styles.text}>{t("termsOfUse_29")}</Text>
+        <Text style={styles.text}>{t("termsOfUse_30")}</Text>
+        <Text style={styles.text}>{t("termsOfUse_31")}</Text>
+        <Text style={styles.text}>{t("termsOfUse_32")}</Text>
 
-        <Text style={styles.section}>5. Возвраты</Text>
-        <Text style={styles.text}>
-          5.1. Месячная подписка не возвращается, кроме недоступности Сервиса
-          &gt; 24 ч подряд.
-        </Text>
-        <Text style={styles.text}>
-          5.2. При годовой подписке возврат рассчитывается пропорционально
-          полным неиспользованным месяцам.
-        </Text>
-        <Text style={styles.text}>
-          5.3. В случае прекращения работы Сервиса Компания возвращает
-          неиспользованную часть оплаты или предоставляет офлайн версию каталога
-          и локальную модель распознавания.
-        </Text>
+        <Text style={styles.section}>{t("termsOfUse_33")}</Text>
+        <Text style={styles.text}>{t("termsOfUse_34")}</Text>
+        <Text style={styles.text}>{t("termsOfUse_35")}</Text>
+        <Text style={styles.text}>{t("termsOfUse_36")}</Text>
 
-        <Text style={styles.section}>6. Права и обязанности</Text>
-        <Text style={styles.text}>
-          • Пользователь использует Сервис только в личных целях, если иное не
-          согласовано.
-        </Text>
-        <Text style={styles.text}>
-          • Компания обеспечивает доступность ≥ 99 % в месяц, исключая плановые
-          работы (≤ 8 ч/мес).
-        </Text>
-        <Text style={styles.text}>
-          • Компания вправе улучшать/изменять функционал без существенного
-          ухудшения потребительских свойств.
-        </Text>
+        <Text style={styles.section}>{t("termsOfUse_37")}</Text>
+        <Text style={styles.text}>{t("termsOfUse_38")}</Text>
+        <Text style={styles.text}>{t("termsOfUse_39")}</Text>
+        <Text style={styles.text}>{t("termsOfUse_40")}</Text>
 
-        <Text style={styles.section}>7. Ограничение ответственности</Text>
-        <Text style={styles.text}>
-          Компания не несёт ответственности за косвенные убытки, вызванные
-          использованием либо невозможностью использования Сервиса.
-        </Text>
+        <Text style={styles.section}>{t("termsOfUse_41")}</Text>
+        <Text style={styles.text}>{t("termsOfUse_42")}</Text>
 
-        <Text style={styles.section}>8. Персональные данные</Text>
-        <Text style={styles.text}>
-          Обработка данных осуществляется согласно Политике конфиденциальности
-          (https://stampscan.ru/privacy). Регистрация означает согласие
-          Пользователя на обработку данных.
-        </Text>
+        <Text style={styles.section}>{t("termsOfUse_43")}</Text>
+        <Text style={styles.text}>{t("termsOfUse_44")}</Text>
 
-        <Text style={styles.section}>9. Срок действия и изменение оферты</Text>
-        <Text style={styles.text}>
-          Оферта действует бессрочно с момента публикации. Компания может
-          изменять условия, размещая новую редакцию на
-          https://stampscan.ru/offer.
-        </Text>
+        <Text style={styles.section}>{t("termsOfUse_45")}</Text>
+        <Text style={styles.text}>{t("termsOfUse_46")}</Text>
 
-        <Text style={styles.section}>10. Реквизиты компании</Text>
-        <Text style={styles.text}>ИП Шультайс Татьяна Владимировна</Text>
-        <Text style={styles.text}>
-          127576, г. Москва, ул. Новгородская, д. 14, к. 2
-        </Text>
-        <Text style={styles.text}>
-          ИНН 550506462245, ОГРНИП 325774600261284
-        </Text>
-        <Text style={styles.text}>
-          р/с 40802810538720005903 в ПАО Сбербанк, БИК 0445252225
-        </Text>
-        <Text style={styles.text}>
-          Эл. почта поддержки: tanja.shultais@yandex.com
-        </Text>
-        <Text style={styles.text}>Телефон: будет указан дополнительно</Text>
-        <Text style={styles.text}>
-          Акцептуя оферту, Пользователь подтверждает, что ознакомлен с её
-          условиями, принимает их в полном объёме и обязуется их соблюдать.
-        </Text>
+        <Text style={styles.section}>{t("termsOfUse_47")}</Text>
+        <Text style={styles.text}>{t("termsOfUse_48")}</Text>
+        <Text style={styles.text}>{t("termsOfUse_49")}</Text>
+        <Text style={styles.text}>{t("termsOfUse_50")}</Text>
+        <Text style={styles.text}>{t("termsOfUse_51")}</Text>
+        <Text style={styles.text}>{t("termsOfUse_52")}</Text>
+        <Text style={styles.text}>{t("termsOfUse_53")}</Text>
+        <Text style={styles.text}>{t("termsOfUse_54")}</Text>
       </ScrollView>
     </View>
   );
@@ -197,6 +108,9 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 24,
     backgroundColor: Colors.BgcColor,
+  },
+  header: {
+    marginBottom: 12,
   },
   scroll: {
     paddingBottom: 48,

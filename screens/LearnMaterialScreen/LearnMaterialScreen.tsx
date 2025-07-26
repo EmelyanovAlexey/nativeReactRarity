@@ -1,16 +1,19 @@
 import { View, StyleSheet, Linking } from "react-native";
 import { Colors } from "../../shared/constStyle";
 import { useTranslation } from "react-i18next";
+
 import Telegram from "@/components/Icons/Telegram";
 import YouTube from "@/components/Icons/YouTube";
-
 import Button from "@/components/Button";
+import HeaderPage from "@/components/HeaderPage";
 
 export default function LearnMaterialScreen() {
   const { t } = useTranslation();
 
   return (
     <View style={styles.container}>
+      <HeaderPage style={styles.header} title={t("trainingMaterials")} />
+
       <Button
         title="Фарфоровые сокровища. Драгоценная посуда."
         style={styles.btn}
@@ -37,6 +40,9 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 24,
     backgroundColor: Colors.BgcColor,
+  },
+  header: {
+    marginBottom: 12,
   },
   btn: {
     width: "100%",
