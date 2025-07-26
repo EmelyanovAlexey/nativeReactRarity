@@ -148,7 +148,9 @@ const w = Dimensions.get("window").width * 0.8;
 const styles = StyleSheet.create({
   content: {},
   header: {
-    marginBottom: 12,
+    paddingHorizontal: "5%",
+    paddingVertical: 10,
+    backgroundColor: Colors.WhiteColor,
   },
   container: {
     width: "100%",

@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
   arrowTop: {
     position: "absolute",
     left: "35%",
-    top: "8%",
+    top: "6%",
     width: "70%",
   },
   arrowBottom: {
@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
   textTop: {
     position: "absolute",
     left: "10%",
-    top: "25%",
+    top: "22%",
     width: "70%",
     fontSize: 18,
     lineHeight: 18,
