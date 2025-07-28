@@ -32,7 +32,7 @@ export default function useBottomTabs() {
     limit,
   } = useUnit($searchModel);
   const isLoadingAI = useUnit(getCardsFx.pending);
-  const isLoading = useUnit(getCardsFx.pending) || isLoadingAI;
+  const isLoading = useUnit(getCardsSearchPhotoFx.pending) || isLoadingAI;
 
   const listFilter = [
     {
