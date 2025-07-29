@@ -1,12 +1,17 @@
 import React from "react";
-import { Text, StyleSheet, View } from "react-native";
+import { Text, StyleSheet, View, Dimensions } from "react-native";
 import Svg, { Path } from "react-native-svg";
 import { Colors } from "../shared/constStyle";
 import PersonFilter from "@/components/Icons/PersonFilter";
 import { useTranslation } from "react-i18next";
 
+const { width, height } = Dimensions.get("window");
+
 const StartFilter: React.FC = () => {
   const { t } = useTranslation();
+
+  const fontSize = width * 0.045; // 4.5% от ширины экрана
+  const lineHeight = fontSize * 1.4; // Межстрочный интервал
 
   return (
     <View style={styles.root}>
@@ -21,9 +26,13 @@ const StartFilter: React.FC = () => {
         </Svg>
       </View>
 
-      <Text style={styles.textTop}>{t("searchDescriptions_1")}</Text>
+      <Text style={[styles.textTop, { fontSize, lineHeight }]}>
+        {t("searchDescriptions_1")}
+      </Text>
 
-      <Text style={styles.textBottom}>{t("searchDescriptions_2")}</Text>
+      <Text style={[styles.textBottom, { fontSize, lineHeight }]}>
+        {t("searchDescriptions_2")}
+      </Text>
 
       <View style={styles.arrowBottom}>
         <Svg width="102" height="76" viewBox="0 0 102 76" fill="none">
@@ -37,7 +46,10 @@ const StartFilter: React.FC = () => {
       </View>
 
       <View style={styles.person}>
-        <PersonFilter />
+        <PersonFilter
+          width={String(width * 0.6)}
+          height={String(height * 0.6)}
+        />
       </View>
     </View>
   );
@@ -51,45 +63,38 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   arrowTop: {
-    position: "absolute",
-    left: "35%",
-    top: "6%",
     width: "70%",
+    marginTop: "5%",
+    marginLeft: "30%",
+    marginBottom: "5%",
   },
   arrowBottom: {
-    position: "absolute",
-    right: "-30%",
-    top: "50%",
     width: "70%",
+    marginLeft: "60%",
+    marginBottom: "5%",
   },
   textTop: {
-    position: "absolute",
-    left: "10%",
-    top: "22%",
     width: "70%",
-    fontSize: 18,
-    lineHeight: 18,
     letterSpacing: 0,
     fontFamily: "Inter_400Regular",
     fontWeight: 500,
     color: Colors.GrayColor,
+    marginBottom: "5%",
+    marginLeft: "8%",
   },
   textBottom: {
-    position: "absolute",
-    right: "0%",
-    top: "38%",
     width: "80%",
-    fontSize: 18,
-    lineHeight: 18,
     letterSpacing: 0,
     fontFamily: "Inter_400Regular",
     fontWeight: 500,
     color: Colors.GrayColor,
+    marginBottom: "10%",
+    marginLeft: "15%",
   },
   person: {
     position: "absolute",
-    bottom: -60,
     left: -10,
+    top: "45%",
   },
 });
 

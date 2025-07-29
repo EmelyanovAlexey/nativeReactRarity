@@ -74,34 +74,15 @@ export const historyFilterAPI = async () => {
 export const getCardsPhotoAPI = async (param: getCardsPhotoFxParam) => {
   const formData = new FormData();
   let url = getParamForCard("items/find_by_image", param);
-  let body = {};
-
-  // if (param.photoUri && param.photoUri !== "" && param.photoUri !== null) {
-  //   // formData.append("base64", param.photoUri); // base64img
-
-  //   body = {
-  //     base64: param.photoUri,
-  //   };
-  // }
-
-  // const token = await AsyncStorage.getItem("token");
-  // const response = await axios.post(getUrl(url), body, {
-  //   headers: {
-  //     "Content-Type": "application/json",
-  //     Authorization: `Bearer ${token}`,
-  //   },
-  // });
-
-  // return response.data;
 
   if (param.photoUri) {
-    formData.append("base64", param.photoUri); // Просто base64 строка
+    formData.append("base64", param.photoUri);
   }
 
   const token = await AsyncStorage.getItem("token");
   const response = await axios.post(getUrl(url), formData, {
     headers: {
-      "Content-Type": "multipart/form-data", // Явно указываем
+      "Content-Type": "multipart/form-data",
       Authorization: `Bearer ${token}`,
     },
   });
@@ -125,25 +106,17 @@ export const getCardsLengthAPI = async (param: getCardsPhotoFxParam) => {
   const formData = new FormData();
   let isHaveImg = false;
   const token = await AsyncStorage.getItem("token");
-  let body = {};
 
-  // if (param.photoUri && param.photoUri !== "" && param.photoUri !== null) {
-  //   formData.append("base64", param.photoUri); // base64img
-  //   isHaveImg = true;
-  // }
-  if (param.photoUri && param.photoUri !== "" && param.photoUri !== null) {
-    // formData.append("base64", param.photoUri); // base64img
-
-    body = {
-      base64: param.photoUri,
-    };
+  if (param.photoUri) {
+    formData.append("base64", param.photoUri);
+    isHaveImg = true;
   }
 
   if (isHaveImg) {
     let url = getParamForCard("find_by_image/length", param);
-    const response = await axios.post(getUrl(url), body, {
+    const response = await axios.post(getUrl(url), formData, {
       headers: {
-        "Content-Type": "application/json",
+        "Content-Type": "multipart/form-data",
         Authorization: `Bearer ${token}`,
       },
     });
@@ -151,10 +124,13 @@ export const getCardsLengthAPI = async (param: getCardsPhotoFxParam) => {
   }
 
   let url = getParamForCard("items/length", param);
-  const response = await axios.get(getUrl(url), {
+
+  const response = await axios.post(getUrl(url), formData, {
     headers: {
+      "Content-Type": "multipart/form-data",
       Authorization: `Bearer ${token}`,
     },
   });
+
   return response.data;
 };

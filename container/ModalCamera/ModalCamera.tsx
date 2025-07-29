@@ -75,7 +75,7 @@ const ModalCamera = ({ style, setModalVisible }: Props) => {
           ref={cameraRef}
           style={styles.camera}
           facing={facing}
-          flash={"on"}
+          flash={flash === "off" ? "off" : "on"}
         />
       </View>
 

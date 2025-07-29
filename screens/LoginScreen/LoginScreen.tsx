@@ -29,10 +29,10 @@ export default function LoginScreen() {
 
   return (
     <View style={styles.container}>
+      asd
       <HeaderPage style={styles.header} type={HeaderType.showArrowHelp} />
       <Logo width={200} height={120} style={styles.reactLogo} />
       <Text style={styles.description}>{t("loginText")}</Text>
-
       <View style={styles.input}>
         <Input
           placeholder={t("enterEmail")}
@@ -41,7 +41,6 @@ export default function LoginScreen() {
           isError={error === t("invalidEmail")}
         />
       </View>
-
       <View style={styles.input}>
         <Input
           placeholder={t("enterPassword")}
@@ -51,16 +50,13 @@ export default function LoginScreen() {
           isError={error === t("invalidPassword")}
         />
       </View>
-
       {error !== "" && (
         <View style={styles.error}>
           <Text style={styles.textError}>{t(error)}</Text>
           <Link to="help">{t("forgotPassword")}</Link>
         </View>
       )}
-
       <Text style={styles.textSeparation}>{t("or")}</Text>
-
       <Button
         title={t("loginYandex")}
         filled={false}
@@ -86,6 +82,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     padding: 24,
     backgroundColor: Colors.BgcColor,
+    paddingTop: 30,
   },
   header: {
     position: "absolute",

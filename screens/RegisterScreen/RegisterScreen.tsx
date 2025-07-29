@@ -93,6 +93,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     padding: 24,
     backgroundColor: Colors.BgcColor,
+    paddingTop: 30,
   },
   header: {
     position: "absolute",

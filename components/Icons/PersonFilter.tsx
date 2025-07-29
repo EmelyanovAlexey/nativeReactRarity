@@ -1,9 +1,14 @@
 import * as React from "react";
 import Svg, { Path } from "react-native-svg";
 
-const PersonFilter = () => {
+type Props = {
+  width?: string;
+  height?: string;
+};
+
+const PersonFilter = ({ width = "240", height = "324" }: Props) => {
   return (
-    <Svg width="240" height="324" viewBox="0 0 240 324" fill="none">
+    <Svg width={width} height={height} viewBox="0 0 240 324" fill="none">
       <Path
         fillRule="evenodd"
         clipRule="evenodd"
