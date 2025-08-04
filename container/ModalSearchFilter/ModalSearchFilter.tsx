@@ -20,6 +20,8 @@ export default function ModalSearchFilterContainer() {
     onChangeSearchText,
     onSelectOption,
     onSelectFilterRoot,
+    handleDelete,
+    resetFilter,
   } = useModalSearchFilter();
 
   return (
@@ -29,6 +31,8 @@ export default function ModalSearchFilterContainer() {
           list={listFilterRoot}
           setModalVisible={setModalVisibleSearch}
           onSelectFilter={onSelectFilterRoot}
+          handleDelete={handleDelete}
+          resetFilter={resetFilter}
         />
       )}
 

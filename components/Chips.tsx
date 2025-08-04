@@ -13,12 +13,24 @@ type ChipsProps = {
   text: string;
   style?: ViewStyle;
   onPress: () => void;
+  maxLength?: number;
 };
 
-const Chips: React.FC<ChipsProps> = ({ text = "", style, onPress }) => {
+const Chips: React.FC<ChipsProps> = ({
+  text = "",
+  style,
+  maxLength = 50,
+  onPress,
+}) => {
+  // Обрезаем текст, если он слишком длинный
+  const truncatedText =
+    text.length > maxLength ? `${text.substring(0, maxLength)}...` : text;
+
   return (
     <View style={[styles.root, style]}>
-      <Text style={[styles.text]}>{text}</Text>
+      <Text style={[styles.text]} numberOfLines={1} ellipsizeMode="tail">
+        {truncatedText}
+      </Text>
 
       {onPress && (
         <TouchableOpacity style={styles.delete} onPress={onPress}>

@@ -9,6 +9,7 @@ export const setIsShowModalEvent = createEvent<boolean>();
 export const setIsShowModalFilterEvent = createEvent<boolean>();
 export const setSearchTextEvent = createEvent<string>();
 export const setImgEvent = createEvent<string | null>();
+export const resetFilterEvent = createEvent<void>();
 
 export const setSelectOptionEvent = createEvent<{
   type: TypeFilter;

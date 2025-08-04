@@ -72,6 +72,8 @@
     "resultSearch": "Matches found",
     "loadingSearch": "Looking for similar items",
     "showAll": "Show All",
+    "apply": "Apply",
+    "throwOff": "Throw off",
 
     "errorAuth": "Authorization Error",
     "permissionCamera": "We need your permission to access the camera",

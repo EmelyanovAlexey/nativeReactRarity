@@ -11,6 +11,8 @@ import {
 import { Colors } from "@/shared/constStyle";
 import Сhevron from "@/components/Icons/Сhevron";
 import Arrow from "@/components/Icons/Arrow";
+import Chips from "@/components/Chips";
+import Button from "@/components/Button";
 
 import { FilterRoot, TypeFilter } from "@/models/search/types";
 
@@ -21,6 +23,8 @@ type Props = {
   list: FilterRoot[];
   setModalVisible: (param: boolean) => void;
   onSelectFilter: (param: TypeFilter) => void;
+  handleDelete: (param: TypeFilter) => void;
+  resetFilter: () => void;
 };
 
 const ModalSearchFilter = ({
@@ -28,6 +32,8 @@ const ModalSearchFilter = ({
   list,
   setModalVisible,
   onSelectFilter,
+  handleDelete,
+  resetFilter,
 }: Props) => {
   const { t } = useTranslation();
   const scrollViewRef = useRef<ScrollView>(null);
@@ -55,6 +61,7 @@ const ModalSearchFilter = ({
             ref={scrollViewRef}
             scrollEventThrottle={16}
             showsVerticalScrollIndicator={false}
+            contentContainerStyle={styles.scrollContent}
           >
             <View style={styles.blocks}>
               {list.map((listItem) => (
@@ -63,21 +70,42 @@ const ModalSearchFilter = ({
                   style={styles.block}
                   key={listItem.id}
                 >
-                  <Text
-                    style={[
-                      styles.label,
-                      listItem.select !== null && styles.select,
-                    ]}
-                  >
-                    {listItem.select !== null
-                      ? listItem.select.name
-                      : t(listItem.name)}
-                  </Text>
+                  {listItem.select !== null ? (
+                    <Chips
+                      text={listItem.select.name}
+                      maxLength={25}
+                      onPress={() => handleDelete(listItem.id)}
+                    />
+                  ) : (
+                    <Text
+                      style={[
+                        styles.label,
+                        listItem.select !== null && styles.select,
+                      ]}
+                    >
+                      {t(listItem.name)}
+                    </Text>
+                  )}
+
                   <Сhevron />
                 </TouchableOpacity>
               ))}
             </View>
           </ScrollView>
+
+          <View>
+            <Button
+              title={t("apply")}
+              filled={true}
+              onPress={() => setModalVisible(false)}
+            />
+
+            <Button
+              title={t("throwOff")}
+              filled={false}
+              onPress={() => resetFilter()}
+            />
+          </View>
         </View>
       </View>
     </Modal>
@@ -139,7 +167,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     flexWrap: "wrap",
     backgroundColor: Colors.GrayColor3,
-    paddingVertical: 24,
+    height: 60,
     paddingHorizontal: 16,
     borderRadius: 16,
   },
@@ -152,6 +180,9 @@ const styles = StyleSheet.create({
   },
   select: {
     color: Colors.BlackColor,
+  },
+  scrollContent: {
+    paddingBottom: 100, // Чтобы контент не заезжал под кнопки
   },
 });
 

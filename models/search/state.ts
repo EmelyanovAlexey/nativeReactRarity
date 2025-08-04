@@ -37,6 +37,7 @@ import {
   setImgEventHandler,
   setIsBeenSearchEventHandler,
   setPageEventHandler,
+  resetFilterEventHandler,
 } from "./events/eventHandlers";
 import {
   resetSearchEvent,
@@ -49,6 +50,7 @@ import {
   resetSearchHistoryEvent,
   setIsBeenSearchEvent,
   setPageEvent,
+  resetFilterEvent,
 } from "./events/events";
 import {
   SEARCH_MODEL_DEFAULT,
@@ -65,6 +67,7 @@ export const $searchModel = createStore<SearchModel>(SEARCH_MODEL_DEFAULT)
   .on(setImgEvent, setImgEventHandler)
   .on(setIsBeenSearchEvent, setIsBeenSearchEventHandler)
   .on(setPageEvent, setPageEventHandler)
+  .on(resetFilterEvent, resetFilterEventHandler)
 
   .on(countriesFx.doneData, countriesFxDoneHandler)
   .on(regionsFx.doneData, regionsFxDoneHandler)

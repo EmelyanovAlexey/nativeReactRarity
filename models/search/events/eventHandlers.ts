@@ -29,19 +29,45 @@ export function setSelectOptionEventHandler(
   }
 ): SearchModel {
   if (param.type === TypeFilter.country) {
-    return { ...state, selectedCountries: state.selectedCountries?.name === param.option?.name ? null : param.option };
+    return {
+      ...state,
+      selectedCountries:
+        state.selectedCountries?.name === param.option?.name
+          ? null
+          : param.option,
+    };
   }
   if (param.type === TypeFilter.area) {
-    return { ...state, selectedRegions: state.selectedRegions?.name === param.option?.name ? null : param.option };
+    return {
+      ...state,
+      selectedRegions:
+        state.selectedRegions?.name === param.option?.name
+          ? null
+          : param.option,
+    };
   }
   if (param.type === TypeFilter.city) {
-    return { ...state, selectedCities: state.selectedCities?.name === param.option?.name ? null : param.option };
+    return {
+      ...state,
+      selectedCities:
+        state.selectedCities?.name === param.option?.name ? null : param.option,
+    };
   }
   if (param.type === TypeFilter.manufacturer) {
-    return { ...state, selectedManufacturers: state.selectedManufacturers?.name === param.option?.name ? null : param.option };
+    return {
+      ...state,
+      selectedManufacturers:
+        state.selectedManufacturers?.name === param.option?.name
+          ? null
+          : param.option,
+    };
   }
   if (param.type === TypeFilter.symbol) {
-    return { ...state, selectedSymbol: state.selectedSymbol?.name === param.option?.name ? null : param.option };
+    return {
+      ...state,
+      selectedSymbol:
+        state.selectedSymbol?.name === param.option?.name ? null : param.option,
+    };
   }
 
   return { ...state };
@@ -65,6 +91,19 @@ export function setIsBeenSearchEventHandler(
   return { ...state, isBeenSearch: param };
 }
 
-export function setPageEventHandler(state: SearchModel, page: number): SearchModel {
+export function setPageEventHandler(
+  state: SearchModel,
+  page: number
+): SearchModel {
   return { ...state, page };
+}
+
+export function resetFilterEventHandler(state: SearchModel): SearchModel {
+  return {
+    ...state,
+    selectedManufacturers: null,
+    selectedCities: null,
+    selectedRegions: null,
+    selectedCountries: null,
+  };
 }

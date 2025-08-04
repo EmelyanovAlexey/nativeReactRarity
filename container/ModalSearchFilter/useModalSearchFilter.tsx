@@ -17,6 +17,7 @@ import {
   setSearchTextEvent,
   setSelectOptionEvent,
   setPageEvent,
+  resetFilterEvent,
 } from "@/models/search/events/events";
 
 export default function useModalSearchFilter() {
@@ -137,6 +138,22 @@ export default function useModalSearchFilter() {
     setTypeCurFilter(TypeFilter.empty);
   };
 
+  // Удалить элемент фильтра
+  const handleDelete = (type: TypeFilter) => {
+    const findElementSelect = listFilterRoot.find(
+      (filter) => filter.id === type
+    )?.select;
+
+    if (findElementSelect) {
+      setSelectOptionEvent({ type, option: findElementSelect });
+    }
+  };
+
+  // сбросить значение фильтра
+  const resetFilter = () => {
+    resetFilterEvent();
+  };
+
   useEffect(() => {
     const handler = setTimeout(() => {
       setDebouncedText(filterText);
@@ -163,5 +180,7 @@ export default function useModalSearchFilter() {
     onChangeSearchText,
     onSelectFilterRoot,
     onSelectOption,
+    handleDelete,
+    resetFilter,
   };
 }
