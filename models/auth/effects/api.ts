@@ -1,3 +1,4 @@
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
 import { getUrl } from "@/shared/getUrl";
 import { RegisterFXParam, LoginFXParam } from "../types";
@@ -39,5 +40,18 @@ export const loginGoogleAPI = async () => {
 
 export const deleteUserAPI = async () => {
   const response = await axios.delete(getUrl("common-auth/users/me/"));
+  return response.data;
+};
+
+export const setPasswordAPI = async (params: {
+  currentPassword: string;
+  newPassword: string;
+}) => {
+  const token = await AsyncStorage.getItem("token");
+
+  const response = await axios.put(getUrl(`plain/password?id_token=${token}`), {
+    current_password: params.currentPassword,
+    new_password: params.newPassword,
+  });
   return response.data;
 };

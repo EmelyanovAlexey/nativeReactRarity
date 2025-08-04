@@ -1,5 +1,11 @@
 import { createEffect } from "effector";
-import { registerAPI, loginAPI, loginGoogleAPI, deleteUserAPI } from "./api";
+import {
+  registerAPI,
+  loginAPI,
+  loginGoogleAPI,
+  deleteUserAPI,
+  setPasswordAPI,
+} from "./api";
 
 import {
   RegisterFXParam,
@@ -28,3 +34,10 @@ loginGoogleFx.use(loginGoogleAPI);
 
 export const deleteUserFx = createEffect<void, BaseResponse, ResponseError>();
 deleteUserFx.use(deleteUserAPI);
+
+export const setPasswordFx = createEffect<
+  { currentPassword: string; newPassword: string },
+  BaseResponse,
+  ResponseError
+>();
+setPasswordFx.use(setPasswordAPI);
