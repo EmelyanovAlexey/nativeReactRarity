@@ -1,3 +1,4 @@
+import jwtDecode from "jwt-decode";
 import { useState } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useNavigation } from "@react-navigation/native";
@@ -9,7 +10,7 @@ export default function useProfileScreen() {
   const [showExit, setShowExit] = useState<boolean>(false);
   const [showDelete, setShowDelete] = useState<boolean>(false);
   const navigation = useNavigation();
-  const { email, name } = useUnit($userModel);
+  const { email, name, isYandex } = useUnit($userModel);
 
   // Удаление акаунта
   const handleDelete = () => {
@@ -27,6 +28,7 @@ export default function useProfileScreen() {
     showDelete,
     email,
     name,
+    isYandex,
     handleExit,
     setShowExit,
     setShowDelete,

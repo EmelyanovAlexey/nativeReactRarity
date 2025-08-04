@@ -17,6 +17,7 @@ export function loginFxDoneHandler(
     email: decodedPayload.email,
     name: "",
     id_token: data.id_token,
+    isYandex: false,
   };
 }
 

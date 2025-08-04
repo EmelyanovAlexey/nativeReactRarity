@@ -2,7 +2,7 @@ import { View, StyleSheet, Text } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useTranslation } from "react-i18next";
 import { jwtDecode } from "jwt-decode";
-import { setUserEvent } from "@/models/auth/events/events";
+import { setUserEvent, setTokenEvent } from "@/models/auth/events/events";
 
 import Button from "@/components/Button";
 
@@ -25,7 +25,7 @@ export default function FirstScreen({ navigation }: any) {
 
       try {
         if (isJwtToken(token)) {
-          const decoded = jwtDecode(token);
+          const decoded: any = jwtDecode(token);
           // Если токен истёк — не логиним
           const now = Date.now() / 1000;
           if (decoded.exp && decoded.exp < now) {
@@ -37,6 +37,7 @@ export default function FirstScreen({ navigation }: any) {
             email: decoded?.email || "",
             name: decoded?.name || "",
           });
+          setTokenEvent({ token, isYandex: false });
           navigation.reset({
             index: 0,
             routes: [{ name: "main" }],
@@ -51,6 +52,7 @@ export default function FirstScreen({ navigation }: any) {
             email: userData.email,
             name: userData.name,
           });
+          setTokenEvent({ token, isYandex: true });
           navigation.reset({
             index: 0,
             routes: [{ name: "main" }],

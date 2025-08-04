@@ -29,7 +29,6 @@ export default function LoginScreen() {
 
   return (
     <View style={styles.container}>
-      asd
       <HeaderPage style={styles.header} type={HeaderType.showArrowHelp} />
       <Logo width={200} height={120} style={styles.reactLogo} />
       <Text style={styles.description}>{t("loginText")}</Text>

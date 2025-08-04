@@ -42,7 +42,7 @@ export default function useRegisterScreen({ navigation }: any) {
       // console.log("Yandex info:", userInfo);
 
       await AsyncStorage.setItem("token", token);
-      setTokenEvent(token);
+      setTokenEvent({ token, isYandex: true });
       setUserEvent({
         email: userInfo.emails[0] || "",
         name: userInfo.real_name || "",

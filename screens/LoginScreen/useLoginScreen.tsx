@@ -49,7 +49,7 @@ export default function useLoginScreen() {
       });
 
       await AsyncStorage.setItem("token", token);
-      setTokenEvent(token);
+      setTokenEvent({ token, isYandex: true });
       setIsAuthenticated(true);
     } catch (err) {
       setErrorEvent("yandexLoginFailed");

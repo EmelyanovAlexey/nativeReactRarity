@@ -9,7 +9,7 @@ export function setErrorEventHandler(
 
 export function setTokenEventHandler(
   state: UserModel,
-  token: string
+  { token, isYandex }: { token: string; isYandex: boolean }
 ): UserModel {
-  return { ...state, id_token: token };
+  return { ...state, id_token: token, isYandex };
 }

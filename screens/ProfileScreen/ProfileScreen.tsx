@@ -27,6 +27,7 @@ export default function ProfileScreen() {
     showDelete,
     email,
     name,
+    isYandex,
     setShowExit,
     handleExit,
     setShowDelete,
@@ -101,14 +102,16 @@ export default function ProfileScreen() {
           leftContent={<Language />}
           onPress={() => navigation.navigate("changeLanguage")}
         />
-        <Button
-          title={t("changePassword")}
-          filled={false}
-          style={styles.btn}
-          textStyle={styles.btnText}
-          leftContent={<Close />}
-          onPress={() => navigation.navigate("changePassword")}
-        />
+        {!isYandex && (
+          <Button
+            title={t("changePassword")}
+            filled={false}
+            style={styles.btn}
+            textStyle={styles.btnText}
+            leftContent={<Close />}
+            onPress={() => navigation.navigate("changePassword")}
+          />
+        )}
         <Button
           title={t("exit")}
           filled={false}

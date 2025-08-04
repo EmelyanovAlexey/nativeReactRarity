@@ -5,6 +5,7 @@ export type UserModel = {
   email: string;
   name: string;
   id_token: string;
+  isYandex: boolean;
   error: string;
 };
 
