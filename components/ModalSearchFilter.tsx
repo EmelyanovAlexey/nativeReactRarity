@@ -6,6 +6,7 @@ import {
   ViewStyle,
   TouchableOpacity,
   ScrollView,
+  Modal,
 } from "react-native";
 import { Colors } from "@/shared/constStyle";
 import Сhevron from "@/components/Icons/Сhevron";
@@ -32,58 +33,66 @@ const ModalSearchFilter = ({
   const scrollViewRef = useRef<ScrollView>(null);
 
   return (
-    <View style={[styles.modal, style]}>
-      <View style={styles.modalContent}>
-        <View style={styles.header}>
-          <TouchableOpacity onPress={() => setModalVisible(false)}>
-            <View style={styles.arrow}>
-              <Arrow />
-            </View>
-          </TouchableOpacity>
+    <Modal
+      transparent={true}
+      animationType="slide"
+      visible={true}
+      onRequestClose={() => setModalVisible(false)}
+    >
+      <View style={[styles.modal, style]}>
+        <View style={styles.modalContent}>
+          <View style={styles.header}>
+            <TouchableOpacity onPress={() => setModalVisible(false)}>
+              <View style={styles.arrow}>
+                <Arrow />
+              </View>
+            </TouchableOpacity>
 
-          <Text style={styles.modalTitle}>{t("titleFilter")}</Text>
-        </View>
-
-        <ScrollView
-          ref={scrollViewRef}
-          scrollEventThrottle={16}
-          showsVerticalScrollIndicator={false}
-        >
-          <View style={styles.blocks}>
-            {list.map((listItem) => (
-              <TouchableOpacity
-                onPress={() => onSelectFilter(listItem.id)}
-                style={styles.block}
-                key={listItem.id}
-              >
-                <Text
-                  style={[
-                    styles.label,
-                    listItem.select !== null && styles.select,
-                  ]}
-                >
-                  {listItem.select !== null
-                    ? listItem.select.name
-                    : t(listItem.name)}
-                </Text>
-                <Сhevron />
-              </TouchableOpacity>
-            ))}
+            <Text style={styles.modalTitle}>{t("titleFilter")}</Text>
           </View>
-        </ScrollView>
+
+          <ScrollView
+            ref={scrollViewRef}
+            scrollEventThrottle={16}
+            showsVerticalScrollIndicator={false}
+          >
+            <View style={styles.blocks}>
+              {list.map((listItem) => (
+                <TouchableOpacity
+                  onPress={() => onSelectFilter(listItem.id)}
+                  style={styles.block}
+                  key={listItem.id}
+                >
+                  <Text
+                    style={[
+                      styles.label,
+                      listItem.select !== null && styles.select,
+                    ]}
+                  >
+                    {listItem.select !== null
+                      ? listItem.select.name
+                      : t(listItem.name)}
+                  </Text>
+                  <Сhevron />
+                </TouchableOpacity>
+              ))}
+            </View>
+          </ScrollView>
+        </View>
       </View>
-    </View>
+    </Modal>
   );
 };
 
 const styles = StyleSheet.create({
   modal: {
+    flex: 1,
     position: "absolute",
     justifyContent: "flex-end",
     margin: 0,
     width: "100%",
     height: "100%",
-    zIndex: 100,
+    zIndex: 100000,
   },
   modalContent: {
     backgroundColor: Colors.WhiteColor,

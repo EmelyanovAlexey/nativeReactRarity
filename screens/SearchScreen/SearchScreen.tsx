@@ -30,6 +30,7 @@ export default function SearchScreen() {
       <SearchFilterContainer />
       <ModalSearchContainer />
 
+      {/* Фильтра по выбору */}
       <ModalSearchFilterContainer />
 
       <SearchCardsContainer />
