@@ -27,7 +27,7 @@ export default function SearchScreen() {
       {/* Шапка и старт */}
       <SearchFilterContainer />
 
-      {/*  */}
+      {/* Модальное окно для поиска */}
       <ModalSearchContainer />
 
       {/* Фильтра по выбору */}

@@ -9,18 +9,29 @@ import {
   ScrollView,
   Dimensions,
 } from "react-native";
-import { Colors } from "@/shared/constStyle";
 import Cross from "@/components/Icons/Cross";
 import { useTranslation } from "react-i18next";
+import { Colors } from "@/shared/constStyle";
 
 type Props = {
   style?: ViewStyle;
   styleBody?: ViewStyle;
   children: React.ReactNode;
+  title?: string;
+  modalVisible?: boolean;
+  isScroll?: boolean;
   setModalVisible: (param: boolean) => void;
 };
 
-const ModalSmall = ({ style, styleBody, children, setModalVisible }: Props) => {
+const ModalSmall = ({
+  style,
+  styleBody,
+  modalVisible = true,
+  title = "",
+  children,
+  isScroll = true,
+  setModalVisible,
+}: Props) => {
   const { t } = useTranslation();
   const windowHeight = Dimensions.get("window").height;
 
@@ -28,7 +39,7 @@ const ModalSmall = ({ style, styleBody, children, setModalVisible }: Props) => {
     <Modal
       transparent={true}
       animationType="fade"
-      visible={true}
+      visible={modalVisible}
       onRequestClose={() => setModalVisible(false)}
     >
       <View style={styles.overlay}>
@@ -37,19 +48,23 @@ const ModalSmall = ({ style, styleBody, children, setModalVisible }: Props) => {
         >
           <View style={[styles.modal, style]}>
             <View style={styles.header}>
-              <Text style={styles.modalTitle}>{t("titleFilter")}</Text>
+              <Text style={styles.modalTitle}>{title}</Text>
               <TouchableOpacity onPress={() => setModalVisible(false)}>
                 <Cross />
               </TouchableOpacity>
             </View>
 
-            <ScrollView
-              scrollEventThrottle={16}
-              showsVerticalScrollIndicator={true}
-              contentContainerStyle={styles.scrollContent}
-            >
+            {isScroll ? (
+              <ScrollView
+                scrollEventThrottle={16}
+                showsVerticalScrollIndicator={true}
+                contentContainerStyle={styles.scrollContent}
+              >
+                <View style={[styles.body, styleBody]}>{children}</View>
+              </ScrollView>
+            ) : (
               <View style={[styles.body, styleBody]}>{children}</View>
-            </ScrollView>
+            )}
           </View>
         </View>
       </View>
@@ -67,13 +82,14 @@ const styles = StyleSheet.create({
   modalContainer: {
     width: "90%",
     maxHeight: "70%",
+    minHeight: "20%",
   },
   modal: {
     width: "100%",
     height: "100%",
     borderRadius: 12,
     paddingVertical: 15,
-    paddingHorizontal: 15,
+    paddingHorizontal: 20,
     backgroundColor: Colors.WhiteColor,
   },
   header: {

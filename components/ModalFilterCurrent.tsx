@@ -5,14 +5,15 @@ import {
   StyleSheet,
   ViewStyle,
   TouchableOpacity,
-  ScrollView,
-  NativeScrollEvent,
-  NativeSyntheticEvent,
+  // ScrollView,
+  // NativeScrollEvent,
+  // NativeSyntheticEvent,
 } from "react-native";
-import Modal from "react-native-modal";
+// import Modal from "react-native-modal";
 import { Colors } from "@/shared/constStyle";
-import Input from "@/components/Input";
+// import Input from "@/components/Input";
 import ModalSmall from "@/components/ModalSmall";
+import Spinner from "@/components/Spinner";
 
 import { FilterOption } from "@/models/search/types";
 
@@ -40,7 +41,7 @@ const ModalFilterCurrent = ({
   select,
   isLoading,
   setModalVisible,
-  onChangeSearchText,
+  // onChangeSearchText,
   onSelect,
 }: Props) => {
   const { t } = useTranslation();
@@ -56,7 +57,7 @@ const ModalFilterCurrent = ({
   // };
 
   return (
-    <ModalSmall setModalVisible={searchOnBlock}>
+    <ModalSmall title={t(title)} setModalVisible={searchOnBlock}>
       <View style={styles.list}>
         {options.map((option) => (
           <TouchableOpacity
@@ -78,6 +79,11 @@ const ModalFilterCurrent = ({
           </TouchableOpacity>
         ))}
       </View>
+      {isLoading && (
+        <View style={styles.loading}>
+          <Spinner />
+        </View>
+      )}
     </ModalSmall>
   );
 };
@@ -105,6 +111,10 @@ const styles = StyleSheet.create({
   },
   optionTextSelect: {
     color: Colors.Primary,
+  },
+  loading: {
+    display: "flex",
+    alignItems: "center",
   },
 });
 
