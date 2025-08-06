@@ -1,8 +1,9 @@
 import React from "react";
-import { View, Text, StyleSheet, ScrollView } from "react-native";
+// import { View, Text, StyleSheet, ScrollView } from "react-native";
 
 import ModalSearchFilter from "@/components/ModalSearchFilter";
 import ModalFilterCurrent from "@/components/ModalFilterCurrent";
+import ModalSmall from "@/components/ModalSmall";
 
 import useModalSearchFilter from "./useModalSearchFilter";
 import { Colors } from "@/shared/constStyle";

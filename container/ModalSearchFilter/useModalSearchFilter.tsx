@@ -12,9 +12,9 @@ import {
 import { TypeFilter, FilterRoot, FilterOption } from "@/models/search/types";
 import { $searchModel } from "@/models/search";
 import {
-  setIsShowModalEvent,
+  // setIsShowModalEvent,
   setIsShowModalFilterEvent,
-  setSearchTextEvent,
+  // setSearchTextEvent,
   setSelectOptionEvent,
   setPageEvent,
   resetFilterEvent,
@@ -60,6 +60,12 @@ export default function useModalSearchFilter() {
     isManufacturersLoading;
   const listFilterRoot: FilterRoot[] = [
     {
+      id: TypeFilter.manufacturer,
+      name: "manufacturer",
+      select: selectedManufacturers,
+      options: manufacturers,
+    },
+    {
       id: TypeFilter.country,
       name: "country",
       select: selectedCountries,
@@ -76,12 +82,6 @@ export default function useModalSearchFilter() {
       name: "city",
       select: selectedCities,
       options: cities,
-    },
-    {
-      id: TypeFilter.manufacturer,
-      name: "manufacturer",
-      select: selectedManufacturers,
-      options: manufacturers,
     },
   ];
 

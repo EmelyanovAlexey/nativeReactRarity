@@ -1,5 +1,4 @@
-import { View, Text, StyleSheet } from "react-native";
-import { useTranslation } from "react-i18next";
+import { View, StyleSheet } from "react-native";
 
 import Photo from "@/components/Icons/Photo";
 import Button from "@/components/Button";
@@ -14,11 +13,9 @@ import useSearchScreen from "./useSearchScreen";
 import { Colors } from "@/shared/constStyle";
 
 export default function SearchScreen() {
-  const { t } = useTranslation();
   const {
     showPhotoMenu,
     showPhotoCamera,
-    handleStartScan,
     handleSetStartCamera,
     handleLoadScan,
     handleOpenMenuScan,
@@ -27,7 +24,10 @@ export default function SearchScreen() {
 
   return (
     <View style={styles.container}>
+      {/* Шапка и старт */}
       <SearchFilterContainer />
+
+      {/*  */}
       <ModalSearchContainer />
 
       {/* Фильтра по выбору */}

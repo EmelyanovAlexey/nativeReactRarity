@@ -11,7 +11,7 @@ import {
 import { Colors } from "@/shared/constStyle";
 import Сhevron from "@/components/Icons/Сhevron";
 import Arrow from "@/components/Icons/Arrow";
-import Chips from "@/components/Chips";
+import Cross from "@/components/Icons/Cross";
 import Button from "@/components/Button";
 
 import { FilterRoot, TypeFilter } from "@/models/search/types";
@@ -65,30 +65,41 @@ const ModalSearchFilter = ({
           >
             <View style={styles.blocks}>
               {list.map((listItem) => (
-                <TouchableOpacity
-                  onPress={() => onSelectFilter(listItem.id)}
-                  style={styles.block}
-                  key={listItem.id}
-                >
-                  {listItem.select !== null ? (
-                    <Chips
-                      text={listItem.select.name}
-                      maxLength={25}
-                      onPress={() => handleDelete(listItem.id)}
-                    />
-                  ) : (
+                <>
+                  <TouchableOpacity
+                    onPress={() => onSelectFilter(listItem.id)}
+                    style={[
+                      styles.block,
+                      listItem.select !== null && styles.blockSmall,
+                    ]}
+                    key={listItem.id}
+                  >
                     <Text
+                      ellipsizeMode="tail"
+                      numberOfLines={1}
                       style={[
                         styles.label,
                         listItem.select !== null && styles.select,
                       ]}
                     >
-                      {t(listItem.name)}
+                      {listItem.select !== null
+                        ? listItem.select.name
+                        : t(listItem.name)}
                     </Text>
-                  )}
 
-                  <Сhevron />
-                </TouchableOpacity>
+                    <Сhevron />
+                  </TouchableOpacity>
+
+                  {listItem.select !== null && (
+                    <TouchableOpacity
+                      onPress={() => handleDelete(listItem.id)}
+                      style={[styles.delete]}
+                      key={listItem.id}
+                    >
+                      <Cross stroke={Colors.Primary} />
+                    </TouchableOpacity>
+                  )}
+                </>
               ))}
             </View>
           </ScrollView>
@@ -167,16 +178,27 @@ const styles = StyleSheet.create({
     alignItems: "center",
     flexWrap: "wrap",
     backgroundColor: Colors.GrayColor3,
-    height: 60,
     paddingHorizontal: 16,
     borderRadius: 16,
   },
+  blockSmall: {
+    width: "89%",
+  },
+  delete: {
+    width: "6%",
+    height: 40,
+    display: "flex",
+    alignItems: "center",
+    paddingTop: 12,
+  },
   label: {
+    width: "90%",
     fontWeight: 500,
     fontSize: 16,
     lineHeight: 16,
     color: Colors.GrayColor,
     fontFamily: "Inter_400Regular",
+    paddingVertical: 16,
   },
   select: {
     color: Colors.BlackColor,
