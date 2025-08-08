@@ -29,6 +29,7 @@ export default function useBottomTabs() {
     selectedCities,
     selectedManufacturers,
     selectedSymbol,
+    isBeenSearch,
   } = useUnit($searchModel);
   const [selectedItem, setSelectedItem] = useState<CardType | null>(null);
   const [modalVisible, setModalVisible] = useState<boolean>(false);
@@ -74,7 +75,11 @@ export default function useBottomTabs() {
     };
 
     if (img) {
-      getCardsSearchPhotoFx({ ...param, photoUri: img.split(",")[1] });
+      getCardsSearchPhotoFx({
+        page: pageToLoad,
+        offset: limit,
+        photoUri: img.split(",")[1],
+      });
       return;
     }
 
@@ -90,6 +95,7 @@ export default function useBottomTabs() {
   };
 
   return {
+    isBeenSearch,
     cards,
     isLoading: isLoading || isLoadingAI,
     cardDetail,

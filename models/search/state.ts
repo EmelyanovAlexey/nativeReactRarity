@@ -119,3 +119,9 @@ sample({
   },
   target: getCardsLengthFx,
 });
+
+sample({
+  clock: [getCardsSearchPhotoFx.fail, getCardsFx.fail],
+  fn: () => true,
+  target: [setIsBeenSearchEvent],
+});

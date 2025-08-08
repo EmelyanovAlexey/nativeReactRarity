@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, FlatList, Dimensions } from "react-native";
 import { useTranslation } from "react-i18next";
 
 import Spinner from "@/components/Spinner";
+import Search from "@/components/Icons/Search";
 
 import { Colors } from "@/shared/constStyle";
 import { CardType } from "@/models/home/types";
@@ -15,6 +16,7 @@ import useSearchCards from "./useSearchCards";
 export default function SearchFilter() {
   const { t } = useTranslation();
   const {
+    isBeenSearch,
     flatListKey,
     flatListRef,
     cards,
@@ -41,6 +43,16 @@ export default function SearchFilter() {
 
   return (
     <View style={styles.container}>
+      {isBeenSearch && !isLoading && cards.length === 0 && (
+        <View style={styles.empty}>
+          <View style={styles.emptyIcon}>
+            <Search stroke={Colors.WhiteColor} />
+          </View>
+          <Text style={styles.emptyTextTitle}>{t("emptySearch1")}</Text>
+          <Text style={styles.emptyText}>{t("emptySearch2")}</Text>
+        </View>
+      )}
+
       <FlatList
         key={flatListKey}
         ref={flatListRef}
@@ -113,5 +125,37 @@ const styles = StyleSheet.create({
     fontFamily: "Inter_400Regular",
     color: Colors.GrayColor,
     marginTop: 8,
+  },
+
+  empty: {
+    marginTop: "25%",
+    display: "flex",
+    alignItems: "center",
+  },
+  emptyTextTitle: {
+    fontWeight: 600,
+    fontSize: 16,
+    lineHeight: 16,
+    fontFamily: "Inter_400Regular",
+    marginTop: 12,
+    textAlign: "center",
+  },
+  emptyText: {
+    fontWeight: 500,
+    fontSize: 16,
+    lineHeight: 16,
+    fontFamily: "Inter_400Regular",
+    color: Colors.GrayColor,
+    marginTop: 12,
+    textAlign: "center",
+  },
+  emptyIcon: {
+    backgroundColor: Colors.RedColor,
+    borderRadius: 50,
+    width: 60,
+    height: 60,
+    display: "flex",
+    alignItems: "center",
+    paddingTop: 10,
   },
 });

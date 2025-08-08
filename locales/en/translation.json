@@ -36,6 +36,8 @@
     "yourImage": "Your image",
     "imageSearch": "Image search",
     "resultSearch2": "Result Search",
+    "emptySearch1": "No results found",
+    "emptySearch2": "Make sure the photo is clear, change the angle, check the image format, or try another photo",
 
     "enterEmail": "Enter your email address",
     "comeUpPassword": "Create a password",

@@ -117,7 +117,11 @@ export default function useModalSearchFilter() {
     };
 
     if (img) {
-      getCardsSearchPhotoFx({ ...paramRequest, photoUri: img.split(",")[1] });
+      getCardsSearchPhotoFx({
+        page: 1,
+        offset: limit,
+        photoUri: img.split(",")[1],
+      });
       setIsShowModalFilterEvent(param);
       return;
     }

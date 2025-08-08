@@ -66,7 +66,11 @@ export default function useModalSearch() {
     };
 
     if (img) {
-      getCardsSearchPhotoFx({ ...paramRequest, photoUri: img.split(",")[1] });
+      getCardsSearchPhotoFx({
+        page: 1,
+        offset: limit,
+        photoUri: img.split(",")[1],
+      });
       setIsShowModalEvent(param);
       return;
     }

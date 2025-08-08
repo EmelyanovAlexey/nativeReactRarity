@@ -91,7 +91,11 @@ export default function useBottomTabs() {
     };
 
     if (img) {
-      getCardsSearchPhotoFx({ ...param, photoUri: img.split(",")[1] });
+      getCardsSearchPhotoFx({
+        page: 1,
+        offset: limit,
+        photoUri: img.split(",")[1],
+      });
       return;
     }
 
