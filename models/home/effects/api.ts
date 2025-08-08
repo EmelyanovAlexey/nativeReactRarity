@@ -4,29 +4,35 @@ import { getUrl } from "@/shared/getUrl";
 import { getCardsFxParam } from "../types";
 
 export const getCardsAPI = async (param: getCardsFxParam) => {
-  const formData = new FormData();
   let url = "items";
   let isHasParam = false;
 
-  if (param.countryName) {
-    url = `${url}${isHasParam ? "&" : "?"}country_name=${param.countryName}`;
-    isHasParam = true;
-  }
-
-  if (param.manufacturerName) {
-    url = `${url}${isHasParam ? "&" : "?"}manufacturer_name=${
-      param.manufacturerName
+  if (param.countryName?.length > 0) {
+    url = `${url}${isHasParam ? "&" : "?"}country_name=${
+      param.countryName[0].name
     }`;
     isHasParam = true;
   }
 
-  if (param.regionName) {
-    url = `${url}${isHasParam ? "&" : "?"}region_name=${param.regionName}`;
+  if (param.manufacturerName?.length > 0) {
+    const arr = param.manufacturerName.map(
+      (el) => `manufacturer_name=${el.name}`
+    );
+    url = `${url}${isHasParam ? "&" : "?"}${arr.join("&")}`;
     isHasParam = true;
   }
 
-  if (param.symbolName) {
-    url = `${url}${isHasParam ? "&" : "?"}symbol_name=${param.symbolName}`;
+  if (param.regionName?.length > 0) {
+    url = `${url}${isHasParam ? "&" : "?"}region_name=${
+      param.regionName[0].name
+    }`;
+    isHasParam = true;
+  }
+
+  if (param.symbolName?.length > 0) {
+    url = `${url}${isHasParam ? "&" : "?"}symbol_name=${
+      param.symbolName[0].name
+    }`;
     isHasParam = true;
   }
 

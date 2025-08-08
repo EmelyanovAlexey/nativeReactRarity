@@ -109,11 +109,11 @@ sample({
     } = searchModel;
 
     return {
-      countryName: selectedCountries?.name ?? undefined,
-      regionName: selectedRegions?.name ?? undefined,
+      countryName: selectedCountries,
+      regionName: selectedRegions,
       // citiesName: selectedCities?.name ?? undefined,
-      manufacturerName: selectedManufacturers?.name ?? undefined,
-      symbolName: selectedSymbol?.name ?? undefined,
+      manufacturerName: selectedManufacturers,
+      symbolName: selectedSymbol,
       photoUri: img ?? "",
     };
   },

@@ -15,8 +15,6 @@ import StartFilter from "@/components/StartFilter";
 
 import useSearchFilter from "./useSearchFilter";
 import { Colors } from "@/shared/constStyle";
-import Button from "@/components/Button";
-import Link from "@/components/Link";
 
 export default function SearchFilter() {
   const { t } = useTranslation();
@@ -26,7 +24,6 @@ export default function SearchFilter() {
     isShowStart,
     img,
     count,
-    isBeenSearch,
     handleSearchFilter,
     handleDelete,
     handleOpenFilter,
@@ -34,6 +31,18 @@ export default function SearchFilter() {
     handleToHome,
     onPressDeleteImg,
   } = useSearchFilter();
+
+  const getTextChips = (filterItem: any) => {
+    if (filterItem.select.length === 1) {
+      return filterItem.select[0]?.name;
+    }
+
+    if (filterItem.select.length > 1) {
+      return `${t(filterItem.name)} +${filterItem.select.length}`;
+    }
+
+    return "";
+  };
 
   return (
     <>
@@ -58,7 +67,7 @@ export default function SearchFilter() {
             {selectedFilter.map((filter) => (
               <Chips
                 key={filter.id}
-                text={filter.select?.name || ""}
+                text={getTextChips(filter)}
                 onPress={() => handleDelete(filter.id)}
                 style={styles.selectItem}
               />

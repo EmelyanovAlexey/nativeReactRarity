@@ -29,8 +29,8 @@ type Props = {
   paramsFilter: SearchParamType;
   isLoading: boolean;
   selectedParam: {
-    selectedCountries: FilterOption | null;
-    selectedManufacturers: FilterOption | null;
+    // selectedCountries: FilterOption | null;
+    // selectedManufacturers: FilterOption | null;
     selectedSymbol: FilterOption | null;
   };
   setModalVisible: (param: boolean) => void;
@@ -72,17 +72,17 @@ const ModalSearch = ({
 
   // узнать активный ли фильтр
   function isParamActive(param: string) {
-    if (param === selectedParam.selectedCountries?.name) {
-      return true;
-    }
-
-    if (param === selectedParam.selectedManufacturers?.name) {
-      return true;
-    }
-
     if (param === selectedParam.selectedSymbol?.name) {
       return true;
     }
+
+    // if (param === selectedParam.selectedCountries?.name) {
+    //   return true;
+    // }
+
+    // if (param === selectedParam.selectedManufacturers?.name) {
+    //   return true;
+    // }
 
     return false;
   }

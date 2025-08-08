@@ -2,6 +2,7 @@ import React from "react";
 
 import ModalSearchFilter from "@/components/ModalSearchFilter";
 import ModalFilterCurrent from "@/components/ModalFilterCurrent";
+import ModalFilterCurrentMulti from "@/components/ModalFilterCurrentMulti";
 
 import useModalSearchFilter from "./useModalSearchFilter";
 
@@ -37,6 +38,23 @@ export default function ModalSearchFilterContainer() {
 
       {listFilterRoot.map((item) => {
         if (typeCurFilter !== item.id) return null;
+
+        if (typeCurFilter === TypeFilter.manufacturer) {
+          return (
+            <ModalFilterCurrentMulti
+              title={item.name}
+              modalVisible={typeCurFilter === TypeFilter.manufacturer}
+              searchText={textFilter}
+              optionsAll={item.optionsAll || []}
+              options={item.options || []}
+              select={item.select}
+              isLoading={isLoading}
+              setModalVisible={() => onSelectFilterRoot(TypeFilter.empty)}
+              onChangeSearchText={(param) => onChangeSearchText(param)}
+              onSelect={(param) => onSelectOption(item.id, param)}
+            />
+          );
+        }
 
         return (
           <ModalFilterCurrent

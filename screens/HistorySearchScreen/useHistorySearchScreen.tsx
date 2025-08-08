@@ -26,10 +26,17 @@ export default function useHistorySearchScreen() {
 
   const handleSearch = (history: HistoryType) => {
     getCardsFx({
-      regionName: history.region_name,
-      countryName: history.country_name,
-      manufacturerName: history.manufacturer_name,
-      photoUri: history.photo,
+      regionName: history.region_name
+        ? [{ id: -1, name: history.region_name }]
+        : [],
+      countryName: history.country_name
+        ? [{ id: -1, name: history.country_name }]
+        : [],
+      manufacturerName: history.manufacturer_name
+        ? [{ id: -1, name: history.manufacturer_name }]
+        : [],
+      photoUri: null,
+      symbolName: [],
     });
 
     setActiveTabEvent(ActiveTab.search);
@@ -37,27 +44,27 @@ export default function useHistorySearchScreen() {
     setSelectOptionEvent({
       type: TypeFilter.area,
       option: history.region_name
-        ? { id: -1, name: history.region_name }
-        : null,
+        ? [{ id: -1, name: history.region_name }]
+        : [],
     });
 
     setSelectOptionEvent({
       type: TypeFilter.city,
-      option: history.city_name ? { id: -1, name: history.city_name } : null,
+      option: history.city_name ? [{ id: -1, name: history.city_name }] : [],
     });
 
     setSelectOptionEvent({
       type: TypeFilter.manufacturer,
       option: history.manufacturer_name
-        ? { id: -1, name: history.manufacturer_name }
-        : null,
+        ? [{ id: -1, name: history.manufacturer_name }]
+        : [],
     });
 
     setSelectOptionEvent({
       type: TypeFilter.country,
       option: history.country_name
-        ? { id: -1, name: history.country_name }
-        : null,
+        ? [{ id: -1, name: history.country_name }]
+        : [],
     });
 
     setSearchTextEvent(history.text || "");

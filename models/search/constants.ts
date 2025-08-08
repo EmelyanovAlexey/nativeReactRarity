@@ -9,25 +9,26 @@ export const SEARCH_MODEL_DEFAULT: SearchModel = {
   isBeenSearch: false,
 
   countries: [],
-  selectedCountries: null,
+  selectedCountries: [],
 
   regions: [],
-  selectedRegions: null,
+  selectedRegions: [],
 
   cities: [],
-  selectedCities: null,
+  selectedCities: [],
 
   manufacturers: [],
-  selectedManufacturers: null,
+  manufacturersAll: [],
+  selectedManufacturers: [],
 
   cards: [],
   cardDetail: null,
 
-  selectedSymbol: null,
+  selectedSymbol: [],
 
   paramsFilter: {
     countries: [],
-    manufacturers:[],
+    manufacturers: [],
     symbols: [],
   },
 

@@ -31,6 +31,8 @@
     "takePicture": "Сфотографировать",
     "downloadFromGallery": "Загрузить из галереи",
     "setPermissionCamera": "Предоставьте разрешение",
+    "selectAll": "Выбрать все",
+    "select": "Выбрать",
 
     "enterEmail": "Введите свой адрес электронной почты",
     "comeUpPassword": "Придумайте пароль",

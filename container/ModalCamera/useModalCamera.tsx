@@ -32,10 +32,10 @@ export default function useModalCamera(
     setPageEvent(1);
 
     getCardsSearchPhotoFx({
-      countryName: selectedCountries?.name,
-      regionName: selectedRegions?.name,
-      manufacturerName: selectedManufacturers?.name,
-      symbolName: selectedSymbol?.name,
+      countryName: selectedCountries,
+      regionName: selectedRegions,
+      manufacturerName: selectedManufacturers,
+      symbolName: selectedSymbol,
       photoUri: img.split(",")[1],
       page: 1,
       offset: limit,

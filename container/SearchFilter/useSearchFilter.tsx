@@ -38,27 +38,32 @@ export default function useBottomTabs() {
     {
       id: TypeFilter.symbol,
       select: selectedSymbol,
+      name: "country",
     },
     {
       id: TypeFilter.country,
       select: selectedCountries,
+      name: "country",
     },
     {
       id: TypeFilter.area,
       select: selectedRegions,
+      name: "area",
     },
     {
       id: TypeFilter.city,
       select: selectedCities,
+      name: "city",
     },
     {
       id: TypeFilter.manufacturer,
       select: selectedManufacturers,
+      name: "manufacturer",
     },
   ];
 
   const selectedFilter = listFilter.filter(
-    (filterItem) => filterItem.select !== null
+    (filterItem) => filterItem.select.length > 0
   );
 
   const isShowStart =
@@ -72,18 +77,15 @@ export default function useBottomTabs() {
   };
 
   const handleDelete = (type: TypeFilter) => {
-    setSelectOptionEvent({ type, option: null });
+    setSelectOptionEvent({ type, option: [] });
     setPageEvent(1);
 
     const param = {
-      regionName: type === TypeFilter.area ? undefined : selectedRegions?.name,
-      countryName:
-        type === TypeFilter.country ? undefined : selectedCountries?.name,
+      regionName: type === TypeFilter.area ? [] : selectedRegions,
+      countryName: type === TypeFilter.country ? [] : selectedCountries,
       manufacturerName:
-        type === TypeFilter.manufacturer
-          ? undefined
-          : selectedManufacturers?.name,
-      symbolName: type === TypeFilter.symbol ? undefined : selectedSymbol?.name,
+        type === TypeFilter.manufacturer ? [] : selectedManufacturers,
+      symbolName: type === TypeFilter.symbol ? [] : selectedSymbol,
       page: 1,
       offset: limit,
     };
@@ -112,10 +114,10 @@ export default function useBottomTabs() {
     setImgEvent(null);
     setPageEvent(1);
     getCardsFx({
-      regionName: selectedRegions?.name,
-      countryName: selectedCountries?.name,
-      manufacturerName: selectedManufacturers?.name,
-      symbolName: selectedSymbol?.name,
+      regionName: selectedRegions,
+      countryName: selectedCountries,
+      manufacturerName: selectedManufacturers,
+      symbolName: selectedSymbol,
       page: 1,
       offset: limit,
     });

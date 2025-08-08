@@ -17,6 +17,7 @@ type Props = {
   style?: ViewStyle;
   styleBody?: ViewStyle;
   children: React.ReactNode;
+  bottomContent?: React.ReactNode;
   title?: string;
   modalVisible?: boolean;
   isScroll?: boolean;
@@ -30,6 +31,7 @@ const ModalSmall = ({
   title = "",
   children,
   isScroll = true,
+  bottomContent,
   setModalVisible,
 }: Props) => {
   const { t } = useTranslation();
@@ -65,6 +67,8 @@ const ModalSmall = ({
             ) : (
               <View style={[styles.body, styleBody]}>{children}</View>
             )}
+
+            {bottomContent && <View>{bottomContent}</View>}
           </View>
         </View>
       </View>
@@ -80,7 +84,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   modalContainer: {
-    width: "90%",
+    width: "92%",
     maxHeight: "70%",
     minHeight: "20%",
   },
@@ -107,6 +111,7 @@ const styles = StyleSheet.create({
   },
   scrollContent: {
     flexGrow: 1,
+    paddingRight: "2%",
   },
   body: {
     width: "100%",

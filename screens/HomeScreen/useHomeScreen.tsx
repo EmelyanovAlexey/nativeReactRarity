@@ -42,7 +42,14 @@ export default function useHomeScreen() {
   };
 
   const loadCards = async (pageToLoad = 1) => {
-    await getCardsFx({ page: pageToLoad, offset: limit });
+    await getCardsFx({
+      page: pageToLoad,
+      offset: limit,
+      regionName: [],
+      countryName: [],
+      manufacturerName: [],
+      symbolName: [],
+    });
   };
 
   useEffect(() => {

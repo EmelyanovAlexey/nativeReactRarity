@@ -4,8 +4,10 @@ import { CardType, CardDetailType } from "@/models/home/types";
 export type FilterRoot = {
   id: TypeFilter;
   name: string;
-  select: FilterOption | null;
+  select: FilterOption[];
   options?: FilterOption[];
+  optionsAll?: FilterOption[];
+  isChips?: boolean;
 };
 
 export type FilterOption = {
@@ -53,21 +55,22 @@ export interface SearchModel {
   isBeenSearch: boolean;
 
   countries: FilterOption[];
-  selectedCountries: FilterOption | null;
+  selectedCountries: FilterOption[];
 
   regions: FilterOption[];
-  selectedRegions: FilterOption | null;
+  selectedRegions: FilterOption[];
 
   cities: FilterOption[];
-  selectedCities: FilterOption | null;
+  selectedCities: FilterOption[];
 
   manufacturers: ManufacturersFilterOption[];
-  selectedManufacturers: FilterOption | null;
+  selectedManufacturers: FilterOption[];
+  manufacturersAll: ManufacturersFilterOption[];
+
+  selectedSymbol: FilterOption[];
 
   cards: CardType[];
   cardDetail: CardDetailType | null;
-
-  selectedSymbol: FilterOption | null;
 
   paramsFilter: SearchParamType;
 

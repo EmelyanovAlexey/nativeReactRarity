@@ -65,12 +65,10 @@ export default function useBottomTabs() {
 
   const loadCards = async (pageToLoad = 1) => {
     const param = {
-      regionName: !selectedRegions ? undefined : selectedRegions?.name,
-      countryName: !selectedCountries ? undefined : selectedCountries?.name,
-      manufacturerName: !selectedManufacturers
-        ? undefined
-        : selectedManufacturers?.name,
-      symbolName: !selectedSymbol ? undefined : selectedSymbol?.name,
+      regionName: !selectedRegions ? [] : selectedRegions,
+      countryName: !selectedCountries ? [] : selectedCountries,
+      manufacturerName: !selectedManufacturers ? [] : selectedManufacturers,
+      symbolName: !selectedSymbol ? [] : selectedSymbol,
       page: pageToLoad,
       offset: limit,
     };

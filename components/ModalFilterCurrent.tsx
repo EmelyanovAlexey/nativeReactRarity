@@ -1,17 +1,12 @@
-import React, { useState, useRef } from "react";
+import React from "react";
 import {
   View,
   Text,
   StyleSheet,
   ViewStyle,
   TouchableOpacity,
-  // ScrollView,
-  // NativeScrollEvent,
-  // NativeSyntheticEvent,
 } from "react-native";
-// import Modal from "react-native-modal";
 import { Colors } from "@/shared/constStyle";
-// import Input from "@/components/Input";
 import ModalSmall from "@/components/ModalSmall";
 import Spinner from "@/components/Spinner";
 
@@ -25,36 +20,26 @@ type Props = {
   searchText: string;
   options: FilterOption[];
   title: string;
-  select: FilterOption | null;
+  select: FilterOption[];
   isLoading: boolean;
   setModalVisible: (param: boolean) => void;
   onChangeSearchText: (param: string) => void;
-  onSelect: (param: FilterOption) => void;
+  onSelect: (param: FilterOption[]) => void;
 };
 
 const ModalFilterCurrent = ({
-  style,
-  modalVisible = false,
-  searchText,
   options = [],
   title = "",
   select,
   isLoading,
   setModalVisible,
-  // onChangeSearchText,
   onSelect,
 }: Props) => {
   const { t } = useTranslation();
-  // const scrollViewRef = useRef<ScrollView>(null);
-  // const [scrollOffset, setScrollOffset] = useState(0);
 
   const searchOnBlock = () => {
     setModalVisible(false);
   };
-
-  // const handleScroll = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
-  //   setScrollOffset(event.nativeEvent.contentOffset.y);
-  // };
 
   return (
     <ModalSmall title={t(title)} setModalVisible={searchOnBlock}>
@@ -62,7 +47,7 @@ const ModalFilterCurrent = ({
         {options.map((option) => (
           <TouchableOpacity
             onPress={() => {
-              onSelect(option);
+              onSelect([option]);
               searchOnBlock();
             }}
             style={styles.option}
@@ -71,7 +56,7 @@ const ModalFilterCurrent = ({
             <Text
               style={[
                 styles.optionText,
-                select?.id === option.id && styles.optionTextSelect,
+                select[0]?.id === option.id && styles.optionTextSelect,
               ]}
             >
               {option.name}

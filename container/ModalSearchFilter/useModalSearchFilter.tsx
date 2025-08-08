@@ -12,9 +12,7 @@ import {
 import { TypeFilter, FilterRoot, FilterOption } from "@/models/search/types";
 import { $searchModel } from "@/models/search";
 import {
-  // setIsShowModalEvent,
   setIsShowModalFilterEvent,
-  // setSearchTextEvent,
   setSelectOptionEvent,
   setPageEvent,
   resetFilterEvent,
@@ -30,6 +28,7 @@ export default function useModalSearchFilter() {
     cities,
     selectedCities,
     manufacturers,
+    manufacturersAll,
     selectedManufacturers,
     limit,
     selectedSymbol,
@@ -58,12 +57,15 @@ export default function useModalSearchFilter() {
     isRegionsLoading ||
     isCitiesLoading ||
     isManufacturersLoading;
+
   const listFilterRoot: FilterRoot[] = [
     {
       id: TypeFilter.manufacturer,
       name: "manufacturer",
       select: selectedManufacturers,
       options: manufacturers,
+      optionsAll: manufacturersAll,
+      isChips: true,
     },
     {
       id: TypeFilter.country,
@@ -106,10 +108,10 @@ export default function useModalSearchFilter() {
     setPageEvent(1);
 
     const paramRequest = {
-      countryName: selectedCountries?.name,
-      regionName: selectedRegions?.name,
-      manufacturerName: selectedManufacturers?.name,
-      symbolName: selectedSymbol?.name,
+      countryName: selectedCountries,
+      regionName: selectedRegions,
+      manufacturerName: selectedManufacturers,
+      symbolName: selectedSymbol,
       page: 1,
       offset: limit,
     };
@@ -133,13 +135,18 @@ export default function useModalSearchFilter() {
     getData(param, "");
   };
 
-  const onSelectOption = (type: TypeFilter, option: FilterOption) => {
+  const onSelectOption = (type: TypeFilter, option: FilterOption[]) => {
     setSelectOptionEvent({ type, option });
     setTypeCurFilter(TypeFilter.empty);
   };
 
   // Удалить элемент фильтра
   const handleDelete = (type: TypeFilter) => {
+    if (type === TypeFilter.manufacturer) {
+      setSelectOptionEvent({ type, option: [] });
+      return;
+    }
+
     const findElementSelect = listFilterRoot.find(
       (filter) => filter.id === type
     )?.select;
@@ -176,6 +183,7 @@ export default function useModalSearchFilter() {
     typeCurFilter,
     listFilterRoot,
     isLoading,
+    selectedManufacturers,
     setModalVisibleSearch,
     onChangeSearchText,
     onSelectFilterRoot,

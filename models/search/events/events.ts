@@ -13,7 +13,7 @@ export const resetFilterEvent = createEvent<void>();
 
 export const setSelectOptionEvent = createEvent<{
   type: TypeFilter;
-  option: FilterOption | null;
+  option: FilterOption[];
 }>();
 
 export const clearDetailCardEvent = createEvent<void>();

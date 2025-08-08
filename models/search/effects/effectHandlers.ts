@@ -33,7 +33,12 @@ export function manufacturersFxDoneHandler(
   state: SearchModel,
   data: ManufacturersFilterOption[]
 ): SearchModel {
-  return { ...state, manufacturers: data };
+  return {
+    ...state,
+    manufacturers: data,
+    manufacturersAll:
+      state.manufacturersAll.length === 0 ? data : state.manufacturersAll,
+  };
 }
 
 export function getCardsFxDoneHandler(

@@ -38,6 +38,51 @@ const ModalSearchFilter = ({
   const { t } = useTranslation();
   const scrollViewRef = useRef<ScrollView>(null);
 
+  const getSelectedText = (filter: FilterRoot) => {
+    if (filter.isChips && filter.select.length > 0) {
+      const maxVisibleItems =
+        filter.select.length > 1 && filter.select[0].name.length > 25 ? 1 : 2;
+      const itemsToShow = filter.select.slice(0, maxVisibleItems);
+
+      return (
+        <View style={styles.chipsBlock}>
+          {itemsToShow.map((selectItem) => (
+            <Text
+              ellipsizeMode="tail"
+              numberOfLines={1}
+              style={[
+                styles.label,
+                filter.select.length > 0 && styles.select,
+                styles.chips,
+              ]}
+              key={selectItem.id}
+            >
+              {selectItem.name}
+            </Text>
+          ))}
+
+          {filter.select.length > maxVisibleItems && (
+            <View style={styles.remainingChip}>
+              <Text style={styles.remainingText}>
+                +{filter.select.length - maxVisibleItems}
+              </Text>
+            </View>
+          )}
+        </View>
+      );
+    }
+
+    return (
+      <Text
+        ellipsizeMode="tail"
+        numberOfLines={1}
+        style={[styles.label, filter.select.length > 0 && styles.select]}
+      >
+        {filter.select.length > 0 ? filter.select[0]?.name : t(filter.name)}
+      </Text>
+    );
+  };
+
   return (
     <Modal
       transparent={true}
@@ -70,27 +115,16 @@ const ModalSearchFilter = ({
                     onPress={() => onSelectFilter(listItem.id)}
                     style={[
                       styles.block,
-                      listItem.select !== null && styles.blockSmall,
+                      listItem.select.length > 0 && styles.blockSmall,
                     ]}
                     key={listItem.id}
                   >
-                    <Text
-                      ellipsizeMode="tail"
-                      numberOfLines={1}
-                      style={[
-                        styles.label,
-                        listItem.select !== null && styles.select,
-                      ]}
-                    >
-                      {listItem.select !== null
-                        ? listItem.select.name
-                        : t(listItem.name)}
-                    </Text>
+                    {getSelectedText(listItem)}
 
                     <Сhevron />
                   </TouchableOpacity>
 
-                  {listItem.select !== null && (
+                  {listItem.select.length > 0 && (
                     <TouchableOpacity
                       onPress={() => handleDelete(listItem.id)}
                       style={[styles.delete]}
@@ -180,6 +214,7 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.GrayColor3,
     paddingHorizontal: 16,
     borderRadius: 16,
+    height: 50,
   },
   blockSmall: {
     width: "89%",
@@ -205,6 +240,32 @@ const styles = StyleSheet.create({
   },
   scrollContent: {
     paddingBottom: 100, // Чтобы контент не заезжал под кнопки
+  },
+  chipsBlock: {
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+    width: "90%",
+    gap: 6,
+  },
+  chips: {
+    backgroundColor: Colors.Primary2,
+    paddingVertical: 10,
+    paddingHorizontal: 10,
+    borderRadius: 12,
+    color: Colors.Primary,
+  },
+  remainingChip: {
+    backgroundColor: Colors.Primary2,
+    borderRadius: 12,
+    paddingHorizontal: 6,
+    paddingVertical: 10,
+    marginLeft: 4,
+  },
+  remainingText: {
+    fontSize: 16,
+    color: Colors.Primary,
+    fontFamily: "Inter_400Regular",
   },
 });
 

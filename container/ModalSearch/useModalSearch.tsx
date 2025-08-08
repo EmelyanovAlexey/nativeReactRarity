@@ -30,8 +30,8 @@ export default function useModalSearch() {
   const isLoading = useUnit(getSearchFilterParamFx.pending);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
   const selectedParam = {
-    selectedCountries,
-    selectedManufacturers,
+    // selectedCountries,
+    // selectedManufacturers,
     selectedSymbol,
   };
 
@@ -57,10 +57,10 @@ export default function useModalSearch() {
   const setModalVisibleSearch = (param: boolean) => {
     setPageEvent(1);
     const paramRequest = {
-      countryName: selectedCountries?.name,
-      regionName: selectedRegions?.name,
-      manufacturerName: selectedManufacturers?.name,
-      symbolName: selectedSymbol?.name,
+      countryName: selectedCountries,
+      regionName: selectedRegions,
+      manufacturerName: selectedManufacturers,
+      symbolName: selectedSymbol,
       page: 1,
       offset: limit,
     };
@@ -83,7 +83,7 @@ export default function useModalSearch() {
   const onClickParam = (type: TypeFilter, value: string) => {
     setSelectOptionEvent({
       type,
-      option: { id: 1, name: value },
+      option: [{ id: 1, name: value }],
     });
   };
 

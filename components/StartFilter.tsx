@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
     fontFamily: "Inter_400Regular",
     fontWeight: 500,
     color: Colors.GrayColor,
-    marginBottom: "5%",
+    marginBottom: "7%",
     marginLeft: "8%",
   },
   textBottom: {
@@ -89,7 +89,7 @@ const styles = StyleSheet.create({
     fontWeight: 500,
     color: Colors.GrayColor,
     marginBottom: "10%",
-    marginLeft: "15%",
+    marginLeft: "18%",
   },
   person: {
     position: "absolute",

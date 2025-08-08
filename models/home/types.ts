@@ -1,3 +1,5 @@
+import { FilterOption } from "@/models/search/types";
+
 // ТИПЫ
 export type CardType = {
   id: number;
@@ -35,21 +37,21 @@ export type PopularModel = {
 
 // ПАРАМЕТРЫ
 export type getCardsFxParam = {
-  regionName?: string;
-  countryName?: string;
-  manufacturerName?: string;
+  regionName: FilterOption[];
+  countryName: FilterOption[];
+  manufacturerName: FilterOption[];
   photoUri?: string | null;
-  symbolName?: string;
+  symbolName: FilterOption[];
   page?: number;
   offset?: number;
 };
 
 export type getCardsPhotoFxParam = {
-  regionName?: string;
-  countryName?: string;
-  manufacturerName?: string;
+  regionName: FilterOption[];
+  countryName: FilterOption[];
+  manufacturerName: FilterOption[];
   photoUri: string;
-  symbolName?: string;
+  symbolName: FilterOption[];
   page?: number;
   offset?: number;
 };

@@ -25,15 +25,22 @@ export function setSelectOptionEventHandler(
   state: SearchModel,
   param: {
     type: TypeFilter;
-    option: FilterOption | null;
+    option: FilterOption[];
   }
 ): SearchModel {
+  if (param.type === TypeFilter.manufacturer) {
+    return {
+      ...state,
+      selectedManufacturers: param.option,
+    };
+  }
+
   if (param.type === TypeFilter.country) {
     return {
       ...state,
       selectedCountries:
-        state.selectedCountries?.name === param.option?.name
-          ? null
+        state.selectedCountries[0]?.name === param.option[0]?.name
+          ? []
           : param.option,
     };
   }
@@ -41,8 +48,8 @@ export function setSelectOptionEventHandler(
     return {
       ...state,
       selectedRegions:
-        state.selectedRegions?.name === param.option?.name
-          ? null
+        state.selectedRegions[0]?.name === param.option[0]?.name
+          ? []
           : param.option,
     };
   }
@@ -50,15 +57,8 @@ export function setSelectOptionEventHandler(
     return {
       ...state,
       selectedCities:
-        state.selectedCities?.name === param.option?.name ? null : param.option,
-    };
-  }
-  if (param.type === TypeFilter.manufacturer) {
-    return {
-      ...state,
-      selectedManufacturers:
-        state.selectedManufacturers?.name === param.option?.name
-          ? null
+        state.selectedCities[0]?.name === param.option[0]?.name
+          ? []
           : param.option,
     };
   }
@@ -66,7 +66,9 @@ export function setSelectOptionEventHandler(
     return {
       ...state,
       selectedSymbol:
-        state.selectedSymbol?.name === param.option?.name ? null : param.option,
+        state.selectedSymbol[0]?.name === param.option[0]?.name
+          ? []
+          : param.option,
     };
   }
 
@@ -101,9 +103,9 @@ export function setPageEventHandler(
 export function resetFilterEventHandler(state: SearchModel): SearchModel {
   return {
     ...state,
-    selectedManufacturers: null,
-    selectedCities: null,
-    selectedRegions: null,
-    selectedCountries: null,
+    selectedManufacturers: [],
+    selectedCities: [],
+    selectedRegions: [],
+    selectedCountries: [],
   };
 }
