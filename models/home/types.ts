@@ -47,11 +47,11 @@ export type getCardsFxParam = {
 };
 
 export type getCardsPhotoFxParam = {
-  regionName: FilterOption[];
-  countryName: FilterOption[];
-  manufacturerName: FilterOption[];
+  // regionName: FilterOption[];
+  // countryName: FilterOption[];
+  // manufacturerName: FilterOption[];
   photoUri: string;
-  symbolName: FilterOption[];
+  // symbolName: FilterOption[];
   page?: number;
   offset?: number;
 };

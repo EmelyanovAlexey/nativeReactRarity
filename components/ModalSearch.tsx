@@ -31,7 +31,7 @@ type Props = {
   selectedParam: {
     // selectedCountries: FilterOption | null;
     // selectedManufacturers: FilterOption | null;
-    selectedSymbol: FilterOption | null;
+    selectedSymbol: FilterOption[];
   };
   setModalVisible: (param: boolean) => void;
   onChangeSearchText: (param: string) => void;
@@ -72,7 +72,7 @@ const ModalSearch = ({
 
   // узнать активный ли фильтр
   function isParamActive(param: string) {
-    if (param === selectedParam.selectedSymbol?.name) {
+    if (param === selectedParam.selectedSymbol[0]?.name) {
       return true;
     }
 

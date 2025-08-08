@@ -7,6 +7,7 @@ import {
   Image,
   TouchableOpacity,
 } from "react-native";
+import Arrow from "@/components/Icons/Arrow";
 import { useTranslation } from "react-i18next";
 
 import SearchBlock from "@/components/SearchBlock";
@@ -43,6 +44,29 @@ export default function SearchFilter() {
 
     return "";
   };
+
+  // Если было выбрано изображение
+  if (img) {
+    return (
+      <View style={styles.imgContainer}>
+        <View style={styles.header}>
+          <TouchableOpacity onPress={onPressDeleteImg}>
+            <View style={styles.arrow}>
+              <Arrow />
+            </View>
+          </TouchableOpacity>
+
+          <Text style={styles.modalTitle}>{t("imageSearch")}</Text>
+        </View>
+
+        <Text style={styles.label}>{t("yourImage")}</Text>
+
+        <Image source={{ uri: img }} style={styles.imageBig} />
+
+        <Text style={styles.label}>{t("resultSearch2")}</Text>
+      </View>
+    );
+  }
 
   return (
     <>
@@ -96,6 +120,51 @@ export default function SearchFilter() {
 }
 
 const styles = StyleSheet.create({
+  imgContainer: {
+    padding: 20,
+    width: "100%",
+    paddingBottom: 10,
+    paddingTop: 0,
+  },
+  header: {
+    width: "100%",
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "flex-start",
+    alignItems: "center",
+    marginBottom: 24,
+  },
+  arrow: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    padding: 10,
+    width: 34,
+    height: 32,
+    borderRadius: "50%",
+    backgroundColor: Colors.GrayColor2,
+    marginRight: 18,
+  },
+  modalTitle: {
+    fontWeight: 600,
+    fontSize: 20,
+    fontFamily: "Inter_400Regular",
+  },
+  label: {
+    fontWeight: 600,
+    fontSize: 20,
+    fontFamily: "Inter_400Regular",
+  },
+  imageBig: {
+    width: 130,
+    height: 130,
+    borderRadius: 8,
+    marginRight: 8,
+    marginBottom: 12,
+    marginTop: 12,
+    // borderWidth: 1,
+  },
+
   container: {
     width: "100%",
     paddingHorizontal: 24,

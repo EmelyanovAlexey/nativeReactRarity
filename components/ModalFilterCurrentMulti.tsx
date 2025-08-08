@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { View, StyleSheet } from "react-native";
+import React, { useEffect, useRef, useState } from "react";
+import { View, StyleSheet, TextInput } from "react-native";
 import { Colors } from "@/shared/constStyle";
 import Input from "@/components/Input";
 import ModalSmall from "@/components/ModalSmall";
@@ -39,6 +39,21 @@ const ModalFilterCurrentMulti = ({
   const [selectElements, setSelectElements] = useState<FilterOption[]>(
     select || []
   );
+  const inputRef = useRef<TextInput>(null);
+
+  useEffect(() => {
+    if (modalVisible) {
+      const timer = setTimeout(() => {
+        inputRef.current?.focus();
+        if (searchText) {
+          inputRef.current?.setNativeProps?.({
+            selection: { start: searchText.length, end: searchText.length },
+          });
+        }
+      }, 100);
+      return () => clearTimeout(timer);
+    }
+  }, [modalVisible]);
 
   const isSelectAll = selectElements.length === optionsAll.length;
 
@@ -68,6 +83,19 @@ const ModalFilterCurrentMulti = ({
     setSelectElements(optionsAll);
   };
 
+  const handleModalOpen = () => {
+    requestAnimationFrame(() => {
+      if (inputRef.current) {
+        inputRef.current.focus();
+        if (searchText) {
+          inputRef.current.setNativeProps({
+            selection: { start: searchText.length, end: searchText.length },
+          });
+        }
+      }
+    });
+  };
+
   return (
     <ModalSmall
       modalVisible={modalVisible}
@@ -84,9 +112,14 @@ const ModalFilterCurrentMulti = ({
           style={styles.button}
         />
       }
+      onLayout={handleModalOpen}
     >
       <View style={styles.search}>
         <Input
+          ref={inputRef}
+          autoFocus={modalVisible}
+          returnKeyType="search"
+          blurOnSubmit={false}
           placeholder={t("titleSearch")}
           value={searchText}
           onChangeText={(param) => onChangeSearchText(param)}

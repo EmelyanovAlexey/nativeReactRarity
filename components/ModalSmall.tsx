@@ -8,6 +8,7 @@ import {
   Modal,
   ScrollView,
   Dimensions,
+  TouchableWithoutFeedback,
 } from "react-native";
 import Cross from "@/components/Icons/Cross";
 import { useTranslation } from "react-i18next";
@@ -22,6 +23,7 @@ type Props = {
   modalVisible?: boolean;
   isScroll?: boolean;
   setModalVisible: (param: boolean) => void;
+  onLayout?: () => void;
 };
 
 const ModalSmall = ({
@@ -33,9 +35,15 @@ const ModalSmall = ({
   isScroll = true,
   bottomContent,
   setModalVisible,
+  onLayout,
 }: Props) => {
   const { t } = useTranslation();
   const windowHeight = Dimensions.get("window").height;
+  const modalRef = useRef<View>(null);
+
+  const handleOverlayPress = () => {
+    setModalVisible(false);
+  };
 
   return (
     <Modal
@@ -44,34 +52,43 @@ const ModalSmall = ({
       visible={modalVisible}
       onRequestClose={() => setModalVisible(false)}
     >
-      <View style={styles.overlay}>
-        <View
-          style={[styles.modalContainer, { marginTop: windowHeight * 0.1 }]}
-        >
-          <View style={[styles.modal, style]}>
-            <View style={styles.header}>
-              <Text style={styles.modalTitle}>{title}</Text>
-              <TouchableOpacity onPress={() => setModalVisible(false)}>
-                <Cross />
-              </TouchableOpacity>
+      <TouchableWithoutFeedback onPress={handleOverlayPress}>
+        <View style={styles.overlay}>
+          <TouchableWithoutFeedback onPress={() => {}}>
+            <View
+              ref={modalRef}
+              onLayout={onLayout}
+              style={[styles.modalContainer, { marginTop: windowHeight * 0.1 }]}
+            >
+              <View style={[styles.modal, style]}>
+                <View style={styles.header}>
+                  <Text style={styles.modalTitle}>{title}</Text>
+                  <TouchableOpacity
+                    style={styles.close}
+                    onPress={() => setModalVisible(false)}
+                  >
+                    <Cross />
+                  </TouchableOpacity>
+                </View>
+
+                {isScroll ? (
+                  <ScrollView
+                    scrollEventThrottle={16}
+                    showsVerticalScrollIndicator={true}
+                    contentContainerStyle={styles.scrollContent}
+                  >
+                    <View style={[styles.body, styleBody]}>{children}</View>
+                  </ScrollView>
+                ) : (
+                  <View style={[styles.body, styleBody]}>{children}</View>
+                )}
+
+                {bottomContent && <View>{bottomContent}</View>}
+              </View>
             </View>
-
-            {isScroll ? (
-              <ScrollView
-                scrollEventThrottle={16}
-                showsVerticalScrollIndicator={true}
-                contentContainerStyle={styles.scrollContent}
-              >
-                <View style={[styles.body, styleBody]}>{children}</View>
-              </ScrollView>
-            ) : (
-              <View style={[styles.body, styleBody]}>{children}</View>
-            )}
-
-            {bottomContent && <View>{bottomContent}</View>}
-          </View>
+          </TouchableWithoutFeedback>
         </View>
-      </View>
+      </TouchableWithoutFeedback>
     </Modal>
   );
 };
@@ -95,6 +112,9 @@ const styles = StyleSheet.create({
     paddingVertical: 15,
     paddingHorizontal: 20,
     backgroundColor: Colors.WhiteColor,
+  },
+  close: {
+    padding: 5,
   },
   header: {
     width: "100%",

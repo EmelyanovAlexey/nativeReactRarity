@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, forwardRef } from "react";
 import {
   View,
   ViewStyle,
@@ -24,57 +24,60 @@ type AppInputProps = {
   deleteText?: () => void;
 };
 
-export function Input(props: TextInputProps & AppInputProps) {
-  const [isPasswordVisible, setIsPasswordVisible] = useState<boolean>(false);
-  const [isFocused, setIsFocused] = useState(false);
+export const Input = forwardRef<TextInput, TextInputProps & AppInputProps>(
+  (props, ref) => {
+    const [isPasswordVisible, setIsPasswordVisible] = useState<boolean>(false);
+    const [isFocused, setIsFocused] = useState(false);
 
-  return (
-    <View>
-      {props.isSearch && (
-        <View style={styles.search}>
-          <Search width="22" height="22" stroke={Colors.GrayColor} />
-        </View>
-      )}
+    return (
+      <View>
+        {props.isSearch && (
+          <View style={styles.search}>
+            <Search width="22" height="22" stroke={Colors.GrayColor} />
+          </View>
+        )}
 
-      <TextInput
-        style={[
-          styles.input,
-          isFocused && styles.focused,
-          props.isError && styles.error,
-          props.isSearch && styles.searchInput,
-          props.style,
-        ]}
-        underlineColorAndroid="transparent"
-        secureTextEntry={props.isPassword && !isPasswordVisible}
-        placeholderTextColor={Colors.GrayColor}
-        onFocus={() => setIsFocused(true)}
-        onBlur={() => setIsFocused(false)}
-        value={props.value}
-        {...props}
-      />
-      {props.isPassword && (
-        <Pressable
-          onPress={() => setIsPasswordVisible((state) => !state)}
-          style={styles.eyeIcon}
-        >
-          {isPasswordVisible ? <EyeOpen /> : <EyeClosed />}
-        </Pressable>
-      )}
+        <TextInput
+          ref={ref}
+          style={[
+            styles.input,
+            isFocused && styles.focused,
+            props.isError && styles.error,
+            props.isSearch && styles.searchInput,
+            props.style,
+          ]}
+          underlineColorAndroid="transparent"
+          secureTextEntry={props.isPassword && !isPasswordVisible}
+          placeholderTextColor={Colors.GrayColor}
+          onFocus={() => setIsFocused(true)}
+          onBlur={() => setIsFocused(false)}
+          value={props.value}
+          {...props}
+        />
+        {props.isPassword && (
+          <Pressable
+            onPress={() => setIsPasswordVisible((state) => !state)}
+            style={styles.eyeIcon}
+          >
+            {isPasswordVisible ? <EyeOpen /> : <EyeClosed />}
+          </Pressable>
+        )}
 
-      {props.value !== "" && props.isSearch && props.deleteText && (
-        <TouchableOpacity style={[styles.delete]} onPress={props.deleteText}>
-          <Cross />
-        </TouchableOpacity>
-      )}
+        {props.value !== "" && props.isSearch && props.deleteText && (
+          <TouchableOpacity style={[styles.delete]} onPress={props.deleteText}>
+            <Cross />
+          </TouchableOpacity>
+        )}
 
-      {props.isLoading && (
-        <View style={[styles.loading]}>
-          <Spinner size={30} />
-        </View>
-      )}
-    </View>
-  );
-}
+        {props.isLoading && (
+          <View style={[styles.loading]}>
+            <Spinner size={30} />
+          </View>
+        )}
+      </View>
+    );
+  }
+);
 
 const styles = StyleSheet.create({
   search: {

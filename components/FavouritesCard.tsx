@@ -40,16 +40,16 @@ const FavouritesCard = ({ style, item, onPress, setIsFavorite }: Props) => {
 
       <View style={styles.info}>
         <Text style={styles.title} numberOfLines={2} ellipsizeMode="tail">
-          {item.name}
+          {item.name || "-"}
         </Text>
         <Text numberOfLines={1} style={styles.description}>
-          {item.year_from || ""} - {item.year_to || ""}
+          {item.year_from || ""} - {item.year_to || "по сей день"}
         </Text>
       </View>
 
       <TouchableOpacity style={styles.starIcon} onPress={toggleFavorite}>
         <Start
-          stroke={item.is_favourite ? Colors.GrayColor : Colors.Primary}
+          stroke={item.is_favourite ? Colors.Primary : Colors.GrayColor}
           fill={item.is_favourite ? Colors.Primary : Colors.Transparent}
         />
       </TouchableOpacity>
@@ -58,13 +58,14 @@ const FavouritesCard = ({ style, item, onPress, setIsFavorite }: Props) => {
 };
 
 const screenWidth = Dimensions.get("window").width;
-const calculatedWidth = screenWidth - 64 - 80 - 6;
+const calculatedWidth = screenWidth - 130 - 80 - 6;
 
 const styles = StyleSheet.create({
   card: {
     flex: 1,
     width: "100%",
     flexDirection: "row",
+    alignItems: "center",
     backgroundColor: Colors.WhiteColor,
     overflow: "hidden",
     elevation: 2,
@@ -73,10 +74,11 @@ const styles = StyleSheet.create({
     position: "relative",
   },
   image: {
-    width: 64,
-    height: 64,
+    width: 130,
+    height: 130,
     borderRadius: 8,
     marginRight: 8,
+    // borderWidth: 1,
   },
   starIcon: {
     borderRadius: 16,

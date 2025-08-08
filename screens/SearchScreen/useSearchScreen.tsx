@@ -26,10 +26,10 @@ export default function useSearchScreen() {
     setPageEvent(1);
 
     getCardsSearchPhotoFx({
-      countryName: selectedCountries,
-      regionName: selectedRegions,
-      manufacturerName: selectedManufacturers,
-      symbolName: selectedSymbol,
+      // countryName: selectedCountries,
+      // regionName: selectedRegions,
+      // manufacturerName: selectedManufacturers,
+      // symbolName: selectedSymbol,
       photoUri: pureBase64,
       page: 1,
       offset: limit,

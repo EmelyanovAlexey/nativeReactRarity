@@ -33,6 +33,9 @@
     "setPermissionCamera": "Предоставьте разрешение",
     "selectAll": "Выбрать все",
     "select": "Выбрать",
+    "yourImage": "Ваше изображение",
+    "imageSearch": "Поиск по изображению",
+    "resultSearch2": "Результаты поиска",
 
     "enterEmail": "Введите свой адрес электронной почты",
     "comeUpPassword": "Придумайте пароль",
