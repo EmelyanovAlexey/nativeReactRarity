@@ -46,14 +46,17 @@ export default function useSearchScreen() {
 
     // Открытие галереи
     const result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      mediaTypes: 'images',
       allowsEditing: true,
       quality: 1,
+      base64: true,
     });
 
     if (!result.canceled) {
-      setImgEvent(result.assets[0].uri);
-      setModalVisibleSearch(result.assets[0].uri);
+      let asset = result.assets[0];
+      let b64 = asset.base64!;
+      setImgEvent('data:image/jpeg;base64,' + b64);
+      setModalVisibleSearch('data:image/jpeg;base64,' + b64);
     }
     setShowPhotoMenu(false);
   };
