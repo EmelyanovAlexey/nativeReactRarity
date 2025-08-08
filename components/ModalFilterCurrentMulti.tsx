@@ -1,13 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
-import { View, StyleSheet, TextInput } from "react-native";
+import { View, StyleSheet, TextInput, Keyboard } from "react-native";
 import { Colors } from "@/shared/constStyle";
 import Input from "@/components/Input";
 import ModalSmall from "@/components/ModalSmall";
 import Button from "@/components/Button";
 import Checkbox from "@/components/Checkbox";
-
 import { FilterOption } from "@/models/search/types";
-
 import { useTranslation } from "react-i18next";
 
 type Props = {
@@ -43,6 +41,7 @@ const ModalFilterCurrentMulti = ({
 
   useEffect(() => {
     if (modalVisible) {
+      // Даем небольшой таймаут для корректного отображения модалки
       const timer = setTimeout(() => {
         inputRef.current?.focus();
         if (searchText) {
@@ -50,14 +49,28 @@ const ModalFilterCurrentMulti = ({
             selection: { start: searchText.length, end: searchText.length },
           });
         }
-      }, 1);
+      }, 5);
+
       return () => clearTimeout(timer);
     }
+  }, [modalVisible]);
+
+  useEffect(() => {
+    const keyboardListener = Keyboard.addListener("keyboardDidHide", () => {
+      if (modalVisible) {
+        inputRef.current?.focus();
+      }
+    });
+
+    return () => {
+      keyboardListener.remove();
+    };
   }, [modalVisible]);
 
   const isSelectAll = selectElements.length === optionsAll.length;
 
   const searchOnBlock = () => {
+    Keyboard.dismiss();
     setModalVisible(false);
   };
 
@@ -83,19 +96,6 @@ const ModalFilterCurrentMulti = ({
     setSelectElements(optionsAll);
   };
 
-  const handleModalOpen = () => {
-    requestAnimationFrame(() => {
-      if (inputRef.current) {
-        inputRef.current.focus();
-        if (searchText) {
-          inputRef.current.setNativeProps({
-            selection: { start: searchText.length, end: searchText.length },
-          });
-        }
-      }
-    });
-  };
-
   return (
     <ModalSmall
       modalVisible={modalVisible}
@@ -112,12 +112,11 @@ const ModalFilterCurrentMulti = ({
           style={styles.button}
         />
       }
-      onLayout={handleModalOpen}
     >
       <View style={styles.search}>
         <Input
           ref={inputRef}
-          autoFocus={modalVisible}
+          autoFocus={true}
           returnKeyType="search"
           blurOnSubmit={false}
           placeholder={t("titleSearch")}
