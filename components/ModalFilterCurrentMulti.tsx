@@ -50,7 +50,7 @@ const ModalFilterCurrentMulti = ({
             selection: { start: searchText.length, end: searchText.length },
           });
         }
-      }, 100);
+      }, 1);
       return () => clearTimeout(timer);
     }
   }, [modalVisible]);
